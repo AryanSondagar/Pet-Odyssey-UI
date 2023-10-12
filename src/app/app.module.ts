@@ -1,28 +1,31 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http' ;
-import {MatIconModule} from '@angular/material/icon';
-import {MatButtonModule} from '@angular/material/button';
-import {MatToolbarModule} from '@angular/material/toolbar';
+
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { NavbarComponent } from './Component/Admin/navbar/navbar.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { SideNavComponent } from './Component/Admin/side-nav/side-nav.component';
+import { HeaderComponent } from './Component/Admin/header/header.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { DashboardComponent } from './Component/Admin/dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    NavbarComponent,
+  
+    SideNavComponent,
+    HeaderComponent,
+    DashboardComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    MatButtonModule,
-    MatIconModule,
-    MatToolbarModule
+    FontAwesomeModule,
+    
   ],
   providers: [],
   bootstrap: [AppComponent]
