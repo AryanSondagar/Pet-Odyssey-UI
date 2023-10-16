@@ -10,6 +10,9 @@ import { SideNavComponent } from './Component/Admin/side-nav/side-nav.component'
 import { HeaderComponent } from './Component/Admin/header/header.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { DashboardComponent } from './Component/Admin/dashboard/dashboard.component';
+import { AdminMarketplaceComponent } from './Component/Admin/admin-marketplace/admin-marketplace.component';
+import { AdminCourseComponent } from './Component/Admin/admin-course/admin-course.component';
+import { AdminAdoptionComponent } from './Component/Admin/admin-adoption/admin-adoption.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +21,9 @@ import { DashboardComponent } from './Component/Admin/dashboard/dashboard.compon
     SideNavComponent,
     HeaderComponent,
     DashboardComponent,
+    AdminMarketplaceComponent,
+    AdminCourseComponent,
+    AdminAdoptionComponent,
   ],
   imports: [
     BrowserModule,
