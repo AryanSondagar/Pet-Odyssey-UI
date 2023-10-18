@@ -1,9 +1,5 @@
-<div class="header">
-    <div class="logo">Logo</div>
-
-
-    <div class="user">
-        <div class="user-name">Pet Oddssey</div>
-        <div class="user-image">AR</div>
-    </div>
-</div>
+<button *ngIf="sidenav.mode=='over'" mat-icon-button (click)="sidenav.toggle()" class="menu" >
+    <mat-icon *ngIf="!sidenav.opened" (click)="changeBackgroundColor()">menu</mat-icon>
+    <mat-icon *ngIf="sidenav.opened" (click)="changeBackgroundColor()">close</mat-icon>
+</button>
+Responsive sidebar

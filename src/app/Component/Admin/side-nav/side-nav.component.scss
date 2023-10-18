@@ -1,23 +1,49 @@
-.nav-items {
-    padding-top: 40px;
-    .nav-item {
-    padding: 25px 50px;
-    cursor: pointer;
-    @media only screen and (max-width: 1000px) {
-        padding: 25px 40px;
-    }
-    &:hover {
-        background-color: rgb(1, 38, 69);
-    }
-    fa-icon {
-        margin-right: 20px;
-        font-size: 22px;
-    }
-    span {
-        display: inline;
-        @media only screen and (max-width: 1000px) {
-        display: none;
-        }
-    }
-    }
+.field {
+  margin-top: 15px;
+  font-size: 12px;
+}
+.img {
+  margin-top: 15px;
+  width: 120px;
+  height: 120px;
+  clip-path: circle(60px at center);
+}
+.name {
+  margin-top: 15px;
+}
+.all-btn {
+  padding-bottom: 15px;
+  border-top: 1px solid;
+  padding-top: 10px;
+}
+.menu-btn {
+  border: none;
+  background-color: #006b72;
+  color: white;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding-bottom: 3px;
+  padding-top: 10px;
+}
+.menu-btn:hover {
+  background-color: #005a60;
+  padding-bottom: 7px;
+}
+.btn-1 {
+  padding-right: 87px;
+}
+.btn-2 {
+  padding-right: 71px;
+}
+.btn-3 {
+  padding-right: 87px;
+}
+.btn-4 {
+  padding-right: 97px;
+  margin-top: 10px;
+}
+mat-icon {
+  margin-right: 8px;
+  
 }
