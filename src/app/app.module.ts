@@ -36,7 +36,14 @@ import {MatDatepickerModule} from "@angular/material/datepicker"
 import {MatNativeDateModule} from "@angular/material/core"
 import {MatRadioModule} from "@angular/material/radio"
 import {MatCheckboxModule} from "@angular/material/checkbox"
-import {MatDialogModule} from "@angular/material/dialog"
+import {MatDialogModule} from "@angular/material/dialog";
+import { AdminComponent } from './Component/Admin/admin/admin.component';
+import { UserHomeComponent } from './Component/User/user/user-home/user-home.component';
+import { UserComponent } from './Component/User/user/user.component';
+
+import { AdminRoutingModule } from './Component/Admin/admin/admin-routing.module';
+import { UserRoutingModule } from './Component/User/user/user-home/user-routing.module';
+import { AdminHomeComponent } from './Component/Admin/admin/admin-home/admin-home.component';
 
 @NgModule({
   declarations: [
@@ -48,10 +55,16 @@ import {MatDialogModule} from "@angular/material/dialog"
     AdminMarketplaceComponent,
     AdminCourseComponent,
     AdminAdoptionComponent,
+    AdminComponent,
+    UserHomeComponent,
+    UserComponent,
+    AdminHomeComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    UserRoutingModule,
+    AdminRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
     FontAwesomeModule,
