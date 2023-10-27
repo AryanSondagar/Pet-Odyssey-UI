@@ -9,17 +9,14 @@ import { AdminHomeComponent } from './admin-home/admin-home.component';
 
 const routes: Routes = [
     {path: 'admin', component: AdminComponent,
-            children : [
-                {
-                    path: '' ,
-                    component:AdminHomeComponent ,
-                }
+            children: [
+                { path: 'dashboard', component: DashboardComponent },
+                { path: 'marketplace', component: AdminMarketplaceComponent },
+                { path: 'course', component: AdminCourseComponent },
+                { path: 'adoption', component: AdminAdoptionComponent },
             ]
     },
-    { path: 'dashboard', component: DashboardComponent },
-    { path: 'admin/marketplace', component: AdminMarketplaceComponent },
-    { path: 'admin/course', component: AdminCourseComponent },
-    { path: 'admin/adoption', component: AdminAdoptionComponent },
+
 ];
 
 @NgModule({

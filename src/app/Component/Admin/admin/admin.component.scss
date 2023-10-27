@@ -1,0 +1,93 @@
+
+.mat-toolbar {
+    background-color: #006b72;
+    color: white;
+  }
+  .menu {
+    border: none;
+    background-color: #006b72;
+    color: white;
+  }
+  mat-sidenav {
+    margin: 16px;
+    width: 200px;
+    border-right: none;
+    background-color: #006b72;
+    color: white;
+    border-radius: 10px;
+    padding: 16px;
+    text-align: center;
+    
+  }
+  .content {
+    margin: 16px;
+    margin-left: 32px;
+    height: calc(100vh - 100px);
+    font-size: 25px;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  
+  mat-sidenav-container {
+    height: calc(100vh - 65px);
+  }
+  
+
+  .field {
+    margin-top: 15px;
+    font-size: 12px;
+  }
+  .img {
+    margin-top: 15px;
+    width: 120px;
+    height: 120px;
+    clip-path: circle(60px at center);
+  }
+  .name {
+    margin-top: 15px;
+  }
+  .all-btn {
+    padding-bottom: 15px;
+    border-top: 1px solid;
+    padding-top: 10px;
+  }
+  .menu-btn {
+    border: none;
+    background-color: #006b72;
+    color: white;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding-bottom: 3px;
+    padding-top: 10px;
+  }
+  .menu-btn:hover {
+    background-color: #005a60;
+    padding-bottom: 7px;
+  }
+  .btn-1 {
+    padding-right: 52px;
+  }
+  .btn-2 {
+    padding-right: 42px;
+  }
+  .btn-3 {
+    padding-right: 51px;
+  }
+  .btn-4 {
+    padding-right: 63px;
+    margin-top: 10px;
+  }
+  mat-icon {
+    margin-right: 8px;
+    
+  }
+  
+  
+  @media screen and (max-width: 600px) {
+    .content {
+      margin-left: 16px;
+      margin-bottom: 16px;
+    }
+  }
+  

@@ -1,5 +1,26 @@
-.mat-card{
-    margin: 2px;
-    text-align: left;
-    width: 875px;
+
+*{
+    margin: 10px;
 }
+
+.title{
+    display: flex;
+    align-items: center;
+    padding-top: 20px;
+    justify-content: center;
+}
+.price-input{
+    content: 'price-input';
+}
+.product-name{
+    margin-left: 50%;
+   
+}
+.product-price{
+    margin-right: 50%;
+    
+}
+
+
+
+

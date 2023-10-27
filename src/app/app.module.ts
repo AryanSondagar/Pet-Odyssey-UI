@@ -7,8 +7,6 @@ import { HttpClientModule } from '@angular/common/http' ;
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { SideNavComponent } from './Component/Admin/side-nav/side-nav.component';
-import { HeaderComponent } from './Component/Admin/header/header.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { DashboardComponent } from './Component/Admin/dashboard/dashboard.component';
 import { AdminMarketplaceComponent } from './Component/Admin/admin-marketplace/admin-marketplace.component';
@@ -48,9 +46,7 @@ import { AdminHomeComponent } from './Component/Admin/admin/admin-home/admin-hom
 @NgModule({
   declarations: [
     AppComponent,
-  
-    SideNavComponent,
-    HeaderComponent,
+
     DashboardComponent,
     AdminMarketplaceComponent,
     AdminCourseComponent,
@@ -71,7 +67,6 @@ import { AdminHomeComponent } from './Component/Admin/admin/admin-home/admin-hom
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule,
-    
     MatInputModule,
     MatSelectModule,
     MatAutocompleteModule,
