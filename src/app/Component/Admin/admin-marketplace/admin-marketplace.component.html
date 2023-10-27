@@ -1,4 +1,4 @@
-<h1 class="title">Add Product Detail</h1>
+<!-- <h1 class="title">Add Product Detail</h1>
 
 <mat-card-content>
     <div class="row">
@@ -21,7 +21,44 @@
     </mat-form-field>
 
 </mat-card-content>
+ -->
 
+ <div class="container">
+    <div class="left-side">
+        <h2>Upload Product Image</h2>
+        <div class="product-details flex">
+            <div id="image-preview"></div>
+                <label id="upload-label" for="image-upload">Upload Image</label>
+                <input type="file" id="image-upload" accept="image/*">
+        </div>
+    </div>
 
+    <div class="right-side">
+        <h2>Add Product Details</h2>
+        <form action="#" method="post">
+            <div class="product-details">
+                <input type="text" id="product-name" name="product-name" placeholder="Product Name:" required>
+            </div>
 
+            <div class="product-details">
+                <input type="text" id="product-price" name="product-price" placeholder="Product Price:" required>
+            </div>
 
+            <div class="product-details">
+                <label for="product-category">Category:</label>
+                <select id="product-category" name="product-category" required>
+                    <option value="category1">pelu</option>
+                    <option value="category2">biju</option>
+                    <option value="category3">trriju</option>
+                </select>
+            </div>
+
+            <div class="product-details">
+             <label for="product-desc">Description:</label>
+              <input type="text" name="description" id="desc">
+            </div>
+
+            <button id="upload-button" type="submit">Upload</button>
+        </form>
+    </div>
+</div>
