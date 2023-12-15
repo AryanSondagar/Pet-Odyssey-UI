@@ -23,42 +23,73 @@
 </mat-card-content>
  -->
 
- <div class="container">
+<div class="container">
     <div class="left-side">
         <h2>Upload Product Image</h2>
         <div class="product-details flex">
-            <div id="image-preview"></div>
-                <label id="upload-label" for="image-upload">Upload Image</label>
-                <input type="file" id="image-upload" accept="image/*">
+            <div id="image-preview"><img src="imageUrl" alt="" *ngif="imageUrl"></div>
+            <label id="upload-label" for="image-upload">Upload Image</label>
+            <input type="file" id="image-upload" accept="image/*" (change)="onImageSelected($event)">
+
         </div>
     </div>
 
     <div class="right-side">
         <h2>Add Product Details</h2>
-        <form action="#" method="post">
-            <div class="product-details">
-                <input type="text" id="product-name" name="product-name" placeholder="Product Name:" required>
+        <form method="post" #addProduct="ngForm" (ngSubmit)="submit(addProduct.value)">
+            <div class="row">
+                <div class="example-container col">
+                    <label for="">Name:</label>
+                    <mat-form-field class="product-field">
+                        <mat-label>Enter your email</mat-label>
+                        <input matInput placeholder="pat@example.com" name="name" ngModel>
+                        <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="example-container col">
+                    <label for="">Price:</label>
+                    <mat-form-field class="product-field">
+                        <mat-label>Enter your product price</mat-label>
+                        <input matInput placeholder="pat@example.com" type="number" name="price" ngModel>
+                        <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+                    </mat-form-field>
+                </div>
             </div>
-
-            <div class="product-details">
-                <input type="text" id="product-price" name="product-price" placeholder="Product Price:" required>
+            <div class="row">
+                <div class="stock col">
+                    <label for="">Stock:</label>
+                    <mat-form-field class="product-field">
+                        <mat-label>In Stock</mat-label>
+                        <input matInput type="number" placeholder="enter a number of stock" name="stock" ngModel>
+                    </mat-form-field>
+                </div>
+                <div class="category col">
+                    <label for="">Category:</label>
+                    <mat-form-field class="product-field">
+                        <mat-label>Select me</mat-label>
+                        <mat-select >
+                            <mat-option value="option">Food&Treats</mat-option>
+                            <mat-option value="option">Toys</mat-option>
+                            <mat-option value="option">Collars, Leashes, & Harnesses</mat-option>
+                            <mat-option value="option"> Grooming Supplies</mat-option>
+                            <mat-option value="option">Feeding & Watering Supplies</mat-option>
+                            <mat-option value="option">Health & Wellness Products</mat-option>
+                            <mat-option value="option">ID Tags & Accessories</mat-option>
+                            <mat-option value="option">Travel Accessories</mat-option> 
+                            <mat-option value="option">Toys</mat-option>
+                            <mat-option value="option">Toys</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
             </div>
-
-            <div class="product-details">
-                <label for="product-category">Category:</label>
-                <select id="product-category" name="product-category" required>
-                    <option value="category1">pelu</option>
-                    <option value="category2">biju</option>
-                    <option value="category3">trriju</option>
-                </select>
+            <div class="desc">
+                <label for="">Description:</label>
+                <mat-form-field appearance="outline" style="width: 50%; " class="product-field">
+                    <mat-label>Textarea</mat-label>
+                    <textarea matInput name="description" ngModel></textarea>
+                </mat-form-field>
             </div>
-
-            <div class="product-details">
-             <label for="product-desc">Description:</label>
-              <input type="text" name="description" id="desc">
-            </div>
-
-            <button id="upload-button" type="submit">Upload</button>
+            <button mat-flat-button color="primary" class="add">Add Product</button>
         </form>
     </div>
 </div>
