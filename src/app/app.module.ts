@@ -42,6 +42,7 @@ import { UserComponent } from './Component/User/user/user.component';
 import { AdminRoutingModule } from './Component/Admin/admin/admin-routing.module';
 import { UserRoutingModule } from './Component/User/user/user-home/user-routing.module';
 import { AdminHomeComponent } from './Component/Admin/admin/admin-home/admin-home.component';
+import { AdoptionFormComponent } from './Component/Admin/admin-adoption/adoption-form/adoption-form.component';
 
 @NgModule({
   declarations: [
@@ -55,6 +56,7 @@ import { AdminHomeComponent } from './Component/Admin/admin/admin-home/admin-hom
     UserHomeComponent,
     UserComponent,
     AdminHomeComponent,
+    AdoptionFormComponent,
   ],
   imports: [
     BrowserModule,
