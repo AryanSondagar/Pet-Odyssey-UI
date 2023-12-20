@@ -107,7 +107,6 @@ import { HighchartsChartModule } from 'highcharts-angular';
     MatDialogModule,
     MatFormFieldModule,
     JsonPipe,
-    HighchartsChartModule,
    
 
 
