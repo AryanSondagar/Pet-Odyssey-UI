@@ -50,7 +50,9 @@ import { SalesByMonthComponent } from './Component/Admin/dashboard/sales-by-mont
 import { SalesByCategoryComponent } from './Component/Admin/dashboard/sales-by-category/sales-by-category.component';
 import { LastFewTransactionsComponent } from './Component/Admin/dashboard/last-few-transactions/last-few-transactions.component';
 import { TopThreeProductComponent } from './Component/Admin/dashboard/top-three-product/top-three-product.component';
-import { ChartModule } from 'angular-highcharts';
+import { HighchartsChartModule } from 'highcharts-angular';
+
+
 
 @NgModule({
   declarations: [
@@ -104,8 +106,9 @@ import { ChartModule } from 'angular-highcharts';
     MatDialogModule,
     MatFormFieldModule,
     JsonPipe,
-    ChartModule
-    
+    HighchartsChartModule
+  
+
 
   ],
   providers: [],
