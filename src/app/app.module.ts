@@ -54,6 +54,7 @@ import { HighchartsChartModule } from 'highcharts-angular';
 
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -106,8 +107,8 @@ import { HighchartsChartModule } from 'highcharts-angular';
     MatDialogModule,
     MatFormFieldModule,
     JsonPipe,
-    HighchartsChartModule
-  
+    HighchartsChartModule,
+   
 
 
   ],
