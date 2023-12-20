@@ -1,0 +1,23 @@
+// * {
+//     padding-left: 10px;
+//     padding-right: 10px;
+//   }
+
+:host {
+    .course{
+        padding: 10px;
+
+    }
+    ::ng-deep .mat-form-field-infix {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    }
+    mat-form-field{
+        width: 27%;
+    }
+    .date-range{
+        display: flex;
+        justify-content: center;
+    }
+}

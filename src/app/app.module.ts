@@ -43,6 +43,14 @@ import { AdminRoutingModule } from './Component/Admin/admin/admin-routing.module
 import { UserRoutingModule } from './Component/User/user/user-home/user-routing.module';
 import { AdminHomeComponent } from './Component/Admin/admin/admin-home/admin-home.component';
 import { AdoptionFormComponent } from './Component/Admin/admin-adoption/adoption-form/adoption-form.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { JsonPipe } from '@angular/common';
+import { TopWidgetsComponent } from './Component/Admin/dashboard/top-widgets/top-widgets.component';
+import { SalesByMonthComponent } from './Component/Admin/dashboard/sales-by-month/sales-by-month.component';
+import { SalesByCategoryComponent } from './Component/Admin/dashboard/sales-by-category/sales-by-category.component';
+import { LastFewTransactionsComponent } from './Component/Admin/dashboard/last-few-transactions/last-few-transactions.component';
+import { TopThreeProductComponent } from './Component/Admin/dashboard/top-three-product/top-three-product.component';
+import { ChartModule } from 'angular-highcharts';
 
 @NgModule({
   declarations: [
@@ -57,6 +65,11 @@ import { AdoptionFormComponent } from './Component/Admin/admin-adoption/adoption
     UserComponent,
     AdminHomeComponent,
     AdoptionFormComponent,
+    TopWidgetsComponent,
+    SalesByMonthComponent,
+    SalesByCategoryComponent,
+    LastFewTransactionsComponent,
+    TopThreeProductComponent,
   ],
   imports: [
     BrowserModule,
@@ -88,7 +101,12 @@ import { AdoptionFormComponent } from './Component/Admin/admin-adoption/adoption
     MatNativeDateModule,
     MatRadioModule,
     MatCheckboxModule,
-    MatDialogModule
+    MatDialogModule,
+    MatFormFieldModule,
+    JsonPipe,
+    ChartModule
+    
+
   ],
   providers: [],
   bootstrap: [AppComponent]
