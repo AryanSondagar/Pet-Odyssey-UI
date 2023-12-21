@@ -50,9 +50,7 @@ import { SalesByMonthComponent } from './Component/Admin/dashboard/sales-by-mont
 import { SalesByCategoryComponent } from './Component/Admin/dashboard/sales-by-category/sales-by-category.component';
 import { LastFewTransactionsComponent } from './Component/Admin/dashboard/last-few-transactions/last-few-transactions.component';
 import { TopThreeProductComponent } from './Component/Admin/dashboard/top-three-product/top-three-product.component';
-import { HighchartsChartModule } from 'highcharts-angular';
-
-
+import { NgApexchartsModule } from 'ng-apexcharts';
 
 
 @NgModule({
@@ -69,7 +67,7 @@ import { HighchartsChartModule } from 'highcharts-angular';
     AdminHomeComponent,
     AdoptionFormComponent,
     TopWidgetsComponent,
-    SalesByMonthComponent,
+     SalesByMonthComponent,
     SalesByCategoryComponent,
     LastFewTransactionsComponent,
     TopThreeProductComponent,
@@ -107,7 +105,7 @@ import { HighchartsChartModule } from 'highcharts-angular';
     MatDialogModule,
     MatFormFieldModule,
     JsonPipe,
-   
+    NgApexchartsModule
 
 
   ],
