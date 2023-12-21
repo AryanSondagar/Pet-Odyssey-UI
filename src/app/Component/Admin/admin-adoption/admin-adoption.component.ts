@@ -34,18 +34,18 @@ export class AdminAdoptionComponent implements AfterViewInit{
 
 export interface PeriodicElement {
   name: string;
-  position: number;
-  weight: number;
+  position: any;
+  weight: any;
   symbol: string;
   action: any ;
 }
 
 const ELEMENT_DATA: PeriodicElement[] = [
-  {position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H' , action: 'delete'},
-  {position: 2, name: 'Helium', weight: 4.0026, symbol: 'He' , action: 'delete'},
-  {position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li' , action: 'delete'},
-  {position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be' , action: 'delete'},
-  {position: 5, name: 'Boron', weight: 10.811, symbol: 'B' , action: 'delete'},
+  {position: 'Puppy', name: 'MM/DD/YYYY', weight: 'Bull Dog', symbol: 'Dog', action: 'delete'},
+  {position: 'Luky', name: 'MM/DD/YYYY', weight: 'Labrador Dog', symbol:  'Dog', action: 'delete'},
+  {position: 'Zoe', name: 'MM/DD/YYYY', weight: 'Husky Dog', symbol:  'Dog' , action: 'delete'},
+  {position: 'Puffy', name: 'MM/DD/YYYY', weight: 'Beagle Dog', symbol: 'Dog' , action: 'delete'},
+  {position: 'Penny', name: 'MM/DD/YYYY', weight: 'Birman' , symbol: 'Cat', action: 'delete'},
   {position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C' , action: 'delete'},
   {position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N' , action: 'delete'},
   {position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O' , action: 'delete'},

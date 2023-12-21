@@ -16,7 +16,7 @@ export class AdminCourseComponent implements OnInit {
     start: new FormControl<Date | null>(null),
     end: new FormControl<Date | null>(null),
   });
-
+  selectedTime: Date = new Date();
   constructor(private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {

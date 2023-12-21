@@ -91,6 +91,11 @@
   }
   .example-container mat-form-field + mat-form-field {
     margin-left: 8px;
+   
+  
+  }
+  mat-form-field-infix{
+    width: 1%;
   }
   .product-field {
     margin-left: 10px;
@@ -101,4 +106,24 @@
     align-items: center;
     justify-content: center;
   }
+  /* Style for the textarea */
+textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  resize: vertical; /* Allows vertical resizing */
+}
+
+/* Style for the placeholder text */
+textarea::placeholder {
+  color: #999;
+  font-style: italic;
+}
+  mat-form-field{
+    width: 60%;
+  }
+
 }
