@@ -105,7 +105,7 @@ import { NgApexchartsModule } from 'ng-apexcharts';
     MatDialogModule,
     MatFormFieldModule,
     JsonPipe,
-    NgApexchartsModule
+    NgApexchartsModule,
 
 
   ],
