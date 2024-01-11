@@ -1,33 +1,11 @@
-
-    <div class="title">
-        <h1 class="clip-path-title">Awesome Title</h1>
+   <div class="local mat-elevation-z4">
+  <!--  <div class="title ">
+        <h1 class="title">Awesome Title</h1>
 
        <span class="title-right"><button class="custom-button" mat-button (click)="openDialog()">Click Me</button> </span>
-    </div>
-    
-<!--   <form action="">
-        <div class="container">
-            <label for="">Pet Name:</label>
-            <input type="text">
+    </div> -->
 
-            <label for="">Pet Category:</label>
-            <select name="" id="">
-                <option value="">Dog</option>
-                <option value="">Cat</option>
-            </select>
-            
-            <label for="">Pet Bread:</label>
-            <input type="text" name="" id="">
-
-            <label for="">Pet DOB:</label>
-            <input type="date" name="" id="">
-
-            <label for="">Pet Image:</label>
-            <input type="url" name="" id="">
-        </div>
-    </form>
-
--->
+    <div class="title">Pet Adoption Detail</div>
 
     <div class="mat-elevation-z8">
         <table mat-table [dataSource]="dataSource">
@@ -57,7 +35,7 @@
             </ng-container>
 
             <ng-container matColumnDef="action">
-                <th mat-header-cell *matHeaderCellDef> Category </th>
+                <th mat-header-cell *matHeaderCellDef> Action</th>
                 <td mat-cell *matCellDef="let element"> {{element.action}} </td>
             </ng-container>
 
@@ -69,3 +47,5 @@
             aria-label="Select page of periodic elements">
         </mat-paginator>
     </div>
+
+</div>

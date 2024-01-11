@@ -27,8 +27,10 @@
     <div class="left-side">
         <h2>Upload Product Image</h2>
         <div class="product-details flex">
-            <div id="image-preview"><img src="imageUrl" alt="" *ngif="imageUrl"></div>
-            <label id="upload-label" for="image-upload">Upload Image</label>
+            <div id="image-preview"><img
+                    src="data:image/jpeg;base64,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"
+                    alt=""></div>
+            <label id="upload-label" for="image-upload" style="margin-top: 25px;">Upload Image</label>
             <input type="file" id="image-upload" accept="image/*" (change)="onImageSelected($event)">
 
         </div>
@@ -41,16 +43,16 @@
                 <div class="example-container col">
                     <label for="">Name:</label>
                     <mat-form-field class="product-field">
-                        <mat-label>Enter your email</mat-label>
-                        <input matInput placeholder="pat@example.com" name="name" ngModel>
+                        <mat-label>Your product name</mat-label>
+                        <input matInput placeholder="Product Name" name="name" ngModel>
                         <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
                     </mat-form-field>
                 </div>
                 <div class="example-container col">
                     <label for="">Price:</label>
                     <mat-form-field class="product-field">
-                        <mat-label>Enter your product price</mat-label>
-                        <input matInput placeholder="pat@example.com" type="number" name="price" ngModel>
+                        <mat-label>your product price</mat-label>
+                        <input matInput placeholder="In Rupee" type="number" name="price" ngModel>
                         <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
                     </mat-form-field>
                 </div>
@@ -59,15 +61,15 @@
                 <div class="stock col">
                     <label for="">Stock:</label>
                     <mat-form-field class="product-field">
-                        <mat-label>In Stock</mat-label>
-                        <input matInput type="number" placeholder="enter a number of stock" name="stock" ngModel>
+                        <mat-label>Available Stock</mat-label>
+                        <input matInput type="number" placeholder="In" name="stock" ngModel>
                     </mat-form-field>
                 </div>
                 <div class="category col">
                     <label for="">Category:</label>
                     <mat-form-field class="product-field">
                         <mat-label>Select me</mat-label>
-                        <mat-select >
+                        <mat-select>
                             <mat-option value="option">Food&Treats</mat-option>
                             <mat-option value="option">Toys</mat-option>
                             <mat-option value="option">Collars, Leashes, & Harnesses</mat-option>
@@ -75,19 +77,20 @@
                             <mat-option value="option">Feeding & Watering Supplies</mat-option>
                             <mat-option value="option">Health & Wellness Products</mat-option>
                             <mat-option value="option">ID Tags & Accessories</mat-option>
-                            <mat-option value="option">Travel Accessories</mat-option> 
-                            <mat-option value="option">Toys</mat-option>
-                            <mat-option value="option">Toys</mat-option>
+                            <mat-option value="option">Travel Accessories</mat-option>
+
                         </mat-select>
                     </mat-form-field>
                 </div>
             </div>
             <div class="desc">
                 <label for="">Description:</label>
-                <mat-form-field appearance="outline" style="width: 50%; " class="product-field">
+                <!--     <mat-form-field appearance="outline" style="width: 50%; " class="product-field">
                     <mat-label>Textarea</mat-label>
                     <textarea matInput name="description" ngModel></textarea>
-                </mat-form-field>
+                </mat-form-field> -->
+                <textarea id="message" name="message" rows="4" cols="50"
+                    placeholder="Type your message here..."></textarea>
             </div>
             <button mat-flat-button color="primary" class="add">Add Product</button>
         </form>

@@ -13,7 +13,7 @@
 
   <div class="date-range col">
     <mat-form-field>
-      <mat-label>Enter a date range</mat-label>
+      <mat-label>Pick Course Date </mat-label>
       <mat-date-range-input [rangePicker]="picker">
         <input matStartDate placeholder="Start date">
         <input matEndDate placeholder="End date">
@@ -24,6 +24,24 @@
     </mat-form-field>
   </div>
   <div class="time-picker col">
-    
+    <mat-form-field>
+    <mat-label for="">Select TIme:</mat-label>
+    <input matInput type="time" id="time" name="time">
+  </mat-form-field>
   </div>
+  <div class="city">
+    <mat-form-field>
+      <mat-label>City</mat-label>
+      <input matInput placeholder="Enter Course City">
+    </mat-form-field>
+  </div>
+  <div class="trainer">
+    <mat-form-field>
+      <mat-label>Aryan Raval</mat-label>
+      <input matInput placeholder="Disabled Field" [disabled]="true">
+    </mat-form-field>
+  </div>
+  <div class="example-button-row">
+    <button mat-raised-button color="primary">Confirm Course</button>
+    </div>
 </div>
