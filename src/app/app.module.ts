@@ -47,7 +47,7 @@ import { SalesByMonthComponent } from './Component/Admin/dashboard/sales-by-mont
 import { SalesByCategoryComponent } from './Component/Admin/dashboard/sales-by-category/sales-by-category.component';
 import { LastFewTransactionsComponent } from './Component/Admin/dashboard/last-few-transactions/last-few-transactions.component';
 import { TopThreeProductComponent } from './Component/Admin/dashboard/top-three-product/top-three-product.component';
-import { NgApexchartsModule } from 'ng-apexcharts';
+
 
 @NgModule({
   declarations: [
@@ -101,7 +101,7 @@ import { NgApexchartsModule } from 'ng-apexcharts';
     MatDialogModule,
     MatFormFieldModule,
     JsonPipe,
-    NgApexchartsModule
+  
   ],
   providers: [],
   bootstrap: [AppComponent],

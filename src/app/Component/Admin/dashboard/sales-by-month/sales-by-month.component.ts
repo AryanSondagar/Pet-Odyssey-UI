@@ -1,4 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
+/*
 import {
   ChartComponent,
   ApexAxisChartSeries,
@@ -9,7 +10,7 @@ import {
   ApexStroke,
   ApexGrid
 } from "ng-apexcharts";
-
+ 
 export type ChartOptions = {
   series: ApexAxisChartSeries | any;
   chart: ApexChart | any;
@@ -19,7 +20,7 @@ export type ChartOptions = {
   stroke: ApexStroke | any;
   title: ApexTitleSubtitle | any;
 };
-
+ */
 @Component({
   selector: 'app-sales-by-month',
   templateUrl: './sales-by-month.component.html',
@@ -27,11 +28,11 @@ export type ChartOptions = {
   styleUrls: ['./sales-by-month.component.scss'],
 })
 export class SalesByMonthComponent {
-  @ViewChild("chart") chart: ChartComponent | undefined;
-  public chartOptions: Partial<ChartOptions>;
+ //  @ViewChild("chart") chart: ChartComponent | undefined;
+ //  public chartOptions: Partial<ChartOptions>;
 
   constructor() {
-    this.chartOptions = {
+  /*  this.chartOptions = {
       series: [
         {
           name: "Desktops",
@@ -75,5 +76,7 @@ export class SalesByMonthComponent {
         ]
       }
     };
+    */
   }
+  
 }
