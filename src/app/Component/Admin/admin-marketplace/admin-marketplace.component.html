@@ -77,62 +77,70 @@
 
 <div class="container">
     <div class="title">
-        <h1 class="animated-title">Add Product Detail</h1>
+        <h1 class="animated-title"> <mat-icon>pets</mat-icon> Add Product Detail <mat-icon>pets</mat-icon></h1>
     </div>
-    <form action="">
+    <form #addProduct="ngForm" (ngSubmit)="submit(addProduct.value)">
         <div class="add-product-form">
             <div class="top-field">
                 <div class="name">
                     <mat-form-field>
                         <mat-label>Product Name</mat-label>
-                        <input matInput placeholder="Enter product title">
+                        <input matInput placeholder="Enter product title" name="ProductName" ngModel>
                     </mat-form-field>
                 </div>
                 <div class="category name">
                     <mat-form-field class="product-field">
                         <mat-label>Product Category</mat-label>
-                        <mat-select>
-                            <mat-option value="option">Food&Treats</mat-option>
-                            <mat-option value="option">Toys</mat-option>
-                            <mat-option value="option">Collars, Leashes, & Harnesses</mat-option>
-                            <mat-option value="option"> Grooming Supplies</mat-option>
-                            <mat-option value="option">Feeding & Watering Supplies</mat-option>
-                            <mat-option value="option">Health & Wellness Products</mat-option>
-                            <mat-option value="option">ID Tags & Accessories</mat-option>
-                            <mat-option value="option">Travel Accessories</mat-option>
+                        <mat-select name="ProductCategory" ngModel>
+                            <mat-option value="Food&Treats">Food&Treats</mat-option>
+                            <mat-option value="Toys">Toys</mat-option>
+                            <mat-option value="Collars, Leashes, & Harnesses">Collars, Leashes, & Harnesses</mat-option>
+                            <mat-option value="Grooming Supplies"> Grooming Supplies</mat-option>
+                            <mat-option value="Feeding & Watering Supplies">Feeding & Watering Supplies</mat-option>
+                            <mat-option value="Health & Wellness Products">Health & Wellness Products</mat-option>
+                            <mat-option value="ID Tags & Accessories">ID Tags & Accessories</mat-option>
+                            <mat-option value="Travel Accessories">Travel Accessories</mat-option>
                         </mat-select>
                     </mat-form-field>
                 </div>
             </div>
+
             <div class="middle-field">
-                <div class="name">
+                <div class="product-price name">
                     <mat-form-field>
-                        <mat-label>Product Name</mat-label>
-                        <input matInput placeholder="Enter product title">
+                        <mat-label>Enter Price (INR)</mat-label>
+                        <input matInput type="number" placeholder="Enter price in INR" min="0" name="ProductPrice"
+                            ngModel>
+
+
                     </mat-form-field>
                 </div>
-                <div class="name">
+                <div class="product-stock name">
                     <mat-form-field>
-                        <mat-label>Product Name</mat-label>
-                        <input matInput placeholder="Enter product title">
+                        <mat-label>Product Stock</mat-label>
+                        <input matInput placeholder="*In Stock" type="number" min="0" name="ProductStock" ngModel>
                     </mat-form-field>
                 </div>
             </div>
-            <div class="desc">
+            <div class="desc name">
                 <label for="">Description:</label>
-                
-                <textarea id="message" name="message" rows="4" cols="50"
-                    placeholder="Type your message here..."></textarea>
+
+                <textarea id="message" name="message" rows="4" cols="50" placeholder="Type your message here..."
+                    name="ProductDesc" ngModel></textarea>
             </div>
             <div class="upload-image name">
-                    <div class="upload-container" fxLayout="column" fxLayoutAlign="center center">
-                        <input type="file" (change)="handleFileInput($event)" accept="image/*" multiple />
-                        <div class="upload-preview" *ngIf="imageUrls && imageUrls.length > 0">
-                            <div *ngFor="let imageUrl of imageUrls">
-                                <img [src]="imageUrl" alt="Uploaded Image" />
-                            </div>
+                <div class="upload-container" fxLayout="column" fxLayoutAlign="center center">
+                    <input type="file" (change)="handleFileInput($event)" accept="image/*" multiple name="ProductImages"
+                        ngModel>
+                    <div class="upload-preview" *ngIf="imageUrls && imageUrls.length > 0">
+                        <div *ngFor="let imageUrl of imageUrls">
+                            <img [src]="imageUrl" alt="Uploaded Image" />
                         </div>
                     </div>
+                </div>
+            </div>
+            <div class="submit-btn">
+                <button mat-raised-button color="primary" type="submit">Submit Product Detail</button>
             </div>
         </div>
     </form>
