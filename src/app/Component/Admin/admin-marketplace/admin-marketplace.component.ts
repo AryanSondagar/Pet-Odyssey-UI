@@ -22,13 +22,14 @@ import {
   ],
 })
 export class AdminMarketplaceComponent implements OnInit {
+  imageUrls: string[] = [] ;
   constructor(private builder: FormBuilder) {}
   ngOnInit(): void {}
 
   submit(data: object) {
     console.log(data);
   }
-  imageUrls: string[] = [];
+
 
   handleFileInput(event: any): void {
     const files = event.target.files;
@@ -44,3 +45,6 @@ export class AdminMarketplaceComponent implements OnInit {
     }
   }
 }
+
+
+//https://media.istockphoto.com/id/1294440250/vector/seamless-gray-pattern-with-dog-paws-and-bones.jpg?s=612x612&w=0&k=20&c=nCTuqIEW5NHVvmsPuNShXRck0_EhzMskcnCY4qd70XI=

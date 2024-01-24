@@ -74,8 +74,9 @@
 </div>
 -->
 
-
 <div class="container">
+
+
     <div class="title">
         <h1 class="animated-title"> <mat-icon>pets</mat-icon> Add Product Detail <mat-icon>pets</mat-icon></h1>
     </div>
@@ -85,8 +86,10 @@
                 <div class="name">
                     <mat-form-field>
                         <mat-label>Product Name</mat-label>
-                        <input matInput placeholder="Enter product title" name="ProductName" ngModel>
+                        <input matInput placeholder="Enter product title" name="ProductName" required #name="ngModel"
+                            ngModel>
                     </mat-form-field>
+                    <mat-error *ngIf="name.invalid&&name.touched" class="notice">*Required</mat-error>
                 </div>
                 <div class="category name">
                     <mat-form-field class="product-field">
@@ -94,7 +97,8 @@
                         <mat-select name="ProductCategory" ngModel>
                             <mat-option value="Food&Treats">Food&Treats</mat-option>
                             <mat-option value="Toys">Toys</mat-option>
-                            <mat-option value="Collars, Leashes, & Harnesses">Collars, Leashes, & Harnesses</mat-option>
+                            <mat-option value="Collars, Leashes, & Harnesses">Collars, Leashes, &
+                                Harnesses</mat-option>
                             <mat-option value="Grooming Supplies"> Grooming Supplies</mat-option>
                             <mat-option value="Feeding & Watering Supplies">Feeding & Watering Supplies</mat-option>
                             <mat-option value="Health & Wellness Products">Health & Wellness Products</mat-option>
@@ -123,15 +127,15 @@
                 </div>
             </div>
             <div class="desc name">
-                <label for="">Description:</label>
 
-                <textarea id="message" name="message" rows="4" cols="50" placeholder="Type your message here..."
-                    name="ProductDesc" ngModel></textarea>
+                <label for="myTextArea">Description:</label>
+                <textarea id="myTextArea" name="message" placeholder="Type your text here..." ngModel></textarea>
             </div>
+
             <div class="upload-image name">
                 <div class="upload-container" fxLayout="column" fxLayoutAlign="center center">
                     <input type="file" (change)="handleFileInput($event)" accept="image/*" multiple name="ProductImages"
-                        ngModel>
+                        [(ngModel)]="imageUrls">
                     <div class="upload-preview" *ngIf="imageUrls && imageUrls.length > 0">
                         <div *ngFor="let imageUrl of imageUrls">
                             <img [src]="imageUrl" alt="Uploaded Image" />
@@ -144,4 +148,5 @@
             </div>
         </div>
     </form>
+
 </div>
