@@ -6,14 +6,16 @@
             <mat-icon *ngIf="sidenav.opened" (click)="changeBackgroundColor()">close</mat-icon>
         </button>
         Pet's Odyysey
+       
     </mat-toolbar>
+
     <mat-sidenav-container>
 
         <mat-sidenav #sidenav="matSidenav">
 
             <img src="data:image/png;base64,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"
                 alt="photo" class="img">
-            <h4 class="name">Aryan Sondagar</h4>
+            <h4 class="name">Admin</h4>
             <p class="field">Senior Director</p>
             <div class="all-btn">
                 <button mat-button class="menu-btn btn-1" routerLink="dashboard">
@@ -41,7 +43,9 @@
         </mat-sidenav>
         <mat-sidenav-content>
             <div class="content  mat-elevation-z4">
+                <div class="bg">
                 <router-outlet></router-outlet>
+            </div>
             </div>
         </mat-sidenav-content>
 

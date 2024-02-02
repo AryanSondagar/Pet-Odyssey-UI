@@ -1,46 +1,86 @@
-*{
-    padding-left: 10px;
-    padding-right: 10px;
-}
-.title{
+:host {
+  .adoption {
+    height: calc(100vh - 100px);
     font-size: 20px;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+
+  .title {
     display: flex;
     justify-content: center;
-    padding-top: 10px;
-}
-.clip-path-title {
-    font-size: 35px;
-    background: linear-gradient(45deg, #ffcc00, #ff3300); /* Gradient background */
-    color: white;
-    display: inline-block;
-    margin-top: 10px;
-    padding: 20px 30px;
-    clip-path: polygon(10% 0%, 90% 0%, 100% 50%, 90% 100%, 10% 100%, 0% 50%);
+    align-items: center;
+    border-bottom: 1px solid gray;
+    margin: 2% 20% 2% 20%;
+    .animated-title {
+      font-size: 2em;
+      color: #006b72;
+      animation: slideIn 1s ease-out;
+      font-family: "Arial", sans-serif;
+      cursor: default;
     }
+  }
 
-    .custom-button {
-        padding: 10px 20px;
-        font-size: 16px;
-        background-color: #006b72;
-        color: #fff;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-        transition: background-color 0.3s ease;
-        }
-        
-      /* Hover effect */
-        .custom-button:hover {
-        background-color: #005a60;
-        }
-        
-      /* Optional: Adding focus styles */
-        .custom-button:focus {
-        outline: none;
-        box-shadow: 0 0 5px rgba(52, 152, 219, 0.5);
-        }
-    
-table {
-    width: 100%;
-    margin-top: 25px;
+  .card-bg{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    mat-card{
+      width: 50%;
     }
+  }
+
+  .center{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .submit-btn{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .bn9 {
+      padding: 2px;
+      outline: 0;
+      font-size: 17px;
+      color: rgb(0, 0, 0);
+      background: -webkit-gradient(
+        linear,
+        left top,
+        right top,
+        from(#fdde5c),
+        color-stop(#f8ab5e),
+        color-stop(#f56a62),
+        color-stop(#a176c8),
+        color-stop(#759beb),
+        color-stop(#65beb3),
+        to(#70db96)
+      );
+      background: linear-gradient(
+        to right,
+        #fdde5c,
+        #f8ab5e,
+        #f56a62,
+        #a176c8,
+        #759beb,
+        #65beb3,
+        #70db96
+      );
+      border-radius: 30px;
+      border: 0;
+      box-shadow: none;
+      cursor: pointer;
+    }
+    
+    .bn9 > span {
+      display: block;
+      padding: 10px 40px;
+      font-size: 17px;
+      font-weight: 500;
+      background: #ebebeb;
+      border-radius: 30px;
+    }
+}
+
+}

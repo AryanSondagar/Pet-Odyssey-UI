@@ -27,6 +27,23 @@
       border-radius: 10px;
       overflow: hidden;
     }
+
+    .bg{
+      background: url("./BackgroundImage.png") repeat;
+    animation: moveBackground 30s linear infinite;
+    background-size: 115%;
+
+    // z-index: 1;
+
+    @keyframes moveBackground {
+      from {
+        background-position: 100% 0;
+      }
+      to {
+        background-position: 0 100% ;
+      }
+    }
+    }
   
   mat-sidenav-container {
     height: calc(100vh - 65px);

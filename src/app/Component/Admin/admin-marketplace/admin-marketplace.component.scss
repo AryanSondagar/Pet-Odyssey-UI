@@ -1,33 +1,11 @@
 :host {
-  body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f4f4f4;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-  }
 
   .container {
     height: calc(100vh - 100px);
     font-size: 20px;
     border-radius: 10px;
     overflow: hidden;
-    background: url("./2024-01-24-removebg-preview.png") repeat;
-    animation: moveBackground 40s linear infinite;
     
-    // z-index: 1;
-
-    @keyframes moveBackground {
-      from {
-        background-position: 100% 0;
-      }
-      to {
-        background-position: 0 100% ;
-      }
-    }
   } 
 
   // new ui
