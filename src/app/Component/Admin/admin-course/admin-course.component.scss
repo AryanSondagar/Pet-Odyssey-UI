@@ -1,10 +1,12 @@
 
 
 :host {
-    .course{
+    .container{
         height: calc(100vh - 100px);
-        padding-top: 10px;
-
+        font-size: 20px;
+        border-radius: 10px;
+        overflow: hidden;
+        
     }
     .title {
         display: flex;

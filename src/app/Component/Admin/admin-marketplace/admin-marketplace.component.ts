@@ -8,6 +8,7 @@ import {
   animate,
   transition,
 } from '@angular/animations';
+import { ToastServiceService } from 'src/app/Services/toast-service.service';
 
 @Component({
   selector: 'app-admin-marketplace',
@@ -23,11 +24,15 @@ import {
 })
 export class AdminMarketplaceComponent implements OnInit {
   imageUrls: string[] = [] ;
-  constructor(private builder: FormBuilder) {}
+  constructor(private builder: FormBuilder , private toastr: ToastServiceService) {}
   ngOnInit(): void {}
 
   submit(data: object) {
     console.log(data);
+  }
+
+  showToast(){
+    this.toastr.showToast();
   }
 
 

@@ -3,7 +3,7 @@ import {AfterViewInit, ViewChild} from '@angular/core';
 import {MatPaginator, MatPaginatorModule} from '@angular/material/paginator';
 import {MatTableDataSource, MatTableModule} from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';
-import { AdoptionFormComponent } from './adoption-form/adoption-form.component';
+
 
 @Component({
   selector: 'app-admin-adoption',
@@ -24,9 +24,7 @@ export class AdminAdoptionComponent implements AfterViewInit{
 
   ngOnInit(): void {
   }
-  openDialog(): void {
-    this.dialog.open(AdoptionFormComponent);
-  }
+ 
 
 }
 

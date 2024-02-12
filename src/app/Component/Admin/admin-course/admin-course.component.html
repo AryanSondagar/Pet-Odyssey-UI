@@ -1,43 +1,48 @@
-<div class="course">
+<div class="container">
   <!--  date 
             time
             place
     -->
-    <div class="title">
-      <h1 class="animated-title"> <mat-icon>pets</mat-icon> Add Product Detail <mat-icon>pets</mat-icon></h1>
+  <div class="title">
+    <h1 class="animated-title"> <mat-icon>pets</mat-icon> Add Product Detail <mat-icon>pets</mat-icon></h1>
   </div>
+  <form action="">
+    <div class="date-range col">
+      <mat-form-field>
+        <mat-label>Pick Course Date </mat-label>
+        <mat-date-range-input [rangePicker]="picker">
+          <input matStartDate placeholder="Start date">
+          <input matEndDate placeholder="End date">
+        </mat-date-range-input>
+        <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-date-range-picker #picker></mat-date-range-picker>
+      </mat-form-field>
+    </div>
 
-  <div class="date-range col">
-    <mat-form-field>
-      <mat-label>Pick Course Date </mat-label>
-      <mat-date-range-input [rangePicker]="picker">
-        <input matStartDate placeholder="Start date">
-        <input matEndDate placeholder="End date">
-      </mat-date-range-input>
-      <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
-      <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-      <mat-date-range-picker #picker></mat-date-range-picker>
-    </mat-form-field>
-  </div>
-  <div class="time-picker col">
-    <mat-form-field>
-      <mat-label for="">Select TIme:</mat-label>
-      <input matInput type="time" id="time" name="time">
-    </mat-form-field>
-  </div>
-  <div class="city">
-    <mat-form-field>
-      <mat-label>City</mat-label>
-      <input matInput placeholder="Enter Course City">
-    </mat-form-field>
-  </div>
-  <div class="trainer">
-    <mat-form-field>
-      <mat-label>Aryan Raval</mat-label>
-      <input matInput placeholder="Disabled Field" [disabled]="true">
-    </mat-form-field>
-  </div>
-  <div class="example-button-row">
-    <button mat-raised-button color="primary">Confirm Course</button>
-  </div>
+    <div class="time-picker col">
+      <mat-form-field>
+        <mat-label for="">Select TIme:</mat-label>
+        <input matInput type="time" id="time" name="time">
+      </mat-form-field>
+    </div>
+
+    <div class="city">
+      <mat-form-field>
+        <mat-label>City</mat-label>
+        <input matInput placeholder="Enter Course City">
+      </mat-form-field>
+    </div>
+
+    <div class="trainer">
+      <mat-form-field>
+        <mat-label>Aryan Raval</mat-label>
+        <input matInput placeholder="Disabled Field" [disabled]="true">
+      </mat-form-field>
+    </div>
+
+    <div class="example-button-row">
+      <button mat-raised-button color="primary">Confirm Course</button>
+    </div>
+  </form>
 </div>

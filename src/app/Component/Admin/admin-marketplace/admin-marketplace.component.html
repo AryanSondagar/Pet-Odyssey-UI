@@ -79,7 +79,7 @@
 
     <div class="title">
         <h1 class="animated-title"> <mat-icon>pets</mat-icon> Add Product Detail <mat-icon>pets</mat-icon></h1>
-    </div>
+    </div> 
     <form #addProduct="ngForm" (ngSubmit)="submit(addProduct.value)">
         <div class="add-product-form">
             <div class="top-field">
@@ -144,7 +144,7 @@
                 </div>
             </div>
             <div class="submit-btn" >
-                <button mat-raised-button color="primary" type="submit" >Submit Product Detail</button>
+                <button mat-raised-button color="primary" type="submit" (click)="showToast()">Submit Product Detail</button>
             </div>
         </div>
     </form>

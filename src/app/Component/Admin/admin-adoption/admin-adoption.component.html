@@ -1,117 +1,64 @@
-<!-- <div class="adoption">
-
+<div class="container">
     <div class="title">
         <h1 class="animated-title"> <mat-icon>pets</mat-icon> Add Product Detail <mat-icon>pets</mat-icon></h1>
     </div>
-    <div class="adoption-form">
-        <span class="title-right"><button class="custom-button" mat-button (click)="openDialog()">Adoption From</button>
-        </span> 
-        
-    </div>
-    <div class="mat-elevation-z8">
-        <table mat-table [dataSource]="dataSource">
 
-            <ng-container matColumnDef="position">
-                <th mat-header-cell *matHeaderCellDef>Pet Name </th>
-                <td mat-cell *matCellDef="let element"> {{element.position}} </td>
-            </ng-container>
-
-        
-            <ng-container matColumnDef="name">
-                <th mat-header-cell *matHeaderCellDef> D.O.B </th>
-                <td mat-cell *matCellDef="let element"> {{element.name}} </td>
-            </ng-container>
-
-    
-            <ng-container matColumnDef="weight">
-                <th mat-header-cell *matHeaderCellDef>Pet Bread </th>
-                <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
-            </ng-container>
-
-            <ng-container matColumnDef="symbol">
-                <th mat-header-cell *matHeaderCellDef> Category </th>
-                <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
-            </ng-container>
-
-            <ng-container matColumnDef="action">
-                <th mat-header-cell *matHeaderCellDef> Action</th>
-                <td mat-cell *matCellDef="let element"> {{element.action}} </td>
-            </ng-container>
-
-            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-        </table>
-
-        <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons
-            aria-label="Select page of periodic elements">
-        </mat-paginator>
-    </div>
-
-</div> -->
-
-<!-- name
+    <form action="">
+        <!-- name
     bread
     category
     dob
     price-->
-<div class="adoption">
-    <div class="title">
-        <h1 class="animated-title"> <mat-icon>pets</mat-icon> Add Product Detail <mat-icon>pets</mat-icon></h1>
-    </div>
-    <form>
-        <div class="card-bg">
-            <mat-card>
-                <mat-card-content>
+        <div class="adoption-form">
 
-                    <div class="adoption-form">
-                        <div class="center">
-                            <mat-form-field fill="outline">
-                                <mat-label>Pet Name</mat-label>
-                                <input matInput placeholder="Enter pet name" name="ProductName" required #name="ngModel"
-                                    ngModel>
-                            </mat-form-field>
-                        </div>
+            <div class="pet-name center col">
+                <mat-form-field>
+                    <mat-label>Pet Name</mat-label>
+                    <input matInput placeholder="Enter pet name" name="ProductName" required #name="ngModel" ngModel>
+                </mat-form-field>
+            </div>
 
-                        <div class="center">
-                            <mat-form-field fill="outline">
-                                <mat-label>Pet Bread</mat-label>
-                                <input matInput placeholder="Like bulldog,Birman" name="ProductName" required
-                                    #name="ngModel" ngModel>
-                            </mat-form-field>
-                        </div>
+            <div class="pet-bread center col">
+                <mat-form-field>
+                    <mat-label>Pet Bread</mat-label>
+                    <input matInput placeholder="Like bulldog,Birman" name="ProductName" required #name="ngModel"
+                        ngModel>
+                </mat-form-field>
+            </div>
 
-                        <div class="center">
-                            <mat-form-field class="product-field">
-                                <mat-label>Pet Category</mat-label>
-                                <mat-select name="ProductCategory" ngModel required>
-                                    <mat-option value="dog">Dog</mat-option>
-                                    <mat-option value="cat">Cat</mat-option>
-                                </mat-select>
-                            </mat-form-field>
-                        </div>
+            <div class="pet-category center col">
+                <mat-form-field class="product-field">
+                    <mat-label>Pet Category</mat-label>
+                    <mat-select name="ProductCategory" ngModel required>
+                        <mat-option value="dog">Dog</mat-option>
+                        <mat-option value="cat">Cat</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
 
-                        <div class="center">
-                            <mat-form-field fill="outline">
-                                <mat-label>Pet D.O.B</mat-label>
-                                <input matInput name="ProductName" required #name="ngModel" type="date" ngModel>
-                            </mat-form-field>
-                        </div>
+            <div class="pet-dob center col">
+                <mat-form-field>
+                    <mat-label>Pet D.O.B</mat-label>
+                    <input matInput [matDatepicker]="picker2" required>
+                    <mat-hint>MM/DD/YYYY</mat-hint>
+                    <mat-datepicker-toggle matIconSuffix [for]="picker2"></mat-datepicker-toggle>
+                    <mat-datepicker #picker2 color="primary"></mat-datepicker>
+                </mat-form-field>
+            </div>
 
-                        <div class="center product-price ">
-                            <mat-form-field>
-                                <mat-label>Pet Selling Price(INR)</mat-label>
-                                <input matInput type="number" placeholder="Enter price in INR" min="0"
-                                    name="ProductPrice" ngModel required>
-                            </mat-form-field>
-                        </div>
+            <div class="pet-price center col">
+                <mat-form-field>
+                    <mat-label>Pet Selling Price(INR)</mat-label>
+                    <input matInput type="number" placeholder="Enter price in INR" min="0" name="ProductPrice" ngModel
+                        required>
+                </mat-form-field>
+            </div>
 
-                        <div class="submit-btn">
-                            <button class="bn9"><span>hi</span></button>
-                        </div>
-                    </div>
 
-                </mat-card-content>
-            </mat-card>
+            <div class="example-button-row center col">
+                <button mat-raised-button color="primary">Confirm Course</button>
+            </div>
+
         </div>
     </form>
 </div>

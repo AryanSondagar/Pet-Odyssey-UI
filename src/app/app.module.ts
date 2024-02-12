@@ -39,7 +39,6 @@ import { UserComponent } from './Component/User/user/user.component';
 import { AdminRoutingModule } from './Component/Admin/admin/admin-routing.module';
 import { UserRoutingModule } from './Component/User/user/user-home/user-routing.module';
 import { AdminHomeComponent } from './Component/Admin/admin/admin-home/admin-home.component';
-import { AdoptionFormComponent } from './Component/Admin/admin-adoption/adoption-form/adoption-form.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { JsonPipe } from '@angular/common';
 import { TopWidgetsComponent } from './Component/Admin/dashboard/top-widgets/top-widgets.component';
@@ -47,6 +46,7 @@ import { SalesByMonthComponent } from './Component/Admin/dashboard/sales-by-mont
 import { SalesByCategoryComponent } from './Component/Admin/dashboard/sales-by-category/sales-by-category.component';
 import { LastFewTransactionsComponent } from './Component/Admin/dashboard/last-few-transactions/last-few-transactions.component';
 import { TopThreeProductComponent } from './Component/Admin/dashboard/top-three-product/top-three-product.component';
+import { ToasterComponent } from './Component/toaster/toaster.component';
 
 
 @NgModule({
@@ -61,12 +61,12 @@ import { TopThreeProductComponent } from './Component/Admin/dashboard/top-three-
     UserHomeComponent,
     UserComponent,
     AdminHomeComponent,
-    AdoptionFormComponent,
     TopWidgetsComponent,
     SalesByMonthComponent,
     SalesByCategoryComponent,
     LastFewTransactionsComponent,
     TopThreeProductComponent,
+    ToasterComponent,
   ],
   imports: [
     BrowserModule,
