@@ -12,6 +12,7 @@ import { AdminCourseComponent } from './Component/Admin/admin-course/admin-cours
 import { AdminAdoptionComponent } from './Component/Admin/admin-adoption/admin-adoption.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
+
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
@@ -46,7 +47,6 @@ import { SalesByMonthComponent } from './Component/Admin/dashboard/sales-by-mont
 import { SalesByCategoryComponent } from './Component/Admin/dashboard/sales-by-category/sales-by-category.component';
 import { LastFewTransactionsComponent } from './Component/Admin/dashboard/last-few-transactions/last-few-transactions.component';
 import { TopThreeProductComponent } from './Component/Admin/dashboard/top-three-product/top-three-product.component';
-import { ToasterComponent } from './Component/toaster/toaster.component';
 
 
 @NgModule({
@@ -66,7 +66,6 @@ import { ToasterComponent } from './Component/toaster/toaster.component';
     SalesByCategoryComponent,
     LastFewTransactionsComponent,
     TopThreeProductComponent,
-    ToasterComponent,
   ],
   imports: [
     BrowserModule,

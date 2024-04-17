@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, NgForm, Validators } from '@angular/forms';
 
 import {
   trigger,
@@ -8,7 +8,7 @@ import {
   animate,
   transition,
 } from '@angular/animations';
-import { ToastServiceService } from 'src/app/Services/toast-service.service';
+import { MarketplaceForm } from 'src/app/Model/marketplace.model';
 
 @Component({
   selector: 'app-admin-marketplace',
@@ -24,19 +24,25 @@ import { ToastServiceService } from 'src/app/Services/toast-service.service';
 })
 export class AdminMarketplaceComponent implements OnInit {
   imageUrls: string[] = [] ;
-  constructor(private builder: FormBuilder , private toastr: ToastServiceService) {}
-  ngOnInit(): void {}
+  productForm: MarketplaceForm[] =[];
+  
+  constructor(private builder: FormBuilder ) {}
+  ngOnInit(): void {
+  }
 
-  submit(data: object) {
+  submit(data: any) {
     console.log(data);
+    console.log('Submitted files:', this.imageUrls);
   }
-
-  showToast(){
-    this.toastr.showToast();
+  
+  ImageCount(input : any){
+    if(input.files.length >5){
+      alert("You can only upload a maximum of 5 Images.")
+    }
   }
-
 
   handleFileInput(event: any): void {
+    this.imageUrls = event.target.files;
     const files = event.target.files;
     if (files) {
       this.imageUrls = [];
@@ -48,6 +54,9 @@ export class AdminMarketplaceComponent implements OnInit {
         reader.readAsDataURL(files[i]);
       }
     }
+  }
+  clear(){
+
   }
 }
 

@@ -79,7 +79,7 @@
 
     <div class="title">
         <h1 class="animated-title"> <mat-icon>pets</mat-icon> Add Product Detail <mat-icon>pets</mat-icon></h1>
-    </div> 
+    </div>
     <form #addProduct="ngForm" (ngSubmit)="submit(addProduct.value)">
         <div class="add-product-form">
             <div class="top-field">
@@ -115,36 +115,44 @@
                         <mat-label>Enter Price (INR)</mat-label>
                         <input matInput type="number" placeholder="Enter price in INR" min="0" name="ProductPrice"
                             ngModel required>
-
-
                     </mat-form-field>
                 </div>
                 <div class="product-stock name">
                     <mat-form-field>
                         <mat-label>Product Stock</mat-label>
-                        <input matInput placeholder="*In Stock" type="number" min="0" name="ProductStock" ngModel required>
+                        <input matInput placeholder="*In Stock" type="number" min="0" name="ProductStock" ngModel
+                            required>
                     </mat-form-field>
                 </div>
             </div>
             <div class="desc name">
 
                 <label for="myTextArea">Description:</label>
-                <textarea id="myTextArea" name="message" placeholder="Type your text here..." ngModel required></textarea>
+                <textarea id="myTextArea" name="message" placeholder="Type your text here..." ngModel
+                    required></textarea>
             </div>
 
             <div class="upload-image name">
                 <div class="upload-container" fxLayout="column" fxLayoutAlign="center center">
                     <input type="file" (change)="handleFileInput($event)" accept="image/*" multiple name="ProductImages"
-                        ngModel required>
+                        ngModel required id="file-input"  >
+                    <label for="file-input">
+                        <mat-icon>upload</mat-icon>
+                        Choose Files To Upload
+                    </label>
+
                     <div class="upload-preview" *ngIf="imageUrls && imageUrls.length > 0">
-                        <div *ngFor="let imageUrl of imageUrls">
+                        <div class="product-image" *ngFor="let imageUrl of imageUrls">
                             <img [src]="imageUrl" alt="Uploaded Image" />
                         </div>
                     </div>
+
                 </div>
             </div>
-            <div class="submit-btn" >
-                <button mat-raised-button color="primary" type="submit" (click)="showToast()">Submit Product Detail</button>
+            <div class="submit-btn">
+                <button mat-raised-button color="primary" type="submit" [disabled]="addProduct.invalid" (click)="clear()" >Submit Product
+                    Detail</button>
+            
             </div>
         </div>
     </form>
