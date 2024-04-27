@@ -135,8 +135,9 @@
             <div class="upload-image name">
                 <div class="upload-container" fxLayout="column" fxLayoutAlign="center center">
                     <input type="file" (change)="handleFileInput($event)" accept="image/*" multiple name="ProductImages"
-                        ngModel required id="file-input"  >
-                    <label for="file-input">
+                        ngModel required id="file-input">
+                    <label for="file-input" style="max-width: 260px;" mat-raised-button
+                        matTooltip="Image must be less then 5"  [matTooltipPosition]="position.value!">
                         <mat-icon>upload</mat-icon>
                         Choose Files To Upload
                     </label>
@@ -150,9 +151,10 @@
                 </div>
             </div>
             <div class="submit-btn">
-                <button mat-raised-button color="primary" type="submit" [disabled]="addProduct.invalid" (click)="clear()" >Submit Product
+                <button mat-raised-button color="primary" type="submit" [disabled]="addProduct.invalid"
+                    (click)="clear()">Submit Product
                     Detail</button>
-            
+
             </div>
         </div>
     </form>

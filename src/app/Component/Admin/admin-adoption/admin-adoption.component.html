@@ -1,10 +1,10 @@
 <div class="container">
     <div class="title">
-        <h1 class="animated-title"> <mat-icon>pets</mat-icon> Add Product Detail <mat-icon>pets</mat-icon></h1>
+        <h1 class="animated-title"> <mat-icon>pets</mat-icon> Pet Detail <mat-icon>pets</mat-icon></h1>
     </div>
 
 
-    <form action="">
+    <form #PetAdoption="ngForm" (ngSubmit)="dataSubmit(PetAdoption.value)">
         <!-- name
     bread
     category
@@ -15,14 +15,14 @@
             <div class="pet-name center col">
                 <mat-form-field>
                     <mat-label>Pet Name</mat-label>
-                    <input matInput placeholder="Enter pet name" name="ProductName" required #name="ngModel" ngModel>
+                    <input matInput placeholder="Enter pet name" name="PetName" required #name="ngModel" ngModel>
                 </mat-form-field>
             </div>
 
             <div class="pet-bread center col">
                 <mat-form-field>
                     <mat-label>Pet Bread</mat-label>
-                    <input matInput placeholder="Like bulldog,Birman" name="ProductName" required #name="ngModel"
+                    <input matInput placeholder="Like bulldog,Birman" name="PetBread" required #name="ngModel"
                         ngModel>
                 </mat-form-field>
             </div>
@@ -30,7 +30,7 @@
             <div class="pet-category center col">
                 <mat-form-field class="product-field">
                     <mat-label>Pet Category</mat-label>
-                    <mat-select name="ProductCategory" ngModel required>
+                    <mat-select name="PetCategory" ngModel required>
                         <mat-option value="dog">Dog</mat-option>
                         <mat-option value="cat">Cat</mat-option>
                     </mat-select>
@@ -40,7 +40,7 @@
             <div class="pet-dob center col">
                 <mat-form-field>
                     <mat-label>Pet D.O.B</mat-label>
-                    <input matInput [matDatepicker]="picker2" required>
+                    <input matInput [matDatepicker]="picker2" required name="PetD.O.B" ngModel>
                     <mat-hint>MM/DD/YYYY</mat-hint>
                     <mat-datepicker-toggle matIconSuffix [for]="picker2"></mat-datepicker-toggle>
                     <mat-datepicker #picker2 color="primary"></mat-datepicker>
@@ -50,14 +50,14 @@
             <div class="pet-price center col">
                 <mat-form-field>
                     <mat-label>Pet Selling Price(INR)</mat-label>
-                    <input matInput type="number" placeholder="Enter price in INR" min="0" name="ProductPrice" ngModel
+                    <input matInput type="number" placeholder="Enter price in INR" min="0" name="PetPrice" ngModel
                         required>
                 </mat-form-field>
             </div>
 
 
             <div class="example-button-row center col">
-                <button mat-raised-button color="primary" (click)="showToast()">Confirm Course</button>
+                <button mat-raised-button color="primary"  [disabled]="PetAdoption.invalid">Confirm Course</button>
             </div>
 
         </div>

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 
+
 import { AdoptionForm } from 'src/app/Model/adoption.model';
 import { AdminAdoptionService } from 'src/app/Services/admin-adoption.service';
 
@@ -13,12 +14,13 @@ import { AdminAdoptionService } from 'src/app/Services/admin-adoption.service';
 })
 export class AdminAdoptionComponent implements OnInit{
 
-
-  
-  constructor(private adoptionService: AdminAdoptionService) { }
+  constructor(private adoptionService: AdminAdoptionService ) { 
+  }
 
   ngOnInit(): void {}
-  showToast(){}
+  dataSubmit(data: any){
+    console.log(data) ;
+  }
 
 }
 

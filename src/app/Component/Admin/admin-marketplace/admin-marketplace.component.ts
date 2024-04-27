@@ -9,6 +9,7 @@ import {
   transition,
 } from '@angular/animations';
 import { MarketplaceForm } from 'src/app/Model/marketplace.model';
+import { TooltipPosition } from '@angular/material/tooltip';
 
 @Component({
   selector: 'app-admin-marketplace',
@@ -23,8 +24,11 @@ import { MarketplaceForm } from 'src/app/Model/marketplace.model';
   ],
 })
 export class AdminMarketplaceComponent implements OnInit {
+  positionOptions: TooltipPosition[] = ['after', 'before', 'above', 'below', 'left', 'right'];
+  position = new FormControl(this.positionOptions[2]);
   imageUrls: string[] = [] ;
   productForm: MarketplaceForm[] =[];
+  maxImg: number = 5;
   
   constructor(private builder: FormBuilder ) {}
   ngOnInit(): void {
@@ -54,6 +58,7 @@ export class AdminMarketplaceComponent implements OnInit {
         reader.readAsDataURL(files[i]);
       }
     }
+    
   }
   clear(){
 

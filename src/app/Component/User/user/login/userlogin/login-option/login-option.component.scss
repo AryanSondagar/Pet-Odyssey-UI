@@ -1,0 +1,21 @@
+.btn-box{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    .btn-1{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        padding: 12px 15px;
+        background-color: #5aa469;
+        color: #ffffff;
+        border-radius: 0;
+        text-transform: uppercase;
+        cursor: pointer;
+    }
+    .btn-1:hover{
+        background-color: #51945e;
+        border: none;
+    }
+}

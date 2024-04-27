@@ -34,12 +34,12 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatDialogModule } from '@angular/material/dialog';
 import { AdminComponent } from './Component/Admin/admin/admin.component';
-import { UserHomeComponent } from './Component/User/user/user-home/user-home.component';
-import { UserComponent } from './Component/User/user/user.component';
 
+import { UserComponent } from './Component/User/user/user.component';
+import { UserRoutingModule } from './Component/User/user/user-routing.module';
 import { AdminRoutingModule } from './Component/Admin/admin/admin-routing.module';
-import { UserRoutingModule } from './Component/User/user/user-home/user-routing.module';
-import { AdminHomeComponent } from './Component/Admin/admin/admin-home/admin-home.component';
+
+
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { JsonPipe } from '@angular/common';
 import { TopWidgetsComponent } from './Component/Admin/dashboard/top-widgets/top-widgets.component';
@@ -47,6 +47,12 @@ import { SalesByMonthComponent } from './Component/Admin/dashboard/sales-by-mont
 import { SalesByCategoryComponent } from './Component/Admin/dashboard/sales-by-category/sales-by-category.component';
 import { LastFewTransactionsComponent } from './Component/Admin/dashboard/last-few-transactions/last-few-transactions.component';
 import { TopThreeProductComponent } from './Component/Admin/dashboard/top-three-product/top-three-product.component';
+import { UserloginComponent } from './Component/User/user/login/userlogin/userlogin.component';
+import { AdminloginComponent } from './Component/User/user/login/userlogin/adminlogin/adminlogin.component';
+import { LoginOptionComponent } from './Component/User/user/login/userlogin/login-option/login-option.component';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { PageNotFoundComponent } from './Component/page-not-found/page-not-found.component';
+
 
 
 @NgModule({
@@ -58,20 +64,23 @@ import { TopThreeProductComponent } from './Component/Admin/dashboard/top-three-
     AdminCourseComponent,
     AdminAdoptionComponent,
     AdminComponent,
-    UserHomeComponent,
+
     UserComponent,
-    AdminHomeComponent,
     TopWidgetsComponent,
     SalesByMonthComponent,
     SalesByCategoryComponent,
     LastFewTransactionsComponent,
     TopThreeProductComponent,
+    UserloginComponent,
+    AdminloginComponent,
+    LoginOptionComponent,
+    PageNotFoundComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    UserRoutingModule,
     AdminRoutingModule,
+    UserRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
     FontAwesomeModule,
@@ -99,6 +108,7 @@ import { TopThreeProductComponent } from './Component/Admin/dashboard/top-three-
     MatCheckboxModule,
     MatDialogModule,
     MatFormFieldModule,
+    MatTooltipModule,
     JsonPipe,
     
   ],

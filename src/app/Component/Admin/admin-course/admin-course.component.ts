@@ -21,5 +21,8 @@ export class AdminCourseComponent implements OnInit {
 
   ngOnInit(): void {
   }
+  dataSubmit(data: any){
+  console.log(data) ;
+  }
 
 }

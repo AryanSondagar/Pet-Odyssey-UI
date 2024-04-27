@@ -6,13 +6,13 @@
   <div class="title">
     <h1 class="animated-title"> <mat-icon>pets</mat-icon> Add pet course <mat-icon>pets</mat-icon></h1>
   </div>
-  <form >
+  <form #course="ngForm" (ngSubmit)="dataSubmit(course.value)">
     <div class="date-range col">
       <mat-form-field>
         <mat-label>Pick Course Date </mat-label>
         <mat-date-range-input [rangePicker]="picker">
-          <input matStartDate placeholder="Start date">
-          <input matEndDate placeholder="End date">
+          <input matStartDate placeholder="Start date" name="StartDate" ngModel>
+          <input matEndDate placeholder="End date" name="EndDate" ngModel>
         </mat-date-range-input>
         <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
         <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
@@ -23,7 +23,7 @@
     <div class="time-picker col">
       <mat-form-field>
         <mat-label for="">Select TIme:</mat-label>
-        <input matInput type="time" id="time" name="time">
+        <input matInput type="time" id="time" name="time" ngModel>
         <mat-hint>HH:MM AM/PM</mat-hint>
       </mat-form-field>
     </div>
@@ -31,7 +31,7 @@
     <div class="city">
       <mat-form-field>
         <mat-label>City</mat-label>
-        <input matInput placeholder="Enter Course City">
+        <input matInput placeholder="Enter Course City" name="city" ngModel>
       </mat-form-field>
     </div>
 
