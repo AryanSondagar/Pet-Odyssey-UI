@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { LoginOptionComponent } from './login/userlogin/login-option/login-option.component';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-user',
   templateUrl: './user.component.html',
@@ -13,8 +14,25 @@ import { LoginOptionComponent } from './login/userlogin/login-option/login-optio
   ],
 })
 export class UserComponent {
-  constructor(private dialog: MatDialog){
+  userName:string="";
+  menutype: string= 'defult'
 
+  ngOnInit():void{
+    this.route.events.subscribe((val: any)=>{
+       if (val.url) {
+        if(localStorage.getItem('user')){
+          let userStore = localStorage.getItem('user');
+          let userData = userStore && JSON.parse(userStore);
+          this.userName = userData.userName;
+          this.menutype = 'user'
+        }
+        
+       }else{
+        this.menutype = 'defult';
+       }
+    })
+  }
+  constructor(private dialog: MatDialog , private route: Router){
   }
   public handleMissingImage(event: Event) {
     (event.target as HTMLImageElement).style.display = 'none';

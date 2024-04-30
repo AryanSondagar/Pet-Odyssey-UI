@@ -1,4 +1,10 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
+import { faLock } from '@fortawesome/free-solid-svg-icons';
+import { faUser } from '@fortawesome/free-solid-svg-icons';
+import { UserSign } from 'src/app/Model/userSignin.model';
+import { UserService } from 'src/app/Services/user.service';
 
 @Component({
   selector: 'app-userlogin',
@@ -6,18 +12,16 @@ import { Component } from '@angular/core';
   styleUrls: ['./userlogin.component.scss'],
 })
 export class UserloginComponent {
-    signUpButton: HTMLElement | null = document.getElementById('signUp');
-    signInButton: HTMLElement | null = document.getElementById('signIn');
-    container: HTMLElement | null = document.getElementById('container');
-  constructor() {
-    if (this.signUpButton && this.signInButton && this.container) {
-      this.signUpButton.addEventListener('click', (container:any) => {
-        container.classList.add('right-panel-active');
-      });
-
-      this.signInButton.addEventListener('click', (container:any) => {
-        container.classList.remove("right-panel-active");
-      });
-    }
+  passwordValue: string = '';
+    email = faEnvelope ;
+    lock = faLock;
+    user = faUser 
+  constructor(private User: UserService , private route:Router) {
+  }
+  SignUp(data: UserSign):void{
+    this.User.UserSignUp(data);
+  }
+  Login(data: any){
+     console.log(data);
   }
 }

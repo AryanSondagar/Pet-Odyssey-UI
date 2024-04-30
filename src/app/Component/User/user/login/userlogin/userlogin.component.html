@@ -1,4 +1,4 @@
-
+<!-- 
 <div class="container" id="container">
 	<div class="form-container sign-up-container">
 		<form action="#">
@@ -44,4 +44,102 @@
 			</div>
 		</div>
 	</div>
+</div> -->
+
+ <div class="userlogin">
+<div class="container">
+    <input type="checkbox" id="flip">
+    <div class="cover">
+      <div class="front">
+        <img src="../../../../../../assets/image/images.jfif" alt="">
+        <div class="text">
+          <span class="text-1">Every new friend is a <br> new adventure</span>
+          <span class="text-2">Let's get connected</span>
+        </div>
+      </div>
+      <div class="back">
+        <img class="backImg" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQNt0uDeOrnC9n-1TH7W-_aS_LBy40R_r_eZw&s" alt="">
+        <div class="text">
+          <span class="text-1">Complete miles of journey <br> with one step</span>
+          <span class="text-2">Let's get started</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="forms">
+        <div class="form-content">
+
+          <div class="login-form">
+            <div class="title">Login</div>
+          <form  #userLogIn="ngForm" (ngSubmit)="Login(userLogIn.value)">
+            <div class="input-boxes">
+
+              <div class="input-box">
+                <fa-icon [icon]="email"></fa-icon>
+                <input type="email" placeholder="Enter your email" required  name="UserEmail" ngModel
+                #UserEmail="ngModel" required email>
+              </div>
+
+              <div class="input-box">
+				        <fa-icon [icon]="lock"></fa-icon>
+                <input type="password" placeholder="Enter your password" required name="UserPassword" ngModel
+                #UserPassword="ngModel" required >
+              </div>
+
+              <!-- <div class="text"><a href="#">Forgot password?</a></div> -->
+
+              <div class="button input-box">
+                <input type="submit" value="Sumbit">
+              </div>
+
+              <div class="text sign-up-text">Don't have an account? <label for="flip">Sigup now</label></div>
+            </div>
+        </form>
+      </div>
+
+        <div class="signup-form">
+          <div class="title">Signup</div>
+        <form #userSignIn="ngForm" (ngSubmit)="SignUp(userSignIn.value)">
+            <div class="input-boxes">
+
+              <div class="input-box">
+				<fa-icon [icon]="user"></fa-icon>
+                <input type="text" placeholder="Enter your name" required name="UserName" ngModel #UserName="ngModel"  >
+				
+              </div>
+			  <p *ngIf="UserName.invalid&& UserName.touched" class="notice">Enter Username</p>
+
+              <div class="input-box">
+                <fa-icon [icon]="email"></fa-icon>
+                <input type="email" placeholder="Enter your email" required name="UserEmail" ngModel #UserEmail="ngModel" email>
+				<!-- <span *ngIf="UserEmail.invalid&& UserEmail.touched" class="notice">your email is not valid</span> -->
+              </div>
+
+              <div class="input-box">
+                <fa-icon [icon]="lock"></fa-icon>
+                <input type="password" placeholder="Enter your password" required name="UserPassword" ngModel #UserPassword="ngModel" minlength="6"
+				 maxlength="16" [(ngModel)]="passwordValue">
+				 <!-- <p *ngIf="UserPassword.invalid&& UserPassword.touched" class="notice">
+					<span *ngIf="!passwordValue">
+						password is required
+					</span>
+					<span *ngIf="passwordValue && passwordValue.length  <= 6">
+						must be greater than 6
+					</span>
+				</p> -->
+              </div>
+
+              <div class="button input-box" >
+                <input type="submit" value="Sumbit" [disabled]="userSignIn.invalid">
+              </div>
+              <div class="text sign-up-text">Already have an account? <label for="flip">Login now</label></div>
+
+            </div>
+
+      </form>
+    </div>
+    </div>
+    </div>
+  </div>
 </div>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">

@@ -16,8 +16,9 @@
                     <span class=""> </span>
                 </button>
 
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav ">
+                <div class="collapse navbar-collapse" id="navbarSupportedContent" [ngSwitch]="menutype">
+
+                    <ul class="navbar-nav " *ngSwitchCase="'defult'">
                         <li class="nav-item active">
                             <a class="nav-link" href="#about"> About </a>
                         </li>
@@ -31,6 +32,25 @@
                             <a class="nav-link " (click)="login()">Login</a>
                         </li>
                     </ul>
+
+                    <ul class="navbar-nav " *ngSwitchCase="'user'">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="#about"> About </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#gallery"> Gallery </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link pr-lg-0" href="#contact"> Contact us</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link ">{{userName | titlecase}}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link ">LogOut</a>
+                        </li>
+                    </ul>
+
                 </div>
             </nav>
         </div>

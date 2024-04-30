@@ -1,47 +1,55 @@
-:host{
-    #about{
+:host {
+    #about {
         background-color: #ffff;
     }
-    #What-do{
+
+    #What-do {
         background-color: #ffff;
     }
-    #gallery{
+
+    #gallery {
         background-color: #ffff;
     }
-    #contact{
+
+    #contact {
         background-color: #ffff;
     }
-    .req-call-back{
-        input:focus{
+
+    .req-call-back {
+        input:focus {
             border-color: #6c757d;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    transform: scale(1.05);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transform: scale(1.05);
         }
     }
-    .course{
+
+    .course {
+        background-color: #ffff;
+        padding-top: 60px;
+
         body {
             margin: 0;
             padding: 0;
             overflow: hidden;
         }
-    
+
         .wave {
-            position: absolute;
-            bottom: 0;
-            left: 0;
+
             width: 100%;
-            height: 200px;
+            height: 300px;
             background-color: #5aa469;
             animation: waveAnimation 5s linear infinite;
         }
-    
+
         @keyframes waveAnimation {
             0% {
                 transform: scaleY(0.95);
             }
+
             50% {
                 transform: scaleY(1.05);
             }
+
             100% {
                 transform: scaleY(0.95);
             }
@@ -50,5 +58,5 @@
 
 
 
-    
+
 }
