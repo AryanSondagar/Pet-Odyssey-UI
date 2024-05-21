@@ -29,7 +29,8 @@
     }
 
     .bg{
-      background: url("./BackgroundImage.png") repeat;
+      // background: url("./BackgroundImage.png") repeat;
+      background: url("https://t3.ftcdn.net/jpg/02/98/20/18/360_F_298201895_5bPjYW2qPWJ52Wg40H80d8hCAHsPIfpE.jpg") repeat;
     animation: moveBackground 30s linear infinite;
     background-size: 115%;
 
@@ -44,6 +45,7 @@
       }
     }
     }
+   
   
   mat-sidenav-container {
     height: calc(100vh - 65px);

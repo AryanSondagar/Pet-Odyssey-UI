@@ -58,7 +58,7 @@
         </div>
       </div>
       <div class="back">
-        <img class="backImg" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQNt0uDeOrnC9n-1TH7W-_aS_LBy40R_r_eZw&s" alt="">
+        <img class="backImg" src="../../../../../../assets/image/images.jfif" alt="">
         <div class="text">
           <span class="text-1">Complete miles of journey <br> with one step</span>
           <span class="text-2">Let's get started</span>
@@ -83,13 +83,13 @@
               <div class="input-box">
 				        <fa-icon [icon]="lock"></fa-icon>
                 <input type="password" placeholder="Enter your password" required name="UserPassword" ngModel
-                #UserPassword="ngModel" required >
+                #UserPassword="ngModel" required minlength="6" maxlength="16">
               </div>
 
-              <!-- <div class="text"><a href="#">Forgot password?</a></div> -->
+              <div class="text"><a>{{authError}}</a></div> 
 
               <div class="button input-box">
-                <input type="submit" value="Sumbit">
+                <input type="submit" value="Sumbit" [disabled]="userLogIn.invalid">
               </div>
 
               <div class="text sign-up-text">Don't have an account? <label for="flip">Sigup now</label></div>
@@ -107,7 +107,7 @@
                 <input type="text" placeholder="Enter your name" required name="UserName" ngModel #UserName="ngModel"  >
 				
               </div>
-			  <p *ngIf="UserName.invalid&& UserName.touched" class="notice">Enter Username</p>
+			  <!-- <p *ngIf="UserName.invalid&& UserName.touched" class="notice">Enter Username</p> -->
 
               <div class="input-box">
                 <fa-icon [icon]="email"></fa-icon>

@@ -1,0 +1,24 @@
+:host{
+    h2{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+    }
+    mat-dialog-content{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    mat-dialog-actions{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .confirm{
+        background-color: #5aa469;
+    }
+    button{
+        padding: 0px 30px 0px 30px;
+    }
+}

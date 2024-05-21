@@ -1,5 +1,9 @@
 export interface UserSign{
     name:String,
-    email:string,
-    password: string
+    email:String,
+    password: String
+}
+export interface UserLogin{
+    UserEmail:String,
+    UserPassword:String
 }

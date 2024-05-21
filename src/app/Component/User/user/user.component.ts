@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { LoginOptionComponent } from './login/userlogin/login-option/login-option.component';
 import { Router } from '@angular/router';
+import { UserService } from 'src/app/Services/user.service';
+import { OpenDialogComponent } from '../../open-dialog/open-dialog.component';
 @Component({
   selector: 'app-user',
   templateUrl: './user.component.html',
@@ -14,31 +16,55 @@ import { Router } from '@angular/router';
   ],
 })
 export class UserComponent {
-  userName:string="";
-  menutype: string= 'defult'
+  userName: string = "";
+  menutype: string = 'defult';
+  buttonClicked = false;
 
-  ngOnInit():void{
-    this.route.events.subscribe((val: any)=>{
-       if (val.url) {
-        if(localStorage.getItem('user')){
-          let userStore = localStorage.getItem('user');
-          let userData = userStore && JSON.parse(userStore);
-          this.userName = userData.userName;
-          this.menutype = 'user'
+  ngOnInit(): void {
+    this.userservice.isUserLogined.subscribe(x => {
+      if (x) {
+        if (localStorage.getItem('user')) {
+          this.menutype = 'user';
+        }else{
+          this.menutype = 'defult';
         }
-        
-       }else{
-        this.menutype = 'defult';
-       }
-    })
-  }
-  constructor(private dialog: MatDialog , private route: Router){
-  }
-  public handleMissingImage(event: Event) {
-    (event.target as HTMLImageElement).style.display = 'none';
-  }
-  login(){
-    this.dialog.open(LoginOptionComponent,{width: '270px' , minWidth:'150px'
+      }
     });
+
+    // this.route.events.subscribe((val: any) =>{
+    //   if (val.url) {
+    //     if (localStorage.getItem('user')) {
+    //       this.menutype = 'user';
+    //     }else{
+    //       this.menutype = 'defult';
+    //     }
+    //   }
+    // })
+  }
+  constructor(private dialog: MatDialog, private route: Router, private userservice : UserService) {
+    if (localStorage.getItem('user')) {
+      this.menutype = 'user';
+    }else{
+      this.menutype = 'defult';
+    }
+  }
+  login() {
+    this.dialog.open(LoginOptionComponent, {
+      width: '270px', minWidth: '150px'
+    });
+  }
+  openDialog(enterAnimationDuration: string, exitAnimationDuration: string): void {
+    this.dialog.open(OpenDialogComponent, {
+      width: '255px',
+      enterAnimationDuration,
+      exitAnimationDuration,
+    });
+     this.userservice.buttonClicked$.subscribe((clicked) => {
+      this.buttonClicked = clicked;
+      if (this.buttonClicked == true) {
+        this.menutype = 'defult'
+      }
+    });
+    
   }
 }

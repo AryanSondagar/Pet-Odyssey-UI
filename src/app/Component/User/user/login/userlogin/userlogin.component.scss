@@ -24,6 +24,8 @@
 		align-items: center;
 		justify-content: center;
 		height: 100vh;
+		background-color: #64da7c;
+		background-image: url(../../../../../../assets/image/diagonal-lines.svg);
 		
 	}
 
@@ -60,6 +62,8 @@
 		left: 0;
 		height: 100%;
 		width: 100%;
+
+		backface-visibility: hidden;
 	}
 
 	.cover .back {
@@ -73,9 +77,11 @@
 		position: absolute;
 		height: 100%;
 		width: 100%;
-		background: #5aa469;
+	//	background: #5aa469;
 		opacity: 0.5;
-		z-index: 12;
+
+		z-index: 100;
+		backface-visibility: hidden;
 	}
 
 	.container .cover::after {
@@ -271,6 +277,24 @@
 			display: none;
 		}
 	}
+
+	.cover .back .text .text-1,
+.cover .back .text .text-2{
+ 
+  font-size: 26px;
+  font-weight: 600;
+  color: #fff;
+  text-align: center;
+  backface-visibility: hidden;
+}
+/* change */
+.container .cover .back .backimg{
+  transform: rotateY(180deg);
+}
+.cover .back .text .text-2{
+  font-size: 15px;
+  font-weight: 500;
+}
 }
 
 

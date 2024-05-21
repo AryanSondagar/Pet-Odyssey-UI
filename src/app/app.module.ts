@@ -52,6 +52,7 @@ import { AdminloginComponent } from './Component/User/user/login/userlogin/admin
 import { LoginOptionComponent } from './Component/User/user/login/userlogin/login-option/login-option.component';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { PageNotFoundComponent } from './Component/page-not-found/page-not-found.component';
+import { OpenDialogComponent } from './Component/open-dialog/open-dialog.component';
 
 
 
@@ -75,6 +76,7 @@ import { PageNotFoundComponent } from './Component/page-not-found/page-not-found
     AdminloginComponent,
     LoginOptionComponent,
     PageNotFoundComponent,
+    OpenDialogComponent,
   ],
   imports: [
     BrowserModule,
