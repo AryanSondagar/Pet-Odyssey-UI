@@ -7,10 +7,10 @@ import { AdoptionForm } from '../Model/adoption.model';
   providedIn: 'root'
 })
 export class AdminAdoptionService {
-  apiUrl: string = "https://localhost:7153";
+  apiUrl: string = "https://localhost:7159";
   constructor(private http:HttpClient) { }
 
   getAllAdoptionPet():Observable<AdoptionForm[]>{
-    return this.http.get<AdoptionForm[]>("https://localhost:7153/api/AdoptionForm");
+    return this.http.get<AdoptionForm[]>(this.apiUrl + '/api/adoption');
   }
 }

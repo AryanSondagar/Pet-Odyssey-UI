@@ -1,0 +1,16 @@
+:host{
+    .container{
+        height: calc(100vh - 100px);
+        font-size: 16px;
+        border-radius: 10px;
+        overflow: hidden;
+        
+    }
+    .title {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-bottom: 1px solid gray;
+        margin: 2% 20% 2% 20%;
+        }
+}

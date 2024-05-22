@@ -9,7 +9,7 @@ const routes: Routes = [
     {path: '' , component: UserComponent },
     {path: 'admin', component: AdminComponent },
     
-];
+]; 
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

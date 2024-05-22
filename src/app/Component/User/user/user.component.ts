@@ -4,6 +4,8 @@ import { LoginOptionComponent } from './login/userlogin/login-option/login-optio
 import { Router } from '@angular/router';
 import { UserService } from 'src/app/Services/user.service';
 import { OpenDialogComponent } from '../../open-dialog/open-dialog.component';
+
+
 @Component({
   selector: 'app-user',
   templateUrl: './user.component.html',
@@ -19,8 +21,12 @@ export class UserComponent {
   userName: string = "";
   menutype: string = 'defult';
   buttonClicked = false;
+ 
 
   ngOnInit(): void {
+    
+  
+    
     this.userservice.isUserLogined.subscribe(x => {
       if (x) {
         if (localStorage.getItem('user')) {

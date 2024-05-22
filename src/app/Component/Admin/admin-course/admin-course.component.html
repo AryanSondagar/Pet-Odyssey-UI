@@ -8,7 +8,7 @@
   </div>
   <form #course="ngForm" (ngSubmit)="dataSubmit(course.value)">
     <div class="date-range col">
-      <mat-form-field>
+      <mat-form-field >
         <mat-label>Pick Course Date </mat-label>
         <mat-date-range-input [rangePicker]="picker">
           <input matStartDate placeholder="Start date" name="StartDate" ngModel>
@@ -21,9 +21,9 @@
     </div>
 
     <div class="time-picker col">
-      <mat-form-field>
+      <mat-form-field >
         <mat-label for="">Select TIme:</mat-label>
-        <input matInput type="time" id="time" name="time" ngModel>
+        <input matInput type="time"  id="time" name="time" ngModel>
         <mat-hint>HH:MM AM/PM</mat-hint>
       </mat-form-field>
     </div>
@@ -41,6 +41,8 @@
         <input matInput placeholder="Disabled Field" [disabled]="true">
       </mat-form-field>
     </div>
+
+    
 
     <div class="example-button-row">
       <button mat-raised-button color="primary">Confirm Course</button>

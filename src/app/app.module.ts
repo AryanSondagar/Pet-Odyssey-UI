@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 
@@ -10,7 +11,7 @@ import { DashboardComponent } from './Component/Admin/dashboard/dashboard.compon
 import { AdminMarketplaceComponent } from './Component/Admin/admin-marketplace/admin-marketplace.component';
 import { AdminCourseComponent } from './Component/Admin/admin-course/admin-course.component';
 import { AdminAdoptionComponent } from './Component/Admin/admin-adoption/admin-adoption.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 
 
 import { MatInputModule } from '@angular/material/input';
@@ -41,7 +42,7 @@ import { AdminRoutingModule } from './Component/Admin/admin/admin-routing.module
 
 
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { JsonPipe } from '@angular/common';
+import { CommonModule, JsonPipe } from '@angular/common';
 import { TopWidgetsComponent } from './Component/Admin/dashboard/top-widgets/top-widgets.component';
 import { SalesByMonthComponent } from './Component/Admin/dashboard/sales-by-month/sales-by-month.component';
 import { SalesByCategoryComponent } from './Component/Admin/dashboard/sales-by-category/sales-by-category.component';
@@ -53,6 +54,10 @@ import { LoginOptionComponent } from './Component/User/user/login/userlogin/logi
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { PageNotFoundComponent } from './Component/page-not-found/page-not-found.component';
 import { OpenDialogComponent } from './Component/open-dialog/open-dialog.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AdoptionListComponent } from './Component/Admin/admin-adoption/adoption-list/adoption-list.component';
+import { CoursListComponent } from './Component/Admin/admin-course/cours-list/cours-list.component';
+
 
 
 
@@ -77,9 +82,12 @@ import { OpenDialogComponent } from './Component/open-dialog/open-dialog.compone
     LoginOptionComponent,
     PageNotFoundComponent,
     OpenDialogComponent,
+    AdoptionListComponent,
+    CoursListComponent,
   ],
   imports: [
     BrowserModule,
+    CommonModule,
     AppRoutingModule,
     AdminRoutingModule,
     UserRoutingModule,
@@ -112,6 +120,7 @@ import { OpenDialogComponent } from './Component/open-dialog/open-dialog.compone
     MatFormFieldModule,
     MatTooltipModule,
     JsonPipe,
+
     
   ],
   providers: [],
