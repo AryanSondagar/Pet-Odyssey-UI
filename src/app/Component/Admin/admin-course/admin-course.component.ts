@@ -4,6 +4,9 @@ import {JsonPipe} from '@angular/common';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatNativeDateModule} from '@angular/material/core';
+import { CourseModel } from 'src/app/Model/course.model';
+import { AdminCourseService } from 'src/app/Services/admin-course.service';
+
 
 @Component({
   selector: 'app-admin-course',
@@ -11,18 +14,22 @@ import {MatNativeDateModule} from '@angular/material/core';
   styleUrls: ['./admin-course.component.scss']
 })
 export class AdminCourseComponent implements OnInit {
-  dateRangeForm: FormGroup | undefined;
-  range = new FormGroup({
-    start: new FormControl<Date | null>(null),
-    end: new FormControl<Date | null>(null),
-  });
-  selectedTime: Date = new Date();
-  constructor(private formBuilder: FormBuilder) { }
+  newCourse: CourseModel = {
+    CourseDate: new Date(),
+    CourseTime:  '',
+    CourseCity: '',
+    CourseTrainer: ''
+  };
+
+
+  constructor(private formBuilder: FormBuilder,private courseService: AdminCourseService) { }
 
   ngOnInit(): void {
   }
   dataSubmit(data: any){
   console.log(data) ;
+  this.courseService.addCourse(this.newCourse).subscribe((res)=>{
+  })
   }
 
 }

@@ -1,9 +1,9 @@
 export interface MarketplaceForm {
-    id: string,
+    // id: string,
     ProductName: string,
     ProductCategory: string,
-    ProductPrice: number,
-    ProductStock: number,
+    ProductPrice: string,
+    ProductStock: string,
     ProductDes: string,
     ProductImage: any
 };

@@ -4,21 +4,21 @@
     <div class="title">
         <h1 class="animated-title"> <mat-icon>pets</mat-icon> Add Product Detail <mat-icon>pets</mat-icon></h1>
     </div>
-    <!--   <form #addProduct="ngForm" (ngSubmit)="submit(addProduct.value)">
+    <form #addProduct="ngForm" (ngSubmit)="submit(addProduct.value)">
         <div class="add-product-form">
             <div class="top-field">
                 <div class="name">
                     <mat-form-field fill="outline">
                         <mat-label>Product Name</mat-label>
                         <input matInput placeholder="Enter product title" name="ProductName" required #name="ngModel"
-                            ngModel>
+                            [(ngModel)]="newProduct.ProductName">
                     </mat-form-field>
-                     <mat-error *ngIf="name.invalid&&name.touched" class="notice">*Required</mat-error>  comment
+                    <!-- <mat-error *ngIf="name.invalid&&name.touched" class="notice">*Required</mat-error>  -->
                 </div>
                 <div class="category name">
                     <mat-form-field class="product-field">
                         <mat-label>Product Category</mat-label>
-                        <mat-select name="ProductCategory" ngModel required>
+                        <mat-select name="ProductCategory" [(ngModel)]="newProduct.ProductCategory" required>
                             <mat-option value="Food&Treats">Food&Treats</mat-option>
                             <mat-option value="Toys">Toys</mat-option>
                             <mat-option value="Collars, Leashes, & Harnesses">Collars, Leashes, &
@@ -38,30 +38,30 @@
                     <mat-form-field>
                         <mat-label>Enter Price (INR)</mat-label>
                         <input matInput type="number" placeholder="Enter price in INR" min="0" name="ProductPrice"
-                            ngModel required>
+                            [(ngModel)]="newProduct.ProductPrice" required>
                     </mat-form-field>
                 </div>
                 <div class="product-stock name">
                     <mat-form-field>
                         <mat-label>Product Stock</mat-label>
-                        <input matInput placeholder="*In Stock" type="number" min="0" name="ProductStock" ngModel
-                            required>
+                        <input matInput placeholder="*In Stock" type="number" min="0" name="ProductStock"
+                            [(ngModel)]="newProduct.ProductStock" required>
                     </mat-form-field>
                 </div>
             </div>
             <div class="desc name">
 
                 <label for="myTextArea">Description:</label>
-                <textarea id="myTextArea" name="message" placeholder="Type your text here..." ngModel
+                <textarea id="myTextArea" name="message" placeholder="Type your text here..." [(ngModel)]="newProduct.ProductDes"
                     required></textarea>
             </div>
 
             <div class="upload-image name">
                 <div class="upload-container" fxLayout="column" fxLayoutAlign="center center">
                     <input type="file" (change)="handleFileInput($event)" accept="image/*" multiple name="ProductImages"
-                        ngModel required id="file-input">
+                        [(ngModel)]="newProduct.ProductImage" required id="file-input">
                     <label for="file-input" style="max-width: 260px;" mat-raised-button
-                        matTooltip="Image must be less then 5"  [matTooltipPosition]="position.value!">
+                        matTooltip="Image must be less then 5" [matTooltipPosition]="position.value!">
                         <mat-icon>upload</mat-icon>
                         Choose Files To Upload
                     </label>
@@ -82,48 +82,8 @@
             </div>
         </div>
     </form>
--->
-    
-<div class="container mt-5">
-    <table class="table  table-hover" >
-      <thead>
-        <tr>
-          <th>#</th>
-          <th>Name</th>
-          <th>Email</th>
-          <th>Phone</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let user of paginatedUsers; let i = index">
-          <td>{{ i + 1 + (currentPage - 1) * pageSize }}</td>
-          <td>{{ user.name }}</td>
-          <td>{{ user.email }}</td>
-          <td>{{ user.phone }}</td>
-        </tr>
-      </tbody>
-    </table>
-    <nav aria-label="...">
-      <ul class="pagination">
-
-        <li class="page-item" [class.disabled]="currentPage === 1">
-          <a class="page-link" (click)="goToPage(currentPage - 1)" aria-label="Previous">
-            <span aria-hidden="true">&laquo;</span>
-          </a>
-        </li>
-        <li *ngFor="let page of pages" class="page-item" [class.active]="currentPage === page">
-          <a class="page-link" (click)="goToPage(page)">{{ page }}</a>
-        </li>
-        <li class="page-item" [class.disabled]="currentPage === pages.length">
-          <a class="page-link" (click)="goToPage(currentPage + 1)" aria-label="Next">
-            <span aria-hidden="true">&raquo;</span>
-          </a>
-        </li>
-      </ul>
 
 
-    </nav>
-  </div>
-  
-    
+
+
 </div>

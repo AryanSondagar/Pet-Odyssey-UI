@@ -18,6 +18,7 @@ import {
 } from '@angular/animations';
 import { MarketplaceForm } from 'src/app/Model/marketplace.model';
 import { TooltipPosition } from '@angular/material/tooltip';
+import { AdminMarketplaceService } from 'src/app/Services/admin-marketplace.service';
 
 @Component({
   selector: 'app-admin-marketplace',
@@ -36,61 +37,34 @@ import { TooltipPosition } from '@angular/material/tooltip';
 
 
 export class AdminMarketplaceComponent implements OnInit {
-
-  users: User[] = [
-    { name: 'John Doe', email: 'john@example.com', phone: '123-456-7890' },
-    { name: 'Jane Smith', email: 'jane@example.com', phone: '987-654-3210' },
-    { name: 'Jane Smith', email: 'jane@example.com', phone: '987-654-3210' },
-    { name: 'Jane Smith', email: 'jane@example.com', phone: '987-654-3210' },
-    { name: 'Jane Smith', email: 'jane@example.com', phone: '987-654-3210' },
-    { name: 'Jane Smith', email: 'jane@example.com', phone: '987-654-3210' },
-    { name: 'Jane Smith', email: 'jane@example.com', phone: '987-654-3210' },
-    { name: 'Jane Smith', email: 'jane@example.com', phone: '987-654-3210' },
-    { name: 'Jane Smith', email: 'jane@example.com', phone: '987-654-3210' },
-    { name: 'Jane Smith', email: 'jane@example.com', phone: '987-654-3210' },
-    { name: 'Jane Smith', email: 'jane@example.com', phone: '987-654-3210' },
-    { name: 'Jane Smith', email: 'jane@example.com', phone: '987-654-3210' },
-    
-    // Add more users as needed for testing
-  ];
-  paginatedUsers!: User[];
-  currentPage: number = 1;
-  pageSize: number = 5;
-  pages!: number[];
-
-  
-  ngOnInit(): void {
-    this.setPage(1);
-    this.pages = Array.from({ length: Math.ceil(this.users.length / this.pageSize) }, (_, i) => i + 1);
-  }
-
-  setPage(page: number): void {
-    this.currentPage = page;
-    const startIndex = (page - 1) * this.pageSize;
-    this.paginatedUsers = this.users.slice(startIndex, startIndex + this.pageSize);
-  }
-
-  goToPage(page: number): void {
-    if (page >= 1 && page <= this.pages.length) {
-      this.setPage(page);
-    }
-  }
-
-
-
+  newProduct: MarketplaceForm = {
+    // id: '',
+    ProductName: '',
+    ProductCategory: '',
+    ProductPrice: '',
+    ProductStock: '',
+    ProductDes:'',
+    ProductImage: ''
+   }
+ 
   positionOptions: TooltipPosition[] = ['after', 'before', 'above', 'below', 'left', 'right'];
   position = new FormControl(this.positionOptions[2]);
   imageUrls: string[] = [] ;
   productForm: MarketplaceForm[] =[];
   maxImg: number = 5;
   
-  constructor(private builder: FormBuilder ) {}
- 
+  constructor(private builder: FormBuilder,private marketplaceService: AdminMarketplaceService) {}
+  ngOnInit(): void {
+    
+  }
   
 
   submit(data: any) {
     console.log(data);
     console.log('Submitted files:', this.imageUrls);
+    this.marketplaceService.addProduct(this.newProduct).subscribe(()=>{
+
+    })
   }
   
   ImageCount(input : any){

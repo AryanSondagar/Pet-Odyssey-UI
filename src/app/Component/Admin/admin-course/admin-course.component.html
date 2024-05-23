@@ -8,22 +8,20 @@
   </div>
   <form #course="ngForm" (ngSubmit)="dataSubmit(course.value)">
     <div class="date-range col">
-      <mat-form-field >
-        <mat-label>Pick Course Date </mat-label>
-        <mat-date-range-input [rangePicker]="picker">
-          <input matStartDate placeholder="Start date" name="StartDate" ngModel>
-          <input matEndDate placeholder="End date" name="EndDate" ngModel>
-        </mat-date-range-input>
-        <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
-        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-        <mat-date-range-picker #picker></mat-date-range-picker>
-      </mat-form-field>
+      
+      <mat-form-field>
+        <mat-label>Pet D.O.B</mat-label>
+        <input matInput [matDatepicker]="picker2" required name="courseDate" [(ngModel)]="newCourse.CourseDate">
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle matIconSuffix [for]="picker2"></mat-datepicker-toggle>
+        <mat-datepicker #picker2 color="primary"></mat-datepicker>
+    </mat-form-field>
     </div>
 
     <div class="time-picker col">
       <mat-form-field >
         <mat-label for="">Select TIme:</mat-label>
-        <input matInput type="time"  id="time" name="time" ngModel>
+        <input matInput type="time"  id="time" name="time"required [(ngModel)]="newCourse.CourseTime">
         <mat-hint>HH:MM AM/PM</mat-hint>
       </mat-form-field>
     </div>
@@ -31,21 +29,21 @@
     <div class="city">
       <mat-form-field>
         <mat-label>City</mat-label>
-        <input matInput placeholder="Enter Course City" name="city" ngModel>
+        <input matInput placeholder="Enter Course City" name="city" [(ngModel)]="newCourse.CourseCity" required>
       </mat-form-field>
     </div>
 
     <div class="trainer">
       <mat-form-field>
         <mat-label>Aryan Raval</mat-label>
-        <input matInput placeholder="Disabled Field" [disabled]="true">
+        <input matInput placeholder="Disabled Field"  name="trainer" [(ngModel)]="newCourse.CourseTrainer">
       </mat-form-field>
     </div>
 
     
 
     <div class="example-button-row">
-      <button mat-raised-button color="primary">Confirm Course</button>
+      <button mat-raised-button color="primary" [disabled]="course.invalid">Confirm Course</button>
     </div>
   </form>
 </div>

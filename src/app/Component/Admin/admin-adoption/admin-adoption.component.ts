@@ -13,13 +13,22 @@ import { AdminAdoptionService } from 'src/app/Services/admin-adoption.service';
   
 })
 export class AdminAdoptionComponent implements OnInit{
-
+   newAdoption: AdoptionForm = {
+    // id: '',
+    PetName: '',
+    PetCategory: '',
+    PetBread: '',
+    PetDob: new Date(),
+    PetsellingPrice: ''
+   }
   constructor(private adoptionService: AdminAdoptionService ) { 
   }
 
   ngOnInit(): void {}
-  dataSubmit(data: any){
-    console.log(data) ;
+
+  dataSubmit(){
+    this.adoptionService.addAdoptionPet(this.newAdoption).subscribe((res)=>{
+    })
   }
 
 }

@@ -57,6 +57,7 @@ import { OpenDialogComponent } from './Component/open-dialog/open-dialog.compone
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AdoptionListComponent } from './Component/Admin/admin-adoption/adoption-list/adoption-list.component';
 import { CoursListComponent } from './Component/Admin/admin-course/cours-list/cours-list.component';
+import { ProductListComponent } from './Component/Admin/admin-marketplace/product-list/product-list.component';
 
 
 
@@ -84,6 +85,7 @@ import { CoursListComponent } from './Component/Admin/admin-course/cours-list/co
     OpenDialogComponent,
     AdoptionListComponent,
     CoursListComponent,
+    ProductListComponent
   ],
   imports: [
     BrowserModule,
