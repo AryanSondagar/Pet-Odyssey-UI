@@ -7,3 +7,7 @@ export interface UserLogin{
     UserEmail:String,
     UserPassword:String
 }
+export interface AdminLogin{
+    AdminEmail: String,
+    AdminPassword: String
+}

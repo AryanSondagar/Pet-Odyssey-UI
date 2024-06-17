@@ -22,13 +22,35 @@
 
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-  <script src="./assets/js/bootstrap.js"></script>
+  <!-- <script src="./assets/js/bootstrap.js"></script>
   <script src="./assets/js/custom.js"></script>
   <script src="./assets/js/jquery-3.4.1.min.js"></script>
-  <script src="./assets/js/not-found.js"></script>
+  <script src="./assets/js/not-found.js"></script> -->
 
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAN015nBUmek6h_JRowsJBzeNk-cPOkbi8"></script>
-
+  <script type="text/javascript">
+    (function (I, L, T, i, c, k, s) {
+      if (I.iticks) return;
+      I.iticks = { host: c, settings: s, clientId: k, cdn: L, queue: [] };
+      var h = T.head || T.documentElement;
+      var e = T.createElement(i);
+      var l = I.location;
+      e.async = true;
+      e.src = (L || c) + "/client/inject-v2.min.js";
+      h.insertBefore(e, h.firstChild);
+      I.iticks.call = function (a, b) {
+        I.iticks.queue.push([a, b]);
+      };
+    })(
+      window,
+      "https://cdn-v1.intelliticks.com/prod/common",
+      document,
+      "script",
+      "https://app.intelliticks.com",
+      "aG2BoxYXdqTs9jaAx_c",
+      {}
+    );
+  </script>
 </body>
 
 </html>

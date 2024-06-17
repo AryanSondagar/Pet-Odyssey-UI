@@ -6,5 +6,28 @@
       "UserEmail": "sdcfvdcv@fg.vo",
       "UserPassword": "1234567"
     }
+  ],
+  "Adimn":[
+    {
+      "id": 1,
+      "username": "aryan",
+      "useremail": "aryansondagar@gmail.com",
+      "password": "123456789"
+    },
+    {
+      "id": 2,
+      "username": "deep",
+      "useremail": "deepradadiya@gmail.com",
+      "password": "123456789"
+     
+    },
+    {
+      "id": 3,
+      "username": "aryan",
+      "useremail": "aryanraval@gmail.com",
+      "password": "aryanraval123"
+     
+    }
   ]
+  
 }

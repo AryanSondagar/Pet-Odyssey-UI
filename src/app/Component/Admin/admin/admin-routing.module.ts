@@ -10,26 +10,31 @@ import { CoursListComponent } from '../admin-course/cours-list/cours-list.compon
 import { AdoptionListComponent } from '../admin-adoption/adoption-list/adoption-list.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
+import { authGuard } from 'src/app/auth.guard';
 
 
 
 const routes: Routes = [
-    {path: 'admin' ,component: AdminComponent,
-            children: [
-                { path: 'dashboard' ,component: DashboardComponent },
-                { path: 'marketplace', component: AdminMarketplaceComponent },
-                { path: 'course', component: AdminCourseComponent },
-                { path: 'adoption', component: AdminAdoptionComponent },  
-                { path: 'productlist', component: ProductListComponent }, 
-                { path: 'courselist', component: CoursListComponent }, 
-                { path: 'adoptionlist', component: AdoptionListComponent }, 
-            ]
+    {
+        path: 'admin', component: AdminComponent,
+        //canActivate: [authGuard] ,
+        children: [
+            { path: '', redirectTo: 'marketplace', pathMatch: 'full' },
+            { path: 'dashboard', component: DashboardComponent },
+            { path: 'marketplace', component: AdminMarketplaceComponent },
+            { path: 'course', component: AdminCourseComponent },
+            { path: 'adoption', component: AdminAdoptionComponent },
+            { path: 'productlist', component: ProductListComponent },
+            { path: 'courselist', component: CoursListComponent },
+            { path: 'adoptionlist', component: AdoptionListComponent },
+            { path: '**', redirectTo: 'marketplace' },
+        ]
     },
 
 ];
 
 @NgModule({
-    imports: [RouterModule.forRoot(routes), BrowserModule,CommonModule],
+    imports: [RouterModule.forRoot(routes), BrowserModule, CommonModule],
     exports: [RouterModule],
 })
-export class AdminRoutingModule {}
+export class AdminRoutingModule { }

@@ -17,7 +17,7 @@ export class AdminAdoptionComponent implements OnInit{
     // id: '',
     PetName: '',
     PetCategory: '',
-    PetBread: '',
+    PetBreed: '',
     PetDob: new Date(),
     PetsellingPrice: ''
    }

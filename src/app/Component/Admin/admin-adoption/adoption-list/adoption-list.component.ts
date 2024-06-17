@@ -31,6 +31,7 @@ export class AdoptionListComponent implements OnInit{
   }
   getAllAdoptionList(){
     this.adoptionService.getAllAdoptionPet().subscribe((res)=>{
+      console.log(res);
       // this.list = res ;
       this.dataSource = new MatTableDataSource(res);
       this.dataSource.sort = this.sort ;

@@ -4,7 +4,9 @@ import { LoginOptionComponent } from './login/userlogin/login-option/login-optio
 import { Router } from '@angular/router';
 import { UserService } from 'src/app/Services/user.service';
 import { OpenDialogComponent } from '../../open-dialog/open-dialog.component';
-
+import { faLock, faPhone, faEnvelope } from '@fortawesome/free-solid-svg-icons';
+import { faFacebook } from '@fortawesome/free-brands-svg-icons';
+import { AdminMarketplaceService } from 'src/app/Services/admin-marketplace.service';
 
 @Component({
   selector: 'app-user',
@@ -21,17 +23,25 @@ export class UserComponent {
   userName: string = "";
   menutype: string = 'defult';
   buttonClicked = false;
- 
+
+  fb = faFacebook;
+  phone = faPhone;
+  email = faEnvelope;
+  AllProduct: any;
 
   ngOnInit(): void {
-    
-  
-    
+
+    this.ProductService.UserProduct().subscribe((res) => {
+      this.AllProduct = res;
+    })
+
     this.userservice.isUserLogined.subscribe(x => {
       if (x) {
         if (localStorage.getItem('user')) {
           this.menutype = 'user';
-        }else{
+
+
+        } else {
           this.menutype = 'defult';
         }
       }
@@ -47,10 +57,13 @@ export class UserComponent {
     //   }
     // })
   }
-  constructor(private dialog: MatDialog, private route: Router, private userservice : UserService) {
+  constructor(private dialog: MatDialog, 
+    private route: Router, 
+    private userservice: UserService, 
+    private ProductService: AdminMarketplaceService) {
     if (localStorage.getItem('user')) {
       this.menutype = 'user';
-    }else{
+    } else {
       this.menutype = 'defult';
     }
   }
@@ -65,12 +78,16 @@ export class UserComponent {
       enterAnimationDuration,
       exitAnimationDuration,
     });
-     this.userservice.buttonClicked$.subscribe((clicked) => {
+    this.userservice.buttonClicked$.subscribe((clicked) => {
       this.buttonClicked = clicked;
       if (this.buttonClicked == true) {
         this.menutype = 'defult'
       }
     });
-    
+
+  }
+  course() {
+
+    this.route.navigate(['/training'])
   }
 }

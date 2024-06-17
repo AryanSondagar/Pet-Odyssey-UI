@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { EventEmitter, Injectable } from '@angular/core';
-import { UserLogin, UserSign } from '../Model/userSignin.model';
+import { AdminLogin, UserLogin, UserSign } from '../Model/userSignin.model';
 import { Router } from '@angular/router';
 import { BehaviorSubject, Subject } from 'rxjs';
 
@@ -10,6 +10,8 @@ import { BehaviorSubject, Subject } from 'rxjs';
 export class UserService {
   isUserLogin = new BehaviorSubject<boolean>(false);
   isUserLogined = new BehaviorSubject<boolean>(false);
+  isAdminLogin = new BehaviorSubject<boolean>(false);
+  isAdminLogined  = new BehaviorSubject<boolean>(false);
   isLoginError = new EventEmitter<boolean>(false)
   private buttonClickedSource = new Subject<boolean>();
   buttonClicked$ = this.buttonClickedSource.asObservable();
@@ -50,5 +52,13 @@ export class UserService {
   }
   clickButton(clicked: boolean) {
     this.buttonClickedSource.next(clicked);
+  }
+  AdminLogin(data:AdminLogin){
+    this.http.get(`http://localhost:3000/Admin?AdminEmail=${data.AdminEmail}&AdminPassword=${data.AdminPassword}`, {observe: 'response'})
+    .subscribe((result: any)=>{
+      if (result) {
+          console.log(result);
+      }
+    })
   }
 }

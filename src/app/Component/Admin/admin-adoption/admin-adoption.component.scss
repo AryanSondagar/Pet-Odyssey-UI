@@ -12,6 +12,21 @@
     border-bottom: 1px solid gray;
     margin: 2% 20% 2% 20%;
   }
+ 
+  .name {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  @keyframes slideIn {
+    from {
+      transform: translateX(-100%);
+    }
+    to {
+      transform: translateX(0);
+    }
+  }
   .animated-title {
     font-size: 2em;
     color: #006b72;

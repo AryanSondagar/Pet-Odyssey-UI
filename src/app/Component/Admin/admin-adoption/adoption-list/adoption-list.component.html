@@ -1,10 +1,11 @@
 <div class="container">
     <div class="title">
-        <h1 class="animated-title"> km sefkm sekf </h1>
+        <h1 class="animated-title"> <mat-icon>pets</mat-icon> All Pet List
+        <mat-icon>pets</mat-icon> </h1>
     </div>
 
     <div class="mat-elevation-z8">
-      <table mat-table [dataSource]="dataSource" matSort>
+      <table mat-table [dataSource]="dataSource" matSort >
     
         <!-- ID Column -->
         <ng-container matColumnDef="petName">
@@ -20,7 +21,7 @@
     
         <!-- Name Column -->
         <ng-container matColumnDef="petCategory">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Pet Category </th>
           <td mat-cell *matCellDef="let row"> {{row.petCategory}} </td>
         </ng-container>
     
