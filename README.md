@@ -1,27 +1,56 @@
-# PetOdysseyUI
+Angular Project with JSON Server
+📌 Prerequisites
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.2.8.
+Make sure you have the following installed:
 
-## Development server
+Node.js
+ (v16 or above recommended)
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Angular CLI
 
-## Code scaffolding
+Git
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+📥 Clone the Repository
+git clone <your-repo-url>
+cd <your-project-folder>
 
-## Build
+📦 Install Dependencies
+npm install
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+▶️ Run the Angular Project
+ng serve
 
-## Running unit tests
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+The app will be available at:
+👉 http://localhost:4200/
 
-## Running end-to-end tests
+🗄 Run JSON Server
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+This project uses JSON Server for a mock backend.
 
-## Further help
+Go to the folder where db.json is located.
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+Run:
+
+npx json-server --watch db.json --port 3000
+
+
+or if installed globally:
+
+json-server --watch db.json --port 3000
+
+
+The mock API will run at:
+👉 http://localhost:3000/
+
+🔗 Project Structure
+/src         -> Angular frontend code
+/db.json     -> Mock database for JSON Server
+
+🚀 Usage
+
+Start Angular app → ng serve
+
+Start JSON Server → json-server --watch db.json
+
+Open browser at http://localhost:4200/
