@@ -20,6 +20,7 @@ export class ProductListComponent implements OnInit {
   constructor(private productService: AdminMarketplaceService){}
   ngOnInit(): void {
     this.productService.getAllProduct().subscribe((res)=>{
+      console.log(res);
       this.dataSource = new MatTableDataSource(res);
       this.dataSource.sort = this.sort ;
       this.dataSource.paginator = this.paginator ;

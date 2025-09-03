@@ -7,19 +7,19 @@ import { MarketplaceForm } from '../Model/marketplace.model';
   providedIn: 'root'
 })
 export class AdminMarketplaceService {
-  apiUrl: string = "https://localhost:7159";
+  apiUrl: string = "http://localhost:5093";
 
   constructor(private http:HttpClient) { }
 
   getAllProduct():Observable<MarketplaceForm[]>{
-    return this.http.get<MarketplaceForm[]>(this.apiUrl + '/api/marketplace');
+    return this.http.get<MarketplaceForm[]>(this.apiUrl + '/api/MarketplaceForm');
 
   }
   addProduct(newProduct: MarketplaceForm):Observable<MarketplaceForm>{
     // newAdoption.id = '00000000-0000-0000-0000-000000000000';
-    return this.http.post<MarketplaceForm>(this.apiUrl + '/api/marketplace', newProduct) ;
+    return this.http.post<MarketplaceForm>(this.apiUrl + '/api/MarketplaceForm', newProduct);
   }
   UserProduct(){
-    return  this.http.get<MarketplaceForm[]>(this.apiUrl + '/api/marketplace');
+    return  this.http.get<MarketplaceForm[]>(this.apiUrl + '/api/MarketplaceForm');
   }
 }

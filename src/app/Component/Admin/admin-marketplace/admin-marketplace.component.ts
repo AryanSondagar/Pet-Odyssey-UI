@@ -39,12 +39,12 @@ import { AdminMarketplaceService } from 'src/app/Services/admin-marketplace.serv
 export class AdminMarketplaceComponent implements OnInit {
   newProduct: MarketplaceForm = {
     // id: '',
-    ProductName: '',
-    ProductCategory: '',
-    ProductPrice: '',
-    ProductStock: '',
-    ProductDes:'',
-    ProductImage: ''
+    productName: '',
+    productCategory: '',
+    productPrice: '',
+    productStock: '',
+    productDescription:'',
+    productImage: ''
    }
  
   positionOptions: TooltipPosition[] = ['after', 'before', 'above', 'below', 'left', 'right'];

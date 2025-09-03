@@ -15,11 +15,11 @@ import { AdminAdoptionService } from 'src/app/Services/admin-adoption.service';
 export class AdminAdoptionComponent implements OnInit{
    newAdoption: AdoptionForm = {
     // id: '',
-    PetName: '',
-    PetCategory: '',
-    PetBreed: '',
-    PetDob: new Date(),
-    PetsellingPrice: ''
+    petName: '',
+    petCategory: '',
+    petbread: '',
+    petDob: new Date(),
+    petsellingPrice: ''
    }
   constructor(private adoptionService: AdminAdoptionService ) { 
   }

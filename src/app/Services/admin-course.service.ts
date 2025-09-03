@@ -7,7 +7,7 @@ import { CourseModel } from '../Model/course.model';
   providedIn: 'root'
 })
 export class AdminCourseService {
-  apiUrl: string = "https://localhost:7159";
+  apiUrl: string = "http://localhost:5903";
   constructor(private http: HttpClient) { }
   
   getAllCourse():Observable<CourseModel[]>{

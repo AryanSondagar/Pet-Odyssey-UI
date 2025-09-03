@@ -1,8 +1,8 @@
 export interface AdoptionForm{
     // id: string,
-    PetName: string,
-    PetCategory: string,
-    PetBreed: string,
-    PetDob: Date,
-    PetsellingPrice: string ,
+    petName: string,
+    petCategory: string,
+    petbread: string,
+    petDob: Date,
+    petsellingPrice: string ,
 };

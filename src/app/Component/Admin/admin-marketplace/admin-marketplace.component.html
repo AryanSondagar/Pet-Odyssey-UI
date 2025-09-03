@@ -11,14 +11,14 @@
                     <mat-form-field fill="outline">
                         <mat-label>Product Name</mat-label>
                         <input matInput placeholder="Enter product title" name="ProductName" required #name="ngModel"
-                            [(ngModel)]="newProduct.ProductName">
+                            [(ngModel)]="newProduct.productName">
                     </mat-form-field>
                     <!-- <mat-error *ngIf="name.invalid&&name.touched" class="notice">*Required</mat-error>  -->
                 </div>
                 <div class="category name">
                     <mat-form-field class="product-field">
                         <mat-label>Product Category</mat-label>
-                        <mat-select name="ProductCategory" [(ngModel)]="newProduct.ProductCategory" required>
+                        <mat-select name="ProductCategory" [(ngModel)]="newProduct.productCategory" required>
                             <mat-option value="Food&Treats">Food&Treats</mat-option>
                             <mat-option value="Toys">Toys</mat-option>
                             <mat-option value="Collars, Leashes, & Harnesses">Collars, Leashes, &
@@ -38,32 +38,32 @@
                     <mat-form-field>
                         <mat-label>Enter Price (INR)</mat-label>
                         <input matInput type="number" placeholder="Enter price in INR" min="0" name="ProductPrice"
-                            [(ngModel)]="newProduct.ProductPrice" required>
+                            [(ngModel)]="newProduct.productPrice" required>
                     </mat-form-field>
                 </div>
                 <div class="product-stock name">
                     <mat-form-field>
                         <mat-label>Product Stock</mat-label>
                         <input matInput placeholder="*In Stock" type="number" min="0" name="ProductStock"
-                            [(ngModel)]="newProduct.ProductStock" required>
+                            [(ngModel)]="newProduct.productStock" required>
                     </mat-form-field>
                 </div>
             </div>
             <div class="desc name">
 
                 <label for="myTextArea">Description:</label>
-                <textarea id="myTextArea" name="message" placeholder="Type your text here..." [(ngModel)]="newProduct.ProductDes"
+                <textarea id="myTextArea" name="message" placeholder="Type your text here..." [(ngModel)]="newProduct.productDescription"
                     required></textarea>
             </div>
 
             <div class="upload-image name">
                 <div class="upload-container" fxLayout="column" fxLayoutAlign="center center">
                     <input type="file" (change)="handleFileInput($event)" accept="image/*" multiple name="ProductImages"
-                        [(ngModel)]="newProduct.ProductImage" required id="file-input">
+                        [(ngModel)]="newProduct.productImage" required id="file-input">
                     <label for="file-input" style="max-width: 260px;" mat-raised-button
                         matTooltip="Image must be less then 5" [matTooltipPosition]="position.value!">
                         <mat-icon>upload</mat-icon>
-                        Choose Files To Upload
+                         Upload Image
                     </label>
 
                     <div class="upload-preview" *ngIf="imageUrls && imageUrls.length > 0">

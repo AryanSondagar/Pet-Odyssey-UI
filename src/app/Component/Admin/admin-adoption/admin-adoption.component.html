@@ -16,7 +16,7 @@
                 <mat-form-field>
                     <mat-label>Pet Name</mat-label>
                     <input matInput placeholder="Enter pet name" name="PetName" required #name="ngModel"
-                        [(ngModel)]="newAdoption.PetName">
+                        [(ngModel)]="newAdoption.petName">
                 </mat-form-field>
             </div>
 
@@ -24,14 +24,14 @@
                 <mat-form-field>
                     <mat-label>Pet Bread</mat-label>
                     <input matInput placeholder="Like bulldog,Birman" name="PetBread" required #name="ngModel"
-                        [(ngModel)]="newAdoption.PetBreed">
+                        [(ngModel)]="newAdoption.petbread">
                 </mat-form-field>
             </div>
 
             <div class="pet-category center col">
                 <mat-form-field class="product-field">
                     <mat-label>Pet Category</mat-label>
-                    <mat-select name="PetCategory" [(ngModel)]="newAdoption.PetCategory" required>
+                    <mat-select name="PetCategory" [(ngModel)]="newAdoption.petCategory" required>
                         <mat-option value="dog">Dog</mat-option>
                         <mat-option value="cat">Cat</mat-option>
                     </mat-select>
@@ -41,7 +41,7 @@
             <div class="pet-dob center col">
                 <mat-form-field>
                     <mat-label>Pet D.O.B</mat-label>
-                    <input matInput [matDatepicker]="picker2" required name="PetD.O.B" [(ngModel)]="newAdoption.PetDob">
+                    <input matInput [matDatepicker]="picker2" required name="PetD.O.B" [(ngModel)]="newAdoption.petDob">
                     <mat-hint>MM/DD/YYYY</mat-hint>
                     <mat-datepicker-toggle matIconSuffix [for]="picker2"></mat-datepicker-toggle>
                     <mat-datepicker #picker2 color="primary"></mat-datepicker>
@@ -52,7 +52,7 @@
                 <mat-form-field>
                     <mat-label>Pet Selling Price(INR)</mat-label>
                     <input matInput type="number" placeholder="Enter price in INR" min="0" name="PetPrice"
-                        [(ngModel)]="newAdoption.PetsellingPrice" required>
+                        [(ngModel)]="newAdoption.petsellingPrice" required>
                 </mat-form-field>
             </div>
 
