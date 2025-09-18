@@ -1,8 +1,10 @@
 
-export interface CourseModel {
-    // id: string,
-    CourseDate: any,
-    CourseTime: string,
-    CourseCity: string,
-    CourseTrainer: string
+export interface Course {
+    id?: string;  // optional since backend may generate it
+    city: string;
+    state: string;
+    category: string;
+    price: number;
+    courseDate: Date;
+    TimeSlot: string[];
 };

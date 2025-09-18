@@ -1,20 +1,26 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { CourseModel } from '../Model/course.model';
+import { Course } from '../Model/course.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AdminCourseService {
-  apiUrl: string = "http://localhost:5903";
+  apiUrl: string = "http://localhost:5903/api/CourseForm";
   constructor(private http: HttpClient) { }
-  
-  getAllCourse():Observable<CourseModel[]>{
-    return this.http.get<CourseModel[]>(this.apiUrl + '/api/course');
+  getAllCourses(): Observable<Course[]> {
+    return this.http.get<Course[]>(`${this.apiUrl}/GetAllCourse`);
   }
-  addCourse(newCourse: CourseModel):Observable<CourseModel>{
-    // newAdoption.id = '00000000-0000-0000-0000-000000000000';
-    return this.http.post<CourseModel>(this.apiUrl + '/api/course', newCourse) ;
+
+  getCourseById(id: string): Observable<Course> {
+    return this.http.get<Course>(`${this.apiUrl}/${id}`);
+  }
+
+  addCourse(course: Course): Observable<Course> {
+    return this.http.post<Course>(`${this.apiUrl}/CreateCourse`, course);
+  }
+   deleteCourse(id: string): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/DeleteCourse/${id}`);
   }
 }

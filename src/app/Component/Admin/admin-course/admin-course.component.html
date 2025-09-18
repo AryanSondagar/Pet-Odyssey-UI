@@ -4,54 +4,114 @@
     <h1 class="animated-title"> <mat-icon>pets</mat-icon> Add pet course <mat-icon>pets</mat-icon></h1>
   </div>
   <form [formGroup]="courseForm" (ngSubmit)="onSubmit()" enctype="multipart/form-data">
-        <div class="add-product-form">
-            <div class="top-field">
-                <div class="name">
-                    <mat-form-field fill="outline">
-                        <mat-label>City</mat-label>
-                        <input matInput placeholder="Enter Course City" name="ProductName"
-                            formControlName="city" required>
-                    </mat-form-field>
-                </div>
+    <div class="add-product-form">
+      <div class="top-field">
+        <div class="name">
+          <mat-form-field fill="outline">
+            <mat-label>City</mat-label>
+            <input matInput placeholder="Enter Course City" name="ProductName" formControlName="city" required>
+          </mat-form-field>
+        </div>
 
-                <div class="name">
-                    <mat-form-field fill="outline">
-                        <mat-label>State</mat-label>
-                        <input matInput placeholder="Enter Course State" name="ProductName"
-                            formControlName="state" required>
-                    </mat-form-field>
-                </div>
+        <div class="name">
+          <mat-form-field fill="outline">
+            <mat-label>State</mat-label>
+            <input matInput placeholder="Enter Course State" name="ProductName" formControlName="state" required>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="middle-field">
+
+        <div class="pet-category name">
+          <mat-form-field class="product-field">
+            <mat-label>Course Category</mat-label>
+            <mat-select formControlName="category" placeholder="example.ca" name="petCategory" required>
+              <mat-option value="Dog">Dog</mat-option>
+              <mat-option value="Cat">Cat</mat-option>
+              <mat-option value="Observer">Cat</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <div class="name">
+          <mat-form-field fill="outline">
+            <mat-label>Price</mat-label>
+            <input type="number" matInput placeholder="Enter product title" name="ProductName" formControlName="price" required>
+          </mat-form-field>
+        </div>
+      </div>
+
+
+
+      <div class="Date name">
+        <mat-form-field >
+          <mat-label>Choose a date</mat-label>
+          <input matInput [matDatepicker]="picker" formControlName="courseDate">
+          <mat-hint>MM/DD/YYYY</mat-hint>
+          <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+      </div>
+
+      <div class="time-slot">
+        <div class="time-picker" formGroupName="TimeSlot">
+
+          <div class="time-display">
+            <span>{{ formattedHours }} : {{ minutes?.value | number: '2.0' }}</span>
+            <div class="am-pm-toggle">
+              <button type="button" mat-raised-button color="primary" (click)="toggleMeridian()">
+                {{ meridian?.value }}
+              </button>
             </div>
+          </div>
 
-            <div class="middle-field">
-                <div class="Date name">
-                    <mat-form-field fill="outline">
-                        <mat-label>Date of Course</mat-label>
-                        <input matInput placeholder="Enter product title" name="ProductName"
-                            formControlName="courseDate" required>
-                    </mat-form-field>
-                </div>
+          <div class="slider-group">
+            <label>Hours : </label>
+            <mat-slider min="1" max="12" step="1" formControlName="hours" thumbLabel>
+            </mat-slider>
+          </div>
 
-                <div class="name">
-                    <mat-form-field fill="outline">
-                        <mat-label>Price</mat-label>
-                        <input matInput placeholder="Enter product title" name="ProductName"
-                            formControlName="price" required>
-                    </mat-form-field>
-                </div>
-            </div>
+          <div class="slider-group">
+            <label>Minute : </label>
+            <mat-slider min="0" max="59" step="1" formControlName="minutes" thumbLabel>
+            </mat-slider>
+          </div>
 
-            <div class="pet-category name">
-                    <mat-form-field class="product-field">
-                        <mat-label>Course Category</mat-label>
-                        <mat-select  formControlName="category" placeholder="example.ca" name="petCategory" required>
-                            <mat-option value="Dog">Dog</mat-option>
-                            <mat-option value="Cat">Cat</mat-option>
-                            <mat-option value="Observer">Cat</mat-option>
-                        </mat-select>
-                    </mat-form-field>
-            </div>
+          <div *ngIf="slots.length >= maxSlots" class="text-danger mt-2 " style="font-size: 13px;">
+            Maximum of {{ maxSlots }} slots reached
+          </div>
+
+          <div class="add-slot-btn">
+            <button type="button" mat-raised-button color="primary" (click)="addSlot()"
+              [disabled]="slots.length >= maxSlots">Add
+              Slot</button>
+          </div>
 
         </div>
+
+        <div class="preview-box ">
+          <ng-container *ngIf="slots.length > 0; else noImage">
+            <div *ngFor="let slot of slots; let i = index" class="p-2">
+              <span class="slots">{{ slot }}</span>
+              <button mat-icon-button color="warn" (click)="removeSlot(i)">
+                <mat-icon>cancel</mat-icon>
+              </button>
+            </div>
+          </ng-container>
+          <ng-template #noImage>
+            <span class="placeholder-text">No Slot</span>
+          </ng-template>
+        </div>
+
+      </div>
+
+      <div class="submit-btn">
+        <button mat-raised-button color="primary" type="submit" [disabled]="courseForm.invalid || slots.length === 0">
+          Submit
+        </button>
+      </div>
+
+    </div>
   </form>
-</div> 
+</div>

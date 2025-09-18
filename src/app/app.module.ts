@@ -13,7 +13,6 @@ import { AdminCourseComponent } from './Component/Admin/admin-course/admin-cours
 import { AdminAdoptionComponent } from './Component/Admin/admin-adoption/admin-adoption.component';
 
 
-
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
@@ -39,7 +38,6 @@ import { AdminComponent } from './Component/Admin/admin/admin.component';
 import { UserComponent } from './Component/User/user/user.component';
 import { UserRoutingModule } from './Component/User/user/user-routing.module';
 import { AdminRoutingModule } from './Component/Admin/admin/admin-routing.module';
-
 
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { CommonModule, JsonPipe } from '@angular/common';
