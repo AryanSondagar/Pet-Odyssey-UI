@@ -1,13 +1,17 @@
+export type Role = 'User' | 'Admin';
 export interface UserSign{
-    name:String,
-    email:String,
-    password: String
+    name:string,
+    email:string,
+    password: String,
+    role:'User'
 }
 export interface UserLogin{
-    UserEmail:String,
-    UserPassword:String
+    email:String,
+    password:String,
+    role:'User'
 }
 export interface AdminLogin{
-    AdminEmail: String,
-    AdminPassword: String
+    email: String,
+    password: String,
+    role:'Admin'
 }

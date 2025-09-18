@@ -1,117 +1,152 @@
-
 .mat-toolbar {
-    background-color: #006b72;
-    color: white;
+  background-color: #006b72;
+  color: white;
+
+  .spacer {
+    flex: 1 1 auto;
+    /* grows to take remaining space */
   }
-  .menu {
-    border: none;
-    background-color: #006b72;
-    color: white;
+
+  .log-out img {
+     border: 2px solid transparent;
+    width: 40px;
+    height: 32px;
+    padding: 6px;
+    border-radius: 18%;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    transition:all 0.3s ease;
   }
-  mat-sidenav {
-    margin: 16px;
-    width: 200px;
-    border-right: none;
-    background-color: #006b72;
-    color: white;
-    border-radius: 10px;
-    padding: 16px;
-    text-align: center;
-    
+
+  .log-out:hover {
+    transform: scale(1.1);
+      border-color: #007bff; 
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
   }
-    .content {
-      margin: 16px;
-      margin-left: 32px;
-      height: calc(100vh - 100px);
-    
-      border-radius: 10px;
-      overflow: hidden;
+
+}
+
+.menu {
+  border: none;
+  background-color: #006b72;
+  color: white;
+}
+
+mat-sidenav {
+  margin: 16px;
+  width: 200px;
+  border-right: none;
+  background-color: #006b72;
+  color: white;
+  border-radius: 10px;
+  padding: 16px;
+  text-align: center;
+
+}
+
+.content {
+  margin: 16px;
+  margin-left: 32px;
+  height: calc(100vh - 100px);
+
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.bg {
+  // background: url("./BackgroundImage.png") repeat;
+  // background: url("https://t3.ftcdn.net/jpg/02/98/20/18/360_F_298201895_5bPjYW2qPWJ52Wg40H80d8hCAHsPIfpE.jpg") repeat;
+  animation: moveBackground 30s linear infinite;
+  background-size: 115%;
+
+  // z-index: 1;
+
+  @keyframes moveBackground {
+    from {
+      background-position: 100% 0;
     }
 
-    .bg{
-      // background: url("./BackgroundImage.png") repeat;
-      // background: url("https://t3.ftcdn.net/jpg/02/98/20/18/360_F_298201895_5bPjYW2qPWJ52Wg40H80d8hCAHsPIfpE.jpg") repeat;
-    animation: moveBackground 30s linear infinite;
-    background-size: 115%;
-
-    // z-index: 1;
-
-    @keyframes moveBackground {
-      from {
-        background-position: 100% 0;
-      }
-      to {
-        background-position: 0 100% ;
-      }
-    }
-    }
-   
-  
-  mat-sidenav-container {
-    height: calc(100vh - 65px);
-  }
-  
-
-  .field {
-    margin-top: 15px;
-    font-size: 12px;
-  }
-  .img {
-    margin-top: 15px;
-    width: 120px;
-    height: 120px;
-    clip-path: circle(60px at center);
-  }
-  .name {
-    margin-top: 15px;
-  }
-  
-  .all-btn {
-    padding-bottom: 15px;
-    border-top: 1px solid;
-    padding-top: 10px;
-    border-bottom: 1px solid;
-  }
-  .all-list{
-    padding-top: 10px;
-  }
-  .menu-btn {
-    border: none;
-    background-color: #006b72;
-    color: white;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    padding-bottom: 3px;
-    padding-top: 10px;
-  }
-  .menu-btn:hover {
-    background-color: #005a60;
-    padding-bottom: 7px;
-  }
-  .btn-1 {
-    padding-right: 52px;
-  }
-  .btn-2 {
-    padding-right: 42px;
-  }
-  .btn-3 {
-    padding-right: 51px;
-  }
-  .btn-4 {
-    padding-right: 63px;
-    margin-top: 10px;
-  }
-  mat-icon {
-    margin-right: 8px;
-    
-  }
-  
-  
-  @media screen and (max-width: 600px) {
-    .content {
-      margin-left: 16px;
-      margin-bottom: 16px;
+    to {
+      background-position: 0 100%;
     }
   }
-  
+}
+
+
+mat-sidenav-container {
+  height: calc(100vh - 65px);
+}
+
+
+.field {
+  margin-top: 15px;
+  font-size: 12px;
+}
+
+.img {
+  margin-top: 15px;
+  width: 120px;
+  height: 120px;
+  clip-path: circle(60px at center);
+}
+
+.name {
+  margin-top: 15px;
+}
+
+.all-btn {
+  padding-bottom: 15px;
+  border-top: 1px solid;
+  padding-top: 10px;
+  border-bottom: 1px solid;
+}
+
+.all-list {
+  padding-top: 10px;
+}
+
+.menu-btn {
+  border: none;
+  background-color: #006b72;
+  color: white;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding-bottom: 3px;
+  padding-top: 10px;
+}
+
+.menu-btn:hover {
+  background-color: #005a60;
+  padding-bottom: 7px;
+}
+
+.btn-1 {
+  padding-right: 52px;
+}
+
+.btn-2 {
+  padding-right: 42px;
+}
+
+.btn-3 {
+  padding-right: 51px;
+}
+
+.btn-4 {
+  padding-right: 63px;
+  margin-top: 10px;
+}
+
+mat-icon {
+  margin-right: 8px;
+
+}
+
+
+@media screen and (max-width: 600px) {
+  .content {
+    margin-left: 16px;
+    margin-bottom: 16px;
+  }
+}

@@ -10,25 +10,46 @@ import { AdminAdoptionService } from 'src/app/Services/admin-adoption.service';
   selector: 'app-admin-adoption',
   templateUrl: './admin-adoption.component.html',
   styleUrls: ['./admin-adoption.component.scss'],
-  
+
 })
-export class AdminAdoptionComponent implements OnInit{
-   newAdoption: AdoptionForm = {
-    // id: '',
+export class AdminAdoptionComponent implements OnInit {
+  adoptionForm: AdoptionForm = {
     petName: '',
     petCategory: '',
-    petbread: '',
-    petDob: new Date(),
-    petsellingPrice: ''
-   }
-  constructor(private adoptionService: AdminAdoptionService ) { 
+    petBreed: '',
+    petAge: 0,
+    petSellingPrice: 0,
+    owner_MobileNumber: '',
+    petFiles: []
+  };
+   selectedFiles: { file: File, preview: string }[] = [];
+  constructor(private adoptionService: AdminAdoptionService) {
   }
 
-  ngOnInit(): void {}
-
-  dataSubmit(){
-    this.adoptionService.addAdoptionPet(this.newAdoption).subscribe((res)=>{
-    })
+  ngOnInit(): void { }
+  onFileSelected(event: any) {
+    if (event.target.files) {
+        const files = Array.from(event.target.files as FileList).slice(0, 5);
+      this.selectedFiles = [];
+      for (let file of files) {
+        const reader = new FileReader();
+        reader.onload = (e: any) => {
+          this.selectedFiles.push({ file, preview: e.target.result });
+        };
+        reader.readAsDataURL(file);
+      }
+    }
+  }
+  submitForm() {
+    this.adoptionService.addAdoptionPet(this.adoptionForm).subscribe({
+      next: (res) => {
+        alert('Adoption Form Submitted Successfully!');
+      },
+      error: (err) => {
+        console.error(err);
+        alert('Something went wrong!');
+      }
+    });
   }
 
 }

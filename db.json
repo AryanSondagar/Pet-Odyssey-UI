@@ -1,33 +1,39 @@
 {
-  "User": [
+  "accounts": [
     {
       "id": "68ee",
-      "UserName": "regr",
-      "UserEmail": "sdcfvdcv@fg.vo",
-      "UserPassword": "1234567"
-    }
-  ],
-  "Adimn":[
+      "name": "regr",
+      "email": "sdcfvdcv@fg.vo",
+      "password": "1234567",
+      "role": "User"
+    },
     {
       "id": 1,
-      "username": "aryan",
-      "useremail": "aryansondagar@gmail.com",
-      "password": "123456789"
+      "name": "aryan",
+      "email": "aryansondagar@gmail.com",
+      "password": "123456789",
+      "role": "Admin"
     },
     {
       "id": 2,
-      "username": "deep",
-      "useremail": "deepradadiya@gmail.com",
-      "password": "123456789"
-     
+      "name": "deep",
+      "email": "deepradadiya@gmail.com",
+      "password": "123456789",
+      "role": "Admin"
     },
     {
       "id": 3,
-      "username": "aryan",
-      "useremail": "aryanraval@gmail.com",
-      "password": "aryanraval123"
-     
+      "name": "aryan",
+      "email": "aryanraval@gmail.com",
+      "password": "aryanraval123",
+      "role": "Admin"
+    },
+    {
+      "id": "d1a3",
+      "name": "aestronid destroyer",
+      "email": "aestro@gmail.com",
+      "password": "12345678",
+      "role": "User"
     }
   ]
-  
 }

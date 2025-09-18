@@ -48,9 +48,7 @@ import { SalesByMonthComponent } from './Component/Admin/dashboard/sales-by-mont
 import { SalesByCategoryComponent } from './Component/Admin/dashboard/sales-by-category/sales-by-category.component';
 import { LastFewTransactionsComponent } from './Component/Admin/dashboard/last-few-transactions/last-few-transactions.component';
 import { TopThreeProductComponent } from './Component/Admin/dashboard/top-three-product/top-three-product.component';
-import { UserloginComponent } from './Component/User/user/login/userlogin/userlogin.component';
-import { AdminloginComponent } from './Component/User/user/login/userlogin/adminlogin/adminlogin.component';
-import { LoginOptionComponent } from './Component/User/user/login/userlogin/login-option/login-option.component';
+import { UserloginComponent } from './Component/userlogin/userlogin.component';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { PageNotFoundComponent } from './Component/page-not-found/page-not-found.component';
 import { OpenDialogComponent } from './Component/open-dialog/open-dialog.component';
@@ -58,9 +56,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AdoptionListComponent } from './Component/Admin/admin-adoption/adoption-list/adoption-list.component';
 import { CoursListComponent } from './Component/Admin/admin-course/cours-list/cours-list.component';
 import { ProductListComponent } from './Component/Admin/admin-marketplace/product-list/product-list.component';
-import { CourseComponent } from './Component/User/user/course/course.component';
-
-
+import { CourseComponent } from './Component/User/course/course.component';
+import { HeaderComponent } from './Component/User/header/header.component';
+import { FooterComponent } from './Component/User/footer/footer.component';
 
 
 @NgModule({
@@ -72,7 +70,6 @@ import { CourseComponent } from './Component/User/user/course/course.component';
     AdminCourseComponent,
     AdminAdoptionComponent,
     AdminComponent,
-
     UserComponent,
     TopWidgetsComponent,
     SalesByMonthComponent,
@@ -80,14 +77,13 @@ import { CourseComponent } from './Component/User/user/course/course.component';
     LastFewTransactionsComponent,
     TopThreeProductComponent,
     UserloginComponent,
-    AdminloginComponent,
-    LoginOptionComponent,
     PageNotFoundComponent,
     OpenDialogComponent,
     AdoptionListComponent,
     CoursListComponent,
     ProductListComponent,
     CourseComponent
+    
   ],
   imports: [
     BrowserModule,
@@ -124,6 +120,8 @@ import { CourseComponent } from './Component/User/user/course/course.component';
     MatFormFieldModule,
     MatTooltipModule,
     JsonPipe,
+    HeaderComponent,
+    FooterComponent
 
     
   ],

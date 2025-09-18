@@ -1,211 +1,4 @@
-<div class="hero_area">
-    <!-- header section strats -->
-    <header class="header_section">
-        <div class="container">
-            <nav class="navbar navbar-expand-lg custom_nav-container ">
-                <a class="navbar-brand" routerLink="">
-                    <img src="./../../../../assets/image/logo.png" alt="image not found" />
-                    <span style="margin-bottom: 10px;">
-                        Pet'Odyssey
-                    </span>
-                </a>
-
-                <button class="navbar-toggler" type="button" data-toggle="collapse"
-                    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                    aria-label="Toggle navigation">
-                    <span class=""> </span>
-                </button>
-
-                <div class="collapse navbar-collapse" id="navbarSupportedContent" [ngSwitch]="menutype">
-
-                    <ul class="navbar-nav " *ngSwitchCase="'defult'">
-                        <li class="nav-item active">
-                            <a class="nav-link" href="#about"> About </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#gallery"> Gallery </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link pr-lg-0" href="#contact"> Contact us</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link login " (click)="login()">Login</a>
-                        </li>
-                    </ul>
-
-                    <ul class="navbar-nav " *ngSwitchCase="'user'">
-                        <li class="nav-item active">
-                            <a class="nav-link" href="#about"> About </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#gallery"> Gallery </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link pr-lg-0" href="#contact"> Contact us</a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link logout" (click)="openDialog('0ms', '0ms')">LogOut</a>
-                        </li>
-                    </ul>
-
-                </div>
-            </nav>
-        </div>
-    </header>
-    <!-- end header section -->
-    <!-- slider section -->
-    <section class=" slider_section position-relative">
-        <div class="slider_bg_box">
-            <img src="./../../../../assets/image/slider-bg.jpg" alt="">
-        </div>
-        <div class="container">
-            <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-                <!-- <ol class="carousel-indicators">
-                    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-                    <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
-                    <li data-target="#carouselExampleIndicators" data-slide-to="4"></li>
-                </ol> -->
-                <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <div class="row">
-                            <div class="col-md-7 col-lg-6">
-                                <div class="detail-box">
-                                    <h1>
-                                        Welcome to
-                                        <br>Our Pet Course
-                                    </h1>
-                                    <p>
-                                        It is a long established fact that a reader will be distracted
-                                        by the readable content of a page when looking at its layout.
-                                        The point of using Lorem Ipsum is that it has a more-or-less
-                                        normal distribution of letters, as
-                                    </p>
-                                    <div class="btn-box">
-                                        <a href="" class="btn-1">
-                                            Read More
-                                        </a>
-                                        <a href="#contact" class="btn-2">
-                                            Contact us
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <div class="row">
-                            <div class="col-md-7 col-lg-6">
-                                <div class="detail-box">
-                                    <h1>
-                                        Welcome to
-                                        <br>Our Pet Shop
-                                    </h1>
-                                    <p>
-                                        It is a long established fact that a reader will be distracted
-                                        by the readable content of a page when looking at its layout.
-                                        The point of using Lorem Ipsum is that it has a more-or-less
-                                        normal distribution of letters, as
-                                    </p>
-                                    <div class="btn-box">
-                                        <a href="" class="btn-1">
-                                            Read More
-                                        </a>
-                                        <a href="" class="btn-2">
-                                            Contact us
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <div class="row">
-                            <div class="col-md-7 col-lg-6">
-                                <div class="detail-box">
-                                    <h1>
-                                        Welcome to
-                                        <br>Our Pet Shop
-                                    </h1>
-                                    <p>
-                                        It is a long established fact that a reader will be distracted
-                                        by the readable content of a page when looking at its layout.
-                                        The point of using Lorem Ipsum is that it has a more-or-less
-                                        normal distribution of letters, as
-                                    </p>
-                                    <div class="btn-box">
-                                        <a href="" class="btn-1">
-                                            Read More
-                                        </a>
-                                        <a href="" class="btn-2">
-                                            Contact us
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <div class="row">
-                            <div class="col-md-7 col-lg-6">
-                                <div class="detail-box">
-                                    <h1>
-                                        Welcome to Our <br>
-                                        <span>Pet Shop</span>
-                                    </h1>
-                                    <p>
-                                        It is a long established fact that a reader will be distracted
-                                        by the readable content of a page when looking at its layout.
-                                        The point of using Lorem Ipsum is that it has a more-or-less
-                                        normal distribution of letters, as
-                                    </p>
-                                    <div class="btn-box">
-                                        <a href="" class="btn-1">
-                                            Read More
-                                        </a>
-                                        <a href="" class="btn-2">
-                                            Contact us
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="detail-box">
-                                    <h1>
-                                        Welcome to Our <br>
-                                        <span>Pet Shop</span>
-                                    </h1>
-                                    <p>
-                                        It is a long established fact that a reader will be distracted
-                                        by the readable content of a page when looking at its layout.
-                                        The point of using Lorem Ipsum is that it has a more-or-less
-                                        normal distribution of letters, as
-                                    </p>
-                                    <div class="btn-box">
-                                        <a href="" class="btn-1">
-                                            Read More
-                                        </a>
-                                        <a href="" class="btn-2">
-                                            Contact us
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </section>
-    <!-- end slider section -->
-</div>
+<app-header></app-header>
 
 <!-- about section -->
 
@@ -246,11 +39,37 @@
 <!-- end about section -->
 
 <section class="Training">
- <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" style="background-color: #fff; margin-bottom: -100px;">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"
+        style="background-color: #fff; margin-bottom: -100px;">
         <path fill="#5aa469" fill-opacity="1"
             d="M0,64L80,74.7C160,85,320,107,480,101.3C640,96,800,64,960,58.7C1120,53,1280,75,1360,85.3L1440,96L1440,320L1360,320C1280,320,1120,320,960,320C800,320,640,320,480,320C320,320,160,320,80,320L0,320Z">
         </path>
     </svg>
+
+    <div class="blogs" id="blog">
+        <div class="imgsection">
+            <div class="img1">
+                <img src="./../../../../assets/image/blogss-1.png" alt="">
+            </div>
+            <div class="img2">
+                <img src="./../../../../assets/image/blogss-2.png" alt="">
+            </div>
+            <div class="img3">
+                <img src="./../../../../assets/image/blogss-3.png" alt="">
+            </div>
+            <div class="img4">
+                <img src="./../../../../assets/image/img4.jpeg" alt="">
+            </div>
+            <div class="img5">
+                <img src="./../../../../assets/image/img5.jpeg" alt="">
+            </div>
+            <div class="img6">
+                <img src="./../../../../assets/image/img6.jpeg" alt="">
+            </div>
+
+        </div>
+    </div>
+
     <div class="cont">
         <h1>Seminar Schedule</h1>
         <ul class="schedule">
@@ -327,36 +146,14 @@
         </div>
     </div>
 
-    <div class="blogs" id="blog">
-        <div class="imgsection">
-            <div class="img1">
-                <img src="./../../../../assets/image/blogss-1.png" alt="">
-            </div>
-            <div class="img2">
-                <img src="./../../../../assets/image/blogss-2.png" alt="">
-            </div>
-            <div class="img3">
-                <img src="./../../../../assets/image/blogss-3.png" alt="">
-            </div>
-            <div class="img4">
-                <img src="./../../../../assets/image/img4.jpeg" alt="">
-            </div>
-            <div class="img5">
-                <img src="./../../../../assets/image/img5.jpeg" alt="">
-            </div>
-            <div class="img6">
-                <img src="./../../../../assets/image/img6.jpeg" alt="">
-            </div>
 
-        </div>
-    </div>
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" style="background-color: #fff;">
         <path fill="#5aa469" fill-opacity="1"
             d="M0,64L80,74.7C160,85,320,107,480,101.3C640,96,800,64,960,58.7C1120,53,1280,75,1360,85.3L1440,96L1440,0L1360,0C1280,0,1120,0,960,0C800,0,640,0,480,0C320,0,160,0,80,0L0,0Z">
         </path>
     </svg>
 
-    
+
 
 </section>
 
@@ -510,198 +307,4 @@
 </div>
 
 <!-- end gallery section -->
-
-<!-- Training section -->
-<!-- <section class="course">
-    <div class="wave">
-        <div class="container-fluid">
-
-            <div class="heading_container heading_center">
-                <h2>
-                    <hr>
-                    Seminar Schedule
-                    <hr>
-                </h2>
-            </div>
-
-            <div class="info">
-               
-            </div>
-        </div>
-    </div>
-
-</section> -->
-<!-- end treaining section -->
-<!-- <section class="Product-List">
-    <ngb-carousel></ngb-carousel>
-</section> -->
-
-<!-- contact section -->
-
-<section class="contact_section layout_padding" id="contact">
-    <div class="container ">
-        <div class="heading_container ">
-            <h2 class="">
-                Request A call Back
-                <hr>
-            </h2>
-        </div>
-    </div>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-6">
-                <form action="#" class="req-call-back">
-                    <div class="req-name">
-                        <input type="text" placeholder="Name" />
-                    </div>
-                    <div>
-                        <input type="email" placeholder="Email" />
-                    </div>
-                    <div>
-                        <input type="text" placeholder="Pone Number" />
-                    </div>
-                    <div>
-                        <input type="text" class="message-box" placeholder="Message" />
-                    </div>
-                    <div class="btn-box">
-                        <button>
-                            SEND
-                        </button>
-                    </div>
-                </form>
-            </div>
-            <div class="col-md-6">
-                <div class="map_container">
-                    <div class="map">
-                        <div id="googleMap"><img src="./../../../../assets/image/dogdaddy.webp" alt=""
-                                style="width: 100%;"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- end contact section -->
-
-<!-- info section -->
-<section class="info_section">
-    <div class="container">
-        <div class="info_form">
-            <div class="row">
-                <div class="offset-lg-3 col-lg-3">
-                    <h5 class="form_heading">
-                        Newsletter
-                    </h5>
-                </div>
-                <div class="col-lg-6">
-                    <form action="#">
-                        <input type="text" placeholder="Enter Your email">
-                        <button>
-                            subscribe
-                        </button>
-                    </form>
-                </div>
-            </div>
-
-        </div>
-    </div>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-6 col-lg-3">
-                <div class="info_logo">
-                    <div>
-                        <a href="">
-                            <img src="./../../../../assets/image/logo.png" alt="" />
-                            <span>
-                                PetOdessey
-                            </span>
-                        </a>
-                    </div>
-                    <p>
-                        There are many variations of passages of Lorem Ipsum available,
-                        but the majority have suffered alteration
-                    </p>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-3">
-                <div class="info_links ">
-                    <h5>
-                        Get in touch
-                    </h5>
-                    <div class="info_contact">
-                        <div class="contact_link_box">
-                            <a href="">
-                                <fa-icon [icon]="fb" aria-hidden="true"></fa-icon>
-
-                                <span>
-                                    Location
-                                </span>
-                            </a>
-                            <a href="">
-                                <fa-icon [icon]="phone" aria-hidden="true"></fa-icon>
-                                <span>
-                                    Call +01 1234567890
-                                </span>
-                            </a>
-                            <a href="">
-                                <fa-icon [icon]="email" aria-hidden="true"></fa-icon>
-                                <span>
-                                    demo&#64;gmail.com
-                                </span>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="info_social">
-                        <a href="">
-                            <i class="fa fa-facebook" aria-hidden="true"></i>
-                        </a>
-                        <a href="">
-                            <i class="fa fa-twitter" aria-hidden="true"></i>
-                        </a>
-                        <a href="">
-                            <i class="fa fa-linkedin" aria-hidden="true"></i>
-                        </a>
-                        <a href="">
-                            <i class="fa fa-instagram" aria-hidden="true"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-3">
-                <div class="info_insta">
-                    <h5>
-                        INFORMATION
-                    </h5>
-                    <p class="pr-0 pr-md-4 pr-md-5">
-                        At PetOdessey, we are committed to providing the best for your pets. Learn more about our
-                        mission, values, and the services we offer
-                    </p>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-3">
-                <div class="pl-0 pl-lg-5 pl-md-4">
-                    <h5>
-                        Our Shop
-                    </h5>
-                    <p>
-                        Explore our wide range of pet products designed to meet the needs of your furry friends. At
-                        PetOdessey, we offer high-quality items to ensure the happiness and well-being of your pets.
-                    </p>
-
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- end info_section -->
-<!-- footer section -->
-<footer class="footer_section">
-    <div class="container">
-        <p>
-            &copy; <span id="displayYear"></span> All Rights Reserved By
-            <a href="">Pet Odyssey</a>
-        </p>
-    </div>
-</footer>
+<app-footer></app-footer>

@@ -13,26 +13,29 @@ import { UserService } from 'src/app/Services/user.service';
 })
 export class UserloginComponent {
   passwordValue: string = '';
-    email = faEnvelope ;
-    lock = faLock;
-    user = faUser ;
-    authError : String=''
-  constructor(private User: UserService , private route:Router) {
+  emailValue: string = '';
+  nameValue: string = '';
+  email = faEnvelope;
+  lock = faLock;
+  user = faUser;
+  authError: String = ''
+  constructor(private User: UserService, private route: Router) {
   }
-  ngOnInit():void{
+  ngOnInit(): void {
     this.User.RealoadUser();
   }
-  SignUp(data: UserSign):void{
+  SignUp(data: UserSign): void {
     console.log(data);
+      data.role = 'User';
     this.User.UserSignUp(data);
   }
-  Login(data: UserLogin){
-     console.log(data);
-     this.User.UserLogin(data);
-     this.User.isLoginError.subscribe((isError)=>{
-        if (isError) {
-          this.authError="Email or password is not correct"
-        }
-     })
+  Login(email: string, password: string, role: 'User' | 'Admin') {
+    console.log(email, password, role);
+    this.User.RoleBasedLogin(email, password, role);
+    this.User.isLoginError.subscribe((isError) => {
+      if (isError) {
+        this.authError = "Email or password is not correct"
+      }
+    })
   }
 }

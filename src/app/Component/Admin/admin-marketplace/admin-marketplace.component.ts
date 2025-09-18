@@ -1,7 +1,7 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormControl, NgForm, Validators } from '@angular/forms';
-import {MatPaginator, MatPaginatorModule} from '@angular/material/paginator';
-import {MatTableDataSource, MatTableModule} from '@angular/material/table';
+import { FormBuilder, FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
+import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
+import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 
 interface User {
   name: string;
@@ -19,6 +19,7 @@ import {
 import { MarketplaceForm } from 'src/app/Model/marketplace.model';
 import { TooltipPosition } from '@angular/material/tooltip';
 import { AdminMarketplaceService } from 'src/app/Services/admin-marketplace.service';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-admin-marketplace',
@@ -31,65 +32,63 @@ import { AdminMarketplaceService } from 'src/app/Services/admin-marketplace.serv
       transition(':leave', animate(300, style({ opacity: 0 }))),
     ]),
   ],
- 
- 
 })
 
-
 export class AdminMarketplaceComponent implements OnInit {
-  newProduct: MarketplaceForm = {
-    // id: '',
-    productName: '',
-    productCategory: '',
-    productPrice: '',
-    productStock: '',
-    productDescription:'',
-    productImage: ''
-   }
- 
-  positionOptions: TooltipPosition[] = ['after', 'before', 'above', 'below', 'left', 'right'];
-  position = new FormControl(this.positionOptions[2]);
-  imageUrls: string[] = [] ;
-  productForm: MarketplaceForm[] =[];
-  maxImg: number = 5;
   
-  constructor(private builder: FormBuilder,private marketplaceService: AdminMarketplaceService) {}
+  marketplaceForm!: FormGroup;
+  selectedFiles: { file: File, preview: string }[] = [];
+  constructor(private builder: FormBuilder, private marketplaceService: AdminMarketplaceService,
+    private fb: FormBuilder, private http: HttpClient) {
+    this.marketplaceForm = this.fb.group({
+      productName: ['', Validators.required],
+      productCategory: ['', Validators.required],
+      productPrice: [null, Validators.required],
+      productStock: [null, Validators.required],
+      productDescription: ['']
+    });
+  }
   ngOnInit(): void {
-    
-  }
-  
 
-  submit(data: any) {
-    console.log(data);
-    console.log('Submitted files:', this.imageUrls);
-    this.marketplaceService.addProduct(this.newProduct).subscribe(()=>{
-
-    })
-  }
-  
-  ImageCount(input : any){
-    if(input.files.length >5){
-      alert("You can only upload a maximum of 5 Images.")
-    }
   }
 
-  handleFileInput(event: any): void {
-    this.imageUrls = event.target.files;
-    const files = event.target.files;
-    if (files) {
-      this.imageUrls = [];
-      for (let i = 0; i < files.length; i++) {
+  onFileChange(event: any) {
+    if (event.target.files) {
+      const files = Array.from(event.target.files as FileList).slice(0, 5);
+      this.selectedFiles = [];
+      for (let file of files) {
         const reader = new FileReader();
-        reader.onload = () => {
-          this.imageUrls.push(reader.result as string);
+        reader.onload = (e: any) => {
+          this.selectedFiles.push({ file, preview: e.target.result });
         };
-        reader.readAsDataURL(files[i]);
+        reader.readAsDataURL(file);
       }
     }
-    
   }
-  clear(){
 
+  onSubmit() {
+    if (this.marketplaceForm.invalid) return;
+
+    const newProduct: MarketplaceForm = {
+      productName: this.marketplaceForm.get('productName')?.value,
+      productCategory: this.marketplaceForm.get('productCategory')?.value,
+      productPrice: this.marketplaceForm.get('productPrice')?.value,
+      productStock: this.marketplaceForm.get('productStock')?.value,
+      productDescription: this.marketplaceForm.get('productDescription')?.value,
+      productFiles: this.selectedFiles.map(f => f.file)   // take only File objects
+    };
+
+    this.marketplaceService.addProduct(newProduct).subscribe({
+      next: res => {
+        alert('Product added successfully!');
+        this.marketplaceForm.reset();
+        this.selectedFiles = [];
+      },
+      error: err => {
+        console.error(err);
+        alert('Error while adding product!');
+      }
+    });
   }
 }
 

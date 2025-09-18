@@ -5,8 +5,9 @@
             <mat-icon *ngIf="!sidenav.opened" (click)="changeBackgroundColor()">menu</mat-icon>
             <mat-icon *ngIf="sidenav.opened" (click)="changeBackgroundColor()">close</mat-icon>
         </button>
-        Pet's Odyysey
-       
+         <span>Pet's Odyssey</span>
+           <span class="spacer"></span>
+        <div class="log-out" (click)="openDialog('0ms', '0ms')"><img src="./../../../../assets/image/logout.svg" alt=""></div>
     </mat-toolbar>
 
     <mat-sidenav-container>
@@ -28,10 +29,10 @@
                     <span>Marketplace</span>
                 </button>
 
-                <!-- <button mat-button class="menu-btn btn-3" routerLink="course">
+                <button mat-button class="menu-btn btn-3" routerLink="course">
                     <mat-icon>library_books</mat-icon>
                     <span>Pet Course</span>
-                </button> -->
+                </button>
 
                 <button mat-button class="menu-btn btn-4" routerLink="adoption">
                     <mat-icon>post_add</mat-icon>
@@ -45,10 +46,10 @@
                     <span>Product List</span>
                 </button>
 
-                <!-- <button mat-button class="menu-btn btn-3" routerLink="courselist">
+                <button mat-button class="menu-btn btn-3" routerLink="courselist">
                     <mat-icon>class</mat-icon>
                     <span>Courses</span>
-                </button> -->
+                </button>
 
                 <button mat-button class="menu-btn btn-4" routerLink="adoptionlist">
                     <mat-icon>pets</mat-icon>

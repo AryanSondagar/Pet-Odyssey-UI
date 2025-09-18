@@ -8,17 +8,29 @@ import { CourseModel } from '../Model/course.model';
   providedIn: 'root'
 })
 export class AdminAdoptionService {
-  apiUrl: string = "http://localhost:5093";
+  apiUrl: string = "http://localhost:5093/api/AdoptionForm";
 
-  constructor(private http:HttpClient) { }
+  constructor(private http: HttpClient) { }
 
-  getAllAdoptionPet():Observable<AdoptionForm[]>{
-    return this.http.get<AdoptionForm[]>(this.apiUrl + '/api/AdoptionForm');
+  getAllAdoptionPet(): Observable<AdoptionForm[]> {
+    return this.http.get<AdoptionForm[]>(this.apiUrl + '/GetAllAdoptionForms');
   }
-  addAdoptionPet(newAdoption: AdoptionForm):Observable<AdoptionForm>{
-    // newAdoption.id = '00000000-0000-0000-0000-000000000000';
-    return this.http.post<AdoptionForm>(this.apiUrl + '/api/AdoptionForm', newAdoption) ;
+  addAdoptionPet(form: AdoptionForm): Observable<any> {
+    const formData = new FormData();
+
+    formData.append('PetName', form.petName);
+    formData.append('PetCategory', form.petCategory);
+    formData.append('PetBreed', form.petBreed);
+    formData.append('PetAge', form.petAge.toString());
+    formData.append('Petsellingprice', form.petSellingPrice.toString());
+    formData.append('Owner_MobileNumber', form.owner_MobileNumber);
+    if (form.petFiles && form.petFiles.length > 0) {
+      form.petFiles.forEach(file => {
+        formData.append('PetFiles', file, file.name);
+      });
+    }
+
+    return this.http.post(this.apiUrl+'/addAdoptionForm' , formData);
   }
-  
 
 }

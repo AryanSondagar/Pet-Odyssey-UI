@@ -5,5 +5,5 @@ export interface MarketplaceForm {
     productPrice: any,
     productStock: any,
     productDescription: string,
-    productImage: any
+     productFiles: File[];
 };

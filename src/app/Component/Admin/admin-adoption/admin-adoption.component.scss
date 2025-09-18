@@ -5,6 +5,7 @@
     border-radius: 10px;
     overflow: hidden;
   }
+
   .title {
     display: flex;
     justify-content: center;
@@ -12,7 +13,28 @@
     border-bottom: 1px solid gray;
     margin: 2% 20% 2% 20%;
   }
- 
+
+  .top-field {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 15px;
+  }
+
+  .middle-field {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 15px;
+  }
+
+  .bottom-field {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 15px;
+  }
+
   .name {
     display: flex;
     justify-content: center;
@@ -23,10 +45,12 @@
     from {
       transform: translateX(-100%);
     }
+
     to {
       transform: translateX(0);
     }
   }
+
   .animated-title {
     font-size: 2em;
     color: #006b72;
@@ -34,20 +58,62 @@
     font-family: "Arial", sans-serif;
     cursor: default;
   }
+
   .adoption-form {
     ::ng-deep .mat-form-field-infix {
       display: flex;
       align-items: center;
       justify-content: space-between;
     }
-    mat-form-field {
-      width: 27%;
-    }
   }
-  .center{
+
+  .center {
     display: flex;
     align-items: center;
     justify-content: center;
-    
+
+  }
+
+  .text-danger {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 8px;
+  }
+
+  .upload-wrapper {
+    width: 350px;
+    /* fixed width */
+    text-align: center;
+    /* center label & input */
+  }
+
+  .upload-wrapper .form-control {
+    width: 100%;
+    /* input takes full wrapper width */
+    margin: 0 auto;
+    /* centers horizontally */
+  }
+
+  .preview-box {
+    width: 475px;
+    min-height: 120px;
+    /* keeps box visible even with no images */
+    margin: 0 auto;
+    /* center it */
+    border: 2px dotted #aaa;
+    /* dotted border */
+    border-radius: 8px;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #fafafa;
+    /* optional: light background */
+  }
+
+  .preview-box img {
+    object-fit: cover;
+    border: 1px solid #ddd;
   }
 }

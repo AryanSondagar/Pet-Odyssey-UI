@@ -1,0 +1,12 @@
+:host{
+      #contact {
+        background-color: #ffff;
+    }
+        .req-call-back {
+        input:focus {
+            border-color: #6c757d;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transform: scale(1.05);
+        }
+    }
+}

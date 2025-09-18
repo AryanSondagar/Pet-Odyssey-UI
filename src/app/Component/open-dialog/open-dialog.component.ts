@@ -12,9 +12,15 @@ export class OpenDialogComponent {
   constructor(private route:Router , private User: UserService){
   }
   LogOut(){
+      const role = localStorage.getItem('role');
+        localStorage.removeItem('role');
     localStorage.removeItem('user');
-    this.route.navigate(['/'])
-    this.User.clickButton(true) ;
+     if (role === 'admin') {
+    this.route.navigate(['/UserLogin']);  // redirect admin
+  } else {
+    this.route.navigate(['/']); // redirect user
+  }
+  this.User.clickButton(true);
   }
 
 }

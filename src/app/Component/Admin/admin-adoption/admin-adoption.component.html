@@ -4,56 +4,87 @@
     </div>
 
 
-    <form #PetAdoption="ngForm" (ngSubmit)="dataSubmit()">
-        <!-- name
-    bread
-    category
-    dob
-    price-->
+    <form #PetAdoption="ngForm" (ngSubmit)="submitForm()">
+
         <div class="adoption-form">
 
-            <div class="pet-name center col">
-                <mat-form-field>
-                    <mat-label>Pet Name</mat-label>
-                    <input matInput placeholder="Enter pet name" name="PetName" required #name="ngModel"
-                        [(ngModel)]="newAdoption.petName">
-                </mat-form-field>
+            <div class="top-field">
+                <div class="pet-name">
+                    <mat-form-field>
+                        <mat-label>Pet Name</mat-label>
+                        <input matInput placeholder="Enter pet name" [(ngModel)]="adoptionForm.petName" name="petName"
+                            required>
+                    </mat-form-field>
+                </div>
+                <div class="pet-breed">
+                    <mat-form-field>
+                        <mat-label>Pet Breed</mat-label>
+                        <input matInput placeholder="Like bulldog,Birman" [(ngModel)]="adoptionForm.petBreed"
+                            name="petBreed" required />
+                    </mat-form-field>
+                </div>
             </div>
 
-            <div class="pet-bread center col">
-                <mat-form-field>
-                    <mat-label>Pet Bread</mat-label>
-                    <input matInput placeholder="Like bulldog,Birman" name="PetBread" required #name="ngModel"
-                        [(ngModel)]="newAdoption.petbread">
-                </mat-form-field>
+            <div class="middle-field">
+                <div class="pet-category">
+                    <mat-form-field class="product-field">
+                        <mat-label>Pet Category</mat-label>
+                        <mat-select [(ngModel)]="adoptionForm.petCategory" name="petCategory" required>
+                            <mat-option value="Dog">Dog</mat-option>
+                            <mat-option value="Cat">Cat</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+
+                <div class="pet-age">
+                    <mat-form-field>
+                        <mat-label>Pet Age</mat-label>
+                        <input matInput placeholder="Pet Age *In Month" type="number" min="0" max="999"
+                            [(ngModel)]="adoptionForm.petAge" name="petAge" required />
+                        <mat-hint>*In Month</mat-hint>
+                    </mat-form-field>
+                </div>
             </div>
 
-            <div class="pet-category center col">
-                <mat-form-field class="product-field">
-                    <mat-label>Pet Category</mat-label>
-                    <mat-select name="PetCategory" [(ngModel)]="newAdoption.petCategory" required>
-                        <mat-option value="dog">Dog</mat-option>
-                        <mat-option value="cat">Cat</mat-option>
-                    </mat-select>
-                </mat-form-field>
+            <div class="bottom-field">
+                <div class="pet-price">
+                    <mat-form-field>
+                        <mat-label>Pet Selling Price(INR)</mat-label>
+                        <input matInput type="number" placeholder="Enter price in INR" min="0" max="999999"
+                            name="PetPrice" [(ngModel)]="adoptionForm.petSellingPrice" name="petSellingPrice"
+                            required />
+                    </mat-form-field>
+                </div>
+
+                <div class="owner-MobileNumber">
+                    <mat-form-field>
+                        <mat-label>Owner Mobile Number</mat-label>
+                        <input type="tel" matInput placeholder="Enter Mobile Number" maxlength="10" [(ngModel)]="adoptionForm.owner_MobileNumber"
+                            name="owner_MobileNumber" required />
+                    </mat-form-field>
+                </div>
             </div>
 
-            <div class="pet-dob center col">
-                <mat-form-field>
-                    <mat-label>Pet D.O.B</mat-label>
-                    <input matInput [matDatepicker]="picker2" required name="PetD.O.B" [(ngModel)]="newAdoption.petDob">
-                    <mat-hint>MM/DD/YYYY</mat-hint>
-                    <mat-datepicker-toggle matIconSuffix [for]="picker2"></mat-datepicker-toggle>
-                    <mat-datepicker #picker2 color="primary"></mat-datepicker>
-                </mat-form-field>
+            <div *ngIf="selectedFiles.length >= 5" class="text-danger small">
+                You can only upload up to 5 images.
             </div>
 
-            <div class="pet-price center col">
-                <mat-form-field>
-                    <mat-label>Pet Selling Price(INR)</mat-label>
-                    <input matInput type="number" placeholder="Enter price in INR" min="0" name="PetPrice"
-                        [(ngModel)]="newAdoption.petsellingPrice" required>
-                </mat-form-field>
+            <div class="mb-3 d-flex justify-content-center">
+                <div class="upload-wrapper">
+                    <input type="file" (change)="onFileSelected($event)" multiple class="form-control" [attr.maxlength]="5"   />
+                </div>
+            </div>
+
+            <div class="preview-box mb-3 d-flex ">
+                <ng-container *ngIf="selectedFiles.length > 0; else noImage">
+                    <div *ngFor="let file of selectedFiles" class="p-2">
+                        <img [src]="file.preview" alt="preview" width="70" height="70" class="rounded" />
+                    </div>
+                </ng-container>
+                <!-- Placeholder if no images -->
+                <ng-template #noImage>
+                    <span class="placeholder-text">No images uploaded</span>
+                </ng-template>
             </div>
 
 
@@ -64,3 +95,52 @@
         </div>
     </form>
 </div>
+
+
+
+
+
+
+<!-- 
+<div class="container mt-4">
+  <h2>Pet Adoption Form</h2>
+  <form (ngSubmit)="submitForm()">
+
+    <div class="mb-3">
+      <label>Pet Name</label>
+      <input type="text" class="form-control" [(ngModel)]="adoptionForm.petName" name="petName" required />
+    </div>
+
+    <div class="mb-3">
+      <label>Category</label>
+      <input type="text" class="form-control" [(ngModel)]="adoptionForm.petCategory" name="petCategory" required />
+    </div>
+
+    <div class="mb-3">
+      <label>Breed</label>
+      <input type="text" class="form-control" [(ngModel)]="adoptionForm.petBreed" name="petBreed" required />
+    </div>
+
+    <div class="mb-3">
+      <label>Age</label>
+      <input type="number" class="form-control" [(ngModel)]="adoptionForm.petAge" name="petAge" required />
+    </div>
+
+    <div class="mb-3">
+      <label>Selling Price</label>
+      <input type="number" class="form-control" [(ngModel)]="adoptionForm.petSellingPrice" name="petSellingPrice" required />
+    </div>
+
+    <div class="mb-3">
+      <label>Owner Mobile Number</label>
+      <input type="tel" class="form-control" [(ngModel)]="adoptionForm.owner_MobileNumber" name="owner_MobileNumber" required />
+    </div>
+
+    <div class="mb-3">
+      <label>Upload Pet Images</label>
+      <input type="file" class="form-control" multiple (change)="onFileSelected($event)" />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+</div> -->

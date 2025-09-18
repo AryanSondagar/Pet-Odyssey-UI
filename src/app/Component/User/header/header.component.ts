@@ -5,62 +5,46 @@ import { UserService } from 'src/app/Services/user.service';
 import { OpenDialogComponent } from '../../open-dialog/open-dialog.component';
 import { faLock, faPhone, faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import { faFacebook } from '@fortawesome/free-brands-svg-icons';
-import { AdminMarketplaceService } from 'src/app/Services/admin-marketplace.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-user',
-  templateUrl: './user.component.html',
+  selector: 'app-header',
+  standalone: true,
+  imports: [CommonModule],
+  templateUrl: './header.component.html',
   styleUrls: [
-    './user.component.scss',
+    './header.component.scss',
     './../../../../assets/css/bootstrap.css',
     './../../../../assets/css/responsive.css',
     './../../../../assets/css/style.css',
     './../../../../assets/css/style.scss'
-  ],
+  ]
+  
 })
-export class UserComponent {
+export class HeaderComponent {
   userName: string = "";
   menutype: string = 'defult';
   buttonClicked = false;
 
-  fb = faFacebook;
-  phone = faPhone;
-  email = faEnvelope;
-  AllProduct: any;
-
-  ngOnInit(): void {
-
-    this.userservice.isUserLogined.subscribe(x => {
-      if (x) {
-        if (localStorage.getItem('user')) {
-          this.menutype = 'user';
-
-
-        } else {
-          this.menutype = 'defult';
-        }
-      }
-    });
-
-    // this.route.events.subscribe((val: any) =>{
-    //   if (val.url) {
-    //     if (localStorage.getItem('user')) {
-    //       this.menutype = 'user';
-    //     }else{
-    //       this.menutype = 'defult';
-    //     }
-    //   }
-    // })
-  }
-  constructor(private dialog: MatDialog, 
-    private route: Router, 
-    private userservice: UserService, 
-    private ProductService: AdminMarketplaceService) {
+  constructor(private dialog: MatDialog,
+    private route: Router,
+    private userservice: UserService) {
     if (localStorage.getItem('user')) {
       this.menutype = 'user';
     } else {
       this.menutype = 'defult';
     }
+  }
+  ngOnInit(): void {
+    this.userservice.isUserLogined.subscribe(x => {
+      if (x) {
+        if (localStorage.getItem('user')) {
+          this.menutype = 'user';
+        } else {
+          this.menutype = 'defult';
+        }
+      }
+    });
   }
   login() {
     this.route.navigate(['UserLogin']);
@@ -79,8 +63,5 @@ export class UserComponent {
     });
 
   }
-  course() {
 
-    this.route.navigate(['/training'])
-  }
 }
