@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormsModule, ReactiveFormsModule, FormBuilder, Validators, FormArray } from '@angular/forms';
 import { Course } from 'src/app/Model/course.model';
 import { AdminCourseService } from 'src/app/Services/admin-course.service';
+import { AlertService } from 'src/app/Services/alert.service';
 
 
 @Component({
@@ -19,7 +20,7 @@ export class AdminCourseComponent implements OnInit {
   ngOnInit(): void {
 
   }
-  constructor(private fb: FormBuilder , private courseService: AdminCourseService) {
+  constructor(private fb: FormBuilder , private courseService: AdminCourseService , private alertService: AlertService) {
     this.courseForm = this.fb.group({
       city: ['', Validators.required],
       state: ['', Validators.required],
@@ -102,14 +103,13 @@ export class AdminCourseComponent implements OnInit {
       console.log(payload);
       this.courseService.addCourse(payload).subscribe({
         next: res => {
-          console.log('Course saved:', res);
-
+          this.alertService.ShowSuccess('Course saved successfully!');
           // Reset form & slots
           this.courseForm.reset();
           this.slots = [];
 
           this.meridian?.setValue('AM');
-          this.minutes?.setValue(0);
+          this.minutes?.setValue(0); 
           this.hours?.setValue(1);
         },
         error: err => console.error(err)

@@ -10,7 +10,4 @@ import { faEnvelope, faPhone } from '@fortawesome/free-solid-svg-icons';
   
 })
 export class CourseComponent {
-  fb = faFacebook;
-  phone = faPhone ;
-  email= faEnvelope;
 }

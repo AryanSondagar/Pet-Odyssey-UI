@@ -12,7 +12,7 @@ export class AdminMarketplaceService {
   constructor(private http:HttpClient) { }
 
   getAllProduct():Observable<MarketplaceForm[]>{
-    return this.http.get<MarketplaceForm[]>(this.apiUrl + 'GetAllMarketplaceForms');
+    return this.http.get<MarketplaceForm[]>(this.apiUrl + '/GetAllMarketplaceForms');
 
   }
   addProduct(newProduct: MarketplaceForm):Observable<any>{
@@ -36,5 +36,8 @@ export class AdminMarketplaceService {
   }
   UserProduct(){
     return  this.http.get<MarketplaceForm[]>(this.apiUrl + '/api/MarketplaceForm');
+  }
+  deleteProduct(id: string): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/DeleteProduct/${id}`);
   }
 }

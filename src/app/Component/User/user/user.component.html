@@ -73,11 +73,9 @@
     <div class="cont">
         <h1>Seminar Schedule</h1>
         <ul class="schedule">
-            <li>Surat, GJ – May 18</li>
-            <li>Bharuch, GJ– June 8</li>
-            <li>Gandhinagar, AK – July 13</li>
-            <li>Vadodra, IL – Aug 10</li>
-            <li>Ahemdabad, NY – Sept 7</li>
+            <li *ngFor="let s of seminars">
+                {{ s.city }}, {{ s.state }} – {{ s.courseDate | date:'MMM d' }}
+            </li>
         </ul>
     </div>
 

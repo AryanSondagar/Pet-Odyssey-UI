@@ -7,7 +7,7 @@ import { Course } from '../Model/course.model';
   providedIn: 'root'
 })
 export class AdminCourseService {
-  apiUrl: string = "http://localhost:5903/api/CourseForm";
+  apiUrl: string = "http://localhost:5093/api/CourseForm";
   constructor(private http: HttpClient) { }
   getAllCourses(): Observable<Course[]> {
     return this.http.get<Course[]>(`${this.apiUrl}/GetAllCourse`);

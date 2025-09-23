@@ -32,5 +32,8 @@ export class AdminAdoptionService {
 
     return this.http.post(this.apiUrl+'/addAdoptionForm' , formData);
   }
+  deleteAdoption(id: string): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/DeleteAdoption/${id}`);
+  }
 
 }

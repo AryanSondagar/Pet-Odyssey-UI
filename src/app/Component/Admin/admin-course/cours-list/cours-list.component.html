@@ -1,45 +1,54 @@
 <div class="container">
   <div class="title">
-      <h1 class="animated-title"> km sefkm sekf </h1>
+    <h1 class="animated-title"> All Course List </h1>
   </div>
 
   <div class="mat-elevation-z8">
-    <table mat-table [dataSource]="dataSource" matSort >
-  
+    <table mat-table [dataSource]="dataSource" matSort>
+
       <!-- ID Column -->
-      <ng-container matColumnDef="courseDate">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Pet Name </th>
-        <td mat-cell *matCellDef="let row"> {{row.courseDate | date:'MM/dd/yyyy'}} </td>
+      <ng-container matColumnDef="city">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> City </th>
+        <td mat-cell *matCellDef="let row"> {{row.city}} </td>
       </ng-container>
-  
+
       <!-- Progress Column -->
-      <ng-container matColumnDef="courseTime">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Pet Bread </th>
-        <td mat-cell *matCellDef="let row"> {{row.courseTime }} </td>
+      <ng-container matColumnDef="state">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> State </th>
+        <td mat-cell *matCellDef="let row"> {{row.state }} </td>
       </ng-container>
-  
+
       <!-- Name Column -->
-      <ng-container matColumnDef="courseCity">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
-        <td mat-cell *matCellDef="let row"> {{row.courseCity}} </td>
+      <ng-container matColumnDef="category">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Category </th>
+        <td mat-cell *matCellDef="let row"> {{row.category}} </td>
       </ng-container>
-  
+
       <!-- Fruit Column -->
-      <ng-container matColumnDef="courseTrainer">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> DOB </th>
-        <td mat-cell *matCellDef="let row"> {{row.courseTrainer }} </td>
+      <ng-container matColumnDef="price">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Price </th>
+        <td mat-cell *matCellDef="let row"> {{row.price }} </td>
       </ng-container>
-  
+
+      <ng-container matColumnDef="delete">
+        <th mat-header-cell *matHeaderCellDef> Action </th>
+        <td mat-cell *matCellDef="let row">
+          <button mat-icon-button color="warn" (click)="onDelete(row)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-  
+
       <!-- Row shown when there is no matching data. -->
-     
+
     </table>
-  
+
     <mat-paginator [pageSizeOptions]="[5, 10]" aria-label="Select page of users"></mat-paginator>
   </div>
-  
-  
-    
+
+
+
 </div>

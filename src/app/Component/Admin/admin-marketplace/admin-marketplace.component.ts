@@ -20,6 +20,7 @@ import { MarketplaceForm } from 'src/app/Model/marketplace.model';
 import { TooltipPosition } from '@angular/material/tooltip';
 import { AdminMarketplaceService } from 'src/app/Services/admin-marketplace.service';
 import { HttpClient } from '@angular/common/http';
+import { AlertService } from 'src/app/Services/alert.service';
 
 @Component({
   selector: 'app-admin-marketplace',
@@ -39,7 +40,7 @@ export class AdminMarketplaceComponent implements OnInit {
   marketplaceForm!: FormGroup;
   selectedFiles: { file: File, preview: string }[] = [];
   constructor(private builder: FormBuilder, private marketplaceService: AdminMarketplaceService,
-    private fb: FormBuilder, private http: HttpClient) {
+    private fb: FormBuilder, private http: HttpClient , private alert: AlertService) {
     this.marketplaceForm = this.fb.group({
       productName: ['', Validators.required],
       productCategory: ['', Validators.required],
@@ -80,7 +81,7 @@ export class AdminMarketplaceComponent implements OnInit {
 
     this.marketplaceService.addProduct(newProduct).subscribe({
       next: res => {
-        alert('Product added successfully!');
+        this.alert.ShowSuccess('Product added successfully!');
         this.marketplaceForm.reset();
         this.selectedFiles = [];
       },
