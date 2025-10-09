@@ -15,6 +15,9 @@ export class AdminAdoptionService {
   getAllAdoptionPet(): Observable<AdoptionForm[]> {
     return this.http.get<AdoptionForm[]>(this.apiUrl + '/GetAllAdoptionForms');
   }
+  getAdoptionById(id: string): Observable<AdoptionForm> {
+     return this.http.get<AdoptionForm>(`${this.apiUrl}/${id}`);
+  }
   addAdoptionPet(form: AdoptionForm): Observable<any> {
     const formData = new FormData();
 
@@ -22,10 +25,10 @@ export class AdminAdoptionService {
     formData.append('PetCategory', form.petCategory);
     formData.append('PetBreed', form.petBreed);
     formData.append('PetAge', form.petAge.toString());
-    formData.append('Petsellingprice', form.petSellingPrice.toString());
+    formData.append('Petsellingprice', form.petsellingprice.toString());
     formData.append('Owner_MobileNumber', form.owner_MobileNumber);
-    if (form.petFiles && form.petFiles.length > 0) {
-      form.petFiles.forEach(file => {
+    if (form.petImages && form.petImages.length > 0) {
+      form.petImages.forEach(file => {
         formData.append('PetFiles', file, file.name);
       });
     }

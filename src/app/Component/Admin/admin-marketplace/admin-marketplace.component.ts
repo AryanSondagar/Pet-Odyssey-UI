@@ -71,12 +71,13 @@ export class AdminMarketplaceComponent implements OnInit {
     if (this.marketplaceForm.invalid) return;
 
     const newProduct: MarketplaceForm = {
+      id: '',
       productName: this.marketplaceForm.get('productName')?.value,
       productCategory: this.marketplaceForm.get('productCategory')?.value,
       productPrice: this.marketplaceForm.get('productPrice')?.value,
       productStock: this.marketplaceForm.get('productStock')?.value,
       productDescription: this.marketplaceForm.get('productDescription')?.value,
-      productFiles: this.selectedFiles.map(f => f.file)   // take only File objects
+      productImages: this.selectedFiles.map(f => f.file)   // take only File objects
     };
 
     this.marketplaceService.addProduct(newProduct).subscribe({

@@ -1,1 +1,30 @@
-<p>product works!</p>
+<section class="sproduct my-5 pt-5 container">
+  <div class="row mt-5 align-items-center">
+    
+    <!-- Left: Product Images -->
+    <div class="col-lg-5 col-md-12 col-12">
+      <img class="img-fluid w-100 pb-1" [src]="mainImage" alt="Product Main">
+      <div class="small-img-group">
+        <div class="small-img-col" *ngFor="let img of product?.productImages">
+          <img [src]="getImageUrl(img)" class="small-img" width="100%" alt="" (click)="changeImage(img)">
+        </div>
+      </div>
+    </div>
+
+    <!-- Right: Product Info -->
+    <div class="col-lg-6 col-md-12 col-12">
+      <h6>{{product?.productCategory}}</h6>
+      <h3 class="py-2">{{product?.productName}}</h3>
+      <h2>{{product?.productPrice | currency:'INR'}}</h2>
+      <div class="d-flex align-items-center mb-3">
+        <input type="number" value="1" min="1" max="10">
+        <button class="buy-btn">Buy Now</button>
+      </div>
+
+      <h4>Product Details</h4>
+      <span>
+        {{product?.productDescription}}
+      </span>
+    </div>
+  </div>
+</section>

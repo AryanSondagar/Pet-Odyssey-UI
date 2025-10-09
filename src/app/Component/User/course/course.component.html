@@ -1,0 +1,68 @@
+<div id="container">
+
+    <!-- Start Course details -->
+    <div class="product-details">
+
+        <!-- Course Category -->
+        <h1>{{ course?.category }}</h1>
+
+        <!-- Course Rating (optional static for now) -->
+        <span class="hint-star star">
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star-half-o" aria-hidden="true"></i>
+            <i class="fa fa-star-o" aria-hidden="true"></i>
+        </span>
+
+        <!-- The most important information -->
+        <p class="information">
+            📍 {{ course?.city }}, {{ course?.state }} <br>
+            📅 {{ course?.courseDate | date:'fullDate' }}
+        </p>
+        <div class="time-slots">
+            <h3>Available Time Slots</h3>
+            <ul>
+                <li *ngFor="let slot of course?.timeSlot" [class.selected]="slot === selectedSlot"
+                    (click)="selectSlot(slot)">⏰ {{ slot }}</li>
+            </ul>
+        </div>
+
+        <!-- Price + Button -->
+        <div class="control">
+
+            <!-- Start Button buying -->
+            <button class="btn">
+                <!-- 		the Price -->
+                <span class="price">{{ course?.price | currency:'INR' }} </span>
+                <!-- 		shopping cart icon-->
+                <span class="shopping-cart"> <mat-icon>shopping_cart</mat-icon></span>
+                <!-- 		Buy Now / ADD to Cart-->
+                <span class="buy">Book</span>
+            </button>
+            <!-- End Button buying -->
+
+        </div>
+    </div>
+    <!-- End Course details -->
+
+    <!-- Start Course image & Information -->
+    <div class="product-image">
+        <!-- Placeholder image (you can bind actual image if available) -->
+        <img src="https://cdn-icons-png.flaticon.com/512/3062/3062626.png" alt="Course">
+
+        <!-- Overlay Info -->
+        <div class="info">
+            <h2>Course Information</h2>
+            <ul>
+                <li><strong>City: </strong>{{ course?.city }}</li>
+                <li><strong>State: </strong>{{ course?.state }}</li>
+                <li><strong>Category: </strong>{{ course?.category }}</li>
+                <li><strong>Price: </strong>{{ course?.price | currency:'INR' }}</li>
+                <li><strong>Date: </strong>{{ course?.courseDate | date:'MMM d, y' }}</li>
+                 <li><strong>Duration: </strong> 1 hour 30 minutes</li>
+            </ul>
+        </div>
+    </div>
+    <!-- End Course image -->
+</div>

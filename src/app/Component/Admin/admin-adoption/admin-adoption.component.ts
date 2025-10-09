@@ -1,4 +1,5 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 
 
@@ -14,21 +15,23 @@ import { AlertService } from 'src/app/Services/alert.service';
 
 })
 export class AdminAdoptionComponent implements OnInit {
-  adoptionForm: AdoptionForm = {
-    petName: '',
-    petCategory: '',
-    petBreed: '',
-    petAge: 0,
-    petSellingPrice: 0,
-    owner_MobileNumber: '',
-    petFiles: []
-  };
+  adoptionForm!: FormGroup
+
   selectedFiles: { file: File, preview: string }[] = [];
   @ViewChild('fileInput') fileInput!: ElementRef;
-  constructor(private adoptionService: AdminAdoptionService , private alert: AlertService) {
+  constructor(private adoptionService: AdminAdoptionService, private alert: AlertService ,  private fb: FormBuilder) {
   }
 
-  ngOnInit(): void { }
+  ngOnInit(): void { 
+     this.adoptionForm = this.fb.group({
+      petName: ['', Validators.required],
+      petCategory: ['', Validators.required],
+      petBreed: ['', Validators.required],
+      petAge: ['', [Validators.required, Validators.min(0)]],
+      petsellingprice: ['', [Validators.required, Validators.min(0)]],
+      owner_MobileNumber: ['', [Validators.required, Validators.pattern(/^[0-9]{10}$/)]],
+    });
+  }
   onFileSelected(event: any) {
     if (event.target.files) {
       const files = Array.from(event.target.files as FileList).slice(0, 5);
@@ -43,18 +46,22 @@ export class AdminAdoptionComponent implements OnInit {
     }
   }
   submitForm() {
-    this.adoptionService.addAdoptionPet(this.adoptionForm).subscribe({
+    if (this.adoptionForm.invalid) return;
+
+    const newProduct: AdoptionForm = {
+      id: '',
+      petName: this.adoptionForm.get('petName')?.value,
+      petCategory: this.adoptionForm.get('petCategory')?.value,
+      petBreed: this.adoptionForm.get('petBreed')?.value,
+      petAge: this.adoptionForm.get('petAge')?.value,
+      petsellingprice: this.adoptionForm.get('petsellingprice')?.value,
+      owner_MobileNumber: this.adoptionForm.get('owner_MobileNumber')?.value,
+      petImages: this.selectedFiles.map(f => f.file)   // take only File objects
+    };
+    this.adoptionService.addAdoptionPet(newProduct).subscribe({
       next: (res) => {
         this.alert.ShowSuccess('Adoption Form Submitted Successfully!');
-        this.adoptionForm = {
-          petName: '',
-          petCategory: '',
-          petBreed: '',
-          petAge: 0,
-          petSellingPrice: 0,
-          owner_MobileNumber: '',
-          petFiles: []
-        };
+        this.adoptionForm.reset();
         this.selectedFiles = [];
 
         // Reset file input element

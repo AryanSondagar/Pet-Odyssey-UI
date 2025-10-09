@@ -4,7 +4,7 @@
     </div>
 
 
-    <form #PetAdoption="ngForm" (ngSubmit)="submitForm()">
+    <form [formGroup]="adoptionForm" (ngSubmit)="submitForm()" enctype="multipart/form-data">
 
         <div class="adoption-form">
 
@@ -12,14 +12,13 @@
                 <div class="pet-name">
                     <mat-form-field>
                         <mat-label>Pet Name</mat-label>
-                        <input matInput placeholder="Enter pet name" [(ngModel)]="adoptionForm.petName" name="petName"
-                            required>
+                        <input matInput placeholder="Enter pet name" formControlName="petName" name="petName" required>
                     </mat-form-field>
                 </div>
                 <div class="pet-breed">
                     <mat-form-field>
                         <mat-label>Pet Breed</mat-label>
-                        <input matInput placeholder="Like bulldog,Birman" [(ngModel)]="adoptionForm.petBreed"
+                        <input matInput placeholder="Like bulldog,Birman" formControlName="petBreed"
                             name="petBreed" required />
                     </mat-form-field>
                 </div>
@@ -29,7 +28,7 @@
                 <div class="pet-category">
                     <mat-form-field class="product-field">
                         <mat-label>Pet Category</mat-label>
-                        <mat-select [(ngModel)]="adoptionForm.petCategory" name="petCategory" required>
+                        <mat-select formControlName="petCategory" name="petCategory" required>
                             <mat-option value="Dog">Dog</mat-option>
                             <mat-option value="Cat">Cat</mat-option>
                         </mat-select>
@@ -40,7 +39,7 @@
                     <mat-form-field>
                         <mat-label>Pet Age</mat-label>
                         <input matInput placeholder="Pet Age *In Month" type="number" min="0" max="999"
-                            [(ngModel)]="adoptionForm.petAge" name="petAge" required />
+                           formControlName="petAge" name="petAge" required />
                         <mat-hint>*In Month</mat-hint>
                     </mat-form-field>
                 </div>
@@ -51,7 +50,7 @@
                     <mat-form-field>
                         <mat-label>Pet Selling Price(INR)</mat-label>
                         <input matInput type="number" placeholder="Enter price in INR" min="0" max="999999"
-                            name="PetPrice" [(ngModel)]="adoptionForm.petSellingPrice" name="petSellingPrice"
+                            name="PetPrice" formControlName="petsellingprice" name="petSellingPrice"
                             required />
                     </mat-form-field>
                 </div>
@@ -59,8 +58,8 @@
                 <div class="owner-MobileNumber">
                     <mat-form-field>
                         <mat-label>Owner Mobile Number</mat-label>
-                        <input type="tel" matInput placeholder="Enter Mobile Number" maxlength="10" [(ngModel)]="adoptionForm.owner_MobileNumber"
-                            name="owner_MobileNumber" required />
+                        <input type="tel" matInput placeholder="Enter Mobile Number" maxlength="10"
+                         formControlName="owner_MobileNumber"name="owner_MobileNumber" required />
                     </mat-form-field>
                 </div>
             </div>
@@ -71,7 +70,8 @@
 
             <div class="mb-3 d-flex justify-content-center">
                 <div class="upload-wrapper">
-                    <input type="file" (change)="onFileSelected($event)" multiple class="form-control" [attr.maxlength]="5"  #fileInput />
+                    <input type="file" (change)="onFileSelected($event)" multiple class="form-control"
+                        [attr.maxlength]="5" #fileInput />
                 </div>
             </div>
 
@@ -89,7 +89,8 @@
 
 
             <div class="example-button-row center col">
-                <button mat-raised-button color="primary" type="submit" [disabled]="PetAdoption.invalid">Confirm Course</button>
+                <button mat-raised-button color="primary" type="submit" [disabled]="adoptionForm.invalid">Confirm
+                    Course</button>
             </div>
 
         </div>

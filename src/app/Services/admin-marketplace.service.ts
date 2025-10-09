@@ -26,8 +26,8 @@ export class AdminMarketplaceService {
   formData.append('productStock', newProduct.productStock.toString());
   formData.append('productDescription', newProduct.productDescription);
 
-  if (newProduct.productFiles && newProduct.productFiles.length > 0) {
-    newProduct.productFiles.forEach((file:File) => {
+  if (newProduct.productImages && newProduct.productImages.length > 0) {
+    newProduct.productImages.forEach((file:File) => {
       formData.append('ProductFiles', file); // must match backend property
     });
   }
@@ -40,4 +40,7 @@ export class AdminMarketplaceService {
   deleteProduct(id: string): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/DeleteProduct/${id}`);
   }
+  getProductById(id: string): Observable<MarketplaceForm> {
+      return this.http.get<MarketplaceForm>(`${this.apiUrl}/${id}`);
+    }
 }

@@ -6,5 +6,5 @@ export interface Course {
     category: string;
     price: number;
     courseDate: Date;
-    TimeSlot: string[];
+    timeSlot: string[];
 };

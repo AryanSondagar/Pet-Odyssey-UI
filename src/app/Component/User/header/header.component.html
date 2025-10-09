@@ -22,6 +22,9 @@
                         <li class="nav-item active">
                             <a class="nav-link" href="#about"> About </a>
                         </li>
+                        <li class="nav-item ">
+                            <a class="nav-link" href="#training"> Training </a>
+                        </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#gallery"> Gallery </a>
                         </li>
@@ -36,6 +39,9 @@
                     <ul class="navbar-nav " *ngSwitchCase="'user'">
                         <li class="nav-item active">
                             <a class="nav-link" href="#about"> About </a>
+                        </li>
+                        <li class="nav-item ">
+                            <a class="nav-link" href="#training"> Training </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#gallery"> Gallery </a>
@@ -55,154 +61,128 @@
     </header>
     <!-- end header section -->
     <!-- slider section -->
-    <section class=" slider_section position-relative">
-        <div class="slider_bg_box">
-            <img src="./../../../../assets/image/slider-bg.jpg" alt="">
-        </div>
-        <div class="container">
-            <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-                <!-- <ol class="carousel-indicators">
-                    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-                    <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
-                    <li data-target="#carouselExampleIndicators" data-slide-to="4"></li>
-                </ol> -->
-                <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <div class="row">
-                            <div class="col-md-7 col-lg-6">
-                                <div class="detail-box">
-                                    <h1>
-                                        Welcome to
-                                        <br>Our Pet Course
-                                    </h1>
-                                    <p>
-                                        It is a long established fact that a reader will be distracted
-                                        by the readable content of a page when looking at its layout.
-                                        The point of using Lorem Ipsum is that it has a more-or-less
-                                        normal distribution of letters, as
-                                    </p>
-                                    <div class="btn-box">
-                                        <a href="" class="btn-1">
-                                            Read More
-                                        </a>
-                                        <a href="#contact" class="btn-2">
-                                            Contact us
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <div class="row">
-                            <div class="col-md-7 col-lg-6">
-                                <div class="detail-box">
-                                    <h1>
-                                        Welcome to
-                                        <br>Our Pet Shop
-                                    </h1>
-                                    <p>
-                                        It is a long established fact that a reader will be distracted
-                                        by the readable content of a page when looking at its layout.
-                                        The point of using Lorem Ipsum is that it has a more-or-less
-                                        normal distribution of letters, as
-                                    </p>
-                                    <div class="btn-box">
-                                        <a href="" class="btn-1">
-                                            Read More
-                                        </a>
-                                        <a href="" class="btn-2">
-                                            Contact us
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <div class="row">
-                            <div class="col-md-7 col-lg-6">
-                                <div class="detail-box">
-                                    <h1>
-                                        Welcome to
-                                        <br>Our Pet Shop
-                                    </h1>
-                                    <p>
-                                        It is a long established fact that a reader will be distracted
-                                        by the readable content of a page when looking at its layout.
-                                        The point of using Lorem Ipsum is that it has a more-or-less
-                                        normal distribution of letters, as
-                                    </p>
-                                    <div class="btn-box">
-                                        <a href="" class="btn-1">
-                                            Read More
-                                        </a>
-                                        <a href="" class="btn-2">
-                                            Contact us
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <div class="row">
-                            <div class="col-md-7 col-lg-6">
-                                <div class="detail-box">
-                                    <h1>
-                                        Welcome to Our <br>
-                                        <span>Pet Shop</span>
-                                    </h1>
-                                    <p>
-                                        It is a long established fact that a reader will be distracted
-                                        by the readable content of a page when looking at its layout.
-                                        The point of using Lorem Ipsum is that it has a more-or-less
-                                        normal distribution of letters, as
-                                    </p>
-                                    <div class="btn-box">
-                                        <a href="" class="btn-1">
-                                            Read More
-                                        </a>
-                                        <a href="" class="btn-2">
-                                            Contact us
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="detail-box">
-                                    <h1>
-                                        Welcome to Our <br>
-                                        <span>Pet Shop</span>
-                                    </h1>
-                                    <p>
-                                        It is a long established fact that a reader will be distracted
-                                        by the readable content of a page when looking at its layout.
-                                        The point of using Lorem Ipsum is that it has a more-or-less
-                                        normal distribution of letters, as
-                                    </p>
-                                    <div class="btn-box">
-                                        <a href="" class="btn-1">
-                                            Read More
-                                        </a>
-                                        <a href="" class="btn-2">
-                                            Contact us
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <section class="slider_section position-relative">
+  <div class="slider_bg_box">
+    <img src="./../../../../assets/image/slider-bg.jpg" alt="">
+  </div>
 
-        </div>
-    </section>
+  <div class="container">
+    <div class="product-tilt-effect">
+      <swiper-container pagination="true" pagination-clickable="true" space-between="30"
+                        slides-per-view="1" autoplay="true">
+        
+        <!-- Slide 1 -->
+        <swiper-slide>
+          <div class="row">
+            <div class="col-md-7 col-lg-6">
+              <div class="detail-box">
+                <h1>
+                  Welcome to
+                  <br>Our Pet Course
+                </h1>
+                <p>
+                  It is a long established fact that a reader will be distracted
+                  by the readable content of a page when looking at its layout.
+                </p>
+                <div class="btn-box">
+                  <a href="" class="btn-1">Read More</a>
+                  <a href="#contact" class="btn-2">Contact us</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </swiper-slide>
+
+        <!-- Slide 2 -->
+        <swiper-slide>
+          <div class="row">
+            <div class="col-md-7 col-lg-6">
+              <div class="detail-box">
+                <h1>
+                  Welcome to
+                  <br>Our Pet Shop
+                </h1>
+                <p>
+                  It is a long established fact that a reader will be distracted
+                  by the readable content of a page when looking at its layout.
+                </p>
+                <div class="btn-box">
+                  <a href="" class="btn-1">Read More</a>
+                  <a href="" class="btn-2">Contact us</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </swiper-slide>
+
+        <!-- Slide 3 -->
+        <swiper-slide>
+          <div class="row">
+            <div class="col-md-7 col-lg-6">
+              <div class="detail-box">
+                <h1>
+                  Welcome to
+                  <br>Our Pet Shop
+                </h1>
+                <p>
+                  It is a long established fact that a reader will be distracted
+                  by the readable content of a page when looking at its layout.
+                </p>
+                <div class="btn-box">
+                  <a href="" class="btn-1">Read More</a>
+                  <a href="" class="btn-2">Contact us</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </swiper-slide>
+
+        <!-- Slide 4 -->
+        <swiper-slide>
+          <div class="row">
+            <div class="col-md-7 col-lg-6">
+              <div class="detail-box">
+                <h1>
+                  Welcome to Our <br><span>Pet Shop</span>
+                </h1>
+                <p>
+                  It is a long established fact that a reader will be distracted
+                  by the readable content of a page when looking at its layout.
+                </p>
+                <div class="btn-box">
+                  <a href="" class="btn-1">Read More</a>
+                  <a href="" class="btn-2">Contact us</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </swiper-slide>
+
+        <!-- Slide 5 -->
+        <swiper-slide>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="detail-box">
+                <h1>
+                  Welcome to Our <br><span>Pet Shop</span>
+                </h1>
+                <p>
+                  It is a long established fact that a reader will be distracted
+                  by the readable content of a page when looking at its layout.
+                </p>
+                <div class="btn-box">
+                  <a href="" class="btn-1">Read More</a>
+                  <a href="" class="btn-2">Contact us</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </swiper-slide>
+
+      </swiper-container>
+    </div>
+  </div>
+</section>
+
     <!-- end slider section -->
 </div>

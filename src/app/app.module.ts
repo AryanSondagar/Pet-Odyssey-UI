@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
@@ -33,6 +33,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatDialogModule } from '@angular/material/dialog';
+
 import { AdminComponent } from './Component/Admin/admin/admin.component';
 
 import { UserComponent } from './Component/User/user/user.component';
@@ -57,9 +58,13 @@ import { ProductListComponent } from './Component/Admin/admin-marketplace/produc
 import { CourseComponent } from './Component/User/course/course.component';
 import { HeaderComponent } from './Component/User/header/header.component';
 import { FooterComponent } from './Component/User/footer/footer.component';
+import { ProductComponent } from './Component/User/product/product.component';
+import { AdoptComponent } from './Component/User/adopt/adopt.component';
+
 
 
 @NgModule({
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   declarations: [
     AppComponent,
 
@@ -80,7 +85,9 @@ import { FooterComponent } from './Component/User/footer/footer.component';
     AdoptionListComponent,
     CoursListComponent,
     ProductListComponent,
-    CourseComponent
+    CourseComponent,
+    ProductComponent,
+    AdoptComponent
     
   ],
   imports: [
@@ -120,7 +127,6 @@ import { FooterComponent } from './Component/User/footer/footer.component';
     JsonPipe,
     HeaderComponent,
     FooterComponent
-
     
   ],
   providers: [],

@@ -1,0 +1,88 @@
+<section class="sproduct my-5 pt-5 container">
+  <div class="row mt-5 align-items-center justify-content-center">
+
+    <!-- Left: Product Images -->
+    <div class="col-lg-5 col-md-12 col-12">
+      <img class="img-fluid w-100 pb-1" [src]="mainImage" alt="Product Main">
+      <div class="small-img-group">
+        <div class="small-img-col" *ngFor="let img of adopt?.petImages">
+          <img [src]="getImageUrl(img)" class="small-img" width="100%" alt="" (click)="changeImage(img)">
+        </div>
+      </div>
+    </div>
+
+    <!-- Right: Product Info -->
+    <div class="col-lg-6 col-md-12 col-12">
+      <div class="pet-info-card p-4 shadow-sm rounded">
+        <h2 class="pet-name mb-2"><strong>Pet Name: {{ adopt?.petName }}</strong></h2>
+        <h6 class="text-muted mb-1" color="#fff">{{adopt?.petCategory}} • {{adopt?.petBreed}}</h6>
+        <p class="mb-1"><strong>Age:</strong> {{adopt?.petAge}} *In month</p>
+        <p class="mb-1"><strong>Breed:</strong> {{adopt?.petBreed}}</p>
+        <p class="mb-1"><strong>price:</strong> {{adopt?.petsellingprice |currency:'INR'}}</p>
+        <p class="mb-3"><strong>Contact:</strong> {{adopt?.owner_MobileNumber}}</p>
+
+        <!-- Adoption Guidelines -->
+        <h5><strong>Adoption Process</strong></h5>
+        <ul class="adoption-guidelines ps-3">
+          <li>🐾 You must be <strong>18+ years old</strong> to adopt.</li>
+          <li>📧 After applying, you will <strong>receive updates via email</strong>.</li>
+          <li>🏠 Adoption is subject to <strong>admin approval & home verification</strong>.</li>
+          <li>💉 This pet is <strong>vaccinated & health-checked</strong>.</li>
+          <li>✅ Once approved, you will get <strong>instructions to finalize adoption</strong>.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+<!-- Adoption Apply Form (Full Width) -->
+<div class="adoption-form mt-5 mb-5 p-4 shadow-sm rounded">
+  <h4 class="mb-3 text-success"><strong>Apply for Adoption</strong></h4>
+
+  <form [formGroup]="adoptionForm" (ngSubmit)="onSubmit()">
+    <div class="row g-3">
+      <div class="col-md-6">
+        <label class="form-label">Full Name</label>
+        <input type="text" class="form-control" formControlName="name" placeholder="Enter your full name">
+      </div>
+
+      <div class="col-md-6">
+        <label class="form-label">Email</label>
+        <input type="email" class="form-control" formControlName="email" placeholder="Enter your email">
+      </div>
+
+      <div class="col-md-6">
+        <label class="form-label">Phone</label>
+        <input type="tel" class="form-control" formControlName="phone" placeholder="Enter your phone number">
+      </div>
+
+      <div class="col-md-6">
+        <label class="form-label">Address</label>
+        <textarea class="form-control" formControlName="address" rows="2" placeholder="Enter your address"></textarea>
+      </div>
+
+      <div class="col-md-12 max-height-65">
+        <label class="form-label">Reason for Adoption</label>
+        <textarea class="form-control" formControlName="reason" rows="2" placeholder="Why do you want to adopt this pet?"></textarea>
+      </div>
+
+      <!-- 18+ Checkbox -->
+      <div class="col-md-12 form-check">
+        <input type="checkbox" class="form-check-input" formControlName="isAdult" id="isAdult" required>
+        <label class="form-check-label" for="isAdult">I am 18 years or older</label>
+      </div>
+
+      <!-- Already have pet Checkbox -->
+      <div class="col-md-12 form-check">
+        <input type="checkbox" class="form-check-input" formControlName="hasPets" id="hasPets">
+        <label class="form-check-label" for="hasPets">I already have pets</label>
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn-success mt-3 w-100" [disabled]="adoptionForm.invalid">
+      Submit Application
+    </button>
+  </form>
+</div>
+
+
+</section>

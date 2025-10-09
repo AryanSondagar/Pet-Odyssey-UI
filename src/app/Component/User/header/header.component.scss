@@ -1,5 +1,5 @@
-:host{
-     .login {
+:host {
+    .login {
         cursor: pointer;
     }
 
@@ -22,4 +22,43 @@
     #contact {
         background-color: #ffff;
     }
+
+    /* Pagination container: center horizontally and above bottom */
+    .swiper-pagination {
+        position: absolute;
+        /* place over slider */
+        bottom: 20px;
+        /* distance from bottom of slider */
+        left: 50%;
+        /* center horizontally */
+        transform: translateX(-50%);
+        /* perfect center */
+        display: flex;
+        justify-content: center;
+        z-index: 10;
+        /* make sure it is above the image */
+    }
+
+    /* Pagination bullets */
+    .swiper-pagination-bullet {
+        width: 14px;
+        /* bullet width */
+        height: 14px;
+        /* bullet height */
+        background: rgba(255, 255, 255, 0.5);
+        /* semi-transparent white */
+        margin: 0 6px;
+        border-radius: 50%;
+        /* circular bullets */
+        transition: all 0.3s ease;
+    }
+
+    /* Active bullet */
+    .swiper-pagination-bullet-active {
+        background: #ff6f61;
+        /* bright active color */
+        width: 16px;
+        height: 16px;
+    }
+
 }

@@ -10,7 +10,6 @@ const routes: Routes = [
   {
     path: '', component: UserComponent
   },
-  { path: 'training', component: CourseComponent },
 ];
 
 @NgModule({

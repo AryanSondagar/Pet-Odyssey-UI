@@ -98,7 +98,7 @@ export class AdminCourseComponent implements OnInit {
         category: this.courseForm.value.category,
         price: this.courseForm.value.price,
         courseDate: this.courseForm.value.courseDate,
-        TimeSlot: this.slots
+        timeSlot: this.slots
       };
       console.log(payload);
       this.courseService.addCourse(payload).subscribe({
