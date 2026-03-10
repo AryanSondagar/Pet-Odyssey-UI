@@ -8,20 +8,20 @@
   }
 
   .log-out img {
-     border: 2px solid transparent;
+    border: 2px solid transparent;
     width: 40px;
     height: 32px;
     padding: 6px;
     border-radius: 18%;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
     cursor: pointer;
-    transition:all 0.3s ease;
+    transition: all 0.3s ease;
   }
 
   .log-out:hover {
     transform: scale(1.1);
-      border-color: #007bff; 
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    border-color: #007bff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
   }
 
 }
@@ -31,6 +31,7 @@
   background-color: #006b72;
   color: white;
 }
+
 
 mat-sidenav {
   margin: 16px;
@@ -42,6 +43,9 @@ mat-sidenav {
   padding: 16px;
   text-align: center;
 
+  .mat-drawer-inner-container {
+    overflow: hidden !important;
+  }
 }
 
 .content {
@@ -50,7 +54,7 @@ mat-sidenav {
   height: calc(100vh - 100px);
 
   border-radius: 10px;
-  overflow: hidden;
+  overflow: hidden !important;
 }
 
 .bg {

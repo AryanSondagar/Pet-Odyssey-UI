@@ -7,10 +7,10 @@ import { Course } from '../Model/course.model';
   providedIn: 'root'
 })
 export class AdminCourseService {
-  apiUrl: string = "http://localhost:5093/api/CourseForm";
+  apiUrl: string = "http://localhost:3000/api/admin/course";
   constructor(private http: HttpClient) { }
   getAllCourses(): Observable<Course[]> {
-    return this.http.get<Course[]>(`${this.apiUrl}/GetAllCourse`);
+    return this.http.get<Course[]>(this.apiUrl);
   }
 
   getCourseById(id: string): Observable<Course> {
@@ -18,9 +18,9 @@ export class AdminCourseService {
   }
 
   addCourse(course: Course): Observable<Course> {
-    return this.http.post<Course>(`${this.apiUrl}/CreateCourse`, course);
+    return this.http.post<Course>(this.apiUrl, course);
   }
    deleteCourse(id: string): Observable<void> {
-    return this.http.delete<void>(`${this.apiUrl}/DeleteCourse/${id}`);
+    return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }
 }

@@ -31,20 +31,20 @@ export class AdoptionListComponent implements OnInit {
     this.getAllAdoptionList();
   }
   getAllAdoptionList() {
-    this.adoptionService.getAllAdoptionPet().subscribe((res) => {
+    this.adoptionService.getAllAdoptionPet().subscribe((res : any) => {
       console.log(res);
       // this.list = res ;
-      this.dataSource = new MatTableDataSource(res);
+      this.dataSource = new MatTableDataSource(res.data);
       this.dataSource.sort = this.sort;
       this.dataSource.paginator = this.paginator;
 
     })
   }
   onDelete(row: any) {
-    this.adoptionService.deleteAdoption(row.id).subscribe({
+    this.adoptionService.deleteAdoption(row._id).subscribe({
       next: () => {
         this.alert.ShowDelete('Pet Adoption Deleted Successfully!');
-        this.dataSource.data = this.dataSource.data.filter(c => c.id !== row.id);
+        this.dataSource.data = this.dataSource.data.filter(c => c._id !== row._id);
       },
       error: err => {
         console.error('Delete failed:', err);

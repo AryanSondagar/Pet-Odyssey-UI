@@ -15,7 +15,7 @@ export class UserloginComponent {
   passwordValue: string = '';
   emailValue: string = '';
   nameValue: string = '';
-  email = faEnvelope;
+  faEnvelope = faEnvelope;
   lock = faLock;
   user = faUser;
   authError: String = ''
@@ -29,9 +29,9 @@ export class UserloginComponent {
       data.role = 'User';
     this.User.UserSignUp(data);
   }
-  Login(email: string, password: string, role: 'User' | 'Admin') {
+  Login(email: string, password: string, role: 'user' | 'admin') {
     console.log(email, password, role);
-    this.User.RoleBasedLogin(email, password, role);
+    this.User.RoleBasedLogin(email, password);
     this.User.isLoginError.subscribe((isError) => {
       if (isError) {
         this.authError = "Email or password is not correct"

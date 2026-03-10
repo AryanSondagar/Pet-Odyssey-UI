@@ -71,21 +71,21 @@
 
           <div class="login-form">
             <div class="title">Login</div>
-            <form #loginForm="ngForm" (ngSubmit)="Login(UserEmail.value, UserPassword.value, 'User')">
+            <form #loginForm="ngForm" (ngSubmit)="Login(email.value, password.value, 'user')">
               <div class="input-boxes">
 
                 <div class="input-box">
-                  <fa-icon [icon]="email"></fa-icon>
-                  <input type="email" placeholder="Enter your email" name="UserEmail" ngModel #UserEmail="ngModel"
+                  <fa-icon [icon]="faEnvelope"></fa-icon>
+                  <input type="email" placeholder="Enter your email" name="email" ngModel #email="ngModel"
                     required email    [(ngModel)]="emailValue" [style.borderColor]="
-                  !emailValue ? '#00000033' : (UserEmail.invalid ? 'red' : 'green')
+                  !emailValue ? '#00000033' : (email.invalid ? 'red' : 'green')
                    ">
                 </div>
 
                 <div class="input-box">
                   <fa-icon [icon]="lock"></fa-icon>
-                  <input type="password" placeholder="Enter your password" required name="UserPassword" ngModel
-                    #UserPassword="ngModel" minlength="6" maxlength="16" [(ngModel)]="passwordValue"
+                  <input type="password" placeholder="Enter your password" required name="password" ngModel
+                    #password="ngModel" minlength="6" maxlength="16" [(ngModel)]="passwordValue"
                     [style.borderColor]="!passwordValue ? '#00000033' : (passwordValue.length < 6 ? 'red' : (passwordValue.length < 10 ? 'orange' : 'green'))">
                 </div>
 
@@ -107,29 +107,29 @@
 
                 <div class="input-box">
                   <fa-icon [icon]="user"></fa-icon>
-                  <input type="text" placeholder="Enter your name" required name="UserName" ngModel #UserName="ngModel"
+                  <input type="text" placeholder="Enter your name" required name="name" ngModel #name="ngModel"
                     [(ngModel)]="nameValue" [style.borderColor]="
-                  !nameValue ? '#00000033' : (UserName.valid ? 'green' : 'red')
+                  !nameValue ? '#00000033' : (name.valid ? 'green' : 'red')
                    ">
 
                 </div>
                 <!-- <p *ngIf="UserName.invalid&& UserName.touched" class="notice">Enter Username</p> -->
 
                 <div class="input-box">
-                  <fa-icon [icon]="email"></fa-icon>
-                  <input type="email" placeholder="Enter your email" required name="UserEmail" ngModel
-                   email  #UserEmail="ngModel" [(ngModel)]="emailValue" [style.borderColor]="
-                  !emailValue ? '#00000033' : (UserEmail.invalid ? 'red' : 'green')
+                  <fa-icon [icon]="faEnvelope"></fa-icon>
+                  <input type="email" placeholder="Enter your email" required name="email" ngModel
+                   email  #email="ngModel" [(ngModel)]="emailValue" [style.borderColor]="
+                  !emailValue ? '#00000033' : (email.invalid ? 'red' : 'green')
                    ">
-                  <!-- <span *ngIf="UserEmail.invalid&& UserEmail.touched" class="notice">your email is not valid</span> -->
+                  <!-- <span *ngIf="email.invalid&& email.touched" class="notice">your email is not valid</span> -->
                 </div>
 
                 <div class="input-box">
                   <fa-icon [icon]="lock"></fa-icon>
-                  <input type="password" placeholder="Enter your password" required name="UserPassword" ngModel
-                    #UserPassword="ngModel" minlength="6" maxlength="16" [(ngModel)]="passwordValue"
+                  <input type="password" placeholder="Enter your password" required name="password" ngModel
+                    #password="ngModel" minlength="6" maxlength="16" [(ngModel)]="passwordValue"
                     [style.borderColor]="!passwordValue ? '#00000033' : (passwordValue.length < 6 ? 'red' : (passwordValue.length < 10 ? 'orange' : 'green'))">
-                  <!-- <p *ngIf="UserPassword.invalid&& UserPassword.touched" class="notice">
+                  <!-- <p *ngIf="password.invalid&& password.touched" class="notice">
 					<span *ngIf="!passwordValue">
 						password is required
 					</span>

@@ -60,6 +60,8 @@ import { HeaderComponent } from './Component/User/header/header.component';
 import { FooterComponent } from './Component/User/footer/footer.component';
 import { ProductComponent } from './Component/User/product/product.component';
 import { AdoptComponent } from './Component/User/adopt/adopt.component';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptor } from './interceptors/auth.interceptor';
 
 
 
@@ -129,7 +131,7 @@ import { AdoptComponent } from './Component/User/adopt/adopt.component';
     FooterComponent
     
   ],
-  providers: [],
+  providers: [ { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

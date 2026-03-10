@@ -49,7 +49,7 @@ export class AdminAdoptionComponent implements OnInit {
     if (this.adoptionForm.invalid) return;
 
     const newProduct: AdoptionForm = {
-      id: '',
+      _id: '',
       petName: this.adoptionForm.get('petName')?.value,
       petCategory: this.adoptionForm.get('petCategory')?.value,
       petBreed: this.adoptionForm.get('petBreed')?.value,

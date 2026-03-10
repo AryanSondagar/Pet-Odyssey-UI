@@ -7,12 +7,12 @@ import { MarketplaceForm } from '../Model/marketplace.model';
   providedIn: 'root'
 })
 export class AdminMarketplaceService {
-  apiUrl: string = "http://localhost:5093/api/MarketplaceForm";
+  apiUrl: string = "http://localhost:3000/api/admin/marketplace";
 
   constructor(private http:HttpClient) { }
 
   getAllProduct():Observable<MarketplaceForm[]>{
-    return this.http.get<MarketplaceForm[]>(this.apiUrl + '/GetAllMarketplaceForms');
+    return this.http.get<MarketplaceForm[]>(this.apiUrl);
 
   }
   addProduct(newProduct: MarketplaceForm):Observable<any>{
@@ -28,17 +28,17 @@ export class AdminMarketplaceService {
 
   if (newProduct.productImages && newProduct.productImages.length > 0) {
     newProduct.productImages.forEach((file:File) => {
-      formData.append('ProductFiles', file); // must match backend property
+      formData.append('productImages', file); // must match backend property
     });
   }
 
-  return this.http.post(this.apiUrl + '/addMarketplaceForms', formData);
+  return this.http.post(this.apiUrl , formData);
   }
   UserProduct(){
     return  this.http.get<MarketplaceForm[]>(this.apiUrl + '/api/MarketplaceForm');
   }
   deleteProduct(id: string): Observable<void> {
-    return this.http.delete<void>(`${this.apiUrl}/DeleteProduct/${id}`);
+    return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }
   getProductById(id: string): Observable<MarketplaceForm> {
       return this.http.get<MarketplaceForm>(`${this.apiUrl}/${id}`);

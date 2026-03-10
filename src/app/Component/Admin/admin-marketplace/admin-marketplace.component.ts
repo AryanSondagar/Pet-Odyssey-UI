@@ -71,7 +71,7 @@ export class AdminMarketplaceComponent implements OnInit {
     if (this.marketplaceForm.invalid) return;
 
     const newProduct: MarketplaceForm = {
-      id: '',
+      _id: '',
       productName: this.marketplaceForm.get('productName')?.value,
       productCategory: this.marketplaceForm.get('productCategory')?.value,
       productPrice: this.marketplaceForm.get('productPrice')?.value,

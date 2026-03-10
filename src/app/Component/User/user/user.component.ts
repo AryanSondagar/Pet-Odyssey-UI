@@ -26,7 +26,7 @@ export class UserComponent {
   userName: string = "";
   menutype: string = 'defult';
   buttonClicked = false;
-  adopt: AdoptionForm[] = [];
+  adopt: any;
   Product: MarketplaceForm[] = [];
   seminars: Course[] = [];
   selectedCourse?: Course;
@@ -47,35 +47,36 @@ export class UserComponent {
   }
 
   ngOnInit(): void {
-    this.courseService.getAllCourses().subscribe((data: Course[]) => {
-      this.seminars = data;
+    this.courseService.getAllCourses().subscribe((data: any) => {
+      this.seminars = data.data;
+      console.log(this.seminars);
     });
-    this.ProductService.getAllProduct().subscribe((data: MarketplaceForm[]) => {
-      this.Product = data;
+    this.ProductService.getAllProduct().subscribe((data: any) => {
+      this.Product = data.products;
+      console.log(this.Product);
     })
-    this.adoptService.getAllAdoptionPet().subscribe((data: AdoptionForm[]) => {
-      this.adopt = data;
+    this.adoptService.getAllAdoptionPet().subscribe((data: any) => {
+      this.adopt = data.data;
       console.log(this.adopt);
     })
   }
 
 
   getImageUrl(img: any): string {
-    // Prepend the host if your imageUrl is relative
-    return 'http://localhost:5093' + img.imageUrl;
+    return `http://localhost:3000/${img.replace(/\\/g, '/')}`;
   }
   productDetail(Product: MarketplaceForm) {
-    if (!Product.id) {
+    if (!Product._id) {
       console.error("Product ID is missing!");
       return;
     }
 
-    this.ProductService.getProductById(Product.id).subscribe({
-      next: (res) => {
+    this.ProductService.getProductById(Product._id).subscribe({
+      next: (res: any) => {
         console.log("Product details:", res);
         // you can store it in a variable to display in template
-        this.selectedProduct = res;
-        this.route.navigate(['/product', res.id]);
+        this.selectedProduct = res.product;
+        this.route.navigate(['/product', res.product._id]);
       },
       error: (err) => {
         console.error("Error fetching product details:", err);
@@ -85,11 +86,11 @@ export class UserComponent {
 
 
   selectSeminar(seminar: Course) {
-    if (!seminar.id) return;
-    this.courseService.getCourseById(seminar.id).subscribe({
-      next: (res: Course) => {
-        this.selectedCourse = res;
-        this.route.navigate(['/training', res.id]);
+    if (!seminar._id) return;
+    this.courseService.getCourseById(seminar._id).subscribe({
+      next: (res: any) => {
+        this.selectedCourse = res.data;
+        this.route.navigate(['/training', res._id]);
         console.log('Selected course:', res);
       },
       error: (err) => {
@@ -98,11 +99,11 @@ export class UserComponent {
     });
   }
   adoptPet(adopt: AdoptionForm){
-    if (!adopt.id) return;
-    this.adoptService.getAdoptionById(adopt.id).subscribe({
+    if (!adopt._id) return;
+    this.adoptService.getAdoptionById(adopt._id).subscribe({
       next: (res: AdoptionForm) => {
         this.selectedPet = res;
-        this.route.navigate(['/pet-detail', res.id]);
+        this.route.navigate(['/pet-detail', res._id]);
       },
       error: (err) => {
         console.error('Error fetching course by id:', err);

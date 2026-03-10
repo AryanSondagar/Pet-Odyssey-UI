@@ -19,7 +19,7 @@ export class UserService {
   constructor(private http: HttpClient, private route: Router) { }
   UserSignUp(data: UserSign) {
     data.role = 'User';
-    return this.http.post('http://localhost:3000/accounts', data, { observe: 'response' })
+    return this.http.post('http://localhost:3000/api/auth/register', data, { observe: 'response' })
       .subscribe((res) => {
         if (res && res.body) {
 
@@ -35,45 +35,47 @@ export class UserService {
     }
   }
 
-  RoleBasedLogin(email: string, password: string, role: 'User' | 'Admin') {
-  this.http
-    .get<any[]>(`http://localhost:3000/accounts?email=${email}&password=${password}`, { observe: 'response' })
-    .subscribe((result: any) => {
-      console.log(result);
+  RoleBasedLogin(email: string, password: string) {
+    this.http
+      .post<any[]>('http://localhost:3000/api/auth/login', {
+        email: email,
+        password: password
+      })
+      .subscribe((result: any) => {
+        console.log(result);
 
-      if (result && result.body && result.body.length === 1) {
-        this.isLoginError.emit(false);
+        if (result && result.user) {
 
-        const user = result.body[0];
-        localStorage.setItem('user', JSON.stringify(user));
-        localStorage.setItem('role', user.role);
+          this.isLoginError.emit(false);
 
-        // ✅ set BehaviorSubject based on role
-        if (user.role === 'User') {
-          this.isUserLogined.next(true);
-        } else if (role === 'Admin') {
-          this.isAdminLogined.next(true);
-        }
+          const user = result.user;
 
-        // Navigate role-wise
-        if (user.role === 'Admin') {
-          this.route.navigate(['/admin']);
+          localStorage.setItem('token', result.token);
+          localStorage.setItem('user', JSON.stringify(user));
+          localStorage.setItem('role', user.role);
+
+          // ✅ Role check (case sensitive!)
+          if (user.role === 'user') {
+            this.isUserLogined.next(true);
+          } else if (user.role === 'admin') {
+            this.isAdminLogined.next(true);
+          }
+
+          // ✅ Navigation
+          if (user.role === 'admin') {
+            this.route.navigate(['/admin']);
+          } else {
+            this.route.navigate(['/']);
+          }
+
         } else {
-          this.route.navigate(['/']);
-        }
-      } else {
-        this.isLoginError.emit(true);
 
-        if (role === 'User') {
-          this.isUserLogined.next(false);
-        } else if (role === 'Admin') {
-          this.isAdminLogined.next(false);
-        }
+          this.isLoginError.emit(true);
+          console.log('Login failed');
 
-        console.log('Login failed');
-      }
-    });
-}
+        }
+      });
+  }
 
   // UserLogin(data: UserLogin) {
   //   this.http.get(`http://localhost:3000/User?UserEmail=${data.UserEmail}&UserPassword=${data.UserPassword}`, { observe: 'response' })

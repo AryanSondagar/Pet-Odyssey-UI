@@ -23,17 +23,17 @@ export class CoursListComponent implements OnInit {
 
   }
   ngOnInit(): void {
-    this.courseService.getAllCourses().subscribe((res) => {
-      this.dataSource = new MatTableDataSource(res);
+    this.courseService.getAllCourses().subscribe((res: any) => {
+      this.dataSource = new MatTableDataSource(res.data);
       this.dataSource.sort = this.sort;
       this.dataSource.paginator = this.paginator;
     })
   }
   onDelete(row: any) {
-    this.courseService.deleteCourse(row.id).subscribe({
+    this.courseService.deleteCourse(row._id).subscribe({
       next: () => {
         this.alert.ShowDelete('Pet Course Deleted Successfully!');
-        this.dataSource.data = this.dataSource.data.filter(c => c.id !== row.id);
+        this.dataSource.data = this.dataSource.data.filter(c => c._id !== row._id);
       },
       error: err => {
         console.error('Delete failed:', err);

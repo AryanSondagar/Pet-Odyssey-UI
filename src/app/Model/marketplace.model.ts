@@ -1,14 +1,14 @@
 export interface MarketplaceForm {
-    id: string,
+    _id: string,
     productName: string,
     productCategory: string,
     productPrice: any,
     productStock: any,
     productDescription: string,
-     productImages: File[];
+    productImages: File[];
 };
 interface ProductImage {
-  id: string;
+  _id: string;
   imageUrl: string;
   marketplaceFormId: string;
 }

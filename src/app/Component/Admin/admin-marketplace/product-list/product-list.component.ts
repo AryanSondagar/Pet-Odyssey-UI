@@ -12,27 +12,37 @@ import { AlertService } from 'src/app/Services/alert.service';
   styleUrl: './product-list.component.scss'
 })
 export class ProductListComponent implements OnInit {
-  displayedColumns: string[] = ['productName', 'productCategory', 'productPrice', 'productStock', 'delete'];
-  dataSource!: MatTableDataSource<MarketplaceForm>;
+ displayedColumns: string[] = [
+  'productName',
+  'productCategory',
+  'productPrice',
+  'productStock',
+  'delete'
+];
+  dataSource = new MatTableDataSource<MarketplaceForm>();
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
   constructor(private productService: AdminMarketplaceService, private alert: AlertService) { }
   ngOnInit(): void {
-    this.productService.getAllProduct().subscribe((res) => {
+    this.productService.getAllProduct().subscribe((res: any) => {
       console.log(res);
-      this.dataSource = new MatTableDataSource(res);
-      this.dataSource.sort = this.sort;
-      this.dataSource.paginator = this.paginator;
 
-    })
+      this.dataSource.data = res.products; // NOT new MatTableDataSource
+    });
   }
+  ngAfterViewInit() {
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
+  }
+
+
   onDelete(row: any) {
-    this.productService.deleteProduct(row.id).subscribe({
+    this.productService.deleteProduct(row._id).subscribe({
       next: () => {
         this.alert.ShowDelete('Product Deleted Successfully!');
-        this.dataSource.data = this.dataSource.data.filter(c => c.id !== row.id);
+        this.dataSource.data = this.dataSource.data.filter(c => c._id !== row._id);
       },
       error: err => {
         console.error('Delete failed:', err);

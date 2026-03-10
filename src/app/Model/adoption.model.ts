@@ -1,5 +1,5 @@
 export interface AdoptionForm {
-    id?: string,
+    _id?: string,
     petName: string;
     petCategory: string;
     petBreed: string;

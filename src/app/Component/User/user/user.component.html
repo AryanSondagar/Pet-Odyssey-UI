@@ -298,13 +298,13 @@
                 <div class="pet-photo">
                     <swiper-container pagination="true" space-between="10" slides-per-view="1">
 
-                        <swiper-slide *ngFor="let url of pet.petImages">
+                        <swiper-slide *ngFor="let url of pet.images">
                             <div class="product-image">
                                 <img [src]="getImageUrl(url)" alt="{{ pet.petName }}">
                             </div>
                         </swiper-slide>
                     </swiper-container>
-                    <span class="price-badge">₹{{ pet.petsellingprice }}</span>
+                    <span class="price-badge">{{ pet.petSellingPrice | currency:'INR' }}</span>
                 </div>
 
                 <!-- Pet Details -->
