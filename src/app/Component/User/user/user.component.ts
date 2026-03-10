@@ -98,16 +98,19 @@ export class UserComponent {
       }
     });
   }
-  adoptPet(adopt: AdoptionForm){
-    if (!adopt._id) return;
-    this.adoptService.getAdoptionById(adopt._id).subscribe({
-      next: (res: AdoptionForm) => {
-        this.selectedPet = res;
-        this.route.navigate(['/pet-detail', res._id]);
-      },
-      error: (err) => {
-        console.error('Error fetching course by id:', err);
-      }
-    });
-  }
+  // adoptPet(adopt: AdoptionForm){
+  //   if (!adopt._id) return;
+  //   this.adoptService.getAdoptionById(adopt._id).subscribe({
+  //     next: (res: AdoptionForm) => {
+  //       this.selectedPet = res;
+  //       this.route.navigate(['/pet-detail', res._id]);
+  //     },
+  //     error: (err) => {
+  //       console.error('Error fetching course by id:', err);
+  //     }
+  //   });
+  // }
+  adoptPet(pet: AdoptionForm) {
+  this.route.navigate(['/pet-detail', pet._id]);
+}
 }

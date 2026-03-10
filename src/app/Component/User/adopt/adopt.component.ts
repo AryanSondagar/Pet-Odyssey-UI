@@ -10,41 +10,44 @@ import { AdminAdoptionService } from 'src/app/Services/admin-adoption.service';
   styleUrl: './adopt.component.scss'
 })
 export class AdoptComponent {
-    mainImage: any = '';
+  mainImage: any = '';
   adopt?: AdoptionForm;
   adoptionForm!: FormGroup;
-  constructor(private adoptService: AdminAdoptionService , private route: ActivatedRoute, private fb: FormBuilder) { }
+  constructor(private adoptService: AdminAdoptionService, private route: ActivatedRoute, private fb: FormBuilder) { }
 
-  ngOnInit(): void { 
+  ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');
     if (id) {
-       this.adoptService.getAdoptionById(id).subscribe({
+      this.adoptService.getAdoptionById(id).subscribe({
         next: (res) => {
           this.adopt = res;
-           if (this.adopt?.petImages?.length > 0) {
+          if (this.adopt?.petImages?.length > 0) {
             this.mainImage = this.getImageUrl(this.adopt.petImages[0]);
           }
           console.log(this.adopt);
-          
+
         },
         error: (err) => console.error('Error loading adopt:', err)
       });
     }
-     this.adoptionForm = this.fb.group({
+    this.adoptionForm = this.fb.group({
       name: ['', Validators.required],
-      mobileNumber: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      phone: ['', Validators.required],
       address: ['', Validators.required],
-      reason: ['', Validators.required]
+      reason: ['', Validators.required],
+      isAdult: [false, Validators.requiredTrue],
+      hasPets: [false]
     });
   }
-    getImageUrl(img: any): string {
+  getImageUrl(img: any): string {
     // Prepend the host if your imageUrl is relative
     return 'http://localhost:5093' + img.imageUrl;
   }
-  onSubmit(){
-    
+  onSubmit() {
+
   }
-    changeImage(img: any) {
+  changeImage(img: any) {
     this.mainImage = this.getImageUrl(img);
   }
 
