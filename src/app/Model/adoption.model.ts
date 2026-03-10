@@ -4,7 +4,11 @@ export interface AdoptionForm {
     petCategory: string;
     petBreed: string;
     petAge: number;
-    petsellingprice: number;
-    owner_MobileNumber: string;
-    petImages: File[]; // Images
+    petSellingPrice: number;
+    ownerMobileNumber: string;
+    // returned from API
+    images?: string[];
+
+    // used only when uploading
+    petImages?: File[];
 };

@@ -19,10 +19,10 @@ export class AdoptComponent {
     const id = this.route.snapshot.paramMap.get('id');
     if (id) {
       this.adoptService.getAdoptionById(id).subscribe({
-        next: (res) => {
-          this.adopt = res;
-          if (this.adopt?.petImages?.length > 0) {
-            this.mainImage = this.getImageUrl(this.adopt.petImages[0]);
+        next: (res: any) => {
+          this.adopt = res.data;
+          if (this.adopt?.images && this.adopt.images.length > 0) {
+            this.mainImage = this.getImageUrl(this.adopt.images[0]);
           }
           console.log(this.adopt);
 
@@ -42,7 +42,7 @@ export class AdoptComponent {
   }
   getImageUrl(img: any): string {
     // Prepend the host if your imageUrl is relative
-    return 'http://localhost:5093' + img.imageUrl;
+    return `http://localhost:3000/${img.replace(/\\/g, '/')}`;
   }
   onSubmit() {
 

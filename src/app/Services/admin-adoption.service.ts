@@ -25,8 +25,8 @@ export class AdminAdoptionService {
     formData.append('petCategory', form.petCategory);
     formData.append('petBreed', form.petBreed);
     formData.append('petAge', form.petAge.toString());
-    formData.append('petSellingPrice', form.petsellingprice.toString());
-    formData.append('ownerMobileNumber', form.owner_MobileNumber);
+    formData.append('petSellingPrice', form.petSellingPrice.toString());
+    formData.append('ownerMobileNumber', form.ownerMobileNumber);
     if (form.petImages && form.petImages.length > 0) {
       form.petImages.forEach(file => {
         formData.append('petImages', file, file.name);

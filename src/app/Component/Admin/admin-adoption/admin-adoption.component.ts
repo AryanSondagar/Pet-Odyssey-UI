@@ -54,8 +54,8 @@ export class AdminAdoptionComponent implements OnInit {
       petCategory: this.adoptionForm.get('petCategory')?.value,
       petBreed: this.adoptionForm.get('petBreed')?.value,
       petAge: this.adoptionForm.get('petAge')?.value,
-      petsellingprice: this.adoptionForm.get('petsellingprice')?.value,
-      owner_MobileNumber: this.adoptionForm.get('owner_MobileNumber')?.value,
+      petSellingPrice: this.adoptionForm.get('petsellingprice')?.value,
+      ownerMobileNumber: this.adoptionForm.get('owner_MobileNumber')?.value,
       petImages: this.selectedFiles.map(f => f.file)   // take only File objects
     };
     this.adoptionService.addAdoptionPet(newProduct).subscribe({

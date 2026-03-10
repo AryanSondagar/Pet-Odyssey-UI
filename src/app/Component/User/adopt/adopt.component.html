@@ -5,7 +5,7 @@
     <div class="col-lg-5 col-md-12 col-12">
       <img class="img-fluid w-100 pb-1" [src]="mainImage" alt="Product Main">
       <div class="small-img-group">
-        <div class="small-img-col" *ngFor="let img of adopt?.petImages">
+        <div class="small-img-col" *ngFor="let img of adopt?.images">
           <img [src]="getImageUrl(img)" class="small-img" width="100%" alt="" (click)="changeImage(img)">
         </div>
       </div>
@@ -18,8 +18,8 @@
         <h6 class="text-muted mb-1" color="#fff">{{adopt?.petCategory}} • {{adopt?.petBreed}}</h6>
         <p class="mb-1"><strong>Age:</strong> {{adopt?.petAge}} *In month</p>
         <p class="mb-1"><strong>Breed:</strong> {{adopt?.petBreed}}</p>
-        <p class="mb-1"><strong>price:</strong> {{adopt?.petsellingprice |currency:'INR'}}</p>
-        <p class="mb-3"><strong>Contact:</strong> {{adopt?.owner_MobileNumber}}</p>
+        <p class="mb-1"><strong>price:</strong> {{adopt?.petSellingPrice |currency:'INR'}}</p>
+        <p class="mb-3"><strong>Contact:</strong> {{adopt?.ownerMobileNumber}}</p>
 
         <!-- Adoption Guidelines -->
         <h5><strong>Adoption Process</strong></h5>

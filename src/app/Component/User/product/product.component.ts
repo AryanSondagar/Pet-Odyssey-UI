@@ -18,9 +18,9 @@ export class ProductComponent {
     const id = this.route.snapshot.paramMap.get('id');
     if (id) {
       this.productService.getProductById(id).subscribe({
-        next: (res) => {
-          this.product = res;
-          if (this.product?.productImages?.length > 0) {
+        next: (res: any) => {
+          this.product = res.product;
+          if (this.product && this.product.productImages?.length) {
             this.mainImage = this.getImageUrl(this.product.productImages[0]);
           }
           console.log(this.product);
@@ -31,7 +31,7 @@ export class ProductComponent {
   }
   getImageUrl(img: any): string {
     // Prepend the host if your imageUrl is relative
-    return 'http://localhost:5093' + img.imageUrl;
+    return `http://localhost:3000/${img.replace(/\\/g, '/')}`;
   }
   changeImage(img: any) {
     this.mainImage = this.getImageUrl(img);

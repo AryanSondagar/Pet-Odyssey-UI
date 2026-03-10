@@ -26,8 +26,8 @@ export class AdminMarketplaceService {
   formData.append('productStock', newProduct.productStock.toString());
   formData.append('productDescription', newProduct.productDescription);
 
-  if (newProduct.productImages && newProduct.productImages.length > 0) {
-    newProduct.productImages.forEach((file:File) => {
+  if (newProduct.images && newProduct.images.length > 0) {
+    newProduct.images.forEach((file:File) => {
       formData.append('productImages', file); // must match backend property
     });
   }

@@ -77,7 +77,7 @@ export class AdminMarketplaceComponent implements OnInit {
       productPrice: this.marketplaceForm.get('productPrice')?.value,
       productStock: this.marketplaceForm.get('productStock')?.value,
       productDescription: this.marketplaceForm.get('productDescription')?.value,
-      productImages: this.selectedFiles.map(f => f.file)   // take only File objects
+      images: this.selectedFiles.map(f => f.file)   // take only File objects
     };
 
     this.marketplaceService.addProduct(newProduct).subscribe({
