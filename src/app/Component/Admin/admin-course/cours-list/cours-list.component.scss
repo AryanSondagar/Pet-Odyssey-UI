@@ -1,18 +1,548 @@
-:host{
-    .container {
-        height: calc(100vh - 100px);
-        font-size: 16px;
-        border-radius: 10px;
-        overflow: hidden;
+:host {
+  $brand: #006b72;
+  $brand-dark: #004d52;
+  $brand-light: #e0f4f5;
+  $brand-mid: #008a93;
+  $white: #ffffff;
+  $text-primary: #1a2e2f;
+  $text-muted: #5a7b7e;
+  $border: #b2d8db;
+
+  // ── Page ──────────────────────────────────────────────────
+  .page-wrapper {
+    height: calc(100vh - 64px);
+    overflow: hidden;
+    background: linear-gradient(135deg, #e8f7f8 0%, #f5feff 100%);
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 2rem 1rem;
+  }
+
+  .list-container {
+    width: 100%;
+    max-width: 960px;
+    max-height: 100%;
+    display: flex;
+    flex-direction: column;
+    background: $white;
+    border-radius: 18px;
+    border: 1px solid $border;
+    box-shadow: 0 8px 32px rgba(0, 107, 114, 0.08);
+    overflow: hidden;
+  }
+
+  // ── Header ────────────────────────────────────────────────
+  .list-header {
+    background: $brand;
+    padding: 1.5rem 2rem;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-shrink: 0;
+
+    .header-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.18);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      mat-icon {
+        color: $white;
+        font-size: 26px;
+        width: 26px;
+        height: 26px;
       }
-      .title {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        border-bottom: 1px solid gray;
-        margin: 2% 20% 2% 20%;
+    }
+
+    .header-text {
+      h1 {
+        color: $white;
+        font-size: 20px;
+        font-weight: 600;
+        margin: 0 0 3px;
       }
-      table {
-        width: 100%;
+
+      p {
+        color: rgba(255, 255, 255, 0.7);
+        font-size: 13px;
+        margin: 0;
       }
+    }
+  }
+
+  // ── Table card ────────────────────────────────────────────
+  .table-card {
+    flex: 1;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    scrollbar-width: thin;
+    scrollbar-color: $brand-mid transparent;
+
+    &::-webkit-scrollbar {
+      width: 5px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: $brand-mid;
+      border-radius: 4px;
+    }
+  }
+
+  // ── Toolbar ───────────────────────────────────────────────
+  .table-toolbar {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 1rem 1.5rem 0.5rem;
+
+    .search-field {
+      flex: 1;
+    }
+
+    .total-badge {
+      background: $brand-light;
+      color: $brand-dark;
+      font-size: 12px;
+      font-weight: 600;
+      padding: 4px 12px;
+      border-radius: 20px;
+      white-space: nowrap;
+    }
+  }
+
+  // ── Table ─────────────────────────────────────────────────
+  .table-wrapper {
+    overflow-x: auto;
+    flex: 1;
+  }
+
+  table {
+    width: 100%;
+
+    .mat-mdc-header-row {
+      background: $brand-light;
+    }
+
+    .mat-mdc-header-cell {
+      color: $brand-dark !important;
+      font-size: 12px !important;
+      font-weight: 700 !important;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      border-bottom: 1.5px solid $border !important;
+    }
+
+    .mat-mdc-row {
+      transition: background 0.15s;
+
+      &:hover {
+        background: #f5feff;
+      }
+    }
+
+    .mat-mdc-cell {
+      color: $text-primary;
+      font-size: 14px;
+      border-bottom: 0.5px solid $border !important;
+    }
+  }
+
+  // Location cell
+  .location-cell {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+
+    mat-icon {
+      font-size: 15px;
+      width: 15px;
+      height: 15px;
+      color: $brand-mid;
+      flex-shrink: 0;
+    }
+  }
+
+  // Category chip
+  .category-chip {
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 500;
+    background: $brand-light;
+    color: $brand-dark;
+    white-space: nowrap;
+  }
+
+  // Price
+  .price-text {
+    font-weight: 600;
+    color: $brand-dark;
+  }
+
+  // Date
+  .date-text {
+    font-size: 13px;
+    color: $text-muted;
+  }
+
+  // Action buttons
+  .action-btns {
+    display: flex;
+    gap: 4px;
+
+    .edit-btn {
+      color: $brand !important;
+
+      &:hover {
+        background: $brand-light !important;
+      }
+    }
+
+    .delete-btn {
+      color: #c62828 !important;
+
+      &:hover {
+        background: #ffebee !important;
+      }
+    }
+  }
+
+  // No data
+  .no-data-row .no-data-cell {
+    text-align: center;
+    padding: 2.5rem !important;
+    color: $text-muted;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+
+    mat-icon {
+      font-size: 36px;
+      width: 36px;
+      height: 36px;
+      color: $border;
+    }
+  }
+
+  mat-paginator {
+    border-top: 0.5px solid $border;
+    flex-shrink: 0;
+  }
+
+  // ── Angular Material overrides ────────────────────────────
+  ::ng-deep .mat-mdc-form-field {
+
+    .mdc-notched-outline__leading,
+    .mdc-notched-outline__notch,
+    .mdc-notched-outline__trailing {
+      border-color: $border !important;
+      border-width: 1.5px !important;
+    }
+
+    &:hover .mdc-notched-outline__leading,
+    &:hover .mdc-notched-outline__notch,
+    &:hover .mdc-notched-outline__trailing {
+      border-color: $brand-mid !important;
+    }
+
+    &.mat-focused .mdc-notched-outline__leading,
+    &.mat-focused .mdc-notched-outline__notch,
+    &.mat-focused .mdc-notched-outline__trailing {
+      border-color: $brand !important;
+      border-width: 2px !important;
+    }
+
+    .mat-mdc-floating-label,
+    .mdc-floating-label {
+      color: $text-muted !important;
+    }
+
+    &.mat-focused .mat-mdc-floating-label,
+    &.mat-focused .mdc-floating-label {
+      color: $brand !important;
+    }
+
+    .mat-mdc-form-field-icon-prefix mat-icon {
+      color: $brand-mid;
+      font-size: 18px;
+      margin-right: 4px;
+    }
+
+    .mdc-text-field__input {
+      color: $text-primary !important;
+    }
+  }
+
+  // ── Edit Dialog ───────────────────────────────────────────
+  .dialog-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+    z-index: 200;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+  }
+
+  .dialog-card {
+    background: $white;
+    border-radius: 16px;
+    width: 100%;
+    max-width: 600px;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+    scrollbar-width: thin;
+    scrollbar-color: $brand-mid transparent;
+  }
+
+  .dialog-header {
+    background: $brand;
+    padding: 1.25rem 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    border-radius: 16px 16px 0 0;
+
+    .dialog-header-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.18);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+
+      mat-icon {
+        color: $white;
+        font-size: 22px;
+      }
+    }
+
+    h2 {
+      color: $white;
+      font-size: 17px;
+      font-weight: 600;
+      margin: 0 0 2px;
+    }
+
+    p {
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 12px;
+      margin: 0;
+    }
+
+    .dialog-close {
+      margin-left: auto;
+      color: rgba(255, 255, 255, 0.8) !important;
+
+      &:hover {
+        color: $white !important;
+      }
+    }
+  }
+
+  .dialog-body {
+    padding: 1.5rem;
+  }
+
+  .dialog-section-label {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: $brand-dark;
+    margin: 12px 0 8px;
+
+    mat-icon {
+      font-size: 14px;
+      width: 14px;
+      height: 14px;
+      color: $brand;
+    }
+  }
+
+  .dialog-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin-bottom: 4px;
+
+    @media (max-width: 480px) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .field-full {
+    width: 100%;
+  }
+
+  .field-small {
+    flex: 1;
+  }
+
+  // ── Slots in dialog ───────────────────────────────────────
+  .slots-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 10px;
+  }
+
+  .slot-chip {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: $brand;
+    color: $white;
+    border-radius: 50px;
+    padding: 4px 6px 4px 12px;
+    font-size: 13px;
+    font-weight: 500;
+
+    mat-icon {
+      font-size: 14px;
+      width: 14px;
+      height: 14px;
+    }
+
+    .remove-slot {
+      width: 22px;
+      height: 22px;
+      line-height: 22px;
+      color: rgba(255, 255, 255, 0.75) !important;
+
+      mat-icon {
+        font-size: 15px;
+        width: 15px;
+        height: 15px;
+      }
+
+      &:hover mat-icon {
+        color: #ff6b6b !important;
+      }
+    }
+  }
+
+  .no-slot-text {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 12px;
+    color: $text-muted;
+    margin-bottom: 10px;
+
+    mat-icon {
+      font-size: 14px;
+      width: 14px;
+      height: 14px;
+    }
+  }
+
+  .add-slot-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 6px;
+  }
+
+  .btn-add-slot {
+    height: 42px;
+    padding: 0 16px;
+    border-radius: 8px;
+    border: 1.5px solid $brand;
+    background: $brand-light;
+    color: $brand;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    white-space: nowrap;
+    transition: background 0.15s;
+
+    mat-icon {
+      font-size: 16px;
+      width: 16px;
+      height: 16px;
+    }
+
+    &:hover {
+      background: $brand;
+      color: $white;
+    }
+
+    &:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+  }
+
+  // ── Dialog actions ────────────────────────────────────────
+  .dialog-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 1.25rem;
+
+    .btn-cancel {
+      height: 42px;
+      padding: 0 20px;
+      border-radius: 8px;
+      border: 1.5px solid $border;
+      background: $white;
+      color: $text-muted;
+      font-size: 14px;
+      cursor: pointer;
+      transition: border-color 0.15s;
+
+      &:hover {
+        border-color: $brand-mid;
+        color: $brand;
+      }
+    }
+
+    .btn-save {
+      height: 42px;
+      padding: 0 22px;
+      border-radius: 8px;
+      border: none;
+      background: $brand;
+      color: $white;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: background 0.15s;
+
+      mat-icon {
+        font-size: 17px;
+        width: 17px;
+        height: 17px;
+      }
+
+      &:hover {
+        background: $brand-dark;
+      }
+
+      &:disabled {
+        background: #9ab8ba;
+        cursor: not-allowed;
+      }
+    }
+  }
 }

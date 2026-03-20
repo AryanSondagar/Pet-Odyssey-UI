@@ -32,4 +32,7 @@ export class AdminCourseService {
   getSelectedSlot(): string {
     return this.selectedSlotSubject.getValue();
   }
+  updateCourse(id: string, data: any): Observable<any> {
+  return this.http.put(`${this.apiUrl}/${id}`, data);
+}
 }

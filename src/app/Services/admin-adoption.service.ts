@@ -41,5 +41,24 @@ export class AdminAdoptionService {
   applyForAdoption(data: any): Observable<any> {
     return this.http.post(`${this.apiUrl}/apply`, data);
   }
+  updateAdoption(id: string, data: AdoptionForm): Observable<any> {
+    const formData = new FormData();
+
+    formData.append('petName', data.petName);
+    formData.append('petCategory', data.petCategory);
+    formData.append('petBreed', data.petBreed);
+    formData.append('petAge', String(data.petAge));
+    formData.append('petSellingPrice', String(data.petSellingPrice));
+    formData.append('ownerMobileNumber', String(data.ownerMobileNumber));
+
+    // Append new images only if provided
+    if (data.petImages && data.petImages.length > 0) {
+      data.petImages.forEach((file: File) => {
+        formData.append('images', file, file.name);
+      });
+    }
+
+    return this.http.put(`${this.apiUrl}/${id}`, formData);
+  }
 
 }
