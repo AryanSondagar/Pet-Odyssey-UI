@@ -1,404 +1,375 @@
 <app-header></app-header>
 
-<!-- product section -->
-<section class="product_section  py-5">
-    <swiper-container space-between="30" slides-per-view="3" style="background: #fff;">
-        <swiper-slide *ngFor="let p of Product">
-            <div class="product-card">
-                <div class="product-tilt-effect">
-                    <swiper-container pagination="true" pagination-clickable="true" space-between="30"
-                        slides-per-view="1" autoplay="true">
-                        <swiper-slide *ngFor="let url of p.productImages">
-                            <div class="product-image">
-                                <img [src]="getImageUrl(url)" [alt]="p.productName">
-                            </div>
-                        </swiper-slide>
-                    </swiper-container>
-                </div>
-                <div class="product-info">
-                    <div class="product-category">{{p.productCategory}}</div>
-                    <h2 class="product-title">{{p.productName}}</h2>
-                    <div class="product-description">
-                        <p>{{p.productDescription}}</p>
-                    </div>
-                    <div class="product-bottom">
-                        <div class="product-price">
-                            <span class="price-now">{{p.productPrice | currency:'INR'}}</span>
-                        </div>
-                        <div class="stock">{{p.productStock}} item left</div>
-                    </div>
-                    <div class="product-meta">
-                        <button class="product-button" (click)="productDetail(p)">
-                            <span class="button-text">View Details</span>
-                            <svg class="button-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
-                                <line x1="3" y1="6" x2="21" y2="6"></line>
-                                <path d="M16 10a4 4 0 0 1-8 0"></path>
-                            </svg>
-                        </button>
-                        <div class="product-stock">In Stock</div>
-                    </div>
-                </div>
-            </div>
-        </swiper-slide>
-    </swiper-container>
-</section>
-
-
-
-
-
-<!-- about section -->
-
-<section class="about_section layout_padding" id="about">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-6">
-                <div class="img-box">
-                    <img src="./../../../../assets/image/about-img.jpg" alt="" />
-                </div>
-            </div>
-            <div class="col-lg-6">
-                <div class="detail-box">
-                    <div class="heading_container">
-                        <h2>
-                            About Us
-                            <hr>
-                        </h2>
-                    </div>
-                    <p>
-                        Welcome to PetOdessey! We are your one-stop destination for all things pet-related. Whether
-                        you’re looking to adopt a new furry friend, buy a pet, enroll in training courses, or shop for
-                        high-quality pet products, we’ve got you covered. Our mission is to ensure every pet finds a
-                        loving home and receives the best care possible. Join our community and experience the joy of
-                        pet companionship with PetOdessey!
-                    </p>
-                    <a href="">
-                        <span>
-                            Read More
-                        </span>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- end about section -->
-
-<section class="Training" id="training">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"
-        style="background-color: #fff; margin-bottom: -100px;">
-        <path fill="#5aa469" fill-opacity="1"
-            d="M0,64L80,74.7C160,85,320,107,480,101.3C640,96,800,64,960,58.7C1120,53,1280,75,1360,85.3L1440,96L1440,320L1360,320C1280,320,1120,320,960,320C800,320,640,320,480,320C320,320,160,320,80,320L0,320Z">
-        </path>
-    </svg>
-
-    <div class="blogs" id="blog">
-        <div class="imgsection">
-            <div class="img1">
-                <img src="./../../../../assets/image/blogss-1.png" alt="">
-            </div>
-            <div class="img2">
-                <img src="./../../../../assets/image/blogss-2.png" alt="">
-            </div>
-            <div class="img3">
-                <img src="./../../../../assets/image/blogss-3.png" alt="">
-            </div>
-            <div class="img4">
-                <img src="./../../../../assets/image/img4.jpeg" alt="">
-            </div>
-            <div class="img5">
-                <img src="./../../../../assets/image/img5.jpeg" alt="">
-            </div>
-            <div class="img6">
-                <img src="./../../../../assets/image/img6.jpeg" alt="">
-            </div>
-
-        </div>
-    </div>
-
-    <div class="cont">
-        <h1>Training Schedule</h1>
-        <ul class="schedule">
-            <li *ngFor="let s of seminars" (click)="selectSeminar(s)">
-                {{ s.city }}, {{ s.state }} – {{ s.courseDate | date:'MMM d' }}
-            </li>
-            <li *ngIf="seminars.length == 0">
-                Seminar not available at the moment
-            </li>
-        </ul>
-    </div>
-
-    <div class="cards">
-        <!-- 1st card -->
-        <div class="card card-1">
-            <div class="heading">Without Dog (Observe)</div>
-            <div class="price-tag">
-                <p class="price-amount">
-                    $100<span class="price-type">/Session (USD)</span>
-                </p>
-            </div>
-            <div class="items">
-                <ul>
-                    <li>Group Seminar led by The Dog Daddy</li>
-                    <li>Observe Dog Daddy work with each dog</li>
-                    <li>Learn techniques to take home</li>
-                    <li>Easy to book your spot</li>
-                </ul>
-            </div>
-            <div class="button">
-                <a href="#" class="btn th-btn">Sign Up to Observe</a>
-            </div>
-        </div>
-
-        <!-- 2nd card -->
-        <div class="card card-2">
-            <div class="heading c2-h">Group Training</div>
-            <div class="price-tag">
-                <p class="price-amount c2-h">
-                    $400<span class="price-type">/Session (USD)</span>
-                </p>
-            </div>
-            <div class="items c2-h">
-                <ul>
-                    <li>Group seminar led by The Dog Daddy</li>
-                    <li>Learn and practice with your dog</li>
-                    <li>Individual attention given to each dog</li>
-                    <li>Easy to book your spot</li>
-                </ul>
-            </div>
-            <div class="button c2btn">
-                <a href="#" class="btn th-btn c2-btn">Sign Up to Bring your Dog</a>
-            </div>
-        </div>
-
-        <!-- last card -->
-        <div class="card card-3">
-            <div class="heading">Private Training</div>
-            <div class="price-tag">
-                <p class="price-amount">
-                    $1500<span class="price-type">/Session (USD)</span>
-                </p>
-            </div>
-            <div class="items">
-                <ul>
-                    <li>Private training with The Dog Daddy</li>
-                    <li>This session covers all the dogs you own</li>
-                    <li>Customized and flexible training</li>
-                    <li>Select cities only</li>
-                </ul>
-            </div>
-            <div class="button">
-                <a href="#" class="btn th-btn">Sign Up for Private Class</a>
-            </div>
-        </div>
-    </div>
-
-
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" style="background-color: #fff;">
-        <path fill="#5aa469" fill-opacity="1"
-            d="M0,64L80,74.7C160,85,320,107,480,101.3C640,96,800,64,960,58.7C1120,53,1280,75,1360,85.3L1440,96L1440,0L1360,0C1280,0,1120,0,960,0C800,0,640,0,480,0C320,0,160,0,80,0L0,0Z">
-        </path>
-    </svg>
-
-
-
-</section>
-
-<!-- wedo section -->
-
-<section class="wedo_section layout_padding-bottom" id="What-do">
-    <div class="container">
-        <div class="heading_container heading_center">
-            <h2>
-                <hr>
-                What We Do
-                <hr>
-            </h2>
-            <p>
-                It is a long established fact that a reader will be distracted by
-                the readable content of a page when looking at its layout. The point
-                of using Lorem
-            </p>
-        </div>
-        <div class="row">
-            <div class="col-md-4">
-                <div class="box">
-                    <div class="img-box">
-                        <img src="./../../../../assets/image/s1.png" alt="">
-                    </div>
-                    <div class="detail-box">
-                        <h6>
-                            Pet Adoption
-                        </h6>
-                        <p>
-                            Discover your perfect pet companion with PetOdyssey! Explore our diverse selection of
-                            lovable pets waiting for a forever home. Adopt today and embark on a heartwarming journey
-                            together.
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="box">
-                    <div class="img-box">
-                        <img src="./../../../../assets/image/s2.png" alt="">
-                    </div>
-                    <div class="detail-box">
-                        <h6>
-                            Pet Care
-                        </h6>
-                        <p>
-                            At PetOdyssey, we offer top-notch pet care services to ensure your furry friends are healthy
-                            and happy. From grooming to veterinary care, trust us to provide the best for your pets.
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="box">
-                    <div class="img-box">
-                        <img src="./../../../../assets/image/s3.png" alt="">
-                    </div>
-                    <div class="detail-box">
-                        <h6>
-                            Pet Training
-                        </h6>
-                        <p>
-                            Enhance your pet's behavior with PetOdyssey's expert training courses. Our certified
-                            trainers use positive reinforcement techniques to teach essential skills and good manners,
-                            ensuring a well-behaved and happy pet.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- end wedo section -->
-
-<!-- adoption section -->
-
-<section class="adoption-swiper  py-5">
-    <h2 class="mb-4 text-center fw-bold">🐾 Available Pets for Adoption</h2>
-
-    <!-- Main Swiper -->
-    <swiper-container class="pr-10 pl-10" pagination="true" pagination-clickable="true" navigation="true"
-        space-between="30" slides-per-view="1" autoplay="true">
-
-        <!-- Loop Pets -->
-        <swiper-slide *ngFor="let pet of adopt">
-            <div class="pet-showcase shadow-lg">
-
-                <!-- Pet Images Swiper (nested) -->
-                <div class="pet-photo">
-                    <swiper-container pagination="true" space-between="10" slides-per-view="1">
-
-                        <swiper-slide *ngFor="let url of pet.images">
-                            <div class="product-image">
-                                <img [src]="getImageUrl(url)" alt="{{ pet.petName }}">
-                            </div>
-                        </swiper-slide>
-                    </swiper-container>
-                    <span class="price-badge">{{ pet.petSellingPrice | currency:'INR' }}</span>
-                </div>
-
-                <!-- Pet Details -->
-                <div class="pet-details">
-                    <h4>{{ pet.petName | titlecase }}</h4>
-                    <p class="text-muted mb-1"><strong>Breed:</strong> {{ pet.petBreed }}</p>
-                    <p class="mb-1"><strong>Category:</strong> {{ pet.petCategory | titlecase }}</p>
-                    <p class="mb-1"><strong>Age:</strong> {{ pet.petAge }} months</p>
-                    <button class="btn btn-adopt mt-2" (click)="adoptPet(pet)">Adopt Me ❤️</button>
-                </div>
-
-            </div>
-        </swiper-slide>
-
-    </swiper-container>
-</section>
-
-
-
-<!-- gallery section -->
-
-<div class="gallery_section" id="gallery">
-    <div class="container-fluid">
-        <div class="heading_container heading_center">
-            <h2>
-                <hr>
-                Gallery
-                <hr>
-            </h2>
-        </div>
-        <div class="row">
-            <div class=" col-sm-8 col-md-6 px-0">
-                <div class="img-box">
-                    <img src="./../../../../assets/image/g1.jpg" alt="">
-                    <div class="btn-box">
-                        <a href="./../../../../assets/image/g1.jpg" data-toggle="lightbox" class="btn-1">
-                            <i class="fa fa-picture-o" aria-hidden="true"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-4 col-md-3 px-0">
-                <div class="img-box">
-                    <img src="./../../../../assets/image/g2.jpg" alt="">
-                    <div class="btn-box">
-                        <a href="./../../../../assets/image/g2.jpg" data-toggle="lightbox" class="btn-1">
-                            <i class="fa fa-picture-o" aria-hidden="true"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-6 col-md-3 px-0">
-                <div class="img-box">
-                    <img src="./../../../../assets/image/g3.jpg" alt="">
-                    <div class="btn-box">
-                        <a href="./../../../../assets/image/g3.jpg" data-toggle="lightbox" class="btn-1">
-                            <i class="fa fa-picture-o" aria-hidden="true"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-6 col-md-3 px-0">
-                <div class="img-box">
-                    <img src="./../../../../assets/image/g4.jpg" alt="">
-                    <div class="btn-box">
-                        <a href="./../../../../assets/image/g4.jpg" data-toggle="lightbox" class="btn-1">
-                            <i class="fa fa-picture-o" aria-hidden="true"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-4 col-md-3 px-0">
-                <div class="img-box">
-                    <img src="./../../../../assets/image/g5.jpg" alt="">
-                    <div class="btn-box">
-                        <a href="./../../../../assets/image/g5.jpg" data-toggle="lightbox" class="btn-1">
-                            <i class="fa fa-picture-o" aria-hidden="true"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-8 col-md-6 px-0">
-                <div class="img-box">
-                    <img src="./../../../../assets/image/g6.jpg" alt="">
-                    <div class="btn-box">
-                        <a href="./../../../../assets/image/g6.jpg" data-toggle="lightbox" class="btn-1">
-                            <i class="fa fa-picture-o" aria-hidden="true"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+<!-- ═══════════════════════════════════════════════════
+     MARQUEE TICKER
+═══════════════════════════════════════════════════ -->
+<div class="ticker-wrap" aria-hidden="true">
+  <div class="ticker-track">
+    <span>🐶 Pet Adoption</span><span class="dot">·</span>
+    <span>🎓 Expert Training</span><span class="dot">·</span>
+    <span>🛍️ Pet Products</span><span class="dot">·</span>
+    <span>🐱 Pet Care</span><span class="dot">·</span>
+    <span>🏠 Forever Homes</span><span class="dot">·</span>
+    <span>🐶 Pet Adoption</span><span class="dot">·</span>
+    <span>🎓 Expert Training</span><span class="dot">·</span>
+    <span>🛍️ Pet Products</span><span class="dot">·</span>
+    <span>🐱 Pet Care</span><span class="dot">·</span>
+    <span>🏠 Forever Homes</span><span class="dot">·</span>
+    <span>🐶 Pet Adoption</span><span class="dot">·</span>
+    <span>🎓 Expert Training</span><span class="dot">·</span>
+    <span>🛍️ Pet Products</span><span class="dot">·</span>
+    <span>🐱 Pet Care</span><span class="dot">·</span>
+    <span>🏠 Forever Homes</span><span class="dot">·</span>
+  </div>
 </div>
 
-<!-- end gallery section -->
+<!-- ═══════════════════════════════════════════════════
+     STATS BAR
+═══════════════════════════════════════════════════ -->
+<section class="stats-bar" id="stats-bar">
+  <div class="container">
+    <div class="stats-inner">
+      <div class="stat-item gsap-stat">
+        <span class="stat-num" data-count="500">0</span><span class="stat-plus">+</span>
+        <span class="stat-lbl">Pets Adopted</span>
+      </div>
+      <div class="stat-sep"></div>
+      <div class="stat-item gsap-stat">
+        <span class="stat-num" data-count="1200">0</span><span class="stat-plus">+</span>
+        <span class="stat-lbl">Happy Families</span>
+      </div>
+      <div class="stat-sep"></div>
+      <div class="stat-item gsap-stat">
+        <span class="stat-num" data-count="50">0</span><span class="stat-plus">+</span>
+        <span class="stat-lbl">Expert Trainers</span>
+      </div>
+      <div class="stat-sep"></div>
+      <div class="stat-item gsap-stat">
+        <span class="stat-num" data-count="98">0</span><span class="stat-plus">%</span>
+        <span class="stat-lbl">Satisfaction Rate</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════
+     PRODUCTS SECTION
+═══════════════════════════════════════════════════ -->
+<section class="sec products-sec" id="products">
+  <div class="container">
+    <div class="sec-head gsap-section-head">
+      <span class="sec-tag">Our Shop</span>
+      <h2 class="sec-title">Premium Pet <span class="hi">Products</span></h2>
+      <p class="sec-sub">Curated essentials for your beloved companions — quality you can trust.</p>
+    </div>
+  </div>
+
+  <div class="products-reel">
+    <swiper-container space-between="24"
+      breakpoints='{"480":{"slidesPerView":1},"768":{"slidesPerView":2},"1100":{"slidesPerView":3}}'>
+      <swiper-slide *ngFor="let p of Product; let i = index" class="gsap-product-card">
+        <div class="pcard">
+          <div class="pcard-img-wrap">
+            <swiper-container pagination="true" pagination-clickable="true" slides-per-view="1" autoplay="true">
+              <swiper-slide *ngFor="let url of p.productImages">
+                <img [src]="getImageUrl(url)" [alt]="p.productName" class="pcard-img" />
+              </swiper-slide>
+            </swiper-container>
+            <div class="pcard-overlay"></div>
+            <span class="pcard-badge">{{p.productCategory}}</span>
+          </div>
+          <div class="pcard-body">
+            <h3 class="pcard-name">{{p.productName}}</h3>
+            <p class="pcard-desc">{{p.productDescription}}</p>
+            <div class="pcard-foot">
+              <div class="pcard-price-col">
+                <span class="pcard-price">{{p.productPrice | currency:'INR'}}</span>
+                <span class="pcard-stock">{{p.productStock}} left</span>
+              </div>
+              <button class="pcard-btn" (click)="productDetail(p)">
+                View
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </swiper-slide>
+    </swiper-container>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════
+     ABOUT SECTION
+═══════════════════════════════════════════════════ -->
+<section class="sec about-sec" id="about">
+  <div class="about-blob" aria-hidden="true"></div>
+  <div class="container">
+    <div class="about-grid">
+
+      <!-- Visual stack -->
+      <div class="about-visual" id="about-visual">
+        <div class="av-main"><img src="./../../../../assets/image/about-img.jpg" alt="About PetOdyssey" id="about-img-parallax" /></div>
+        <div class="av-accent"><img src="./../../../../assets/image/blogss-1.png" alt="" /></div>
+        <div class="av-badge" id="av-badge">
+          <span class="avb-num">10K+</span>
+          <span class="avb-lbl">Happy Pets</span>
+        </div>
+        <div class="av-ring" aria-hidden="true"></div>
+      </div>
+
+      <!-- Text -->
+      <div class="about-txt" id="about-txt">
+        <span class="sec-tag">Who We Are</span>
+        <h2 class="sec-title">We Care For Every<br><span class="hi">Paw & Whisker</span></h2>
+        <p class="about-p">
+          Welcome to <strong>PetOdyssey!</strong> We are your one-stop destination for all things pet-related.
+          Whether you're looking to adopt a new furry friend, enroll in training courses, or shop for
+          high-quality pet products — we've got you covered.
+        </p>
+        <p class="about-p">
+          Our mission is to ensure every pet finds a loving home and receives the best care possible.
+          Join our community and experience the joy of pet companionship.
+        </p>
+        <div class="about-feats">
+          <div class="afeat" id="afeat-0">
+            <div class="afeat-icon">🐶</div>
+            <div><strong>Pet Adoption</strong><br><small>Find your forever friend</small></div>
+          </div>
+          <div class="afeat" id="afeat-1">
+            <div class="afeat-icon">🎓</div>
+            <div><strong>Expert Training</strong><br><small>Certified professional trainers</small></div>
+          </div>
+          <div class="afeat" id="afeat-2">
+            <div class="afeat-icon">🛍️</div>
+            <div><strong>Premium Products</strong><br><small>Curated pet essentials</small></div>
+          </div>
+        </div>
+        <a href="#contact" class="btn-green">
+          Get In Touch
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════
+     SERVICES — WHAT WE DO
+═══════════════════════════════════════════════════ -->
+<section class="sec services-sec" id="What-do">
+  <div class="container">
+    <div class="sec-head gsap-section-head">
+      <span class="sec-tag">What We Offer</span>
+      <h2 class="sec-title">Everything Your Pet <span class="hi">Deserves</span></h2>
+    </div>
+    <div class="svcs-grid">
+      <div class="svc-card gsap-svc" id="svc-0">
+        <div class="svc-ico svc-ico--1"><img src="./../../../../assets/image/s1.png" alt="Adoption" /></div>
+        <h3 class="svc-title">Pet Adoption</h3>
+        <p class="svc-desc">Discover your perfect companion. Explore lovable pets waiting for a forever home. Adopt today and start a heartwarming journey together.</p>
+        <span class="svc-link">Learn more <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+      </div>
+      <div class="svc-card svc-card--hi gsap-svc" id="svc-1">
+        <div class="svc-ico svc-ico--2"><img src="./../../../../assets/image/s2.png" alt="Care" /></div>
+        <h3 class="svc-title">Pet Care</h3>
+        <p class="svc-desc">Top-notch pet care services ensuring your furry friends are healthy and happy. From grooming to veterinary care — we've got it covered.</p>
+        <span class="svc-link svc-link--lt">Learn more <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+      </div>
+      <div class="svc-card gsap-svc" id="svc-2">
+        <div class="svc-ico svc-ico--3"><img src="./../../../../assets/image/s3.png" alt="Training" /></div>
+        <h3 class="svc-title">Pet Training</h3>
+        <p class="svc-desc">Enhance your pet's behavior with expert training courses. Certified trainers use positive reinforcement for a well-behaved, happy companion.</p>
+        <a href="#training" class="svc-link">Learn more <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════
+     TRAINING / PRICING SECTION
+═══════════════════════════════════════════════════ -->
+<section class="sec training-sec" id="training">
+  <div class="tr-wave-top"><svg viewBox="0 0 1440 80" preserveAspectRatio="none"><path d="M0,40 C360,80 1080,0 1440,40 L1440,0 L0,0 Z" fill="white"/></svg></div>
+  <div class="tr-bg-dots" aria-hidden="true"></div>
+
+  <div class="container">
+    <div class="sec-head gsap-section-head">
+      <span class="sec-tag sec-tag--lt">Training Programs</span>
+      <h2 class="sec-title" style="color:#fff">Expert Training <span style="color:#efb08c">Schedule</span></h2>
+      <p class="sec-sub" style="color:rgba(255,255,255,.62)">Book a session near you and transform your pet's behavior for good.</p>
+    </div>
+
+    <!-- Schedule chips -->
+    <div class="sched-chips" id="sched-chips">
+      <ng-container *ngIf="seminars.length > 0; else noSem">
+        <button class="sched-chip" *ngFor="let s of seminars" (click)="selectSeminar(s)">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          {{ s.city }}, {{ s.state }} — {{ s.courseDate | date:'MMM d, y' }}
+        </button>
+      </ng-container>
+      <ng-template #noSem><p class="no-sem">No seminars scheduled at the moment — check back soon.</p></ng-template>
+    </div>
+
+    <!-- Pricing grid -->
+    <div class="pricing-grid">
+      <div class="price-card gsap-price" id="pc-0">
+        <div class="pc-icon">👁️</div>
+        <div class="pc-tier">Observe</div>
+        <h3 class="pc-plan">Without Dog</h3>
+        <div class="pc-price"><sup>$</sup><span>100</span><sub>/session</sub></div>
+        <ul class="pc-feats">
+          <li><span class="chk">✓</span>Group Seminar with The Dog Daddy</li>
+          <li><span class="chk">✓</span>Observe training techniques live</li>
+          <li><span class="chk">✓</span>Learn techniques to take home</li>
+          <li><span class="chk">✓</span>Easy online booking</li>
+        </ul>
+        <a href="#" class="pc-btn pc-btn--out">Sign Up to Observe</a>
+      </div>
+
+      <div class="price-card price-card--hi gsap-price" id="pc-1">
+        <div class="pc-popular">Most Popular</div>
+        <div class="pc-icon">🐕</div>
+        <div class="pc-tier">Group</div>
+        <h3 class="pc-plan">Bring Your Dog</h3>
+        <div class="pc-price"><sup>$</sup><span>400</span><sub>/session</sub></div>
+        <ul class="pc-feats">
+          <li><span class="chk">✓</span>Group seminar with The Dog Daddy</li>
+          <li><span class="chk">✓</span>Practice alongside your dog</li>
+          <li><span class="chk">✓</span>Individual attention per dog</li>
+          <li><span class="chk">✓</span>Easy online booking</li>
+        </ul>
+        <a href="#" class="pc-btn pc-btn--solid">Sign Up Now</a>
+      </div>
+
+      <div class="price-card gsap-price" id="pc-2">
+        <div class="pc-icon">⭐</div>
+        <div class="pc-tier">Private</div>
+        <h3 class="pc-plan">Exclusive 1-on-1</h3>
+        <div class="pc-price"><sup>$</sup><span>1500</span><sub>/session</sub></div>
+        <ul class="pc-feats">
+          <li><span class="chk">✓</span>Private session with The Dog Daddy</li>
+          <li><span class="chk">✓</span>Covers all dogs you own</li>
+          <li><span class="chk">✓</span>Customized & flexible schedule</li>
+          <li><span class="chk">✓</span>Select cities only</li>
+        </ul>
+        <a href="#" class="pc-btn pc-btn--out">Sign Up for Private</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="tr-wave-bot"><svg viewBox="0 0 1440 80" preserveAspectRatio="none"><path d="M0,40 C360,0 1080,80 1440,40 L1440,80 L0,80 Z" fill="white"/></svg></div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════
+     ADOPTION SECTION
+═══════════════════════════════════════════════════ -->
+<section class="sec adoption-sec" id="adoption">
+  <div class="container">
+    <div class="sec-head gsap-section-head">
+      <span class="sec-tag">Find Your Friend</span>
+      <h2 class="sec-title">Pets Available for <span class="hi">Adoption</span></h2>
+      <p class="sec-sub">Every pet deserves a loving home. Could yours be next?</p>
+    </div>
+  </div>
+
+  <div class="adopt-reel">
+    <swiper-container pagination="true" pagination-clickable="true" navigation="true"
+      space-between="24" autoplay="true"
+      breakpoints='{"480":{"slidesPerView":1},"768":{"slidesPerView":2},"1100":{"slidesPerView":3}}'>
+      <swiper-slide *ngFor="let pet of adopt" class="gsap-pet-card">
+        <div class="pet-card">
+          <div class="pet-img-wrap">
+            <swiper-container pagination="true" slides-per-view="1" space-between="0">
+              <swiper-slide *ngFor="let url of pet.images">
+                <img [src]="getImageUrl(url)" [alt]="pet.petName" class="pet-img" />
+              </swiper-slide>
+            </swiper-container>
+            <div class="pet-price-tag">{{ pet.petSellingPrice | currency:'INR' }}</div>
+            <div class="pet-img-overlay"></div>
+          </div>
+          <div class="pet-body">
+            <h3 class="pet-name">{{ pet.petName | titlecase }}</h3>
+            <div class="pet-chips">
+              <span class="pchip">{{ pet.petCategory | titlecase }}</span>
+              <span class="pchip pchip--br">{{ pet.petBreed }}</span>
+            </div>
+            <p class="pet-age">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              {{ pet.petAge }} months old
+            </p>
+            <button class="pet-adopt-btn" (click)="adoptPet(pet)">Adopt Me ❤️</button>
+          </div>
+        </div>
+      </swiper-slide>
+    </swiper-container>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════
+     GALLERY SECTION
+═══════════════════════════════════════════════════ -->
+<section class="sec gallery-sec" id="gallery">
+  <div class="container">
+    <div class="sec-head gsap-section-head">
+      <span class="sec-tag">Our Gallery</span>
+      <h2 class="sec-title">Moments of Pure <span class="hi">Joy</span></h2>
+    </div>
+  </div>
+
+  <div class="gallery-mosaic">
+    <div class="gm-item gm-wide gsap-gallery" id="gm-0">
+      <img src="./../../../../assets/image/g1.jpg" alt="Gallery 1" />
+      <div class="gm-over"><span>🐾 Sweet Companions</span></div>
+    </div>
+    <div class="gm-item gsap-gallery" id="gm-1">
+      <img src="./../../../../assets/image/g2.jpg" alt="Gallery 2" />
+      <div class="gm-over"><span>🐶 Training Day</span></div>
+    </div>
+    <div class="gm-item gsap-gallery" id="gm-2">
+      <img src="./../../../../assets/image/g3.jpg" alt="Gallery 3" />
+      <div class="gm-over"><span>🐱 Happy Moments</span></div>
+    </div>
+    <div class="gm-item gsap-gallery" id="gm-3">
+      <img src="./../../../../assets/image/g4.jpg" alt="Gallery 4" />
+      <div class="gm-over"><span>🏡 New Home</span></div>
+    </div>
+    <div class="gm-item gsap-gallery" id="gm-4">
+      <img src="./../../../../assets/image/g5.jpg" alt="Gallery 5" />
+      <div class="gm-over"><span>❤️ Rescue Story</span></div>
+    </div>
+    <div class="gm-item gm-wide gsap-gallery" id="gm-5">
+      <img src="./../../../../assets/image/g6.jpg" alt="Gallery 6" />
+      <div class="gm-over"><span>🌟 Family Bonds</span></div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════
+     CTA BANNER
+═══════════════════════════════════════════════════ -->
+<section class="cta-sec" id="cta-sec">
+  <div class="cta-orb cta-orb-1" aria-hidden="true"></div>
+  <div class="cta-orb cta-orb-2" aria-hidden="true"></div>
+  <div class="container">
+    <div class="cta-body" id="cta-body">
+      <div class="cta-paw" aria-hidden="true">🐾</div>
+      <h2 class="cta-title">Ready to Find Your<br><span>Perfect Companion?</span></h2>
+      <p class="cta-sub">Join thousands of happy pet families and give a deserving pet the loving home they need.</p>
+      <div class="cta-btns">
+        <a href="#adoption" class="cta-btn-p">Adopt a Pet Today</a>
+        <a href="#contact" class="cta-btn-g">Contact Us</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
 <app-footer></app-footer>

@@ -1,116 +1,117 @@
-<section class="product-detail-section">
-  <div class="container">
-    
-    <!-- Breadcrumb -->
-    <div class="breadcrumb-nav">
-      <span (click)="GotoHome()" style="cursor: pointer;">Home</span> 
-      <span> / </span>
-      <span class="active">{{ product?.productName }}</span>
+<div class="pd-root">
+
+  <!-- breadcrumb -->
+  <div class="pd-breadcrumb">
+    <div class="container">
+      <span class="bc-link" (click)="GotoHome()">Home</span>
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+      <span class="bc-active">{{ product?.productName }}</span>
     </div>
+  </div>
 
-    <div class="product-wrapper">
+  <div class="container pd-body">
+    <div class="pd-grid">
 
-      <!-- Left: Images -->
-      <div class="product-images">
-        
-        <!-- Thumbnail Strip -->
-        <div class="thumbnail-strip">
-          <div 
-            class="thumb" 
-            *ngFor="let img of product?.productImages"
+      <!-- ══════ LEFT: image gallery ══════ -->
+      <div class="pd-gallery">
+
+        <!-- thumbnails -->
+        <div class="thumb-col">
+          <div class="thumb-item" *ngFor="let img of product?.productImages"
             [class.active]="mainImage === getImageUrl(img)"
-            (click)="changeImage(img)"
-          >
+            (click)="changeImage(img)">
             <img [src]="getImageUrl(img)" alt="thumb" />
           </div>
         </div>
 
-        <!-- Main Image -->
-        <div class="main-image-wrapper">
-          <div class="badge-tag">In Stock</div>
-          <img [src]="mainImage" alt="Product" class="main-img" />
-          <div class="zoom-hint">🔍 Click thumbnail to switch</div>
+        <!-- main image -->
+        <div class="pd-main-img-wrap">
+          <span class="pd-stock-badge">In Stock</span>
+          <div class="pd-main-img-inner">
+            <img [src]="mainImage" alt="Product" class="pd-main-img" />
+          </div>
+          <div class="pd-img-hint">🔍 Click thumbnail to switch</div>
         </div>
 
       </div>
 
-      <!-- Right: Product Info -->
-      <div class="product-info">
+      <!-- ══════ RIGHT: info ══════ -->
+      <div class="pd-info">
 
-        <!-- Category & Name -->
-        <div class="category-tag">{{ product?.productCategory }}</div>
-        <h1 class="product-name">{{ product?.productName }}</h1>
+        <span class="pd-cat-tag">{{ product?.productCategory }}</span>
+        <h1 class="pd-name">{{ product?.productName }}</h1>
 
-        <!-- Price -->
-        <div class="price-section">
-          <span class="current-price">{{ product?.productPrice | currency:'INR' }}</span>
-          <span class="original-price">{{ (product?.productPrice * 1.2) | currency:'INR' }}</span>
-          <span class="discount-badge">20% OFF</span>
+        <!-- price row -->
+        <div class="pd-price-row">
+          <span class="pd-price">{{ product?.productPrice | currency:'INR' }}</span>
+          <span class="pd-price-orig">{{ (product?.productPrice * 1.2) | currency:'INR' }}</span>
+          <span class="pd-discount">20% OFF</span>
         </div>
 
-        <!-- Divider -->
-        <div class="section-divider"></div>
+        <div class="pd-divider"></div>
 
-        <!-- Description -->
-        <div class="description">
+        <!-- description -->
+        <div class="pd-desc-block">
           <h4>About this product</h4>
           <p>{{ product?.productDescription }}</p>
         </div>
 
-        <!-- Features -->
-        <div class="features">
-          <div class="feature-item">
-            <span class="feature-icon">🚚</span>
+        <!-- feature pills -->
+        <div class="pd-features">
+          <div class="pd-feat">
+            <div class="feat-ico-wrap">🚚</div>
             <div>
-              <p class="feature-title">Free Delivery</p>
-              <p class="feature-desc">On orders above ₹499</p>
+              <p class="feat-title">Free Delivery</p>
+              <p class="feat-sub">On orders above ₹499</p>
             </div>
           </div>
-          <div class="feature-item">
-            <span class="feature-icon">↩️</span>
+          <div class="pd-feat">
+            <div class="feat-ico-wrap">↩️</div>
             <div>
-              <p class="feature-title">Easy Returns</p>
-              <p class="feature-desc">7 day return policy</p>
+              <p class="feat-title">Easy Returns</p>
+              <p class="feat-sub">7 day return policy</p>
             </div>
           </div>
-          <div class="feature-item">
-            <span class="feature-icon">✅</span>
+          <div class="pd-feat">
+            <div class="feat-ico-wrap">✅</div>
             <div>
-              <p class="feature-title">Genuine Product</p>
-              <p class="feature-desc">100% authentic</p>
+              <p class="feat-title">Genuine Product</p>
+              <p class="feat-sub">100% authentic</p>
             </div>
           </div>
         </div>
 
-        <div class="section-divider"></div>
+        <div class="pd-divider"></div>
 
-        <!-- Quantity & Actions -->
-        <div class="quantity-row">
-          <label>Quantity</label>
-          <div class="qty-control">
-            <button (click)="decreaseQty()">−</button>
-            <span>{{ quantity }}</span>
-            <button (click)="increaseQty()">+</button>
+        <!-- quantity -->
+        <div class="pd-qty-row">
+          <span class="qty-label">Quantity</span>
+          <div class="qty-ctrl">
+            <button class="qty-btn" (click)="decreaseQty()">−</button>
+            <span class="qty-val">{{ quantity }}</span>
+            <button class="qty-btn" (click)="increaseQty()">+</button>
           </div>
         </div>
 
-        <div class="action-buttons">
-          <button class="btn-buy" (click)="buyNow()">
-            ⚡ Buy Now
-          </button>
-        </div>
-        <!-- Product Meta -->
-        <div class="product-meta">
-          <p><strong>SKU:</strong> {{ product?._id | slice:0:8 | uppercase }}</p>
-          <p><strong>Category:</strong> {{ product?.productCategory }}</p>
-          <p><strong>Availability:</strong> 
-            <span [class.in-stock]="product?.productStock > 0">
-              {{ product?.productStock > 0 ? 'In Stock' : 'Out of Stock' }}
+        <!-- buy -->
+        <button class="pd-buy-btn" (click)="buyNow()">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+          Buy Now
+        </button>
+
+        <!-- meta -->
+        <div class="pd-meta">
+          <div class="pd-meta-row"><span>SKU</span><span>{{ product?._id | slice:0:8 | uppercase }}</span></div>
+          <div class="pd-meta-row"><span>Category</span><span>{{ product?.productCategory }}</span></div>
+          <div class="pd-meta-row">
+            <span>Availability</span>
+            <span class="pd-avail" [class.in-stock]="product?.productStock > 0">
+              {{ product?.productStock > 0 ? '● In Stock' : '● Out of Stock' }}
             </span>
-          </p>
+          </div>
         </div>
 
       </div>
     </div>
   </div>
-</section>
+</div>

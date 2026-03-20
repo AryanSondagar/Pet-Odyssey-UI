@@ -1,188 +1,153 @@
 <div class="hero_area">
-    <!-- header section start -->
-    <header class="header_section">
-        <div class="container">
-            <nav class="navbar navbar-expand-lg custom_nav-container ">
-                <a class="navbar-brand" routerLink="">
-                    <img src="./../../../../assets/image/logo.png" alt="image not found" />
-                    <span style="margin-bottom: 10px;">
-                        Pet'Odyssey
-                    </span>
-                </a>
 
-                <button class="navbar-toggler" type="button" data-toggle="collapse"
-                    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                    aria-label="Toggle navigation">
-                    <span class=""> </span>
-                </button>
+  <!-- ─── Noise texture overlay ─── -->
+  <div class="noise-overlay" aria-hidden="true"></div>
 
-                <div class="collapse navbar-collapse" id="navbarSupportedContent" [ngSwitch]="menutype">
+  <!-- ─── Ambient gradient orbs ─── -->
+  <div class="orb-field" aria-hidden="true">
+    <div class="orb o1"></div>
+    <div class="orb o2"></div>
+    <div class="orb o3"></div>
+    <div class="orb o4"></div>
+  </div>
 
-                    <ul class="navbar-nav " *ngSwitchCase="'defult'">
-                        <li class="nav-item active">
-                            <a class="nav-link" href="#about"> About </a>
-                        </li>
-                        <li class="nav-item ">
-                            <a class="nav-link" href="#training"> Training </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#gallery"> Gallery </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link pr-lg-0" href="#contact"> Contact us</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link login " (click)="login()">Login</a>
-                        </li>
-                    </ul>
+  <!-- ─── Floating paw particles ─── -->
+  <div class="paw-field" aria-hidden="true">
+    <span class="fp" style="top:8%;left:4%;--d:0s;--s:1.1">🐾</span>
+    <span class="fp" style="top:72%;left:3%;--d:2.2s;--s:0.8">🐾</span>
+    <span class="fp" style="top:22%;right:6%;--d:1s;--s:1.3">🐾</span>
+    <span class="fp" style="top:78%;right:4%;--d:3s;--s:0.9">🐾</span>
+    <span class="fp" style="top:48%;left:46%;--d:1.6s;--s:0.7">🐾</span>
+    <span class="fp" style="top:35%;left:18%;--d:2.8s;--s:1.0">🐾</span>
+    <span class="fp" style="top:60%;right:22%;--d:0.5s;--s:1.2">🐾</span>
+  </div>
 
-                    <ul class="navbar-nav " *ngSwitchCase="'user'">
-                        <li class="nav-item active">
-                            <a class="nav-link" href="#about"> About </a>
-                        </li>
-                        <li class="nav-item ">
-                            <a class="nav-link" href="#training"> Training </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#gallery"> Gallery </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link pr-lg-0" href="#contact"> Contact us</a>
-                        </li>
+  <!-- ═══════════════ NAVBAR ═══════════════ -->
+  <header class="site-nav" id="site-nav">
+    <div class="container">
+      <nav class="navbar navbar-expand-lg">
 
-                        <li class="nav-item">
-                            <a class="nav-link logout" (click)="openDialog('0ms', '0ms')">LogOut</a>
-                        </li>
-                    </ul>
+        <a class="brand" routerLink="">
+          <div class="brand-icon">
+            <img src="./../../../../assets/image/logo.png" alt="PetOdyssey" />
+          </div>
+          <span class="brand-label">Pet<em>Odyssey</em></span>
+        </a>
 
-                </div>
-            </nav>
+        <button class="nav-burger" type="button"
+          data-bs-toggle="collapse" data-bs-target="#navMain"
+          aria-controls="navMain" aria-expanded="false" aria-label="Toggle menu">
+          <span></span><span></span><span></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navMain" [ngSwitch]="menutype">
+          <ul class="nav-links ms-auto" *ngSwitchCase="'defult'">
+            <li><a href="#about" class="nl">About</a></li>
+            <li><a href="#training" class="nl">Training</a></li>
+            <li><a href="#gallery" class="nl">Gallery</a></li>
+            <li><a href="#contact" class="nl">Contact</a></li>
+            <li>
+              <button class="nl-cta" (click)="login()">
+                Login
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/>
+                  <polyline points="10 17 15 12 10 7"/>
+                  <line x1="15" y1="12" x2="3" y2="12"/>
+                </svg>
+              </button>
+            </li>
+          </ul>
+          <ul class="nav-links ms-auto" *ngSwitchCase="'user'">
+            <li><a href="#about" class="nl">About</a></li>
+            <li><a href="#training" class="nl">Training</a></li>
+            <li><a href="#gallery" class="nl">Gallery</a></li>
+            <li><a href="#contact" class="nl">Contact</a></li>
+            <li>
+              <button class="nl-cta nl-cta--out" (click)="openDialog('0ms','0ms')">
+                Logout
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+                  <polyline points="16 17 21 12 16 7"/>
+                  <line x1="21" y1="12" x2="9" y2="12"/>
+                </svg>
+              </button>
+            </li>
+          </ul>
         </div>
-    </header>
-    <!-- end header section -->
-    <!-- slider section -->
-    <section class="slider_section position-relative">
-  <div class="slider_bg_box">
-    <img src="./../../../../assets/image/slider-bg.jpg" alt="">
-  </div>
-
-  <div class="container">
-    <div class="product-tilt-effect">
-      <swiper-container pagination="true" pagination-clickable="true" space-between="30"
-                        slides-per-view="1" autoplay="true">
-        
-        <!-- Slide 1 -->
-        <swiper-slide>
-          <div class="row">
-            <div class="col-md-7 col-lg-6">
-              <div class="detail-box">
-                <h1>
-                  Welcome to
-                  <br>Our Pet Course
-                </h1>
-                <p>
-                  It is a long established fact that a reader will be distracted
-                  by the readable content of a page when looking at its layout.
-                </p>
-                <div class="btn-box">
-                  <a href="" class="btn-1">Read More</a>
-                  <a href="#contact" class="btn-2">Contact us</a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </swiper-slide>
-
-        <!-- Slide 2 -->
-        <swiper-slide>
-          <div class="row">
-            <div class="col-md-7 col-lg-6">
-              <div class="detail-box">
-                <h1>
-                  Welcome to
-                  <br>Our Pet Shop
-                </h1>
-                <p>
-                  It is a long established fact that a reader will be distracted
-                  by the readable content of a page when looking at its layout.
-                </p>
-                <div class="btn-box">
-                  <a href="" class="btn-1">Read More</a>
-                  <a href="" class="btn-2">Contact us</a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </swiper-slide>
-
-        <!-- Slide 3 -->
-        <swiper-slide>
-          <div class="row">
-            <div class="col-md-7 col-lg-6">
-              <div class="detail-box">
-                <h1>
-                  Welcome to
-                  <br>Our Pet Shop
-                </h1>
-                <p>
-                  It is a long established fact that a reader will be distracted
-                  by the readable content of a page when looking at its layout.
-                </p>
-                <div class="btn-box">
-                  <a href="" class="btn-1">Read More</a>
-                  <a href="" class="btn-2">Contact us</a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </swiper-slide>
-
-        <!-- Slide 4 -->
-        <swiper-slide>
-          <div class="row">
-            <div class="col-md-7 col-lg-6">
-              <div class="detail-box">
-                <h1>
-                  Welcome to Our <br><span>Pet Shop</span>
-                </h1>
-                <p>
-                  It is a long established fact that a reader will be distracted
-                  by the readable content of a page when looking at its layout.
-                </p>
-                <div class="btn-box">
-                  <a href="" class="btn-1">Read More</a>
-                  <a href="" class="btn-2">Contact us</a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </swiper-slide>
-
-        <!-- Slide 5 -->
-        <swiper-slide>
-          <div class="row">
-            <div class="col-md-6">
-              <div class="detail-box">
-                <h1>
-                  Welcome to Our <br><span>Pet Shop</span>
-                </h1>
-                <p>
-                  It is a long established fact that a reader will be distracted
-                  by the readable content of a page when looking at its layout.
-                </p>
-                <div class="btn-box">
-                  <a href="" class="btn-1">Read More</a>
-                  <a href="" class="btn-2">Contact us</a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </swiper-slide>
-
-      </swiper-container>
+      </nav>
     </div>
-  </div>
-</section>
+  </header>
+  <!-- ═══════════════ END NAVBAR ═══════════════ -->
 
-    <!-- end slider section -->
+  <!-- ═══════════════ HERO ═══════════════ -->
+  <section class="hero">
+
+    <div class="hero-media">
+      <img src="./../../../../assets/image/slider-bg.jpg" alt="" class="hero-img" id="hero-parallax" />
+      <div class="hero-grad"></div>
+    </div>
+
+    <div class="container hero-body">
+
+      <!-- Badge -->
+      <div class="hero-badge gsap-fade-up" data-delay="0.1">
+        <span class="badge-pulse"></span>
+        Trusted by 10,000+ Pet Families
+      </div>
+
+      <!-- Headline -->
+      <h1 class="hero-h1 gsap-fade-up" data-delay="0.25">
+        <span class="h1-line">Your Pet's</span>
+        <span class="h1-line h1-grad">Happy Journey</span>
+        <span class="h1-line">Starts Here.</span>
+      </h1>
+
+      <!-- Sub -->
+      <p class="hero-sub gsap-fade-up" data-delay="0.45">
+        Adopt, train, and care for your furry companions with expert guidance.
+        <br>Join thousands of happy pet families at PetOdyssey.
+      </p>
+
+      <!-- Actions -->
+      <div class="hero-actions gsap-fade-up" data-delay="0.6">
+        <a href="#about" class="ha-primary">
+          Explore Now
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+        </a>
+        <a href="#contact" class="ha-ghost">Contact Us</a>
+      </div>
+
+      <!-- Stats row -->
+      <div class="hero-stats gsap-fade-up" data-delay="0.75">
+        <div class="hs-item">
+          <span class="hs-num">500+</span>
+          <span class="hs-lbl">Pets Adopted</span>
+        </div>
+        <div class="hs-sep"></div>
+        <div class="hs-item">
+          <span class="hs-num">1,200+</span>
+          <span class="hs-lbl">Happy Families</span>
+        </div>
+        <div class="hs-sep"></div>
+        <div class="hs-item">
+          <span class="hs-num">50+</span>
+          <span class="hs-lbl">Expert Trainers</span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Scroll cue -->
+    <div class="scroll-cue gsap-fade-up" data-delay="1.0">
+      <div class="sc-mouse"><div class="sc-dot"></div></div>
+      <span>Scroll</span>
+    </div>
+
+    <!-- Bottom fade -->
+    <div class="hero-bottom-fade"></div>
+  </section>
+  <!-- ═══════════════ END HERO ═══════════════ -->
+
 </div>

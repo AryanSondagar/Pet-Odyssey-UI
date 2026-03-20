@@ -1,156 +1,249 @@
-<!-- 
-<div class="container" id="container">
-	<div class="form-container sign-up-container">
-		<form action="#">
-			<h1>Create Account</h1>
-			<div class="social-container">
-				<a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
-				<a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
-				<a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
-			</div>
-			<span>or use your email for registration</span>
-			<input type="text" placeholder="Name" />
-			<input type="email" placeholder="Email" />
-			<input type="password" placeholder="Password" />
-			<button>Sign Up</button>
-		</form>
-	</div>
-	<div class="form-container sign-in-container">
-		<form action="#">
-			<h1>Sign in</h1>
-			<div class="social-container">
-				<a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
-				<a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
-				<a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
-			</div>
-			<span>or use your account</span>
-			<input type="email" placeholder="Email" />
-			<input type="password" placeholder="Password" />
-			<a href="#">Forgot your password?</a>
-			<button>Sign In</button>
-		</form>
-	</div>
-	<div class="overlay-container">
-		<div class="overlay">
-			<div class="overlay-panel overlay-left">
-				<h1>Welcome Back!</h1>
-				<p>To keep connected with us please login with your personal info</p>
-				<button class="ghost" id="signIn">Sign In</button>
-			</div>
-			<div class="overlay-panel overlay-right">
-				<h1>Hello, Friend!</h1>
-				<p>Enter your personal details and start journey with us</p>
-				<button class="ghost" id="signUp">Sign Up</button>
-			</div>
-		</div>
-	</div>
-</div> -->
-<div class="bg">
-  <div class="userlogin">
-    <div class="container">
-      <input type="checkbox" id="flip">
-      <div class="cover">
-        <div class="front">
-          <img src="./../../../assets/image/bg-cover.jpg" alt="">
-          <div class="text">
-            <span class="text-1">Every new friend is a <br> new adventure</span>
-            <span class="text-2">Let's get connected</span>
-          </div>
-        </div>
-        <div class="back">
-          <img class="backImg" src="../../../../../../assets/image/images.jfif" alt="">
-          <div class="text">
-            <span class="text-1">Complete miles of journey <br> with one step</span>
-            <span class="text-2">Let's get started</span>
-          </div>
-        </div>
-      </div>
+<div class="auth-root" #authRoot>
 
-      <div class="forms">
-        <div class="form-content">
-
-          <div class="login-form">
-            <div class="title">Login</div>
-            <form #loginForm="ngForm" (ngSubmit)="Login(email.value, password.value, 'user')">
-              <div class="input-boxes">
-
-                <div class="input-box">
-                  <fa-icon [icon]="faEnvelope"></fa-icon>
-                  <input type="email" placeholder="Enter your email" name="email" ngModel #email="ngModel"
-                    required email    [(ngModel)]="emailValue" [style.borderColor]="
-                  !emailValue ? '#00000033' : (email.invalid ? 'red' : 'green')
-                   ">
-                </div>
-
-                <div class="input-box">
-                  <fa-icon [icon]="lock"></fa-icon>
-                  <input type="password" placeholder="Enter your password" required name="password" ngModel
-                    #password="ngModel" minlength="6" maxlength="16" [(ngModel)]="passwordValue"
-                    [style.borderColor]="!passwordValue ? '#00000033' : (passwordValue.length < 6 ? 'red' : (passwordValue.length < 10 ? 'orange' : 'green'))">
-                </div>
-
-                <div class="text"><a>{{authError}}</a></div>
-
-                <div class="button input-box">
-                  <input type="submit" value="submit" [disabled]="loginForm.invalid">
-                </div>
-
-                <div class="text sign-up-text">Don't have an account? <label for="flip">Signup now</label></div>
-              </div>
-            </form>
-          </div>
-
-          <div class="signup-form">
-            <div class="title">Signup</div>
-            <form #userSignIn="ngForm" (ngSubmit)="SignUp(userSignIn.value)">
-              <div class="input-boxes">
-
-                <div class="input-box">
-                  <fa-icon [icon]="user"></fa-icon>
-                  <input type="text" placeholder="Enter your name" required name="name" ngModel #name="ngModel"
-                    [(ngModel)]="nameValue" [style.borderColor]="
-                  !nameValue ? '#00000033' : (name.valid ? 'green' : 'red')
-                   ">
-
-                </div>
-                <!-- <p *ngIf="UserName.invalid&& UserName.touched" class="notice">Enter Username</p> -->
-
-                <div class="input-box">
-                  <fa-icon [icon]="faEnvelope"></fa-icon>
-                  <input type="email" placeholder="Enter your email" required name="email" ngModel
-                   email  #email="ngModel" [(ngModel)]="emailValue" [style.borderColor]="
-                  !emailValue ? '#00000033' : (email.invalid ? 'red' : 'green')
-                   ">
-                  <!-- <span *ngIf="email.invalid&& email.touched" class="notice">your email is not valid</span> -->
-                </div>
-
-                <div class="input-box">
-                  <fa-icon [icon]="lock"></fa-icon>
-                  <input type="password" placeholder="Enter your password" required name="password" ngModel
-                    #password="ngModel" minlength="6" maxlength="16" [(ngModel)]="passwordValue"
-                    [style.borderColor]="!passwordValue ? '#00000033' : (passwordValue.length < 6 ? 'red' : (passwordValue.length < 10 ? 'orange' : 'green'))">
-                  <!-- <p *ngIf="password.invalid&& password.touched" class="notice">
-					<span *ngIf="!passwordValue">
-						password is required
-					</span>
-					<span *ngIf="passwordValue && passwordValue.length  <= 6">
-						must be greater than 6
-					</span>
-				</p> -->
-                </div>
-
-                <div class="button input-box">
-                  <input type="submit" value="submit" [disabled]="userSignIn.invalid">
-                </div>
-                <div class="text sign-up-text">Already have an account? <label for="flip">Login now</label></div>
-
-              </div>
-
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
+  <!-- ─── Aurora background ─── -->
+  <div class="aurora" aria-hidden="true">
+    <div class="aurora-blob ab1"></div>
+    <div class="aurora-blob ab2"></div>
+    <div class="aurora-blob ab3"></div>
   </div>
+  <div class="dot-grid" aria-hidden="true"></div>
+
+  <!-- ─── Floating pet constellation ─── -->
+  <div class="pet-cosmos" aria-hidden="true">
+    <span class="pc-orb" style="--px:6%;--py:10%;--pd:0s;--pz:26px">🐕</span>
+    <span class="pc-orb" style="--px:88%;--py:14%;--pd:2.5s;--pz:20px">🐈</span>
+    <span class="pc-orb" style="--px:10%;--py:80%;--pd:1.2s;--pz:22px">🐾</span>
+    <span class="pc-orb" style="--px:84%;--py:76%;--pd:4s;--pz:18px">🐇</span>
+    <span class="pc-orb" style="--px:46%;--py:4%;--pd:2s;--pz:16px">🦴</span>
+    <span class="pc-orb" style="--px:95%;--py:48%;--pd:5.5s;--pz:14px">🐾</span>
+    <span class="pc-orb" style="--px:2%;--py:44%;--pd:3.8s;--pz:18px">🐕</span>
+    <span class="pc-orb" style="--px:52%;--py:97%;--pd:1.8s;--pz:12px">🐈</span>
+  </div>
+
+  <!-- ─── Portal stage ─── -->
+  <div class="portal-stage" #portalCard>
+
+    <!-- Outer halo glow -->
+    <div class="portal-halo" aria-hidden="true"></div>
+
+    <!-- The card -->
+    <div class="portal-card">
+
+      <!-- Header: logo + brand -->
+      <div class="portal-header">
+        <div class="logo-ring-wrap">
+          <svg class="ring-svg" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle class="ring-track" cx="50" cy="50" r="42"/>
+            <circle class="ring-fill" cx="50" cy="50" r="42"/>
+          </svg>
+          <div class="logo-center">
+            <img src="./../../../assets/image/logo.png" alt="PetOdyssey" />
+          </div>
+        </div>
+        <div class="portal-brand-info">
+          <span class="brand-pill">PET ODYSSEY</span>
+          <p class="brand-sub">{{ isSignup ? 'Start your adventure 🚀' : 'Welcome back, explorer 🐾' }}</p>
+        </div>
+      </div>
+
+      <!-- Mode tabs -->
+      <div class="mode-tabs">
+        <button class="mtab" [class.active]="!isSignup" (click)="switchMode(false)" type="button">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+            <circle cx="12" cy="7" r="4"/>
+          </svg>
+          Sign In
+        </button>
+        <button class="mtab" [class.active]="isSignup" (click)="switchMode(true)" type="button">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
+            <circle cx="9" cy="7" r="4"/>
+            <line x1="19" y1="8" x2="19" y2="14"/>
+            <line x1="22" y1="11" x2="16" y2="11"/>
+          </svg>
+          Sign Up
+        </button>
+        <div class="mtab-pill" [style.left]="isSignup ? '50%' : '4px'"></div>
+      </div>
+
+      <!-- ──────── LOGIN FORM ──────── -->
+      <div *ngIf="!isSignup" class="pform">
+        <form #loginForm="ngForm" (ngSubmit)="Login(email.value, password.value, 'user')" autocomplete="off">
+
+          <div class="neon-group">
+            <div class="neon-field" [class.nf-ok]="emailValue && email.valid" [class.nf-err]="emailValue && email.invalid">
+              <span class="nf-ico">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                  <polyline points="22,6 12,12 2,6"/>
+                </svg>
+              </span>
+              <div class="nf-body">
+                <label class="nf-label" [class.up]="emailValue">Email</label>
+                <input type="email" name="email" ngModel #email="ngModel" required email [(ngModel)]="emailValue" />
+              </div>
+              <span class="nf-check" *ngIf="emailValue && email.valid">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+              </span>
+            </div>
+          </div>
+
+          <div class="neon-group">
+            <div class="neon-field" [class.nf-ok]="passwordValue && passwordValue.length >= 6" [class.nf-err]="passwordValue && passwordValue.length < 6">
+              <span class="nf-ico">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+                  <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+                </svg>
+              </span>
+              <div class="nf-body">
+                <label class="nf-label" [class.up]="passwordValue">Password</label>
+                <input [type]="showPwd ? 'text' : 'password'" name="password" ngModel #password="ngModel"
+                  required minlength="6" maxlength="16" [(ngModel)]="passwordValue" />
+              </div>
+              <button type="button" class="eye-btn" (click)="showPwd = !showPwd" tabindex="-1">
+                <svg *ngIf="!showPwd" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/>
+                </svg>
+                <svg *ngIf="showPwd" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/>
+                  <line x1="1" y1="1" x2="23" y2="23"/>
+                </svg>
+              </button>
+            </div>
+            <div class="pwd-bar-track" *ngIf="passwordValue">
+              <div class="pwd-bar-fill"
+                [style.width]="passwordStrength + '%'"
+                [class.pw]="passwordStrength < 40"
+                [class.pm]="passwordStrength >= 40 && passwordStrength < 75"
+                [class.ps]="passwordStrength >= 75"></div>
+            </div>
+          </div>
+
+          <div class="auth-alert" *ngIf="authError">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
+            </svg>
+            {{ authError }}
+          </div>
+
+          <button type="submit" class="portal-btn" [disabled]="loginForm.invalid">
+            <span class="pb-bg"></span>
+            <span class="pb-inner">
+              Sign In
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/>
+                <polyline points="10 17 15 12 10 7"/>
+                <line x1="15" y1="12" x2="3" y2="12"/>
+              </svg>
+            </span>
+          </button>
+
+        </form>
+      </div>
+
+      <!-- ──────── SIGNUP FORM ──────── -->
+      <div *ngIf="isSignup" class="pform">
+        <form #userSignIn="ngForm" (ngSubmit)="SignUp(userSignIn.value)" autocomplete="off">
+
+          <div class="neon-group">
+            <div class="neon-field" [class.nf-ok]="nameValue && name.valid" [class.nf-err]="nameValue && name.invalid">
+              <span class="nf-ico">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>
+                </svg>
+              </span>
+              <div class="nf-body">
+                <label class="nf-label" [class.up]="nameValue">Full Name</label>
+                <input type="text" name="name" ngModel #name="ngModel" required [(ngModel)]="nameValue" />
+              </div>
+              <span class="nf-check" *ngIf="nameValue && name.valid">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+              </span>
+            </div>
+          </div>
+
+          <div class="neon-group">
+            <div class="neon-field" [class.nf-ok]="emailValue && email2.valid" [class.nf-err]="emailValue && email2.invalid">
+              <span class="nf-ico">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                  <polyline points="22,6 12,12 2,6"/>
+                </svg>
+              </span>
+              <div class="nf-body">
+                <label class="nf-label" [class.up]="emailValue">Email</label>
+                <input type="email" name="email" ngModel #email2="ngModel" required email [(ngModel)]="emailValue" />
+              </div>
+              <span class="nf-check" *ngIf="emailValue && email2.valid">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+              </span>
+            </div>
+          </div>
+
+          <div class="neon-group">
+            <div class="neon-field"
+              [class.nf-ok]="passwordValue && passwordValue.length >= 6"
+              [class.nf-err]="passwordValue && passwordValue.length > 0 && passwordValue.length < 6">
+              <span class="nf-ico">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+                  <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+                </svg>
+              </span>
+              <div class="nf-body">
+                <label class="nf-label" [class.up]="passwordValue">Password</label>
+                <input [type]="showPwd ? 'text' : 'password'" name="password" ngModel required
+                  minlength="6" maxlength="16" [(ngModel)]="passwordValue" />
+              </div>
+              <button type="button" class="eye-btn" (click)="showPwd = !showPwd" tabindex="-1">
+                <svg *ngIf="!showPwd" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/>
+                </svg>
+                <svg *ngIf="showPwd" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/>
+                  <line x1="1" y1="1" x2="23" y2="23"/>
+                </svg>
+              </button>
+            </div>
+            <div class="pwd-bar-track" *ngIf="passwordValue">
+              <div class="pwd-bar-fill"
+                [style.width]="passwordStrength + '%'"
+                [class.pw]="passwordStrength < 40"
+                [class.pm]="passwordStrength >= 40 && passwordStrength < 75"
+                [class.ps]="passwordStrength >= 75"></div>
+            </div>
+          </div>
+
+          <button type="submit" class="portal-btn" [disabled]="userSignIn.invalid">
+            <span class="pb-bg"></span>
+            <span class="pb-inner">
+              Create Account
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/>
+                <line x1="19" y1="8" x2="19" y2="14"/>
+                <line x1="22" y1="11" x2="16" y2="11"/>
+              </svg>
+            </span>
+          </button>
+
+        </form>
+      </div>
+
+      <!-- Switch link -->
+      <p class="portal-switch">
+        <ng-container *ngIf="!isSignup">
+          No account? <button type="button" (click)="switchMode(true)">Join the journey →</button>
+        </ng-container>
+        <ng-container *ngIf="isSignup">
+          Have an account? <button type="button" (click)="switchMode(false)">Sign in →</button>
+        </ng-container>
+      </p>
+
+    </div><!-- /portal-card -->
+  </div><!-- /portal-stage -->
+
+  <p class="auth-footer" aria-hidden="true">🐾 Every pet deserves a forever home · PetOdyssey</p>
+
 </div>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">

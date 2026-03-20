@@ -1,201 +1,174 @@
-<section class="adoption-detail-section">
-  <div class="container">
+<div class="adopt-root">
 
-    <!-- Breadcrumb -->
-    <div class="breadcrumb-nav">
-      <span (click)="GotoHome()" style="cursor: pointer;">Home</span>
-      <span> / </span>
-      <span class="active">{{ adopt?.petName | titlecase }}</span>
+  <!-- breadcrumb -->
+  <div class="adopt-breadcrumb">
+    <div class="container">
+      <span class="bc-link" (click)="GotoHome()">Home</span>
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+      <span class="bc-active">{{ adopt?.petName | titlecase }}</span>
     </div>
+  </div>
 
-    <div class="adoption-wrapper">
+  <div class="container adopt-body">
+    <div class="adopt-grid">
 
-      <!-- Left: Images -->
-      <div class="pet-images">
-
-        <!-- Thumbnail Strip -->
-        <div class="thumbnail-strip">
-          <div class="thumb" *ngFor="let img of adopt?.images" [class.active]="mainImage === getImageUrl(img)"
+      <!-- ══════ LEFT: image gallery ══════ -->
+      <div class="adopt-gallery">
+        <div class="thumb-col">
+          <div class="thumb-item" *ngFor="let img of adopt?.images"
+            [class.active]="mainImage === getImageUrl(img)"
             (click)="changeImage(img)">
-            <img [src]="getImageUrl(img)" alt="thumb" />
+            <img [src]="getImageUrl(img)" [alt]="adopt?.petName" />
           </div>
         </div>
-
-        <!-- Main Image -->
-        <div class="main-image-wrapper">
-          <div class="badge-tag">🐾 Available</div>
-          <img [src]="mainImage" alt="Pet" class="main-img" />
+        <div class="adopt-main-wrap">
+          <span class="adopt-avail-badge">🐾 Available</span>
+          <div class="adopt-main-img-inner">
+            <img [src]="mainImage" [alt]="adopt?.petName" class="adopt-main-img" />
+          </div>
+          <div class="adopt-price-stripe">
+            <span>Adoption Fee</span>
+            <strong>{{ adopt?.petSellingPrice | currency:'INR' }}</strong>
+          </div>
         </div>
-
       </div>
 
-      <!-- Right: Pet Info -->
-      <div class="pet-info">
+      <!-- ══════ RIGHT: pet info ══════ -->
+      <div class="adopt-info">
 
-        <!-- Name & Category -->
-        <div class="category-tag">{{ adopt?.petCategory }}</div>
-        <h1 class="pet-name">{{ adopt?.petName | titlecase }}</h1>
+        <span class="adopt-cat-tag">{{ adopt?.petCategory }}</span>
+        <h1 class="adopt-name">{{ adopt?.petName | titlecase }}</h1>
 
-        <!-- Quick Info Pills -->
-        <div class="info-pills">
-          <div class="pill">
-            <span class="pill-icon">🐕</span>
-            <div>
-              <p class="pill-label">Breed</p>
-              <p class="pill-value">{{ adopt?.petBreed | titlecase }}</p>
-            </div>
+        <!-- quick info pills -->
+        <div class="info-pills-grid">
+          <div class="ipill">
+            <div class="ipill-ico">🐕</div>
+            <div><p class="ipill-lbl">Breed</p><p class="ipill-val">{{ adopt?.petBreed | titlecase }}</p></div>
           </div>
-          <div class="pill">
-            <span class="pill-icon">📅</span>
-            <div>
-              <p class="pill-label">Age</p>
-              <p class="pill-value">{{ adopt?.petAge }} months</p>
-            </div>
+          <div class="ipill">
+            <div class="ipill-ico">📅</div>
+            <div><p class="ipill-lbl">Age</p><p class="ipill-val">{{ adopt?.petAge }} months</p></div>
           </div>
-          <div class="pill">
-            <span class="pill-icon">💰</span>
-            <div>
-              <p class="pill-label">Adoption Fee</p>
-              <p class="pill-value">{{ adopt?.petSellingPrice | currency:'INR' }}</p>
-            </div>
+          <div class="ipill">
+            <div class="ipill-ico">💰</div>
+            <div><p class="ipill-lbl">Adoption Fee</p><p class="ipill-val">{{ adopt?.petSellingPrice | currency:'INR' }}</p></div>
           </div>
-          <div class="pill">
-            <span class="pill-icon">📞</span>
-            <div>
-              <p class="pill-label">Contact</p>
-              <p class="pill-value">{{ adopt?.ownerMobileNumber }}</p>
-            </div>
+          <div class="ipill">
+            <div class="ipill-ico">📞</div>
+            <div><p class="ipill-lbl">Contact</p><p class="ipill-val">{{ adopt?.ownerMobileNumber }}</p></div>
           </div>
         </div>
 
-        <!-- Owner Info -->
-        <div class="owner-card">
-          <div class="owner-avatar">🐾</div>
-          <div>
-            <p class="owner-name">Pet Odyssey Verified</p>
-            <p class="owner-email">This pet has been verified by our team</p>
+        <!-- verified card -->
+        <div class="verified-card">
+          <div class="vc-avatar">🐾</div>
+          <div class="vc-body">
+            <p class="vc-name">PetOdyssey Verified</p>
+            <p class="vc-sub">This pet has been verified by our team</p>
           </div>
-          <span class="owner-badge">✅ Verified</span>
+          <span class="vc-badge">✅ Verified</span>
         </div>
 
-        <!-- Adoption Guidelines -->
-        <div class="guidelines">
+        <!-- guidelines -->
+        <div class="guidelines-card">
           <h4>📋 Adoption Guidelines</h4>
-          <div class="guideline-item">
-            <span>🔞</span>
-            <p>You must be <strong>18+ years old</strong> to adopt.</p>
-          </div>
-          <div class="guideline-item">
-            <span>📧</span>
-            <p>After applying, you will <strong>receive updates via email</strong>.</p>
-          </div>
-          <div class="guideline-item">
-            <span>🏠</span>
-            <p>Adoption is subject to <strong>admin approval & home verification</strong>.</p>
-          </div>
-          <div class="guideline-item">
-            <span>💉</span>
-            <p>This pet is <strong>vaccinated & health-checked</strong>.</p>
-          </div>
-          <div class="guideline-item">
-            <span>✅</span>
-            <p>Once approved, you will get <strong>instructions to finalize adoption</strong>.</p>
+          <div class="gl-list">
+            <div class="gl-item"><span>🔞</span><p>You must be <strong>18+ years old</strong> to adopt.</p></div>
+            <div class="gl-item"><span>📧</span><p>After applying, you will <strong>receive updates via email</strong>.</p></div>
+            <div class="gl-item"><span>🏠</span><p>Subject to <strong>admin approval & home verification</strong>.</p></div>
+            <div class="gl-item"><span>💉</span><p>This pet is <strong>vaccinated & health-checked</strong>.</p></div>
+            <div class="gl-item"><span>✅</span><p>Once approved, you'll get <strong>instructions to finalise adoption</strong>.</p></div>
           </div>
         </div>
 
       </div>
     </div>
 
-    <!-- Adoption Form -->
-    <div class="adoption-form-wrapper">
-      <div class="form-header">
-        <h2>🐾 Apply for Adoption</h2>
-        <p>Fill in your details to apply for adopting <strong>{{ adopt?.petName | titlecase }}</strong></p>
+    <!-- ══════ ADOPTION FORM ══════ -->
+    <div class="adopt-form-section">
+      <div class="afs-header">
+        <div class="afs-icon">🐾</div>
+        <h2>Apply for Adoption</h2>
+        <p>Fill in your details to adopt <strong>{{ adopt?.petName | titlecase }}</strong></p>
       </div>
 
-      <form [formGroup]="adoptionForm" (ngSubmit)="onSubmit()">
-        <div class="form-grid">
+      <form [formGroup]="adoptionForm" (ngSubmit)="onSubmit()" class="adopt-form">
 
-          <!-- Personal Info -->
-          <div class="form-section">
-            <div class="section-label">👤 Personal Information</div>
+        <div class="af-row">
+          <!-- personal info -->
+          <div class="af-block">
+            <div class="af-block-label">Personal Information</div>
 
-            <div class="form-row-2">
-              <div class="form-group">
-                <label>Full Name <span class="required">*</span></label>
+            <div class="af-2col">
+              <div class="af-group">
+                <label>Full Name <span class="req">*</span></label>
                 <input type="text" formControlName="name" placeholder="John Doe"
-                  [class.error]="adoptionForm.get('name')?.invalid && adoptionForm.get('name')?.touched" />
-                <span class="error-msg" *ngIf="adoptionForm.get('name')?.invalid && adoptionForm.get('name')?.touched">
-                  Name is required
-                </span>
+                  [class.err]="adoptionForm.get('name')?.invalid && adoptionForm.get('name')?.touched" />
+                <span class="af-err" *ngIf="adoptionForm.get('name')?.invalid && adoptionForm.get('name')?.touched">Name is required</span>
               </div>
-
-              <div class="form-group">
-                <label>Email Address <span class="required">*</span></label>
+              <div class="af-group">
+                <label>Email Address <span class="req">*</span></label>
                 <input type="email" formControlName="email" placeholder="john@example.com"
-                  [class.error]="adoptionForm.get('email')?.invalid && adoptionForm.get('email')?.touched" />
-                <span class="error-msg"
-                  *ngIf="adoptionForm.get('email')?.invalid && adoptionForm.get('email')?.touched">
-                  Valid email is required
-                </span>
+                  [class.err]="adoptionForm.get('email')?.invalid && adoptionForm.get('email')?.touched" />
+                <span class="af-err" *ngIf="adoptionForm.get('email')?.invalid && adoptionForm.get('email')?.touched">Valid email required</span>
               </div>
             </div>
 
-            <div class="form-row-2">
-              <div class="form-group">
-                <label>Phone Number <span class="required">*</span></label>
+            <div class="af-2col">
+              <div class="af-group">
+                <label>Phone Number <span class="req">*</span></label>
                 <input type="tel" formControlName="phone" placeholder="+91 98765 43210"
-                  [class.error]="adoptionForm.get('phone')?.invalid && adoptionForm.get('phone')?.touched" />
+                  [class.err]="adoptionForm.get('phone')?.invalid && adoptionForm.get('phone')?.touched" />
               </div>
-
-              <div class="form-group">
-                <label>Address <span class="required">*</span></label>
+              <div class="af-group">
+                <label>Address <span class="req">*</span></label>
                 <input type="text" formControlName="address" placeholder="123 Street, City" />
               </div>
             </div>
           </div>
 
-          <!-- Adoption Info -->
-          <div class="form-section">
-            <div class="section-label">🐾 Adoption Information</div>
+          <!-- adoption info -->
+          <div class="af-block">
+            <div class="af-block-label">Adoption Details</div>
 
-            <div class="form-group full">
-              <label>Reason for Adoption <span class="required">*</span></label>
-              <textarea formControlName="reason" rows="4"
-                placeholder="Tell us why you want to adopt this pet and how you will care for them..."
-                [class.error]="adoptionForm.get('reason')?.invalid && adoptionForm.get('reason')?.touched">
+            <div class="af-group full">
+              <label>Reason for Adoption <span class="req">*</span></label>
+              <textarea formControlName="reason" rows="5"
+                placeholder="Tell us why you'd like to adopt this pet and how you'll care for them…"
+                [class.err]="adoptionForm.get('reason')?.invalid && adoptionForm.get('reason')?.touched">
               </textarea>
-              <span class="error-msg"
-                *ngIf="adoptionForm.get('reason')?.invalid && adoptionForm.get('reason')?.touched">
-                Please provide a reason
-              </span>
+              <span class="af-err" *ngIf="adoptionForm.get('reason')?.invalid && adoptionForm.get('reason')?.touched">Please provide a reason</span>
             </div>
 
-            <div class="checkbox-group">
-              <label class="checkbox-item" [class.checked]="adoptionForm.get('isAdult')?.value">
+            <div class="af-checks">
+              <label class="af-check-item" [class.checked]="adoptionForm.get('isAdult')?.value">
                 <input type="checkbox" formControlName="isAdult" />
-                <span class="checkmark">✓</span>
-                <span>I confirm I am <strong>18 years or older</strong></span>
+                <span class="checkmark"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5"><polyline points="20 6 9 17 4 12"/></svg></span>
+                I confirm I am <strong>18 years or older</strong>
               </label>
-
-              <label class="checkbox-item" [class.checked]="adoptionForm.get('hasPets')?.value">
+              <label class="af-check-item" [class.checked]="adoptionForm.get('hasPets')?.value">
                 <input type="checkbox" formControlName="hasPets" />
-                <span class="checkmark">✓</span>
-                <span>I already have other pets at home</span>
+                <span class="checkmark"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5"><polyline points="20 6 9 17 4 12"/></svg></span>
+                I already have other pets at home
               </label>
             </div>
           </div>
-
         </div>
 
-        <!-- Submit -->
-        <div class="form-submit">
-          <div class="submit-info">
-            <p>🔒 Your information is secure and will only be used for adoption processing.</p>
-          </div>
-          <button type="submit" [disabled]="adoptionForm.invalid" class="submit-btn">
-            <span *ngIf="!adoptionForm.invalid">🐾 Submit Adoption Application</span>
-            <span *ngIf="adoptionForm.invalid">⚠️ Please fill all required fields</span>
+        <!-- submit row -->
+        <div class="af-submit-row">
+          <p class="af-secure">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            Your information is secure and used only for adoption processing.
+          </p>
+          <button type="submit" class="af-submit-btn" [disabled]="adoptionForm.invalid">
+            <ng-container *ngIf="!adoptionForm.invalid">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 2L11 13"/><path d="M22 2L15 22 11 13 2 9l20-7z"/></svg>
+              Submit Adoption Application
+            </ng-container>
+            <ng-container *ngIf="adoptionForm.invalid">
+              ⚠️ Please fill all required fields
+            </ng-container>
           </button>
         </div>
 
@@ -203,4 +176,4 @@
     </div>
 
   </div>
-</section>
+</div>

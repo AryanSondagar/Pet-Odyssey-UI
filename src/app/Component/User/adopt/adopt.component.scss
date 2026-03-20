@@ -1,468 +1,202 @@
+$g:   #5aa469;
+$gd:  #3a6e49;
+$ink: #111827;
+$mid: #6b7280;
+$pale:#f9fafb;
+$wh:  #ffffff;
+
 :host {
-    .adoption-detail-section {
-        min-height: 100vh;
-        background: #f8f9fa;
-        padding: 30px 0 60px;
-        font-family: 'Segoe UI', sans-serif;
+  display: block;
+  font-family: 'Poppins', sans-serif;
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
+  .adopt-root { min-height: 100vh; background: $pale; padding-bottom: 80px; }
+
+  // breadcrumb
+  .adopt-breadcrumb {
+    background: $wh; border-bottom: 1px solid rgba(0,0,0,.06); padding: 14px 0;
+    .container { display: flex; align-items: center; gap: 6px; }
+  }
+  .bc-link   { font-size: 13px; color: $mid; cursor: pointer; font-weight: 500; transition: color .2s; &:hover { color: $g; } }
+  .bc-active { font-size: 13px; color: $g; font-weight: 600; }
+
+  .adopt-body { padding-top: 36px; }
+
+  // grid
+  .adopt-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: start; margin-bottom: 40px;
+    @media(max-width:900px) { grid-template-columns: 1fr; gap: 36px; }
+  }
+
+  // gallery
+  .adopt-gallery { display: flex; gap: 14px; }
+  .thumb-col {
+    display: flex; flex-direction: column; gap: 10px;
+    @media(max-width:900px) { display: none; }
+  }
+  .thumb-item {
+    width: 68px; height: 68px; border-radius: 10px; overflow: hidden;
+    border: 2px solid #e5e7eb; cursor: pointer; transition: all .22s ease;
+    img { width:100%;height:100%;object-fit:cover; }
+    &.active { border-color: $g; box-shadow: 0 0 0 3px rgba(90,164,105,.2); }
+    &:hover  { border-color: $g; }
+  }
+  .adopt-main-wrap {
+    flex: 1; border-radius: 22px; overflow: hidden; position: relative;
+    background: $wh; box-shadow: 0 4px 24px rgba(0,0,0,.08);
+  }
+  .adopt-avail-badge {
+    position: absolute; top: 14px; left: 14px; z-index: 2;
+    background: $g; color: $wh; padding: 4px 14px; border-radius: 50px;
+    font-size: 12px; font-weight: 700;
+  }
+  .adopt-main-img-inner { overflow: hidden; }
+  .adopt-main-img { width: 100%; height: 420px; object-fit: cover; transition: transform .4s ease; &:hover { transform: scale(1.03); } }
+  .adopt-price-stripe {
+    background: $ink; color: $wh; padding: 14px 20px;
+    display: flex; justify-content: space-between; align-items: center;
+    span { font-size: 13px; color: rgba(255,255,255,.65); }
+    strong { font-size: 18px; font-weight: 800; }
+  }
+
+  // pet info
+  .adopt-cat-tag {
+    display: inline-block; background: rgba(90,164,105,.1); color: $g;
+    border: 1px solid rgba(90,164,105,.24);
+    padding: 4px 14px; border-radius: 50px;
+    font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 14px;
+  }
+  .adopt-name {
+    font-size: clamp(1.8rem, 3vw, 2.4rem); font-weight: 900; color: $ink;
+    letter-spacing: -.5px; line-height: 1.15; margin-bottom: 22px;
+  }
+
+  // pills
+  .info-pills-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 20px;
+  }
+  .ipill {
+    display: flex; align-items: center; gap: 12px;
+    background: $pale; border: 1px solid #f3f4f6; border-radius: 14px;
+    padding: 14px 16px; transition: all .25s ease;
+    &:hover { border-color: rgba(90,164,105,.3); background: rgba(90,164,105,.04); }
+  }
+  .ipill-ico { font-size: 22px; flex-shrink: 0; }
+  .ipill-lbl { font-size: 11px; color: $mid; margin: 0; }
+  .ipill-val { font-size: 14px; color: $ink; font-weight: 700; margin: 0; }
+
+  // verified
+  .verified-card {
+    display: flex; align-items: center; gap: 13px;
+    background: rgba(90,164,105,.06); border: 1px solid rgba(90,164,105,.22);
+    border-radius: 14px; padding: 14px 18px; margin-bottom: 20px;
+  }
+  .vc-avatar {
+    width: 44px; height: 44px; border-radius: 50%; background: $g; color: $wh;
+    display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0;
+  }
+  .vc-body { flex: 1; }
+  .vc-name  { font-weight: 700; color: $ink; margin: 0; font-size: 14px; }
+  .vc-sub   { color: $mid; font-size: 12px; margin: 0; }
+  .vc-badge {
+    background: $g; color: $wh; padding: 4px 12px; border-radius: 50px;
+    font-size: 11px; font-weight: 700; white-space: nowrap;
+  }
+
+  // guidelines
+  .guidelines-card {
+    background: $pale; border: 1px solid #f3f4f6; border-radius: 16px; padding: 20px 22px;
+    h4 { font-size: 14px; font-weight: 700; color: $ink; margin-bottom: 14px; }
+  }
+  .gl-list { display: flex; flex-direction: column; gap: 10px; }
+  .gl-item {
+    display: flex; align-items: flex-start; gap: 10px;
+    span { font-size: 16px; flex-shrink: 0; }
+    p { font-size: 13px; color: $mid; margin: 0; line-height: 1.55; }
+  }
+
+  // ── form section ─────────────────────────────────
+  .adopt-form-section {
+    background: $wh; border-radius: 26px; padding: 44px 40px;
+    box-shadow: 0 4px 30px rgba(0,0,0,.07);
+    @media(max-width:600px) { padding: 28px 20px; }
+  }
+  .afs-header {
+    text-align: center; margin-bottom: 36px;
+    .afs-icon { font-size: 42px; display: block; margin-bottom: 12px; animation: iconFloat 3s ease-in-out infinite; }
+    h2 { font-size: 24px; font-weight: 800; color: $ink; margin-bottom: 6px; }
+    p  { font-size: 14px; color: $mid; }
+  }
+  @keyframes iconFloat { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
+
+  .adopt-form {}
+  .af-row { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin-bottom: 28px;
+    @media(max-width:900px) { grid-template-columns: 1fr; }
+  }
+  .af-block {}
+  .af-block-label {
+    font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px;
+    color: $g; font-weight: 700; margin-bottom: 18px;
+    padding-bottom: 10px; border-bottom: 2px solid #f3f4f6;
+  }
+  .af-2col { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px;
+    @media(max-width:500px) { grid-template-columns: 1fr; }
+  }
+  .af-group {
+    display: flex; flex-direction: column; gap: 7px; margin-bottom: 4px;
+    &.full { grid-column: 1 / -1; }
+    label { font-size: 13px; font-weight: 600; color: $ink; }
+    .req  { color: #ef4444; }
+    input, textarea {
+      border: 1.5px solid #e5e7eb; border-radius: 12px; padding: 11px 14px;
+      font-size: 14px; color: $ink; outline: none; resize: none; width: 100%;
+      font-family: 'Poppins', sans-serif; transition: all .25s ease;
+      background: $pale;
+      &::placeholder { color: #d1d5db; }
+      &:focus { border-color: $g; background: $wh; box-shadow: 0 0 0 3px rgba(90,164,105,.12); }
+      &.err { border-color: #ef4444; background: #fff5f5; }
     }
-
-    .breadcrumb-nav {
-        font-size: 0.85rem;
-        color: #888;
-        margin-bottom: 24px;
-
-        span {
-            margin: 0 4px;
-        }
-
-        .active {
-            color: #5aa469;
-            font-weight: 600;
-        }
-    }
-
-    .adoption-wrapper {
-        display: flex;
-        gap: 40px;
-        background: white;
-        border-radius: 20px;
-        padding: 40px;
-        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.08);
-        margin-bottom: 30px;
-
-        @media (max-width: 768px) {
-            flex-direction: column;
-            padding: 20px;
-        }
-    }
-
-    // Images
-    .pet-images {
-        display: flex;
-        gap: 16px;
-        width: 45%;
-        min-width: 45%;
-
-        @media (max-width: 768px) {
-            width: 100%;
-            flex-direction: column-reverse;
-        }
-
-        .thumbnail-strip {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-
-            @media (max-width: 768px) {
-                flex-direction: row;
-            }
-
-            .thumb {
-                width: 70px;
-                height: 70px;
-                border-radius: 10px;
-                overflow: hidden;
-                border: 2px solid #e0e0e0;
-                cursor: pointer;
-                transition: all 0.2s;
-
-                &.active {
-                    border-color: #5aa469;
-                    box-shadow: 0 0 0 3px rgba(90, 164, 105, 0.2);
-                }
-
-                &:hover {
-                    border-color: #5aa469;
-                }
-
-                img {
-                    width: 100%;
-                    height: 100%;
-                    object-fit: cover;
-                }
-            }
-        }
-
-        .main-image-wrapper {
-            flex: 1;
-            position: relative;
-            border-radius: 16px;
-            overflow: hidden;
-            background: #f5f5f5;
-
-            .badge-tag {
-                position: absolute;
-                top: 12px;
-                left: 12px;
-                background: #5aa469;
-                color: white;
-                padding: 4px 12px;
-                border-radius: 20px;
-                font-size: 0.75rem;
-                font-weight: 600;
-                z-index: 1;
-            }
-
-            .main-img {
-                width: 100%;
-                height: 420px;
-                object-fit: contain;
-                padding: 20px;
-                transition: transform 0.3s;
-
-                &:hover {
-                    transform: scale(1.05);
-                }
-            }
-        }
-    }
-
-    // Pet Info
-    .pet-info {
-        flex: 1;
-
-        .category-tag {
-            display: inline-block;
-            background: #e8f5e9;
-            color: #5aa469;
-            padding: 4px 14px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            margin-bottom: 12px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .pet-name {
-            font-size: 2rem;
-            font-weight: 800;
-            color: #1a1a2e;
-            margin: 0 0 20px;
-        }
-
-        .info-pills {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 12px;
-            margin-bottom: 20px;
-
-            .pill {
-                display: flex;
-                align-items: center;
-                gap: 12px;
-                background: #f8f9fa;
-                padding: 12px 16px;
-                border-radius: 12px;
-                border: 1px solid #eee;
-
-                .pill-icon {
-                    font-size: 1.5rem;
-                }
-
-                .pill-label {
-                    font-size: 0.75rem;
-                    color: #888;
-                    margin: 0;
-                }
-
-                .pill-value {
-                    font-size: 0.95rem;
-                    font-weight: 700;
-                    color: #1a1a2e;
-                    margin: 0;
-                }
-            }
-        }
-
-        .owner-card {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            background: #f0f7f1;
-            border: 1px solid #c8e6c9;
-            border-radius: 12px;
-            padding: 14px 16px;
-            margin-bottom: 20px;
-
-            .owner-avatar {
-                width: 44px;
-                height: 44px;
-                border-radius: 50%;
-                background: #5aa469;
-                color: white;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                font-size: 1.2rem;
-                font-weight: 700;
-                flex-shrink: 0;
-            }
-
-            .owner-name {
-                font-weight: 700;
-                color: #1a1a2e;
-                margin: 0;
-                font-size: 0.95rem;
-            }
-
-            .owner-email {
-                color: #888;
-                font-size: 0.8rem;
-                margin: 0;
-            }
-
-            .owner-badge {
-                margin-left: auto;
-                background: #5aa469;
-                color: white;
-                padding: 4px 10px;
-                border-radius: 20px;
-                font-size: 0.75rem;
-                font-weight: 600;
-                white-space: nowrap;
-            }
-        }
-
-        .guidelines {
-            background: #f8f9fa;
-            border-radius: 12px;
-            padding: 16px 20px;
-
-            h4 {
-                font-size: 1rem;
-                font-weight: 700;
-                color: #1a1a2e;
-                margin-bottom: 12px;
-            }
-
-            .guideline-item {
-                display: flex;
-                gap: 10px;
-                margin-bottom: 8px;
-                align-items: flex-start;
-
-                span {
-                    font-size: 1rem;
-                    flex-shrink: 0;
-                }
-
-                p {
-                    font-size: 0.85rem;
-                    color: #555;
-                    margin: 0;
-                    line-height: 1.5;
-                }
-            }
-        }
-    }
-
-    // Adoption Form
-    .adoption-form-wrapper {
-        background: white;
-        border-radius: 20px;
-        padding: 40px;
-        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.08);
-
-        .form-header {
-            text-align: center;
-            margin-bottom: 30px;
-
-            h2 {
-                font-size: 1.8rem;
-                font-weight: 700;
-                color: #1a1a2e;
-                margin-bottom: 8px;
-            }
-
-            p {
-                color: #888;
-                font-size: 0.95rem;
-            }
-        }
-
-        .form-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 30px;
-            margin-bottom: 24px;
-
-            @media (max-width: 768px) {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        .form-section {
-            .section-label {
-                font-size: 0.8rem;
-                text-transform: uppercase;
-                letter-spacing: 1.5px;
-                color: #5aa469;
-                font-weight: 700;
-                margin-bottom: 16px;
-                padding-bottom: 8px;
-                border-bottom: 2px solid #f0f0f0;
-            }
-        }
-
-        .form-row-2 {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 16px;
-
-            @media (max-width: 500px) {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        .form-group {
-            margin-bottom: 16px;
-
-            &.full {
-                grid-column: 1 / -1;
-            }
-
-            label {
-                display: block;
-                font-size: 0.82rem;
-                font-weight: 600;
-                color: #444;
-                margin-bottom: 6px;
-
-                .required {
-                    color: #e53935;
-                }
-            }
-
-            input,
-            textarea {
-                width: 100%;
-                padding: 11px 14px;
-                border: 1.5px solid #e0e0e0;
-                border-radius: 10px;
-                font-size: 0.95rem;
-                outline: none;
-                transition: all 0.3s;
-                box-sizing: border-box;
-                font-family: 'Segoe UI', sans-serif;
-                resize: none;
-
-                &:focus {
-                    border-color: #5aa469;
-                    box-shadow: 0 0 0 3px rgba(90, 164, 105, 0.12);
-                }
-
-                &.error {
-                    border-color: #e53935;
-                }
-
-                &::placeholder {
-                    color: #bbb;
-                }
-            }
-
-            .error-msg {
-                font-size: 0.75rem;
-                color: #e53935;
-                margin-top: 4px;
-                display: block;
-            }
-        }
-
-        .checkbox-group {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            margin-top: 8px;
-
-            .checkbox-item {
-                display: flex;
-                align-items: center;
-                gap: 12px;
-                padding: 12px 16px;
-                border: 1.5px solid #e0e0e0;
-                border-radius: 10px;
-                cursor: pointer;
-                transition: all 0.2s;
-
-                &.checked {
-                    border-color: #5aa469;
-                    background: #f0f7f1;
-                }
-
-                input[type="checkbox"] {
-                    display: none;
-                }
-
-                .checkmark {
-                    width: 22px;
-                    height: 22px;
-                    border: 2px solid #ddd;
-                    border-radius: 6px;
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    font-size: 0.8rem;
-                    color: transparent;
-                    flex-shrink: 0;
-                    transition: all 0.2s;
-                }
-
-                &.checked .checkmark {
-                    background: #5aa469;
-                    border-color: #5aa469;
-                    color: white;
-                }
-
-                span:last-child {
-                    font-size: 0.9rem;
-                    color: #444;
-                }
-            }
-        }
-
-        .form-submit {
-            border-top: 1px solid #f0f0f0;
-            padding-top: 24px;
-            text-align: center;
-
-            .submit-info p {
-                font-size: 0.8rem;
-                color: #aaa;
-                margin-bottom: 16px;
-            }
-
-            .submit-btn {
-                width: 100%;
-                max-width: 400px;
-                padding: 16px;
-                background: linear-gradient(135deg, #5aa469, #3d7a4e);
-                color: white;
-                border: none;
-                border-radius: 12px;
-                font-size: 1.05rem;
-                font-weight: 700;
-                cursor: pointer;
-                transition: all 0.3s;
-
-                &:hover:not(:disabled) {
-                    transform: translateY(-2px);
-                    box-shadow: 0 8px 20px rgba(90, 164, 105, 0.4);
-                }
-
-                &:disabled {
-                    background: #ccc;
-                    cursor: not-allowed;
-                    transform: none;
-                    box-shadow: none;
-                }
-            }
-        }
-    }
+  }
+  .af-err { font-size: 12px; color: #dc2626; }
+
+  // checkboxes
+  .af-checks { display: flex; flex-direction: column; gap: 10px; margin-top: 8px; }
+  .af-check-item {
+    display: flex; align-items: center; gap: 12px;
+    padding: 13px 16px; border: 1.5px solid #e5e7eb; border-radius: 12px;
+    cursor: pointer; transition: all .22s ease; font-size: 14px; color: $mid;
+    input[type="checkbox"] { display: none; }
+    &.checked { border-color: $g; background: rgba(90,164,105,.05); color: $ink; .checkmark { background: $g; border-color: $g; color: $wh; } }
+    &:hover { border-color: rgba(90,164,105,.4); }
+  }
+  .checkmark {
+    width: 22px; height: 22px; border: 2px solid #e5e7eb; border-radius: 6px;
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    color: transparent; transition: all .22s ease;
+  }
+
+  // submit
+  .af-submit-row {
+    display: flex; flex-direction: column; align-items: center; gap: 14px;
+    border-top: 1px solid #f3f4f6; padding-top: 28px;
+  }
+  .af-secure {
+    display: flex; align-items: center; gap: 7px;
+    font-size: 12px; color: $mid; margin: 0;
+    svg { color: $g; }
+  }
+  .af-submit-btn {
+    display: flex; align-items: center; justify-content: center; gap: 10px;
+    width: 100%; max-width: 440px; padding: 16px;
+    background: linear-gradient(135deg, $g, $gd); color: $wh;
+    border: none; border-radius: 14px; font-size: 15px; font-weight: 700;
+    cursor: pointer; box-shadow: 0 6px 24px rgba(90,164,105,.36);
+    transition: all .3s ease; font-family: 'Poppins', sans-serif;
+    &:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 0 14px 36px rgba(90,164,105,.48); }
+    &:disabled { background: #e5e7eb; color: #9ca3af; box-shadow: none; cursor: not-allowed; transform: none; }
+  }
+
+  @media(max-width:768px) {
+    .adopt-main-img { height: 300px; }
+    .info-pills-grid { grid-template-columns: 1fr; }
+  }
 }
