@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { Course } from '../Model/course.model';
 
 @Injectable({
@@ -8,6 +8,8 @@ import { Course } from '../Model/course.model';
 })
 export class AdminCourseService {
   apiUrl: string = "http://localhost:3000/api/admin/course";
+   private selectedSlotSubject = new BehaviorSubject<string>('');
+  selectedSlot$ = this.selectedSlotSubject.asObservable();
   constructor(private http: HttpClient) { }
   getAllCourses(): Observable<Course[]> {
     return this.http.get<Course[]>(this.apiUrl);
@@ -22,5 +24,12 @@ export class AdminCourseService {
   }
    deleteCourse(id: string): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/${id}`);
+  }
+  setSelectedSlot(slot: string): void {
+    this.selectedSlotSubject.next(slot);
+  }
+
+  getSelectedSlot(): string {
+    return this.selectedSlotSubject.getValue();
   }
 }

@@ -6,14 +6,14 @@ import { AdminCourseService } from 'src/app/Services/admin-course.service';
 
 @Component({
   selector: 'app-course',
-
   templateUrl: './course.component.html',
   styleUrl: './course.component.scss',
 
 })
 export class CourseComponent {
   course?: Course;
-  constructor(private route: ActivatedRoute, private courseService: AdminCourseService) { }
+  showSlotError: boolean = false;
+  constructor(private route: ActivatedRoute, private courseService: AdminCourseService, private routes: Router) { }
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');
     if (id) {
@@ -30,7 +30,18 @@ export class CourseComponent {
 
   selectSlot(slot: string) {
     this.selectedSlot = slot;
+    this.showSlotError = false;
+    this.courseService.setSelectedSlot(slot);
     console.log('Selected slot:', slot);
+  }
+  buyCourse() {
+    if (!this.selectedSlot) {
+      this.showSlotError = true;
+      return;
+    }
+    this.routes.navigate(['/payment'], {
+      queryParams: { type: 'course', id: this.course._id }
+    });
   }
 
 }

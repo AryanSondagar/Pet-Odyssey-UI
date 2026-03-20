@@ -16,7 +16,7 @@ export class AdminAdoptionService {
     return this.http.get<AdoptionForm[]>(this.apiUrl);
   }
   getAdoptionById(id: string): Observable<AdoptionForm> {
-     return this.http.get<AdoptionForm>(`${this.apiUrl}/${id}`);
+    return this.http.get<AdoptionForm>(`${this.apiUrl}/${id}`);
   }
   addAdoptionPet(form: AdoptionForm): Observable<any> {
     const formData = new FormData();
@@ -33,10 +33,13 @@ export class AdminAdoptionService {
       });
     }
 
-    return this.http.post(this.apiUrl , formData);
+    return this.http.post(this.apiUrl, formData);
   }
   deleteAdoption(id: string): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/${id}`);
+  }
+  applyForAdoption(data: any): Observable<any> {
+    return this.http.post(`${this.apiUrl}/apply`, data);
   }
 
 }

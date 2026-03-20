@@ -7,20 +7,23 @@ import { PageNotFoundComponent } from '../../page-not-found/page-not-found.compo
 import { CourseComponent } from '../course/course.component';
 import { ProductComponent } from '../product/product.component';
 import { AdoptComponent } from '../adopt/adopt.component';
+import { PaymentStripeComponent } from '../../payment-stripe/payment-stripe.component';
 
 
 const routes: Routes = [
-        {path: 'UserLogin' , component: UserloginComponent},
-        {path: 'training/:id' , component:CourseComponent },
-        {path: 'product/:id' , component:ProductComponent },
-        {path: 'pet-detail/:id' , component:AdoptComponent },
-        {path: '**' , component: PageNotFoundComponent },
-        {path: '', component:UserComponent}
-    
+    { path: '', component: UserComponent },
+    { path: 'UserLogin', component: UserloginComponent },
+    { path: 'training/:id', component: CourseComponent },
+    { path: 'product/:id', component: ProductComponent },
+    { path: 'pet-detail/:id', component: AdoptComponent },
+    { path: 'payment', component: PaymentStripeComponent },
+    //  { path: '**', component: PageNotFoundComponent }
+         
+
 ]
 
 @NgModule({
-    imports: [RouterModule.forRoot(routes)],
+    imports: [RouterModule.forChild(routes)],
     exports: [RouterModule],
 })
-export class UserRoutingModule {}
+export class UserRoutingModule { }

@@ -1,111 +1,132 @@
-<div class="container">
-    <div class="title">
-        <h1 class="animated-title"> <mat-icon>pets</mat-icon> Add Product Detail <mat-icon>pets</mat-icon></h1>
+<div class="page-wrapper">
+  <div class="form-container">
+
+    <!-- Header -->
+    <div class="form-header">
+      <div class="header-icon">
+        <mat-icon>storefront</mat-icon>
+      </div>
+      <div class="header-text">
+        <h1>Add Product Detail</h1>
+        <p>Fill in the details to list a new product on the marketplace</p>
+      </div>
     </div>
-    <form [formGroup]="marketplaceForm" (ngSubmit)="onSubmit()" >
-        <div class="add-product-form">
-            <div class="top-field">
-                <div class="name">
-                    <mat-form-field fill="outline">
-                        <mat-label>Product Name</mat-label>
-                        <input matInput placeholder="Enter product title" name="ProductName"
-                            formControlName="productName" required>
-                    </mat-form-field>
-                </div>
-                <div class="category name">
-                    <mat-form-field class="product-field">
-                        <mat-label>Product Category</mat-label>
-                        <mat-select name="ProductCategory" formControlName="productCategory" required>
-                            <mat-option value="Food&Treats">Food&Treats</mat-option>
-                            <mat-option value="Toys">Toys</mat-option>
-                            <mat-option value="Collars, Leashes, & Harnesses">Collars, Leashes, &
-                                Harnesses</mat-option>
-                            <mat-option value="Grooming Supplies"> Grooming Supplies</mat-option>
-                            <mat-option value="Feeding & Watering Supplies">Feeding & Watering Supplies</mat-option>
-                            <mat-option value="Health & Wellness Products">Health & Wellness Products</mat-option>
-                            <mat-option value="ID Tags & Accessories">ID Tags & Accessories</mat-option>
-                            <mat-option value="Travel Accessories">Travel Accessories</mat-option>
-                        </mat-select>
-                    </mat-form-field>
-                </div>
-            </div>
 
-            <div class="middle-field">
-                <div class="product-price name">
-                    <mat-form-field>
-                        <mat-label>Enter Price (INR)</mat-label>
-                        <input matInput type="number" placeholder="Enter price in INR" min="0" name="ProductPrice"
-                            formControlName="productPrice" required />
-                    </mat-form-field>
-                </div>
-                <div class="product-stock name">
-                    <mat-form-field>
-                        <mat-label>Product Stock</mat-label>
-                        <input matInput placeholder="*In Stock" type="number" min="0" name="ProductStock"
-                            formControlName="productStock" required>
-                    </mat-form-field>
-                </div>
-            </div>
-            <div class="desc name">
+    <!-- Scrollable Form Body -->
+    <form [formGroup]="marketplaceForm" (ngSubmit)="onSubmit()">
 
-                <label for="myTextArea">Description:</label>
-                <textarea id="myTextArea" name="message" placeholder="Type your text here..."
-                    formControlName="productDescription" required></textarea>
-            </div>
+      <!-- Section: Product Info -->
+      <div class="section-label">
+        <mat-icon>inventory_2</mat-icon>
+        <span>Product Information</span>
+      </div>
 
-            <!-- <div class="upload-image name">
-                <div class="upload-container" fxLayout="column" fxLayoutAlign="center center">
-                    <input type="file" (change)="handleFileInput($event)" accept="image/*" multiple name="ProductImages"
-                        [(ngModel)]="newProduct.productImage" required id="file-input">
-                    <label for="file-input" style="max-width: 260px;" mat-raised-button
-                        matTooltip="Image must be less then 5" [matTooltipPosition]="position.value!">
-                        <mat-icon>upload</mat-icon>
-                         Upload Image
-                    </label>
+      <div class="form-row">
+        <mat-form-field appearance="outline" class="field-full">
+          <mat-label>Product Name</mat-label>
+          <mat-icon matPrefix>label</mat-icon>
+          <input matInput placeholder="e.g. Premium Dog Food" formControlName="productName" required />
+          <mat-error *ngIf="marketplaceForm.get('productName')?.hasError('required')">Product name is required</mat-error>
+        </mat-form-field>
 
-                    <div class="upload-preview" *ngIf="imageUrls && imageUrls.length > 0">
-                        <div class="product-image" *ngFor="let imageUrl of imageUrls">
-                            <img [src]="imageUrl" alt="Uploaded Image" />
-                        </div>
-                    </div>
+        <mat-form-field appearance="outline" class="field-full">
+          <mat-label>Product Category</mat-label>
+          <mat-icon matPrefix>category</mat-icon>
+          <mat-select formControlName="productCategory" required>
+            <mat-option value="Food&Treats">Food & Treats</mat-option>
+            <mat-option value="Toys">Toys</mat-option>
+            <mat-option value="Collars, Leashes, & Harnesses">Collars, Leashes & Harnesses</mat-option>
+            <mat-option value="Grooming Supplies">Grooming Supplies</mat-option>
+            <mat-option value="Feeding & Watering Supplies">Feeding & Watering Supplies</mat-option>
+            <mat-option value="Health & Wellness Products">Health & Wellness Products</mat-option>
+            <mat-option value="ID Tags & Accessories">ID Tags & Accessories</mat-option>
+            <mat-option value="Travel Accessories">Travel Accessories</mat-option>
+          </mat-select>
+          <mat-error *ngIf="marketplaceForm.get('productCategory')?.hasError('required')">Category is required</mat-error>
+        </mat-form-field>
+      </div>
 
-                </div>
-            </div> -->
+      <!-- Section: Pricing & Stock -->
+      <div class="section-label">
+        <mat-icon>sell</mat-icon>
+        <span>Pricing & Stock</span>
+      </div>
 
-           <div *ngIf="selectedFiles.length >= 5" class="text-danger small">
-                You can only upload up to 5 images.
-            </div>
-            <!-- File Upload -->
-            <div class="mb-3 d-flex justify-content-center">
-                <div class="upload-wrapper">
-                    <input type="file" (change)="onFileChange($event)" multiple class="form-control"
-                      [attr.maxlength]="5"   />
-                </div>
-            </div>
+      <div class="form-row">
+        <mat-form-field appearance="outline" class="field-full">
+          <mat-label>Price (INR)</mat-label>
+          <mat-icon matPrefix>currency_rupee</mat-icon>
+          <input matInput type="number" placeholder="e.g. 499" min="0"
+            formControlName="productPrice" required />
+          <mat-error *ngIf="marketplaceForm.get('productPrice')?.hasError('required')">Price is required</mat-error>
+        </mat-form-field>
 
- 
-            <!-- Preview Images -->
-            <div class="preview-box mb-3 d-flex ">
-                <ng-container *ngIf="selectedFiles.length > 0; else noImage">
-                    <div *ngFor="let file of selectedFiles" class="p-2">
-                        <img [src]="file.preview" alt="preview" width="70" height="70" class="rounded" />
-                    </div>
-                </ng-container>
-                <!-- Placeholder if no images -->
-                <ng-template #noImage>
-                    <span class="placeholder-text">No images uploaded</span>
-                </ng-template>
-            </div>
+        <mat-form-field appearance="outline" class="field-full">
+          <mat-label>Stock Quantity</mat-label>
+          <mat-icon matPrefix>warehouse</mat-icon>
+          <input matInput type="number" placeholder="e.g. 100" min="0"
+            formControlName="productStock" required />
+          <mat-hint>Units available in stock</mat-hint>
+          <mat-error *ngIf="marketplaceForm.get('productStock')?.hasError('required')">Stock is required</mat-error>
+        </mat-form-field>
+      </div>
 
-            <div class="submit-btn">
-                <button mat-raised-button color="primary" type="submit" [disabled]="marketplaceForm.invalid">
-                    Submit
-                </button>
-            </div>
+      <!-- Section: Description -->
+      <div class="section-label">
+        <mat-icon>description</mat-icon>
+        <span>Description</span>
+      </div>
+
+      <mat-form-field appearance="outline" class="field-full desc-field">
+        <mat-label>Product Description</mat-label>
+        <mat-icon matPrefix>notes</mat-icon>
+        <textarea matInput rows="4" placeholder="Describe your product in detail..."
+          formControlName="productDescription" required></textarea>
+        <mat-error *ngIf="marketplaceForm.get('productDescription')?.hasError('required')">Description is required</mat-error>
+      </mat-form-field>
+
+      <!-- Section: Images -->
+      <div class="section-label">
+        <mat-icon>photo_library</mat-icon>
+        <span>Product Images</span>
+      </div>
+
+      <div class="upload-zone" (click)="fileInput.click()" [class.has-files]="selectedFiles.length > 0">
+        <input type="file" (change)="onFileChange($event)" multiple #fileInput hidden />
+        <div class="upload-content" *ngIf="selectedFiles.length === 0">
+          <mat-icon class="upload-icon">cloud_upload</mat-icon>
+          <p class="upload-title">Click to upload product images</p>
+          <p class="upload-sub">JPG, PNG, WEBP · Max 5 images</p>
         </div>
+        <div class="upload-content" *ngIf="selectedFiles.length > 0">
+          <mat-icon class="upload-icon uploaded">check_circle</mat-icon>
+          <p class="upload-title">{{ selectedFiles.length }} image(s) selected</p>
+          <p class="upload-sub">Click to change selection</p>
+        </div>
+      </div>
+
+      <div class="warn-msg" *ngIf="selectedFiles.length >= 5">
+        <mat-icon>warning</mat-icon>
+        Maximum 5 images allowed.
+      </div>
+
+      <!-- Image Previews -->
+      <div class="preview-strip" *ngIf="selectedFiles.length > 0">
+        <div class="preview-item" *ngFor="let file of selectedFiles">
+          <img [src]="file.preview" alt="preview" />
+          <span class="preview-name">{{ file.file.name | slice:0:10 }}...</span>
+        </div>
+      </div>
+
+      <!-- Submit -->
+      <div class="form-actions">
+        <button mat-raised-button type="submit" class="submit-btn"
+          [disabled]="marketplaceForm.invalid">
+          <mat-icon>check_circle</mat-icon>
+          Submit Product
+        </button>
+      </div>
+
     </form>
-
-
-
-
+  </div>
 </div>

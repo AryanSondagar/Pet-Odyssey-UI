@@ -23,6 +23,9 @@ export class AlertService {
   ShowSuccess(message: string) {
     return this.showToast(message, 'success');
   }
+  ShowError(message: string) {
+    return this.showToast(message, 'error');
+  }
   ShowDelete(message: string) {
     return this.showToast(message, 'warning');
   }

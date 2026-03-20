@@ -249,4 +249,15 @@
   .time-slots ul li.selected {
     background: #28a745;
   }
+
+  .slot-error {
+    color: #e53935;
+    background: #ffebee;
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    margin-top: 8px;
+    border-left: 3px solid #e53935;
+  }
+
 }

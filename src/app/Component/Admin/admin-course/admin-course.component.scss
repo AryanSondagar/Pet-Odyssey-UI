@@ -1,142 +1,441 @@
 :host {
-    .container {
-        height: calc(100vh - 100px);
-        font-size: 16px;
-        border-radius: 10px;
-        // overflow: hidden;
+    $brand: #006b72;
+    $brand-dark: #004d52;
+    $brand-light: #e0f4f5;
+    $brand-mid: #008a93;
+    $white: #ffffff;
+    $text-primary: #1a2e2f;
+    $text-muted: #5a7b7e;
+    $border-color: #b2d8db;
 
-    }
-
-    // new ui
-    .title {
+    // ── Page wrapper ──────────────────────────────────────────
+    .page-wrapper {
+        height: calc(100vh - 64px); // adjust 64px to match your topbar height
+        overflow: hidden;
+        background: linear-gradient(135deg, #e8f7f8 0%, #f5feff 100%);
         display: flex;
+        align-items: flex-start;
         justify-content: center;
-        align-items: center;
-        border-bottom: 1px solid gray;
-        margin: 2% 20% 2% 20%;
+        padding: 2rem 1rem;
     }
 
-    .name {
+    // ── Form card ─────────────────────────────────────────────
+    .form-container {
+        width: 100%;
+        max-width: 680px;
+        max-height: 100%;
+        background: $white;
+        border-radius: 18px;
+        border: 1px solid $border-color;
+        box-shadow: 0 8px 32px rgba(0, 107, 114, 0.08);
+        overflow: hidden;
         display: flex;
-        justify-content: center;
-        align-items: center;
-    }
+        flex-direction: column;
 
-    @keyframes slideIn {
-        from {
-            transform: translateX(-100%);
-        }
+        form {
+            flex: 1;
+            overflow-y: auto;
+            padding: 1.75rem 2rem 2rem;
+            overscroll-behavior: contain;
 
-        to {
-            transform: translateX(0);
-        }
-    }
+            scrollbar-width: thin;
+            scrollbar-color: $brand-mid transparent;
 
-    .animated-title {
-        font-size: 2em;
-        color: #006b72;
-        animation: slideIn 1s ease-out;
-        font-family: "Arial", sans-serif;
-        cursor: default;
-    }
+            &::-webkit-scrollbar {
+                width: 5px;
+            }
 
-    .top-field {
-        display: flex;
-        justify-content: center;
-        gap: 20px;
-        margin-top: 15px;
-    }
+            &::-webkit-scrollbar-thumb {
+                background: $brand-mid;
+                border-radius: 4px;
+            }
 
-    .middle-field {
-        display: flex;
-        justify-content: center;
-        gap: 20px;
-        margin-top: 15px;
-    }
-    .Date{
-        mat-form-field-appearance-legacy mat-form-field-infix{
-            display: flex !important;
-        }
-        mat-datepicker-toggle{
-            display: flex;
-            flex-direction: row-reverse;
-        }
-    }
-
-    .time-slot {
-        display: flex;
-        justify-content: center;
-
-        .time-picker {
-            width: 250px;
-        }
-
-        .time-display {
-            font-size: 28px;
-            display: flex;
-            gap: 15px;
-        }
-
-        .slider-group {
-            margin: 10px 0;
-
-            mat-slider {
-                margin-left: 5px;
+            &::-webkit-scrollbar-track {
+                background: transparent;
             }
         }
+    }
 
-        .text-danger {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-bottom: 5px;
-        }
+    // ── Header ────────────────────────────────────────────────
+    .form-header {
+        background: $brand;
+        padding: 1.75rem 2rem;
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        flex-shrink: 0;
 
-        .add-slot-btn {
-            display: flex;
-            justify-content: center;
-        }
-
-        .remove-btn {
-            position: absolute;
-            top: -5px;
-            right: -5px;
-            background: white;
+        .header-icon {
+            width: 52px;
+            height: 52px;
             border-radius: 50%;
-            padding: 2px;
-        }
-
-        .preview-box {
-            width: 150px;
-            min-height: 120px;
-            border: 2px dotted #aaa;
-            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.18);
             display: flex;
-            flex-direction: column;
             align-items: center;
-            justify-content: flex-start;
-            background-color: #fafafa;
+            justify-content: center;
+            flex-shrink: 0;
 
-            .placeholder-text {
-                color: #888;
-                font-size: 14px;
-                font-style: italic;
-                margin: auto;
+            mat-icon {
+                color: $white;
+                font-size: 28px;
+                width: 28px;
+                height: 28px;
             }
         }
 
+        .header-text {
+            h1 {
+                color: $white;
+                font-size: 22px;
+                font-weight: 600;
+                margin: 0 0 4px;
+            }
 
+            p {
+                color: rgba(255, 255, 255, 0.75);
+                font-size: 13px;
+                margin: 0;
+            }
+        }
+    }
+
+    // ── Section labels ────────────────────────────────────────
+    .section-label {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        color: $brand-dark;
+        font-size: 12px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        margin: 1.5rem 0 0.75rem;
+
+        &:first-of-type {
+            margin-top: 0;
+        }
+
+        mat-icon {
+            font-size: 16px;
+            width: 16px;
+            height: 16px;
+            color: $brand;
+        }
+    }
+
+    // ── Form rows ─────────────────────────────────────────────
+    .form-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+        margin-bottom: 4px;
+
+        @media (max-width: 520px) {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    .field-full {
+        width: 100%;
+    }
+
+    .date-field {
+        width: 100%;
+        margin-bottom: 4px;
+    }
+
+    // ── Angular Material overrides ────────────────────────────
+    ::ng-deep {
+        .mat-mdc-form-field {
+
+            .mdc-notched-outline__leading,
+            .mdc-notched-outline__notch,
+            .mdc-notched-outline__trailing {
+                border-color: $border-color !important;
+                border-width: 1.5px !important;
+            }
+
+            &:hover .mdc-notched-outline__leading,
+            &:hover .mdc-notched-outline__notch,
+            &:hover .mdc-notched-outline__trailing {
+                border-color: $brand-mid !important;
+            }
+
+            &.mat-focused .mdc-notched-outline__leading,
+            &.mat-focused .mdc-notched-outline__notch,
+            &.mat-focused .mdc-notched-outline__trailing {
+                border-color: $brand !important;
+                border-width: 2px !important;
+            }
+
+            .mat-mdc-floating-label,
+            .mdc-floating-label {
+                color: $text-muted !important;
+            }
+
+            &.mat-focused .mat-mdc-floating-label,
+            &.mat-focused .mdc-floating-label {
+                color: $brand !important;
+            }
+
+            .mat-mdc-form-field-icon-prefix mat-icon {
+                color: $brand-mid;
+                font-size: 18px;
+                margin-right: 4px;
+            }
+
+            .mdc-text-field__input {
+                color: $text-primary !important;
+            }
+
+            .mat-mdc-form-field-hint {
+                color: $brand-mid;
+            }
+        }
+
+        // Slider color
+        .mat-mdc-slider .mdc-slider__track--active_fill,
+        .mat-mdc-slider .mdc-slider__thumb-knob {
+            background-color: $brand !important;
+            border-color: $brand !important;
+        }
+
+        .mat-mdc-slider .mdc-slider__track--inactive {
+            background-color: $brand-light !important;
+        }
+    }
+
+    // ── Time slot card ────────────────────────────────────────
+    .timeslot-card {
+        background: $brand-light;
+        border: 1.5px solid $border-color;
+        border-radius: 14px;
+        padding: 1.25rem 1.5rem;
+        margin-bottom: 14px;
+    }
+
+    .time-display-row {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 1.25rem;
+    }
+
+    .time-badge {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        background: $brand;
+        color: $white;
+        border-radius: 50px;
+        padding: 10px 24px;
+
+        mat-icon {
+            font-size: 20px;
+            width: 20px;
+            height: 20px;
+        }
+
+        .time-value {
+            font-size: 26px;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            font-family: monospace;
+        }
+    }
+
+    .meridian-btn {
+        background: rgba(255, 255, 255, 0.2);
+        color: $white;
+        border: 1.5px solid rgba(255, 255, 255, 0.5);
+        border-radius: 8px;
+        padding: 4px 14px;
+        font-size: 13px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background 0.15s;
+
+        &:hover {
+            background: rgba(255, 255, 255, 0.35);
+        }
+    }
+
+    // ── Sliders ───────────────────────────────────────────────
+    .slider-row {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 10px;
+
+        .slider-label {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 13px;
+            font-weight: 500;
+            color: $brand-dark;
+            min-width: 90px;
+
+            mat-icon {
+                font-size: 15px;
+                width: 15px;
+                height: 15px;
+                color: $brand;
+            }
+        }
+
+        .custom-slider {
+            flex: 1;
+        }
+
+        .slider-val {
+            min-width: 28px;
+            text-align: right;
+            font-size: 13px;
+            font-weight: 600;
+            color: $brand;
+        }
+    }
+
+    // ── Slot action row ───────────────────────────────────────
+    .slot-action-row {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 12px;
+        margin-top: 6px;
+    }
+
+    .add-slot-btn {
+        background: $brand !important;
+        color: $white !important;
+        border-radius: 8px !important;
+        font-size: 13px !important;
+        height: 38px !important;
+        display: flex !important;
+        align-items: center !important;
+        gap: 4px !important;
+
+        mat-icon {
+            font-size: 16px;
+            width: 16px;
+            height: 16px;
+        }
+
+        &[disabled] {
+            background: #9ab8ba !important;
+            color: rgba(255, 255, 255, 0.6) !important;
+            cursor: not-allowed !important;
+        }
+    }
+
+    // ── Warning ───────────────────────────────────────────────
+    .warn-msg {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        color: #b71c1c;
+        font-size: 12px;
+
+        mat-icon {
+            font-size: 15px;
+            width: 15px;
+            height: 15px;
+        }
+    }
+
+    // ── Slot chips ────────────────────────────────────────────
+    .slot-preview {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-bottom: 1.25rem;
+    }
+
+    .slot-chip {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        background: $brand;
+        color: $white;
+        border-radius: 50px;
+        padding: 5px 6px 5px 12px;
+        font-size: 13px;
+        font-weight: 500;
+
+        mat-icon {
+            font-size: 15px;
+            width: 15px;
+            height: 15px;
+        }
+
+        .remove-slot {
+            width: 24px;
+            height: 24px;
+            line-height: 24px;
+            color: rgba(255, 255, 255, 0.8);
+
+            mat-icon {
+                font-size: 16px;
+                width: 16px;
+                height: 16px;
+                transition: color 0.15s;
+            }
+
+            &:hover mat-icon {
+                color: #ff6b6b;
+            }
+        }
+    }
+
+    .no-slot-text {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 13px;
+        color: $text-muted;
+        margin-bottom: 1.25rem;
+
+        mat-icon {
+            font-size: 15px;
+            width: 15px;
+            height: 15px;
+        }
+    }
+
+    // ── Submit ────────────────────────────────────────────────
+    .form-actions {
+        display: flex;
+        justify-content: flex-end;
+        padding-top: 0.5rem;
     }
 
     .submit-btn {
-        margin-top: 10px;
-        display: flex;
-        justify-content: center;
+        background: $brand !important;
+        color: $white !important;
+        border-radius: 10px !important;
+        padding: 0 28px !important;
+        height: 46px !important;
+        font-size: 15px !important;
+        font-weight: 500 !important;
+        display: flex !important;
+        align-items: center !important;
+        gap: 8px !important;
+        transition: background 0.2s !important;
 
-        button:hover {
-            opacity: 0.8;
+        mat-icon {
+            font-size: 18px;
+            width: 18px;
+            height: 18px;
+        }
+
+        &:hover:not([disabled]) {
+            background: $brand-dark !important;
+        }
+
+        &[disabled] {
+            background: #9ab8ba !important;
+            color: rgba(255, 255, 255, 0.7) !important;
+            cursor: not-allowed !important;
         }
     }
-
-
 }

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MarketplaceForm } from 'src/app/Model/marketplace.model';
 import { AdminMarketplaceService } from 'src/app/Services/admin-marketplace.service';
 
@@ -13,7 +13,7 @@ export class ProductComponent {
   mainImage: any = '';
 
 
-  constructor(private productService: AdminMarketplaceService, private route: ActivatedRoute) { }
+  constructor(private productService: AdminMarketplaceService, private route: ActivatedRoute, private routes: Router) { }
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');
     if (id) {
@@ -35,6 +35,28 @@ export class ProductComponent {
   }
   changeImage(img: any) {
     this.mainImage = this.getImageUrl(img);
+  }
+  quantity: number = 1;
+
+  increaseQty(): void {
+    if (this.quantity < (this.product?.productStock || 10)) {
+      this.quantity++;
+    }
+  }
+
+  decreaseQty(): void {
+    if (this.quantity > 1) {
+      this.quantity--;
+    }
+  }
+
+  buyNow(): void {
+    this.routes.navigate(['/payment'], {
+      queryParams: { type: 'product', id: this.product._id, quantity: this.quantity }
+    });
+  }
+  GotoHome() {
+    this.routes.navigate(['']);
   }
 
 }

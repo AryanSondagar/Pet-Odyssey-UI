@@ -1,30 +1,116 @@
-<section class="sproduct my-5 pt-5 container">
-  <div class="row mt-5 align-items-center">
+<section class="product-detail-section">
+  <div class="container">
     
-    <!-- Left: Product Images -->
-    <div class="col-lg-5 col-md-12 col-12">
-      <img class="img-fluid w-100 pb-1" [src]="mainImage" alt="Product Main">
-      <div class="small-img-group">
-        <div class="small-img-col" *ngFor="let img of product?.productImages">
-          <img [src]="getImageUrl(img)" class="small-img" width="100%" alt="" (click)="changeImage(img)">
-        </div>
-      </div>
+    <!-- Breadcrumb -->
+    <div class="breadcrumb-nav">
+      <span (click)="GotoHome()" style="cursor: pointer;">Home</span> 
+      <span> / </span>
+      <span class="active">{{ product?.productName }}</span>
     </div>
 
-    <!-- Right: Product Info -->
-    <div class="col-lg-6 col-md-12 col-12">
-      <h6>{{product?.productCategory}}</h6>
-      <h3 class="py-2">{{product?.productName}}</h3>
-      <h2>{{product?.productPrice | currency:'INR'}}</h2>
-      <div class="d-flex align-items-center mb-3">
-        <input type="number" value="1" min="1" max="10" >
-        <button class="buy-btn">Buy Now</button>
+    <div class="product-wrapper">
+
+      <!-- Left: Images -->
+      <div class="product-images">
+        
+        <!-- Thumbnail Strip -->
+        <div class="thumbnail-strip">
+          <div 
+            class="thumb" 
+            *ngFor="let img of product?.productImages"
+            [class.active]="mainImage === getImageUrl(img)"
+            (click)="changeImage(img)"
+          >
+            <img [src]="getImageUrl(img)" alt="thumb" />
+          </div>
+        </div>
+
+        <!-- Main Image -->
+        <div class="main-image-wrapper">
+          <div class="badge-tag">In Stock</div>
+          <img [src]="mainImage" alt="Product" class="main-img" />
+          <div class="zoom-hint">🔍 Click thumbnail to switch</div>
+        </div>
+
       </div>
 
-      <h4>Product Details</h4>
-      <span>
-        {{product?.productDescription}}
-      </span>
+      <!-- Right: Product Info -->
+      <div class="product-info">
+
+        <!-- Category & Name -->
+        <div class="category-tag">{{ product?.productCategory }}</div>
+        <h1 class="product-name">{{ product?.productName }}</h1>
+
+        <!-- Price -->
+        <div class="price-section">
+          <span class="current-price">{{ product?.productPrice | currency:'INR' }}</span>
+          <span class="original-price">{{ (product?.productPrice * 1.2) | currency:'INR' }}</span>
+          <span class="discount-badge">20% OFF</span>
+        </div>
+
+        <!-- Divider -->
+        <div class="section-divider"></div>
+
+        <!-- Description -->
+        <div class="description">
+          <h4>About this product</h4>
+          <p>{{ product?.productDescription }}</p>
+        </div>
+
+        <!-- Features -->
+        <div class="features">
+          <div class="feature-item">
+            <span class="feature-icon">🚚</span>
+            <div>
+              <p class="feature-title">Free Delivery</p>
+              <p class="feature-desc">On orders above ₹499</p>
+            </div>
+          </div>
+          <div class="feature-item">
+            <span class="feature-icon">↩️</span>
+            <div>
+              <p class="feature-title">Easy Returns</p>
+              <p class="feature-desc">7 day return policy</p>
+            </div>
+          </div>
+          <div class="feature-item">
+            <span class="feature-icon">✅</span>
+            <div>
+              <p class="feature-title">Genuine Product</p>
+              <p class="feature-desc">100% authentic</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <!-- Quantity & Actions -->
+        <div class="quantity-row">
+          <label>Quantity</label>
+          <div class="qty-control">
+            <button (click)="decreaseQty()">−</button>
+            <span>{{ quantity }}</span>
+            <button (click)="increaseQty()">+</button>
+          </div>
+        </div>
+
+        <div class="action-buttons">
+          <button class="btn-buy" (click)="buyNow()">
+            ⚡ Buy Now
+          </button>
+        </div>
+        <!-- Product Meta -->
+        <div class="product-meta">
+          <p><strong>SKU:</strong> {{ product?._id | slice:0:8 | uppercase }}</p>
+          <p><strong>Category:</strong> {{ product?.productCategory }}</p>
+          <p><strong>Availability:</strong> 
+            <span [class.in-stock]="product?.productStock > 0">
+              {{ product?.productStock > 0 ? 'In Stock' : 'Out of Stock' }}
+            </span>
+          </p>
+        </div>
+
+      </div>
     </div>
   </div>
 </section>

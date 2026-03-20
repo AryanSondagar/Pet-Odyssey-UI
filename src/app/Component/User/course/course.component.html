@@ -26,13 +26,18 @@
                 <li *ngFor="let slot of course?.timeSlot" [class.selected]="slot === selectedSlot"
                     (click)="selectSlot(slot)">⏰ {{ slot }}</li>
             </ul>
+
+           
         </div>
+         <div class="slot-error" *ngIf="showSlotError">
+                ⚠️ Please select a time slot before booking.
+            </div>
 
         <!-- Price + Button -->
         <div class="control">
 
             <!-- Start Button buying -->
-            <button class="btn">
+            <button class="btn" type="submit" (click)="buyCourse()">
                 <!-- 		the Price -->
                 <span class="price">{{ course?.price | currency:'INR' }} </span>
                 <!-- 		shopping cart icon-->
@@ -60,7 +65,7 @@
                 <li><strong>Category: </strong>{{ course?.category }}</li>
                 <li><strong>Price: </strong>{{ course?.price | currency:'INR' }}</li>
                 <li><strong>Date: </strong>{{ course?.courseDate | date:'MMM d, y' }}</li>
-                 <li><strong>Duration: </strong> 1 hour 30 minutes</li>
+                <li><strong>Duration: </strong> 1 hour 30 minutes</li>
             </ul>
         </div>
     </div>

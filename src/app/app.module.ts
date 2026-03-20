@@ -62,6 +62,8 @@ import { ProductComponent } from './Component/User/product/product.component';
 import { AdoptComponent } from './Component/User/adopt/adopt.component';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
+import { PaymentStripeComponent } from './Component/payment-stripe/payment-stripe.component';
+import { NgxStripeModule } from 'ngx-stripe';
 
 
 
@@ -84,20 +86,21 @@ import { AuthInterceptor } from './interceptors/auth.interceptor';
     UserloginComponent,
     PageNotFoundComponent,
     OpenDialogComponent,
+    PaymentStripeComponent,
     AdoptionListComponent,
     CoursListComponent,
     ProductListComponent,
     CourseComponent,
     ProductComponent,
     AdoptComponent
-    
+
   ],
   imports: [
     BrowserModule,
     CommonModule,
     AppRoutingModule,
-    AdminRoutingModule,
-    UserRoutingModule,
+   // AdminRoutingModule,
+  //  UserRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
     FontAwesomeModule,
@@ -128,10 +131,10 @@ import { AuthInterceptor } from './interceptors/auth.interceptor';
     MatTooltipModule,
     JsonPipe,
     HeaderComponent,
-    FooterComponent
-    
+    FooterComponent,
+    NgxStripeModule.forRoot('pk_test_51T9jBtRCIrGmUZh6hcydPrB29Ye3mBnlIpLE0UUqqgiTw4Vqfl1GYkbr8YOV2p4UAC8cMMkaz9eTQHlqGh6qIHdU00PyoFzlDi')
   ],
-  providers: [ { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }],
+  providers: [{ provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }

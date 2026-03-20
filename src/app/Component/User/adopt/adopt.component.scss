@@ -1,136 +1,468 @@
 :host {
+    .adoption-detail-section {
+        min-height: 100vh;
+        background: #f8f9fa;
+        padding: 30px 0 60px;
+        font-family: 'Segoe UI', sans-serif;
 
-    .sproduct {
-        background: #fff;
-        border-radius: 16px;
-        padding: 30px;
-        box-shadow: 0 6px 30px rgba(0, 0, 0, 0.08);
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+    }
 
-        .img-fluid {
-            border-radius: 16px;
-            object-fit: cover;
-            transition: transform 0.3s ease;
-            cursor: default;
+    .breadcrumb-nav {
+        font-size: 0.85rem;
+        color: #888;
+        margin-bottom: 24px;
 
-            &:hover {
-                transform: scale(1.05);
-            }
+        span {
+            margin: 0 4px;
         }
 
-        .small-img-group {
-            display: flex;
-            justify-content: space-around;
-            margin-top: 15px;
+        .active {
+            color: #5aa469;
+            font-weight: 600;
+        }
+    }
 
-            .small-img-col {
-                flex-basis: 19%;
+    .adoption-wrapper {
+        display: flex;
+        gap: 40px;
+        background: white;
+        border-radius: 20px;
+        padding: 40px;
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.08);
+        margin-bottom: 30px;
+
+        @media (max-width: 768px) {
+            flex-direction: column;
+            padding: 20px;
+        }
+    }
+
+    // Images
+    .pet-images {
+        display: flex;
+        gap: 16px;
+        width: 45%;
+        min-width: 45%;
+
+        @media (max-width: 768px) {
+            width: 100%;
+            flex-direction: column-reverse;
+        }
+
+        .thumbnail-strip {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+
+            @media (max-width: 768px) {
+                flex-direction: row;
+            }
+
+            .thumb {
+                width: 70px;
+                height: 70px;
+                border-radius: 10px;
+                overflow: hidden;
+                border: 2px solid #e0e0e0;
                 cursor: pointer;
+                transition: all 0.2s;
+
+                &.active {
+                    border-color: #5aa469;
+                    box-shadow: 0 0 0 3px rgba(90, 164, 105, 0.2);
+                }
+
+                &:hover {
+                    border-color: #5aa469;
+                }
 
                 img {
-                    min-width: 50px;
-                    min-height: 50px;
-                    border-radius: 12px;
-                    transition: all 0.3s ease;
-                    border: 2px solid transparent;
-
-                    &:hover {
-                        border: 2px solid #5aa469;
-                        transform: scale(1.05);
-                    }
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
                 }
             }
         }
 
-        h6 {
-            font-size: 14px;
+        .main-image-wrapper {
+            flex: 1;
+            position: relative;
+            border-radius: 16px;
+            overflow: hidden;
+            background: #f5f5f5;
+
+            .badge-tag {
+                position: absolute;
+                top: 12px;
+                left: 12px;
+                background: #5aa469;
+                color: white;
+                padding: 4px 12px;
+                border-radius: 20px;
+                font-size: 0.75rem;
+                font-weight: 600;
+                z-index: 1;
+            }
+
+            .main-img {
+                width: 100%;
+                height: 420px;
+                object-fit: contain;
+                padding: 20px;
+                transition: transform 0.3s;
+
+                &:hover {
+                    transform: scale(1.05);
+                }
+            }
+        }
+    }
+
+    // Pet Info
+    .pet-info {
+        flex: 1;
+
+        .category-tag {
+            display: inline-block;
+            background: #e8f5e9;
             color: #5aa469;
+            padding: 4px 14px;
+            border-radius: 20px;
+            font-size: 0.8rem;
             font-weight: 600;
+            margin-bottom: 12px;
             text-transform: uppercase;
-            margin-bottom: 5px;
+            letter-spacing: 1px;
         }
 
-        h3 {
-            font-size: 28px;
-            font-weight: bold;
-            color: #fff;
+        .pet-name {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #1a1a2e;
+            margin: 0 0 20px;
         }
 
-        h2 {
-            font-size: 24px;
-            color: #fff;
-            margin: 15px 0;
-            font-weight: 700;
+        .info-pills {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 20px;
+
+            .pill {
+                display: flex;
+                align-items: center;
+                gap: 12px;
+                background: #f8f9fa;
+                padding: 12px 16px;
+                border-radius: 12px;
+                border: 1px solid #eee;
+
+                .pill-icon {
+                    font-size: 1.5rem;
+                }
+
+                .pill-label {
+                    font-size: 0.75rem;
+                    color: #888;
+                    margin: 0;
+                }
+
+                .pill-value {
+                    font-size: 0.95rem;
+                    font-weight: 700;
+                    color: #1a1a2e;
+                    margin: 0;
+                }
+            }
         }
 
-        input[type="number"] {
-            width: 70px;
-            height: 45px;
+        .owner-card {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: #f0f7f1;
+            border: 1px solid #c8e6c9;
+            border-radius: 12px;
+            padding: 14px 16px;
+            margin-bottom: 20px;
+
+            .owner-avatar {
+                width: 44px;
+                height: 44px;
+                border-radius: 50%;
+                background: #5aa469;
+                color: white;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 1.2rem;
+                font-weight: 700;
+                flex-shrink: 0;
+            }
+
+            .owner-name {
+                font-weight: 700;
+                color: #1a1a2e;
+                margin: 0;
+                font-size: 0.95rem;
+            }
+
+            .owner-email {
+                color: #888;
+                font-size: 0.8rem;
+                margin: 0;
+            }
+
+            .owner-badge {
+                margin-left: auto;
+                background: #5aa469;
+                color: white;
+                padding: 4px 10px;
+                border-radius: 20px;
+                font-size: 0.75rem;
+                font-weight: 600;
+                white-space: nowrap;
+            }
+        }
+
+        .guidelines {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 16px 20px;
+
+            h4 {
+                font-size: 1rem;
+                font-weight: 700;
+                color: #1a1a2e;
+                margin-bottom: 12px;
+            }
+
+            .guideline-item {
+                display: flex;
+                gap: 10px;
+                margin-bottom: 8px;
+                align-items: flex-start;
+
+                span {
+                    font-size: 1rem;
+                    flex-shrink: 0;
+                }
+
+                p {
+                    font-size: 0.85rem;
+                    color: #555;
+                    margin: 0;
+                    line-height: 1.5;
+                }
+            }
+        }
+    }
+
+    // Adoption Form
+    .adoption-form-wrapper {
+        background: white;
+        border-radius: 20px;
+        padding: 40px;
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.08);
+
+        .form-header {
             text-align: center;
-            font-size: 16px;
-            margin-right: 10px;
-            border: 1px solid #ccc;
-            border-radius: 8px;
-            transition: 0.3s;
+            margin-bottom: 30px;
 
-            &:focus {
+            h2 {
+                font-size: 1.8rem;
+                font-weight: 700;
+                color: #1a1a2e;
+                margin-bottom: 8px;
+            }
+
+            p {
+                color: #888;
+                font-size: 0.95rem;
+            }
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 24px;
+
+            @media (max-width: 768px) {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .form-section {
+            .section-label {
+                font-size: 0.8rem;
+                text-transform: uppercase;
+                letter-spacing: 1.5px;
+                color: #5aa469;
+                font-weight: 700;
+                margin-bottom: 16px;
+                padding-bottom: 8px;
+                border-bottom: 2px solid #f0f0f0;
+            }
+        }
+
+        .form-row-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+
+            @media (max-width: 500px) {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .form-group {
+            margin-bottom: 16px;
+
+            &.full {
+                grid-column: 1 / -1;
+            }
+
+            label {
+                display: block;
+                font-size: 0.82rem;
+                font-weight: 600;
+                color: #444;
+                margin-bottom: 6px;
+
+                .required {
+                    color: #e53935;
+                }
+            }
+
+            input,
+            textarea {
+                width: 100%;
+                padding: 11px 14px;
+                border: 1.5px solid #e0e0e0;
+                border-radius: 10px;
+                font-size: 0.95rem;
                 outline: none;
-                border-color: #5aa469;
-                box-shadow: 0 0 5px rgba(108, 99, 255, 0.5);
+                transition: all 0.3s;
+                box-sizing: border-box;
+                font-family: 'Segoe UI', sans-serif;
+                resize: none;
+
+                &:focus {
+                    border-color: #5aa469;
+                    box-shadow: 0 0 0 3px rgba(90, 164, 105, 0.12);
+                }
+
+                &.error {
+                    border-color: #e53935;
+                }
+
+                &::placeholder {
+                    color: #bbb;
+                }
+            }
+
+            .error-msg {
+                font-size: 0.75rem;
+                color: #e53935;
+                margin-top: 4px;
+                display: block;
             }
         }
 
-        .buy-btn {
-            background: linear-gradient(135deg, #5aa469, #75c885);
-            color: #fff;
-            padding: 12px 30px;
-            border: none;
-            border-radius: 10px;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
+        .checkbox-group {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-top: 8px;
 
-            &:hover {
-                background: linear-gradient(135deg, #5aa469, #75c885);
-                transform: translateY(-2px);
-                box-shadow: 0 6px 15px rgba(108, 99, 255, 0.3);
+            .checkbox-item {
+                display: flex;
+                align-items: center;
+                gap: 12px;
+                padding: 12px 16px;
+                border: 1.5px solid #e0e0e0;
+                border-radius: 10px;
+                cursor: pointer;
+                transition: all 0.2s;
+
+                &.checked {
+                    border-color: #5aa469;
+                    background: #f0f7f1;
+                }
+
+                input[type="checkbox"] {
+                    display: none;
+                }
+
+                .checkmark {
+                    width: 22px;
+                    height: 22px;
+                    border: 2px solid #ddd;
+                    border-radius: 6px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    font-size: 0.8rem;
+                    color: transparent;
+                    flex-shrink: 0;
+                    transition: all 0.2s;
+                }
+
+                &.checked .checkmark {
+                    background: #5aa469;
+                    border-color: #5aa469;
+                    color: white;
+                }
+
+                span:last-child {
+                    font-size: 0.9rem;
+                    color: #444;
+                }
             }
         }
 
-        h4 {
-            margin-top: 40px;
-            font-weight: 700;
-            font-size: 20px;
-            border-bottom: 2px solid #eee;
-            padding-bottom: 10px;
-        }
+        .form-submit {
+            border-top: 1px solid #f0f0f0;
+            padding-top: 24px;
+            text-align: center;
 
-        span {
-            display: block;
-            font-size: 15px;
-            line-height: 1.6;
-            color: #fff;
-            margin-top: 10px;
-        }
-        h5{
-            border-top: 2px solid #eee;
-            padding-top: 10px;
-        }
-    }
+            .submit-info p {
+                font-size: 0.8rem;
+                color: #aaa;
+                margin-bottom: 16px;
+            }
 
-    .pet-info-card {
-        color: #fff;
-        background: #5aa469;
-        border: 1px solid #eee;
-    }
+            .submit-btn {
+                width: 100%;
+                max-width: 400px;
+                padding: 16px;
+                background: linear-gradient(135deg, #5aa469, #3d7a4e);
+                color: white;
+                border: none;
+                border-radius: 12px;
+                font-size: 1.05rem;
+                font-weight: 700;
+                cursor: pointer;
+                transition: all 0.3s;
 
-    .pet-name {
-        font-weight: 700;
-        font-size: 2rem;
-        color: #333;
-    }
-    .adoption-form{
-        background-color: #5aa469;
-        color: #fff;
+                &:hover:not(:disabled) {
+                    transform: translateY(-2px);
+                    box-shadow: 0 8px 20px rgba(90, 164, 105, 0.4);
+                }
+
+                &:disabled {
+                    background: #ccc;
+                    cursor: not-allowed;
+                    transform: none;
+                    box-shadow: none;
+                }
+            }
+        }
     }
 }
