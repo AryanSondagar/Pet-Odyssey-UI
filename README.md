@@ -1,56 +1,69 @@
-Angular Project with JSON Server
-📌 Prerequisites
+# 🚀 Angular Frontend
 
-Make sure you have the following installed:
+## 📌 Prerequisites
 
-Node.js
- (v16 or above recommended)
+- Node.js (v16 or above)
+- Angular CLI
+- Git
 
-Angular CLI
+---
 
-Git
+## 📥 Clone the Repository
 
-📥 Clone the Repository
-git clone <your-repo-url>
-cd <your-project-folder>
+git clone <frontend-repo-url>
+cd <frontend-folder>
 
-📦 Install Dependencies
+---
+
+## 📦 Install Dependencies
+
 npm install
 
-▶️ Run the Angular Project
+---
+
+## ▶️ Run the Application
+
 ng serve
 
-
-The app will be available at:
+App will run at:
 👉 http://localhost:4200/
 
-🗄 Run JSON Server
+---
 
-This project uses JSON Server for a mock backend.
+## 🔗 Backend API
 
-Go to the folder where db.json is located.
+This frontend connects to a Node.js backend.
 
-Run:
-
-npx json-server --watch db.json --port 3000
-
-
-or if installed globally:
-
-json-server --watch db.json --port 3000
-
-
-The mock API will run at:
+Make sure backend is running at:
 👉 http://localhost:3000/
 
-🔗 Project Structure
-/src         -> Angular frontend code
-/db.json     -> Mock database for JSON Server
+Update API URL in:
+src/environments/environment.ts
 
-🚀 Usage
+Example:
 
-Start Angular app → ng serve
+export const environment = {
+  production: false,
+  apiUrl: 'http://localhost:3000/api'
+};
 
-Start JSON Server → json-server --watch db.json
+---
 
-Open browser at http://localhost:4200/
+## 📁 Project Structure
+
+/src -> Angular application code
+
+---
+
+## 🚀 Usage
+
+1. Start backend server
+2. Run Angular app → ng serve
+3. Open browser → http://localhost:4200/
+
+---
+
+## ⚠️ Notes
+
+- Backend must be running before using frontend
+- Configure API URL properly
