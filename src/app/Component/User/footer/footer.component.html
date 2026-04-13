@@ -1,170 +1,145 @@
-
-<!-- contact section -->
-
-<section class="contact_section layout_padding" id="contact">
-    <div class="container ">
-        <div class="heading_container ">
-            <h2 class="">
-                Request A call Back
-                <hr>
-            </h2>
-        </div>
+<!-- ═══════════════════════════════════════════════════
+     CONTACT SECTION — Modern Redesign
+═══════════════════════════════════════════════════ -->
+<section class="contact-section" id="contact">
+  <div class="container">
+    <div class="contact-head">
+      <span class="contact-tag">Get In Touch</span>
+      <h2 class="contact-title">Request A <span class="contact-hi">Call Back</span></h2>
+      <div class="contact-line"></div>
     </div>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-6">
-                <form action="#" class="req-call-back">
-                    <div class="req-name">
-                        <input type="text" placeholder="Name" />
-                    </div>
-                    <div>
-                        <input type="email" placeholder="Email" />
-                    </div>
-                    <div>
-                        <input type="text" placeholder="Pone Number" />
-                    </div>
-                    <div>
-                        <input type="text" class="message-box" placeholder="Message" />
-                    </div>
-                    <div class="btn-box">
-                        <button>
-                            SEND
-                        </button>
-                    </div>
-                </form>
-            </div>
-            <div class="col-md-6">
-                <div class="map_container">
-                    <div class="map">
-                        <div id="googleMap"><img src="./../../../../assets/image/dogdaddy.webp" alt=""
-                                style="width: 100%;"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <div class="contact-grid">
+      <div class="contact-form-wrap">
+        <form action="#" class="contact-form">
+          <div class="form-group">
+            <input type="text" placeholder="Your Name" class="form-input" />
+            <div class="input-line"></div>
+          </div>
+          <div class="form-group">
+            <input type="email" placeholder="Email Address" class="form-input" />
+            <div class="input-line"></div>
+          </div>
+          <div class="form-group">
+            <input type="text" placeholder="Phone Number" class="form-input" />
+            <div class="input-line"></div>
+          </div>
+          <div class="form-group">
+            <textarea placeholder="Your Message" class="form-input form-textarea" rows="4"></textarea>
+            <div class="input-line"></div>
+          </div>
+          <button type="submit" class="contact-submit">
+            Send Message
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/>
+            </svg>
+          </button>
+        </form>
+      </div>
+      <div class="contact-img-wrap">
+        <img src="./../../../../assets/image/dogdaddy.webp" alt="Contact" class="contact-img" />
+        <div class="contact-img-overlay"></div>
+      </div>
     </div>
+  </div>
 </section>
 
-<!-- end contact section -->
+<!-- ═══════════════════════════════════════════════════
+     FOOTER — Modern Dark Gradient
+═══════════════════════════════════════════════════ -->
+<div class="footer-wave">
+  <svg viewBox="0 0 1440 80" preserveAspectRatio="none">
+    <path d="M0,40 C360,80 1080,0 1440,40 L1440,80 L0,80 Z" fill="#0a1a0f"/>
+  </svg>
+</div>
 
-<!-- info section -->
-<section class="info_section">
-    <div class="container">
-        <div class="info_form">
-            <div class="row">
-                <div class="offset-lg-3 col-lg-3">
-                    <h5 class="form_heading">
-                        Newsletter
-                    </h5>
-                </div>
-                <div class="col-lg-6">
-                    <form action="#">
-                        <input type="text" placeholder="Enter Your email">
-                        <button>
-                            subscribe
-                        </button>
-                    </form>
-                </div>
-            </div>
-
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <!-- Brand Column -->
+      <div class="footer-col footer-brand">
+        <div class="footer-logo">
+          <div class="footer-logo-icon">
+            <img src="./../../../../assets/image/logo.png" alt="PetOdyssey" />
+          </div>
+          <span class="footer-logo-text">Pet<em>Odyssey</em></span>
         </div>
-    </div>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-6 col-lg-3">
-                <div class="info_logo">
-                    <div>
-                        <a href="">
-                            <img src="./../../../../assets/image/logo.png" alt="" />
-                            <span>
-                                PetOdessey
-                            </span>
-                        </a>
-                    </div>
-                    <p>
-                        There are many variations of passages of Lorem Ipsum available,
-                        but the majority have suffered alteration
-                    </p>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-3">
-                <div class="info_links ">
-                    <h5>
-                        Get in touch
-                    </h5>
-                    <div class="info_contact">
-                        <div class="contact_link_box">
-                            <a href="">
-                                <fa-icon [icon]="fb" aria-hidden="true"></fa-icon>
-
-                                <span>
-                                    Location
-                                </span>
-                            </a>
-                            <a href="">
-                                <fa-icon [icon]="phone" aria-hidden="true"></fa-icon>
-                                <span>
-                                    Call +01 1234567890
-                                </span>
-                            </a>
-                            <a href="">
-                                <fa-icon [icon]="email" aria-hidden="true"></fa-icon>
-                                <span>
-                                    demo&#64;gmail.com
-                                </span>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="info_social">
-                        <a href="">
-                            <i class="fa fa-facebook" aria-hidden="true"></i>
-                        </a>
-                        <a href="">
-                            <i class="fa fa-twitter" aria-hidden="true"></i>
-                        </a>
-                        <a href="">
-                            <i class="fa fa-linkedin" aria-hidden="true"></i>
-                        </a>
-                        <a href="">
-                            <i class="fa fa-instagram" aria-hidden="true"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-3">
-                <div class="info_insta">
-                    <h5>
-                        INFORMATION
-                    </h5>
-                    <p class="pr-0 pr-md-4 pr-md-5">
-                        At PetOdessey, we are committed to providing the best for your pets. Learn more about our
-                        mission, values, and the services we offer
-                    </p>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-3">
-                <div class="pl-0 pl-lg-5 pl-md-4">
-                    <h5>
-                        Our Shop
-                    </h5>
-                    <p>
-                        Explore our wide range of pet products designed to meet the needs of your furry friends. At
-                        PetOdessey, we offer high-quality items to ensure the happiness and well-being of your pets.
-                    </p>
-
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- end info_section -->
-<!-- footer section -->
-<footer class="footer_section">
-    <div class="container">
-        <p>
-            &copy; <span id="displayYear"></span> All Rights Reserved By
-            <a href="">Pet Odyssey</a>
+        <p class="footer-brand-desc">
+          Your one-stop destination for pet adoption, training, and premium products.
+          Making every pet's journey a happy one.
         </p>
+        <div class="footer-social">
+          <a href="#" class="social-link social-fb" aria-label="Facebook">
+            <i class="fa fa-facebook" aria-hidden="true"></i>
+          </a>
+          <a href="#" class="social-link social-tw" aria-label="Twitter">
+            <i class="fa fa-twitter" aria-hidden="true"></i>
+          </a>
+          <a href="#" class="social-link social-li" aria-label="LinkedIn">
+            <i class="fa fa-linkedin" aria-hidden="true"></i>
+          </a>
+          <a href="#" class="social-link social-ig" aria-label="Instagram">
+            <i class="fa fa-instagram" aria-hidden="true"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- Quick Links -->
+      <div class="footer-col">
+        <h4 class="footer-heading">Quick Links</h4>
+        <ul class="footer-links">
+          <li><a href="#about">About Us</a></li>
+          <li><a href="#products">Products</a></li>
+          <li><a href="#training">Training</a></li>
+          <li><a href="#adoption">Adoption</a></li>
+          <li><a href="#gallery">Gallery</a></li>
+        </ul>
+      </div>
+
+      <!-- Contact Info -->
+      <div class="footer-col">
+        <h4 class="footer-heading">Contact Info</h4>
+        <ul class="footer-contact">
+          <li>
+            <span class="fc-icon">📍</span>
+            <span>123 Pet Street, Animal City</span>
+          </li>
+          <li>
+            <span class="fc-icon">📞</span>
+            <span>+01 1234567890</span>
+          </li>
+          <li>
+            <span class="fc-icon">✉️</span>
+            <span>hello&#64;petodyssey.com</span>
+          </li>
+          <li>
+            <span class="fc-icon">🕐</span>
+            <span>Mon-Sat: 9AM - 7PM</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Newsletter -->
+      <div class="footer-col">
+        <h4 class="footer-heading">Newsletter</h4>
+        <p class="footer-newsletter-desc">Subscribe to get the latest updates, offers, and pet care tips.</p>
+        <form class="footer-newsletter">
+          <input type="email" placeholder="Enter your email" class="newsletter-input" />
+          <button type="submit" class="newsletter-btn">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/>
+            </svg>
+          </button>
+        </form>
+      </div>
     </div>
+
+    <!-- Bottom Bar -->
+    <div class="footer-bottom">
+      <p>&copy; 2024 Pet Odyssey. All Rights Reserved.</p>
+      <div class="footer-bottom-links">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+      </div>
+    </div>
+  </div>
 </footer>

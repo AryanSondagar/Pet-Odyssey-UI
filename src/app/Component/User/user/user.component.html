@@ -1,7 +1,7 @@
 <app-header></app-header>
 
 <!-- ═══════════════════════════════════════════════════
-     MARQUEE TICKER
+     MARQUEE TICKER — Dual Track
 ═══════════════════════════════════════════════════ -->
 <div class="ticker-wrap" aria-hidden="true">
   <div class="ticker-track">
@@ -21,30 +21,48 @@
     <span>🐱 Pet Care</span><span class="dot">·</span>
     <span>🏠 Forever Homes</span><span class="dot">·</span>
   </div>
+  <div class="ticker-track ticker-track--reverse">
+    <span>⭐ 5-Star Rated</span><span class="dot">·</span>
+    <span>🏆 Award Winning</span><span class="dot">·</span>
+    <span>💚 Trusted Since 2020</span><span class="dot">·</span>
+    <span>🌍 Global Community</span><span class="dot">·</span>
+    <span>🐾 10K+ Happy Pets</span><span class="dot">·</span>
+    <span>⭐ 5-Star Rated</span><span class="dot">·</span>
+    <span>🏆 Award Winning</span><span class="dot">·</span>
+    <span>💚 Trusted Since 2020</span><span class="dot">·</span>
+    <span>🌍 Global Community</span><span class="dot">·</span>
+    <span>🐾 10K+ Happy Pets</span><span class="dot">·</span>
+    <span>⭐ 5-Star Rated</span><span class="dot">·</span>
+    <span>🏆 Award Winning</span><span class="dot">·</span>
+    <span>💚 Trusted Since 2020</span><span class="dot">·</span>
+    <span>🌍 Global Community</span><span class="dot">·</span>
+    <span>🐾 10K+ Happy Pets</span><span class="dot">·</span>
+  </div>
 </div>
 
 <!-- ═══════════════════════════════════════════════════
-     STATS BAR
+     STATS BAR — Glassmorphic Floating Cards
 ═══════════════════════════════════════════════════ -->
 <section class="stats-bar" id="stats-bar">
   <div class="container">
     <div class="stats-inner">
-      <div class="stat-item gsap-stat">
+      <div class="stat-card gsap-stat">
+        <div class="stat-icon-ring"><span>🐾</span></div>
         <span class="stat-num" data-count="500">0</span><span class="stat-plus">+</span>
         <span class="stat-lbl">Pets Adopted</span>
       </div>
-      <div class="stat-sep"></div>
-      <div class="stat-item gsap-stat">
+      <div class="stat-card gsap-stat">
+        <div class="stat-icon-ring"><span>👨‍👩‍👧‍👦</span></div>
         <span class="stat-num" data-count="1200">0</span><span class="stat-plus">+</span>
         <span class="stat-lbl">Happy Families</span>
       </div>
-      <div class="stat-sep"></div>
-      <div class="stat-item gsap-stat">
+      <div class="stat-card gsap-stat">
+        <div class="stat-icon-ring"><span>🏅</span></div>
         <span class="stat-num" data-count="50">0</span><span class="stat-plus">+</span>
         <span class="stat-lbl">Expert Trainers</span>
       </div>
-      <div class="stat-sep"></div>
-      <div class="stat-item gsap-stat">
+      <div class="stat-card gsap-stat">
+        <div class="stat-icon-ring"><span>💯</span></div>
         <span class="stat-num" data-count="98">0</span><span class="stat-plus">%</span>
         <span class="stat-lbl">Satisfaction Rate</span>
       </div>
@@ -54,14 +72,22 @@
 
 
 <!-- ═══════════════════════════════════════════════════
-     PRODUCTS SECTION
+     PRODUCTS SECTION — 3D Tilt Cards
 ═══════════════════════════════════════════════════ -->
 <section class="sec products-sec" id="products">
+  <!-- Floating shapes -->
+  <div class="floating-shapes" aria-hidden="true">
+    <div class="fshape fshape-1"></div>
+    <div class="fshape fshape-2"></div>
+    <div class="fshape fshape-3"></div>
+  </div>
+
   <div class="container">
     <div class="sec-head gsap-section-head">
       <span class="sec-tag">Our Shop</span>
       <h2 class="sec-title">Premium Pet <span class="hi">Products</span></h2>
       <p class="sec-sub">Curated essentials for your beloved companions — quality you can trust.</p>
+      <div class="sec-line"></div>
     </div>
   </div>
 
@@ -69,7 +95,7 @@
     <swiper-container space-between="24"
       breakpoints='{"480":{"slidesPerView":1},"768":{"slidesPerView":2},"1100":{"slidesPerView":3}}'>
       <swiper-slide *ngFor="let p of Product; let i = index" class="gsap-product-card">
-        <div class="pcard">
+        <div class="pcard" id="pcard-{{i}}">
           <div class="pcard-img-wrap">
             <swiper-container pagination="true" pagination-clickable="true" slides-per-view="1" autoplay="true">
               <swiper-slide *ngFor="let url of p.productImages">
@@ -78,6 +104,7 @@
             </swiper-container>
             <div class="pcard-overlay"></div>
             <span class="pcard-badge">{{p.productCategory}}</span>
+            <div class="pcard-shimmer"></div>
           </div>
           <div class="pcard-body">
             <h3 class="pcard-name">{{p.productName}}</h3>
@@ -85,9 +112,9 @@
             <div class="pcard-foot">
               <div class="pcard-price-col">
                 <span class="pcard-price">{{p.productPrice | currency:'INR'}}</span>
-                <span class="pcard-stock">{{p.productStock}} left</span>
+                <span class="pcard-stock"><span class="stock-dot"></span>{{p.productStock}} left</span>
               </div>
-              <button class="pcard-btn" (click)="productDetail(p)">
+              <button class="pcard-btn magnetic-btn" (click)="productDetail(p)">
                 View
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
               </button>
@@ -101,10 +128,17 @@
 
 
 <!-- ═══════════════════════════════════════════════════
-     ABOUT SECTION
+     ABOUT SECTION — Parallax Depth Layers
 ═══════════════════════════════════════════════════ -->
 <section class="sec about-sec" id="about">
   <div class="about-blob" aria-hidden="true"></div>
+  <div class="about-blob-2" aria-hidden="true"></div>
+  <!-- Geometric decorations -->
+  <div class="geo-shapes" aria-hidden="true">
+    <div class="geo geo-circle"></div>
+    <div class="geo geo-triangle"></div>
+    <div class="geo geo-dots"></div>
+  </div>
   <div class="container">
     <div class="about-grid">
 
@@ -117,12 +151,14 @@
           <span class="avb-lbl">Happy Pets</span>
         </div>
         <div class="av-ring" aria-hidden="true"></div>
+        <div class="av-ring av-ring-2" aria-hidden="true"></div>
       </div>
 
       <!-- Text -->
       <div class="about-txt" id="about-txt">
         <span class="sec-tag">Who We Are</span>
         <h2 class="sec-title">We Care For Every<br><span class="hi">Paw & Whisker</span></h2>
+        <div class="sec-line sec-line--left"></div>
         <p class="about-p">
           Welcome to <strong>PetOdyssey!</strong> We are your one-stop destination for all things pet-related.
           Whether you're looking to adopt a new furry friend, enroll in training courses, or shop for
@@ -136,17 +172,20 @@
           <div class="afeat" id="afeat-0">
             <div class="afeat-icon">🐶</div>
             <div><strong>Pet Adoption</strong><br><small>Find your forever friend</small></div>
+            <div class="afeat-arrow">→</div>
           </div>
           <div class="afeat" id="afeat-1">
             <div class="afeat-icon">🎓</div>
             <div><strong>Expert Training</strong><br><small>Certified professional trainers</small></div>
+            <div class="afeat-arrow">→</div>
           </div>
           <div class="afeat" id="afeat-2">
             <div class="afeat-icon">🛍️</div>
             <div><strong>Premium Products</strong><br><small>Curated pet essentials</small></div>
+            <div class="afeat-arrow">→</div>
           </div>
         </div>
-        <a href="#contact" class="btn-green">
+        <a href="#contact" class="btn-green magnetic-btn">
           Get In Touch
           <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </a>
@@ -158,32 +197,39 @@
 
 
 <!-- ═══════════════════════════════════════════════════
-     SERVICES — WHAT WE DO
+     SERVICES — What We Offer (3D Cards)
 ═══════════════════════════════════════════════════ -->
 <section class="sec services-sec" id="What-do">
   <div class="container">
     <div class="sec-head gsap-section-head">
       <span class="sec-tag">What We Offer</span>
       <h2 class="sec-title">Everything Your Pet <span class="hi">Deserves</span></h2>
+      <div class="sec-line"></div>
     </div>
     <div class="svcs-grid">
       <div class="svc-card gsap-svc" id="svc-0">
+        <div class="svc-glow"></div>
         <div class="svc-ico svc-ico--1"><img src="./../../../../assets/image/s1.png" alt="Adoption" /></div>
         <h3 class="svc-title">Pet Adoption</h3>
         <p class="svc-desc">Discover your perfect companion. Explore lovable pets waiting for a forever home. Adopt today and start a heartwarming journey together.</p>
         <span class="svc-link">Learn more <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+        <div class="svc-num">01</div>
       </div>
       <div class="svc-card svc-card--hi gsap-svc" id="svc-1">
+        <div class="svc-glow"></div>
         <div class="svc-ico svc-ico--2"><img src="./../../../../assets/image/s2.png" alt="Care" /></div>
         <h3 class="svc-title">Pet Care</h3>
         <p class="svc-desc">Top-notch pet care services ensuring your furry friends are healthy and happy. From grooming to veterinary care — we've got it covered.</p>
         <span class="svc-link svc-link--lt">Learn more <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+        <div class="svc-num svc-num--lt">02</div>
       </div>
       <div class="svc-card gsap-svc" id="svc-2">
+        <div class="svc-glow"></div>
         <div class="svc-ico svc-ico--3"><img src="./../../../../assets/image/s3.png" alt="Training" /></div>
         <h3 class="svc-title">Pet Training</h3>
         <p class="svc-desc">Enhance your pet's behavior with expert training courses. Certified trainers use positive reinforcement for a well-behaved, happy companion.</p>
         <a href="#training" class="svc-link">Learn more <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        <div class="svc-num">03</div>
       </div>
     </div>
   </div>
@@ -194,14 +240,17 @@
      TRAINING / PRICING SECTION
 ═══════════════════════════════════════════════════ -->
 <section class="sec training-sec" id="training">
-  <div class="tr-wave-top"><svg viewBox="0 0 1440 80" preserveAspectRatio="none"><path d="M0,40 C360,80 1080,0 1440,40 L1440,0 L0,0 Z" fill="white"/></svg></div>
+  <div class="tr-wave-top"><svg viewBox="0 0 1440 80" preserveAspectRatio="none"><path d="M0,40 C360,80 1080,0 1440,40 L1440,0 L0,0 Z" fill="#f3f6f4"/></svg></div>
   <div class="tr-bg-dots" aria-hidden="true"></div>
+  <div class="tr-glow-orb tr-glow-orb-1" aria-hidden="true"></div>
+  <div class="tr-glow-orb tr-glow-orb-2" aria-hidden="true"></div>
 
   <div class="container">
     <div class="sec-head gsap-section-head">
       <span class="sec-tag sec-tag--lt">Training Programs</span>
       <h2 class="sec-title" style="color:#fff">Expert Training <span style="color:#efb08c">Schedule</span></h2>
       <p class="sec-sub" style="color:rgba(255,255,255,.62)">Book a session near you and transform your pet's behavior for good.</p>
+      <div class="sec-line sec-line--light"></div>
     </div>
 
     <!-- Schedule chips -->
@@ -228,11 +277,11 @@
           <li><span class="chk">✓</span>Learn techniques to take home</li>
           <li><span class="chk">✓</span>Easy online booking</li>
         </ul>
-        <a href="#" class="pc-btn pc-btn--out">Sign Up to Observe</a>
+        <a href="#" class="pc-btn pc-btn--out magnetic-btn">Sign Up to Observe</a>
       </div>
 
       <div class="price-card price-card--hi gsap-price" id="pc-1">
-        <div class="pc-popular">Most Popular</div>
+        <div class="pc-popular"><span class="pc-popular-pulse"></span>Most Popular</div>
         <div class="pc-icon">🐕</div>
         <div class="pc-tier">Group</div>
         <h3 class="pc-plan">Bring Your Dog</h3>
@@ -243,7 +292,7 @@
           <li><span class="chk">✓</span>Individual attention per dog</li>
           <li><span class="chk">✓</span>Easy online booking</li>
         </ul>
-        <a href="#" class="pc-btn pc-btn--solid">Sign Up Now</a>
+        <a href="#" class="pc-btn pc-btn--solid magnetic-btn">Sign Up Now</a>
       </div>
 
       <div class="price-card gsap-price" id="pc-2">
@@ -257,7 +306,7 @@
           <li><span class="chk">✓</span>Customized & flexible schedule</li>
           <li><span class="chk">✓</span>Select cities only</li>
         </ul>
-        <a href="#" class="pc-btn pc-btn--out">Sign Up for Private</a>
+        <a href="#" class="pc-btn pc-btn--out magnetic-btn">Sign Up for Private</a>
       </div>
     </div>
   </div>
@@ -270,11 +319,16 @@
      ADOPTION SECTION
 ═══════════════════════════════════════════════════ -->
 <section class="sec adoption-sec" id="adoption">
+  <div class="floating-shapes" aria-hidden="true">
+    <div class="fshape fshape-4"></div>
+    <div class="fshape fshape-5"></div>
+  </div>
   <div class="container">
     <div class="sec-head gsap-section-head">
       <span class="sec-tag">Find Your Friend</span>
       <h2 class="sec-title">Pets Available for <span class="hi">Adoption</span></h2>
       <p class="sec-sub">Every pet deserves a loving home. Could yours be next?</p>
+      <div class="sec-line"></div>
     </div>
   </div>
 
@@ -292,6 +346,7 @@
             </swiper-container>
             <div class="pet-price-tag">{{ pet.petSellingPrice | currency:'INR' }}</div>
             <div class="pet-img-overlay"></div>
+            <div class="pet-heart-pulse" aria-hidden="true">❤️</div>
           </div>
           <div class="pet-body">
             <h3 class="pet-name">{{ pet.petName | titlecase }}</h3>
@@ -303,7 +358,10 @@
               <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
               {{ pet.petAge }} months old
             </p>
-            <button class="pet-adopt-btn" (click)="adoptPet(pet)">Adopt Me ❤️</button>
+            <button class="pet-adopt-btn magnetic-btn" (click)="adoptPet(pet)">
+              <span>Adopt Me</span>
+              <span class="adopt-heart">❤️</span>
+            </button>
           </div>
         </div>
       </swiper-slide>
@@ -313,13 +371,14 @@
 
 
 <!-- ═══════════════════════════════════════════════════
-     GALLERY SECTION
+     GALLERY SECTION — Masonry + Lightbox hover
 ═══════════════════════════════════════════════════ -->
 <section class="sec gallery-sec" id="gallery">
   <div class="container">
     <div class="sec-head gsap-section-head">
       <span class="sec-tag">Our Gallery</span>
       <h2 class="sec-title">Moments of Pure <span class="hi">Joy</span></h2>
+      <div class="sec-line"></div>
     </div>
   </div>
 
@@ -353,19 +412,90 @@
 
 
 <!-- ═══════════════════════════════════════════════════
-     CTA BANNER
+     TESTIMONIALS SECTION
+═══════════════════════════════════════════════════ -->
+<section class="sec testimonials-sec" id="testimonials">
+  <div class="container">
+    <div class="sec-head gsap-section-head">
+      <span class="sec-tag">Testimonials</span>
+      <h2 class="sec-title">What Our <span class="hi">Families</span> Say</h2>
+      <div class="sec-line"></div>
+    </div>
+
+    <div class="testimonials-grid">
+      <div class="testi-card gsap-testi" id="testi-0">
+        <div class="testi-quote">"</div>
+        <p class="testi-text">PetOdyssey helped us find our beautiful golden retriever. The adoption process was smooth and the team was incredibly supportive throughout!</p>
+        <div class="testi-stars">
+          <span>⭐</span><span>⭐</span><span>⭐</span><span>⭐</span><span>⭐</span>
+        </div>
+        <div class="testi-author">
+          <div class="testi-avatar">SM</div>
+          <div>
+            <strong class="testi-name">Sarah Miller</strong>
+            <span class="testi-role">Pet Parent</span>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card gsap-testi" id="testi-1">
+        <div class="testi-quote">"</div>
+        <p class="testi-text">The training courses transformed our rescue dog's behavior completely. The trainers are patient, professional, and truly care about the animals.</p>
+        <div class="testi-stars">
+          <span>⭐</span><span>⭐</span><span>⭐</span><span>⭐</span><span>⭐</span>
+        </div>
+        <div class="testi-author">
+          <div class="testi-avatar">JR</div>
+          <div>
+            <strong class="testi-name">James Rodriguez</strong>
+            <span class="testi-role">Dog Owner</span>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card gsap-testi" id="testi-2">
+        <div class="testi-quote">"</div>
+        <p class="testi-text">Outstanding product quality and fast delivery! Every item we've purchased has been top-notch. Our cat absolutely loves the premium food selection.</p>
+        <div class="testi-stars">
+          <span>⭐</span><span>⭐</span><span>⭐</span><span>⭐</span><span>⭐</span>
+        </div>
+        <div class="testi-author">
+          <div class="testi-avatar">EP</div>
+          <div>
+            <strong class="testi-name">Emily Parker</strong>
+            <span class="testi-role">Cat Mom</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════
+     CTA BANNER — Glassmorphism + Floating Shapes
 ═══════════════════════════════════════════════════ -->
 <section class="cta-sec" id="cta-sec">
   <div class="cta-orb cta-orb-1" aria-hidden="true"></div>
   <div class="cta-orb cta-orb-2" aria-hidden="true"></div>
+  <div class="cta-orb cta-orb-3" aria-hidden="true"></div>
+  <!-- Floating 3D shapes -->
+  <div class="cta-shapes" aria-hidden="true">
+    <div class="cta-shape cta-shape-1"></div>
+    <div class="cta-shape cta-shape-2"></div>
+    <div class="cta-shape cta-shape-3"></div>
+  </div>
   <div class="container">
     <div class="cta-body" id="cta-body">
-      <div class="cta-paw" aria-hidden="true">🐾</div>
-      <h2 class="cta-title">Ready to Find Your<br><span>Perfect Companion?</span></h2>
-      <p class="cta-sub">Join thousands of happy pet families and give a deserving pet the loving home they need.</p>
-      <div class="cta-btns">
-        <a href="#adoption" class="cta-btn-p">Adopt a Pet Today</a>
-        <a href="#contact" class="cta-btn-g">Contact Us</a>
+      <div class="cta-glass">
+        <div class="cta-paw" aria-hidden="true">🐾</div>
+        <h2 class="cta-title">Ready to Find Your<br><span>Perfect Companion?</span></h2>
+        <p class="cta-sub">Join thousands of happy pet families and give a deserving pet the loving home they need.</p>
+        <div class="cta-btns">
+          <a href="#adoption" class="cta-btn-p magnetic-btn">
+            Adopt a Pet Today
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+          <a href="#contact" class="cta-btn-g magnetic-btn">Contact Us</a>
+        </div>
       </div>
     </div>
   </div>
@@ -373,3 +503,10 @@
 
 
 <app-footer></app-footer>
+
+<!-- Back to top button -->
+<button class="back-to-top" id="back-to-top" (click)="scrollToTop()">
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+    <path d="M12 19V5M5 12l7-7 7 7"/>
+  </svg>
+</button>

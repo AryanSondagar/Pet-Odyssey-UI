@@ -2,32 +2,48 @@
 url("https://fonts.googleapis.com/css2?family=Aboreto&family=Exo:wght@100;200;300;400;500;600;700;800;900&family=Poppins:wght@100;200;300;400;500;600;700;800;900&family=Roboto:wght@100;300;400;500;700;900&display=swap");
 
 * {
-margin: 0;
-padding: 0;
-box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
- font-family: "Exo", sans-serif !important;
-background-color: #d8d8d8;
+  font-family: "Poppins", sans-serif !important;
+  background-color: #f8faf9;
 }
 
-/*
+html {
+  scroll-behavior: smooth;
+}
+
+html, body {
+  height: 100%;
+  overflow-x: hidden;
+}
+
+body { margin: 0; }
+
+/* ── Custom Scrollbar ──────────────────────────── */
 ::-webkit-scrollbar {
-width: 8px;
+  width: 8px;
 }
-
 ::-webkit-scrollbar-track {
-background: #f1f1f1;
+  background: #0a1a0f;
 }
-
 ::-webkit-scrollbar-thumb {
-background: #a6d5fb;
+  background: linear-gradient(180deg, #5aa469, #3a6e49);
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #7ed495, #5aa469);
 }
 
-::-webkit-scrollbar-thumb:hover {
-background: #012645;
+/* ── Selection Color ───────────────────────────── */
+::selection {
+  background: rgba(90, 164, 105, 0.3);
+  color: #111827;
 }
-*/
-html, body { height: 100%; overflow-x: hidden;}
-body { margin: 0 }
+::-moz-selection {
+  background: rgba(90, 164, 105, 0.3);
+  color: #111827;
+}
