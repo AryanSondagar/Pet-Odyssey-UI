@@ -23,7 +23,7 @@ npm install
 
 ## ▶️ Run the Application
 
-ng serve
+ng serve or npm start
 
 App will run at:
 👉 http://localhost:4200/
@@ -58,7 +58,7 @@ export const environment = {
 ## 🚀 Usage
 
 1. Start backend server
-2. Run Angular app → ng serve
+2. Run Angular app → ng serve or npm start
 3. Open browser → http://localhost:4200/
 
 ---
