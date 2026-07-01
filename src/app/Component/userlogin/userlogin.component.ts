@@ -1,10 +1,11 @@
-import { AfterViewInit, Component, ElementRef, NgZone, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, NgZone, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import { faLock } from '@fortawesome/free-solid-svg-icons';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
 import { UserLogin, UserSign } from 'src/app/Model/userSignin.model';
 import { UserService } from 'src/app/Services/user.service';
+import { AlertService } from 'src/app/Services/alert.service';
 
 declare var gsap: any;
 
@@ -13,7 +14,7 @@ declare var gsap: any;
   templateUrl: './userlogin.component.html',
   styleUrls: ['./userlogin.component.scss'],
 })
-export class UserloginComponent implements AfterViewInit {
+export class UserloginComponent implements AfterViewInit, OnInit {
   @ViewChild('portalCard') portalCard!: ElementRef;
 
   passwordValue: string = '';
@@ -22,7 +23,7 @@ export class UserloginComponent implements AfterViewInit {
   faEnvelope = faEnvelope;
   lock = faLock;
   user = faUser;
-  authError: String = '';
+  authError: string = '';
   isSignup: boolean = false;
   showPwd: boolean = false;
 
@@ -38,10 +39,18 @@ export class UserloginComponent implements AfterViewInit {
     return Math.min(score, 100);
   }
 
-  constructor(private User: UserService, private route: Router, private ngZone: NgZone) {}
+  constructor(
+    private User: UserService,
+    private route: Router,
+    private ngZone: NgZone,
+    private alert: AlertService
+  ) {}
 
   ngOnInit(): void {
     this.User.RealoadUser();
+    this.User.isLoginError.subscribe((isError) => {
+      this.authError = isError ? 'Email or password is incorrect' : '';
+    });
   }
 
   ngAfterViewInit(): void {
@@ -95,11 +104,12 @@ export class UserloginComponent implements AfterViewInit {
   }
 
   Login(email: string, password: string, role: 'user' | 'admin') {
+    if (!email || !password) {
+      this.authError = 'Please enter both email and password';
+      this.alert.ShowError(this.authError);
+      return;
+    }
+
     this.User.RoleBasedLogin(email, password);
-    this.User.isLoginError.subscribe((isError) => {
-      if (isError) {
-        this.authError = 'Email or password is incorrect';
-      }
-    });
   }
 }

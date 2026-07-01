@@ -107,7 +107,8 @@
     &--out { background:linear-gradient(135deg,#b03a2e,#922b21); box-shadow:0 4px 18px rgba(176,58,46,.3); }
   }
   .nav-burger {
-    border:none; background:transparent; display:flex; flex-direction:column; gap:5px; padding:8px; cursor:pointer;
+    display: none;
+    border:none; background:transparent; flex-direction:column; gap:5px; padding:8px; cursor:pointer;
     span { display:block; width:23px; height:2px; background:$g; border-radius:2px; transition:all .28s ease; }
   }
 
@@ -242,6 +243,7 @@
 
   // ── responsive ───────────────────────────────────
   @media(max-width:768px) {
+    .nav-burger{display:flex;}
     .hero-h1 { letter-spacing:-1.5px; }
     .hero-stats { gap:18px; }
     .hs-num { font-size:20px; }

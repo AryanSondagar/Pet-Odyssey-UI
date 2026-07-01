@@ -3,6 +3,7 @@ import { EventEmitter, Injectable } from '@angular/core';
 import { AdminLogin, UserLogin, UserSign } from '../Model/userSignin.model';
 import { Router } from '@angular/router';
 import { BehaviorSubject, Subject } from 'rxjs';
+import { AlertService } from './alert.service';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +17,7 @@ export class UserService {
   private buttonClickedSource = new Subject<boolean>();
   buttonClicked$ = this.buttonClickedSource.asObservable();
 
-  constructor(private http: HttpClient, private route: Router) { }
+  constructor(private http: HttpClient, private route: Router, private alert: AlertService) { }
   UserSignUp(data: UserSign) {
     data.role = 'User';
     return this.http.post('http://localhost:3000/api/auth/register', data, { observe: 'response' })
@@ -36,43 +37,57 @@ export class UserService {
   }
 
   RoleBasedLogin(email: string, password: string) {
+    if (!email || !password) {
+      this.isLoginError.emit(true);
+      this.alert.ShowError('Please enter both email and password');
+      return;
+    }
+
     this.http
-      .post<any[]>('http://localhost:3000/api/auth/login', {
+      .post<any>('http://localhost:3000/api/auth/login', {
         email: email,
         password: password
       })
-      .subscribe((result: any) => {
-        console.log(result);
+      .subscribe({
+        next: (result: any) => {
+          console.log(result);
 
-        if (result && result.user) {
+          if (result && result.user) {
+            this.isLoginError.emit(false);
+            this.alert.ShowSuccess('Login successful!');
 
-          this.isLoginError.emit(false);
+            const user = result.user;
+            localStorage.setItem('token', result.token);
+            localStorage.setItem('user', JSON.stringify(user));
+            localStorage.setItem('role', user.role);
 
-          const user = result.user;
+            if (user.role === 'user') {
+              this.isUserLogined.next(true);
+            } else if (user.role === 'admin') {
+              this.isAdminLogined.next(true);
+            }
 
-          localStorage.setItem('token', result.token);
-          localStorage.setItem('user', JSON.stringify(user));
-          localStorage.setItem('role', user.role);
-
-          // ✅ Role check (case sensitive!)
-          if (user.role === 'user') {
-            this.isUserLogined.next(true);
-          } else if (user.role === 'admin') {
-            this.isAdminLogined.next(true);
-          }
-
-          // ✅ Navigation
-          if (user.role === 'admin') {
-            this.route.navigate(['/admin']);
+            if (user.role === 'admin') {
+              this.route.navigate(['/admin']);
+            } else {
+              this.route.navigate(['/']);
+            }
           } else {
-            this.route.navigate(['/']);
+            this.isLoginError.emit(true);
+            this.alert.ShowError('Email or password is incorrect');
+            console.log('Login failed');
           }
-
-        } else {
-
+        },
+        error: (err) => {
           this.isLoginError.emit(true);
-          console.log('Login failed');
-
+          if (err.status === 401) {
+            this.alert.ShowError('Invalid email or password');
+          } else if (err.status === 404) {
+            this.alert.ShowError('User does not exist');
+          } else {
+            this.alert.ShowError('Login failed. Please try again.');
+          }
+          console.error('Login error:', err);
         }
       });
   }
