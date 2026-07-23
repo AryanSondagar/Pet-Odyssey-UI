@@ -253,7 +253,7 @@ $wh:   #ffffff;
     transform:translateX(-100%); pointer-events:none;
   }
   @keyframes shimmer { to { transform:translateX(100%); } }
-  .pcard-body { padding:24px; flex:1; display:flex; flex-direction:column; }
+  .pcard-body { padding:24px; flex:1; display:flex; flex-direction:column; position:relative; z-index:4; }
   .pcard-name { font-size:17px; font-weight:700; color:$ink; margin-bottom:8px; line-height:1.3; }
   .pcard-desc {
     font-size:13px; color:$mid; line-height:1.65; flex:1;

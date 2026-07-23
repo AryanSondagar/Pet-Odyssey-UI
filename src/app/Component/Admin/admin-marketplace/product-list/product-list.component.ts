@@ -6,6 +6,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MarketplaceForm } from 'src/app/Model/marketplace.model';
 import { AdminMarketplaceService } from 'src/app/Services/admin-marketplace.service';
 import { AlertService } from 'src/app/Services/alert.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-product-list',
@@ -14,10 +15,11 @@ import { AlertService } from 'src/app/Services/alert.service';
 })
 export class ProductListComponent implements OnInit, AfterViewInit {
 
-  readonly BASE_URL = 'http://localhost:3000';
+  readonly BASE_URL = environment.apiUrl;
 
   displayedColumns: string[] = ['productName', 'productCategory', 'productPrice', 'productStock', 'actions'];
   dataSource = new MatTableDataSource<MarketplaceForm>();
+  isLoading = false;
 
   // Edit dialog
   showEditDialog = false;
@@ -35,8 +37,16 @@ export class ProductListComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     this.initEditForm();
-    this.productService.getAllProduct().subscribe((res: any) => {
-      this.dataSource.data = res.products;
+    this.isLoading = true;
+    this.productService.getAllProduct().subscribe({
+      next: (res: any) => {
+        this.dataSource.data = res.products;
+        this.isLoading = false;
+      },
+      error: (err) => {
+        console.error('Load failed:', err);
+        this.isLoading = false;
+      }
     });
   }
 
@@ -91,6 +101,8 @@ export class ProductListComponent implements OnInit, AfterViewInit {
   onUpdate(): void {
     if (this.editForm.invalid || !this.selectedRow) return;
 
+    this.isLoading = true;
+
     const payload = {
       productName: this.editForm.value.productName,
       productCategory: this.editForm.value.productCategory,
@@ -108,23 +120,30 @@ export class ProductListComponent implements OnInit, AfterViewInit {
           updated[index] = { ...this.selectedRow, ...this.editForm.value };
           this.dataSource.data = updated;
         }
+        this.isLoading = false;
         this.closeDialog();
       },
       error: err => {
         console.error('Update failed:', err);
         this.alert.ShowError('Failed to update product!');
+        this.isLoading = false;
       }
     });
   }
 
   // ── Delete ───────────────────────────────────────────
   onDelete(row: any): void {
+    this.isLoading = true;
     this.productService.deleteProduct(row._id).subscribe({
       next: () => {
         this.alert.ShowDelete('Product Deleted Successfully!');
         this.dataSource.data = this.dataSource.data.filter(c => c._id !== row._id);
+        this.isLoading = false;
       },
-      error: err => console.error('Delete failed:', err)
+      error: err => {
+        console.error('Delete failed:', err);
+        this.isLoading = false;
+      }
     });
   }
 }

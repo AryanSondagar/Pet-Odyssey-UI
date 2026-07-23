@@ -15,6 +15,7 @@ export class AdminCourseComponent implements OnInit {
   timeSlots: string[] = [];
   slots: string[] = [];
   maxSlots = 4;
+  isSubmitting = false;
 
 
   ngOnInit(): void {
@@ -91,30 +92,35 @@ export class AdminCourseComponent implements OnInit {
 
 
   onSubmit() {
-    if (this.courseForm.valid && this.slots.length > 0) {
-      const payload = {
-        city: this.courseForm.value.city,
-        state: this.courseForm.value.state,
-        category: this.courseForm.value.category,
-        price: this.courseForm.value.price,
-        courseDate: this.courseForm.value.courseDate,
-        timeSlot: this.slots
-      };
-      console.log(payload);
-      this.courseService.addCourse(payload).subscribe({
-        next: res => {
-          this.alertService.ShowSuccess('Course saved successfully!');
-          // Reset form & slots
-          this.courseForm.reset();
-          this.slots = [];
+    if (this.courseForm.invalid || this.slots.length === 0 || this.isSubmitting) return;
+    this.isSubmitting = true;
 
-          this.meridian?.setValue('AM');
-          this.minutes?.setValue(0); 
-          this.hours?.setValue(1);
-        },
-        error: err => console.error(err)
-      });
-    }
+    const payload = {
+      city: this.courseForm.value.city,
+      state: this.courseForm.value.state,
+      category: this.courseForm.value.category,
+      price: this.courseForm.value.price,
+      courseDate: this.courseForm.value.courseDate,
+      timeSlot: this.slots
+    };
+    console.log(payload);
+    this.courseService.addCourse(payload).subscribe({
+      next: res => {
+        this.alertService.ShowSuccess('Course saved successfully!');
+        // Reset form & slots
+        this.courseForm.reset();
+        this.slots = [];
+        this.isSubmitting = false;
+
+        this.meridian?.setValue('AM');
+        this.minutes?.setValue(0);
+        this.hours?.setValue(1);
+      },
+      error: err => {
+        console.error(err);
+        this.isSubmitting = false;
+      }
+    });
   }
 
 }

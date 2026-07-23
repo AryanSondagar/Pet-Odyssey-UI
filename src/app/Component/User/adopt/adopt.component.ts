@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AdoptionForm } from 'src/app/Model/adoption.model';
 import { AdminAdoptionService } from 'src/app/Services/admin-adoption.service';
 import { AlertService } from 'src/app/Services/alert.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-adopt',
@@ -42,8 +43,14 @@ export class AdoptComponent {
     });
   }
   getImageUrl(img: any): string {
-    // Prepend the host if your imageUrl is relative
-    return `http://localhost:3000/${img.replace(/\\/g, '/')}`;
+    if (!img) return '';
+    const url = typeof img === 'string' ? img : img.url;
+
+    if (/^https?:\/\//i.test(url)) {
+      return url;
+    }
+
+    return `${environment.apiUrl}/${url.replace(/\\/g, '/')}`;
   }
   onSubmit() {
     if (this.adoptionForm.invalid) return;

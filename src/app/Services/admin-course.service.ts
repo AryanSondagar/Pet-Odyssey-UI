@@ -1,22 +1,28 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, map } from 'rxjs';
 import { Course } from '../Model/course.model';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AdminCourseService {
-  apiUrl: string = "http://localhost:3000/api/admin/course";
+  apiUrl: string = `${environment.apiUrl}/api/admin/course`;
    private selectedSlotSubject = new BehaviorSubject<string>('');
   selectedSlot$ = this.selectedSlotSubject.asObservable();
   constructor(private http: HttpClient) { }
-  getAllCourses(): Observable<Course[]> {
-    return this.http.get<Course[]>(this.apiUrl);
+  getAllCourses(): Observable<{ success: boolean; count: number; data: Course[] }> {
+    return this.http.get<{ success: boolean; count: number; data: Course[] }>(this.apiUrl);
   }
 
-  getCourseById(id: string): Observable<Course> {
-    return this.http.get<Course>(`${this.apiUrl}/${id}`);
+  getCourseById(id: string): Observable<{ success: boolean; data: Course }> {
+    return this.http.get<{ success?: boolean; data?: Course; course?: Course } & Course>(`${this.apiUrl}/${id}`).pipe(
+      map((res) => ({
+        success: res.success ?? true,
+        data: res.data ?? res.course ?? res,
+      }))
+    );
   }
 
   addCourse(course: Course): Observable<Course> {

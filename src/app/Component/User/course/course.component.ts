@@ -19,7 +19,7 @@ export class CourseComponent {
     if (id) {
       this.courseService.getCourseById(id).subscribe({
         next: (res) => {
-          this.course = res;
+          this.course = res?.data;
           console.log(this.course);
         },
         error: (err) => console.error('Error loading course:', err)

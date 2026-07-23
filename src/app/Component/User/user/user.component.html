@@ -92,7 +92,7 @@
   </div>
 
   <div class="products-reel">
-    <swiper-container space-between="24"
+    <swiper-container space-between="24" no-swiping-class="swiper-no-swiping"
       breakpoints='{"480":{"slidesPerView":1},"768":{"slidesPerView":2},"1100":{"slidesPerView":3}}'>
       <swiper-slide *ngFor="let p of Product; let i = index" class="gsap-product-card">
         <div class="pcard" id="pcard-{{i}}">
@@ -114,7 +114,7 @@
                 <span class="pcard-price">{{p.productPrice | currency:'INR'}}</span>
                 <span class="pcard-stock"><span class="stock-dot"></span>{{p.productStock}} left</span>
               </div>
-              <button class="pcard-btn magnetic-btn" (click)="productDetail(p)">
+              <button type="button" class="pcard-btn magnetic-btn swiper-no-swiping" (click)="productDetail(p, $event)">
                 View
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
               </button>

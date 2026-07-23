@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MarketplaceForm } from 'src/app/Model/marketplace.model';
 import { AdminMarketplaceService } from 'src/app/Services/admin-marketplace.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-product',
@@ -30,8 +31,14 @@ export class ProductComponent {
     }
   }
   getImageUrl(img: any): string {
-    // Prepend the host if your imageUrl is relative
-    return `http://localhost:3000/${img.replace(/\\/g, '/')}`;
+    if (!img) return '';
+    const url = typeof img === 'string' ? img : img.url;
+
+    if (/^https?:\/\//i.test(url)) {
+      return url;
+    }
+
+    return `${environment.apiUrl}/${url.replace(/\\/g, '/')}`;
   }
   changeImage(img: any) {
     this.mainImage = this.getImageUrl(img);

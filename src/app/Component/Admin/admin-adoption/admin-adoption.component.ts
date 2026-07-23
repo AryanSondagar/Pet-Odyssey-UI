@@ -16,6 +16,7 @@ import { AlertService } from 'src/app/Services/alert.service';
 })
 export class AdminAdoptionComponent implements OnInit {
   adoptionForm!: FormGroup
+  isSubmitting = false;
 
   selectedFiles: { file: File, preview: string }[] = [];
   @ViewChild('fileInput') fileInput!: ElementRef;
@@ -46,7 +47,8 @@ export class AdminAdoptionComponent implements OnInit {
     }
   }
   submitForm() {
-    if (this.adoptionForm.invalid) return;
+    if (this.adoptionForm.invalid || this.isSubmitting) return;
+    this.isSubmitting = true;
 
     const newProduct: AdoptionForm = {
       _id: '',
@@ -63,6 +65,7 @@ export class AdminAdoptionComponent implements OnInit {
         this.alert.ShowSuccess('Adoption Form Submitted Successfully!');
         this.adoptionForm.reset();
         this.selectedFiles = [];
+        this.isSubmitting = false;
 
         // Reset file input element
         if (this.fileInput) {
@@ -71,6 +74,7 @@ export class AdminAdoptionComponent implements OnInit {
       },
       error: (err) => {
         console.error(err);
+        this.isSubmitting = false;
         alert('Something went wrong!');
       }
     });

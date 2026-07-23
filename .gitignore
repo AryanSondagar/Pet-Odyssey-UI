@@ -37,6 +37,13 @@ yarn-error.log
 testem.log
 /typings
 
+# Local environment config
+.env
+.env.*
+
+# Generated Angular environment
+/src/environments/environment.generated.ts
+
 # System files
 .DS_Store
 Thumbs.db

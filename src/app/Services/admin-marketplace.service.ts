@@ -1,19 +1,30 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs/internal/Observable';
+import { Observable } from 'rxjs';
 import { MarketplaceForm } from '../Model/marketplace.model';
+import { environment } from 'src/environments/environment';
+
+interface ProductListResponse {
+  success: boolean;
+  count: number;
+  products: MarketplaceForm[];
+}
+
+interface ProductDetailResponse {
+  success: boolean;
+  product: MarketplaceForm;
+}
 
 @Injectable({
   providedIn: 'root'
 })
 export class AdminMarketplaceService {
-  apiUrl: string = "http://localhost:3000/api/admin/marketplace";
+  apiUrl: string = `${environment.apiUrl}/api/admin/marketplace`;
 
   constructor(private http: HttpClient) { }
 
-  getAllProduct(): Observable<MarketplaceForm[]> {
-    return this.http.get<MarketplaceForm[]>(this.apiUrl);
-
+  getAllProduct(): Observable<ProductListResponse> {
+    return this.http.get<ProductListResponse>(this.apiUrl);
   }
   addProduct(newProduct: MarketplaceForm): Observable<any> {
     // newAdoption.id = '00000000-0000-0000-0000-000000000000';
@@ -40,8 +51,8 @@ export class AdminMarketplaceService {
   deleteProduct(id: string): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }
-  getProductById(id: string): Observable<MarketplaceForm> {
-    return this.http.get<MarketplaceForm>(`${this.apiUrl}/${id}`);
+  getProductById(id: string): Observable<ProductDetailResponse> {
+    return this.http.get<ProductDetailResponse>(`${this.apiUrl}/${id}`);
   }
   // admin-marketplace.service.ts
   updateProduct(id: string, data: any): Observable<any> {

@@ -1,3 +1,13 @@
+export interface ImageObject {
+  url: string;
+  public_id: string;
+}
+
+export interface ImageObject {
+  url: string;
+  public_id: string;
+}
+
 export interface MarketplaceForm {
   _id: string,
   productName: string,
@@ -6,7 +16,7 @@ export interface MarketplaceForm {
   productStock: any,
   productDescription: string,
   // returned from API
-  productImages?: string[];
+  productImages?: ImageObject[];
 
   // used only when uploading
   images?: File[];

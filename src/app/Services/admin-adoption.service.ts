@@ -3,20 +3,32 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { AdoptionForm } from '../Model/adoption.model';
 import { Course } from '../Model/course.model';
+import { environment } from 'src/environments/environment';
+
+interface AdoptionListResponse {
+  success: boolean;
+  count: number;
+  data: AdoptionForm[];
+}
+
+interface AdoptionDetailResponse {
+  success: boolean;
+  data: AdoptionForm;
+}
 
 @Injectable({
   providedIn: 'root'
 })
 export class AdminAdoptionService {
-  apiUrl: string = "http://localhost:3000/api/admin/adoption";
+  apiUrl: string = `${environment.apiUrl}/api/admin/adoption`;
 
   constructor(private http: HttpClient) { }
 
-  getAllAdoptionPet(): Observable<AdoptionForm[]> {
-    return this.http.get<AdoptionForm[]>(this.apiUrl);
+  getAllAdoptionPet(): Observable<AdoptionListResponse> {
+    return this.http.get<AdoptionListResponse>(this.apiUrl);
   }
-  getAdoptionById(id: string): Observable<AdoptionForm> {
-    return this.http.get<AdoptionForm>(`${this.apiUrl}/${id}`);
+  getAdoptionById(id: string): Observable<AdoptionDetailResponse> {
+    return this.http.get<AdoptionDetailResponse>(`${this.apiUrl}/${id}`);
   }
   addAdoptionPet(form: AdoptionForm): Observable<any> {
     const formData = new FormData();

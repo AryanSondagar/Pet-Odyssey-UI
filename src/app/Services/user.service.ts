@@ -4,6 +4,7 @@ import { AdminLogin, UserLogin, UserSign } from '../Model/userSignin.model';
 import { Router } from '@angular/router';
 import { BehaviorSubject, Subject } from 'rxjs';
 import { AlertService } from './alert.service';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -20,7 +21,7 @@ export class UserService {
   constructor(private http: HttpClient, private route: Router, private alert: AlertService) { }
   UserSignUp(data: UserSign) {
     data.role = 'User';
-    return this.http.post('http://localhost:3000/api/auth/register', data, { observe: 'response' })
+    return this.http.post(`${environment.apiUrl}/api/auth/register`, data, { observe: 'response' })
       .subscribe((res) => {
         if (res && res.body) {
 
@@ -44,7 +45,7 @@ export class UserService {
     }
 
     this.http
-      .post<any>('http://localhost:3000/api/auth/login', {
+      .post<any>(`${environment.apiUrl}/api/auth/login`, {
         email: email,
         password: password
       })

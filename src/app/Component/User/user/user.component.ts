@@ -1,4 +1,4 @@
-import { Component, AfterViewInit, NgZone, OnDestroy } from '@angular/core';
+import { Component, AfterViewInit, NgZone, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AdminMarketplaceService } from 'src/app/Services/admin-marketplace.service';
 import { AdminCourseService } from 'src/app/Services/admin-course.service';
@@ -6,6 +6,7 @@ import { Course } from 'src/app/Model/course.model';
 import { MarketplaceForm } from 'src/app/Model/marketplace.model';
 import { AdminAdoptionService } from 'src/app/Services/admin-adoption.service';
 import { AdoptionForm } from 'src/app/Model/adoption.model';
+import { environment } from 'src/environments/environment';
 
 declare var gsap: any;
 declare var ScrollTrigger: any;
@@ -21,7 +22,7 @@ declare var ScrollTrigger: any;
     './../../../../assets/css/style.scss'
   ],
 })
-export class UserComponent implements AfterViewInit, OnDestroy {
+export class UserComponent implements OnInit, AfterViewInit, OnDestroy {
   userName: string = '';
   menutype: string = 'defult';
   buttonClicked = false;
@@ -45,9 +46,32 @@ export class UserComponent implements AfterViewInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.courseService.getAllCourses().subscribe((data: any) => { this.seminars = data.data; });
-    this.ProductService.getAllProduct().subscribe((data: any) => { this.Product = data.products; });
-    this.adoptService.getAllAdoptionPet().subscribe((data: any) => { this.adopt = data.data; });
+    this.courseService.getAllCourses().subscribe({
+      next: (data) => { this.seminars = data?.data ?? []; },
+      error: (err) => console.error('Course list load failed', err),
+    });
+
+    this.ProductService.getAllProduct().subscribe({
+      next: (data) => {
+        this.Product = data?.products ?? [];
+        setTimeout(() => {
+          this.animateProducts();
+          ScrollTrigger?.refresh?.();
+        }, 0);
+      },
+      error: (err) => console.error('Product list load failed', err),
+    });
+
+    this.adoptService.getAllAdoptionPet().subscribe({
+      next: (data) => {
+        this.adopt = data?.data ?? [];
+        setTimeout(() => {
+          this.animatePets();
+          ScrollTrigger?.refresh?.();
+        }, 0);
+      },
+      error: (err) => console.error('Adoption list load failed', err),
+    });
   }
 
   ngAfterViewInit(): void {
@@ -192,10 +216,13 @@ export class UserComponent implements AfterViewInit, OnDestroy {
 
   // ── Product Cards ───────────────────────────────────────────────────────
   private animateProducts(): void {
-    gsap.to('.gsap-product-card', {
+    const productCards = gsap.utils.toArray('.products-reel .gsap-product-card');
+    if (!productCards.length || ScrollTrigger.getById('products-reveal')) return;
+
+    gsap.to(productCards, {
       opacity: 1, y: 0, stagger: 0.12, duration: 0.8,
       ease: 'back.out(1.2)',
-      scrollTrigger: { trigger: '.products-sec', start: 'top 78%' }
+      scrollTrigger: { id: 'products-reveal', trigger: '.products-sec', start: 'top 78%', once: true }
     });
   }
 
@@ -224,10 +251,13 @@ export class UserComponent implements AfterViewInit, OnDestroy {
 
   // ── Pet Cards ───────────────────────────────────────────────────────────
   private animatePets(): void {
-    gsap.to('.gsap-pet-card', {
+    const petCards = gsap.utils.toArray('.adopt-reel .gsap-pet-card');
+    if (!petCards.length || ScrollTrigger.getById('pets-reveal')) return;
+
+    gsap.to(petCards, {
       opacity: 1, y: 0, stagger: 0.12, duration: 0.8,
       ease: 'back.out(1.2)',
-      scrollTrigger: { trigger: '.adoption-sec', start: 'top 78%' }
+      scrollTrigger: { id: 'pets-reveal', trigger: '.adoption-sec', start: 'top 78%', once: true }
     });
   }
 
@@ -259,21 +289,31 @@ export class UserComponent implements AfterViewInit, OnDestroy {
 
   // ── Helpers ─────────────────────────────────────────────────────────────
   getImageUrl(img: any): string {
-    return `http://localhost:3000/${img.replace(/\\/g, '/')}`;
+    if (!img) return '';
+    const url = typeof img === 'string' ? img : img.url;
+
+    if (/^https?:\/\//i.test(url)) {
+      return url;
+    }
+
+    return `${environment.apiUrl}/${url.replace(/\\/g, '/')}`;
   }
 
-  productDetail(Product: MarketplaceForm) {
-    if (!Product._id) return;
-    this.ProductService.getProductById(Product._id).subscribe({
-      next: (res: any) => { this.selectedProduct = res.product; this.route.navigate(['/product', res.product._id]); },
-      error: (err) => console.error(err),
-    });
+  productDetail(product: MarketplaceForm, event?: MouseEvent) {
+    event?.stopPropagation();
+    const productId = product?._id ?? (product as any)?.id;
+    if (!productId) return;
+
+    this.route.navigate(['/product', productId]);
   }
 
   selectSeminar(seminar: Course) {
     if (!seminar._id) return;
     this.courseService.getCourseById(seminar._id).subscribe({
-      next: (res: any) => { this.selectedCourse = res.data; this.route.navigate(['/training', res._id]); },
+      next: (res: any) => {
+        this.selectedCourse = res.data;
+        this.route.navigate(['/training', res.data?._id ?? seminar._id]);
+      },
       error: (err) => console.error(err),
     });
   }

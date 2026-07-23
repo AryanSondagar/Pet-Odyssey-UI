@@ -7,6 +7,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Course } from 'src/app/Model/course.model';
 import { AlertService } from 'src/app/Services/alert.service';
 import { AdminMarketplaceService } from 'src/app/Services/admin-marketplace.service';
+import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-payment-stripe',
   templateUrl: './payment-stripe.component.html',
@@ -81,7 +82,7 @@ export class PaymentStripeComponent implements OnInit {
     this.courseService.getCourseById(id).subscribe({
       next: (res) => {
         this.selectedSlot = this.courseService.getSelectedSlot();
-        this.course = res;
+        this.course = res?.data;
         console.log(this.course);
       },
       error: (err) => console.error('Error loading course:', err)
@@ -157,7 +158,7 @@ export class PaymentStripeComponent implements OnInit {
   }
 
   sendTokenToBackend(token: string): void {
-    this.http.post('http://localhost:3000/api/payment/charge', {
+    this.http.post(`${environment.apiUrl}/api/payment/charge`, {
       token: token,
       amount: this.totalAmountInPaise,
       currency: 'inr'

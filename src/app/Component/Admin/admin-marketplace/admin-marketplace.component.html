@@ -1,4 +1,11 @@
 <div class="page-wrapper">
+  <div class="loading-overlay" *ngIf="isSubmitting" aria-live="polite" aria-busy="true">
+    <div class="loading-card">
+      <span class="loading-spinner"></span>
+      <span>Saving product...</span>
+    </div>
+  </div>
+
   <div class="form-container">
 
     <!-- Header -->
@@ -121,9 +128,9 @@
       <!-- Submit -->
       <div class="form-actions">
         <button mat-raised-button type="submit" class="submit-btn"
-          [disabled]="marketplaceForm.invalid">
-          <mat-icon>check_circle</mat-icon>
-          Submit Product
+          [disabled]="marketplaceForm.invalid || isSubmitting">
+          <mat-icon *ngIf="!isSubmitting">check_circle</mat-icon>
+          <span>{{ isSubmitting ? 'Submitting...' : 'Submit Product' }}</span>
         </button>
       </div>
 

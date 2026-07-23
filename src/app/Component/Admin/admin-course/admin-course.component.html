@@ -1,4 +1,11 @@
 <div class="page-wrapper">
+  <div class="loading-overlay" *ngIf="isSubmitting" aria-live="polite" aria-busy="true">
+    <div class="loading-card">
+      <span class="loading-spinner"></span>
+      <span>Saving course...</span>
+    </div>
+  </div>
+
   <div class="form-container">
 
     <!-- Header -->
@@ -143,9 +150,9 @@
       <!-- Submit -->
       <div class="form-actions">
         <button mat-raised-button type="submit" class="submit-btn"
-          [disabled]="courseForm.invalid || slots.length === 0">
-          <mat-icon>check_circle</mat-icon>
-          Submit Course
+          [disabled]="courseForm.invalid || slots.length === 0 || isSubmitting">
+          <mat-icon *ngIf="!isSubmitting">check_circle</mat-icon>
+          <span>{{ isSubmitting ? 'Submitting...' : 'Submit Course' }}</span>
         </button>
       </div>
 

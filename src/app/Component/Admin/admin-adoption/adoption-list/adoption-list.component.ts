@@ -16,6 +16,7 @@ export class AdoptionListComponent implements OnInit {
 
   displayedColumns: string[] = ['petName', 'petCategory', 'petBreed', 'petAge', 'actions'];
   dataSource!: MatTableDataSource<AdoptionForm>;
+  isLoading = false;
 
   // Edit dialog state
   showEditDialog = false;
@@ -48,10 +49,18 @@ export class AdoptionListComponent implements OnInit {
   }
 
   getAllAdoptionList(): void {
-    this.adoptionService.getAllAdoptionPet().subscribe((res: any) => {
-      this.dataSource = new MatTableDataSource(res.data);
-      this.dataSource.sort = this.sort;
-      this.dataSource.paginator = this.paginator;
+    this.isLoading = true;
+    this.adoptionService.getAllAdoptionPet().subscribe({
+      next: (res: any) => {
+        this.dataSource = new MatTableDataSource(res.data);
+        this.dataSource.sort = this.sort;
+        this.dataSource.paginator = this.paginator;
+        this.isLoading = false;
+      },
+      error: (err) => {
+        console.error('Load failed:', err);
+        this.isLoading = false;
+      }
     });
   }
 
@@ -86,6 +95,8 @@ export class AdoptionListComponent implements OnInit {
   onUpdate(): void {
     if (this.editForm.invalid || !this.selectedRow) return;
 
+    this.isLoading = true;
+
     const updated: AdoptionForm = {
       ...this.selectedRow,
       ...this.editForm.value,
@@ -101,23 +112,30 @@ export class AdoptionListComponent implements OnInit {
           updatedData[index] = updated;
           this.dataSource.data = updatedData;
         }
+        this.isLoading = false;
         this.closeDialog();
       },
       error: err => {
         console.error('Update failed:', err);
         this.alert.ShowError('Failed to update pet!');
+        this.isLoading = false;
       }
     });
   }
 
   // ── Delete ────────────────────────────────────────────
   onDelete(row: any): void {
+    this.isLoading = true;
     this.adoptionService.deleteAdoption(row._id).subscribe({
       next: () => {
         this.alert.ShowDelete('Pet Adoption Deleted Successfully!');
         this.dataSource.data = this.dataSource.data.filter(c => c._id !== row._id);
+        this.isLoading = false;
       },
-      error: err => console.error('Delete failed:', err)
+      error: err => {
+        console.error('Delete failed:', err);
+        this.isLoading = false;
+      }
     });
   }
 }

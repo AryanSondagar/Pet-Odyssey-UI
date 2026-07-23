@@ -1,3 +1,8 @@
+export interface ImageObject {
+  url: string;
+  public_id: string;
+}
+
 export interface AdoptionForm {
     _id?: string,
     petName: string;
@@ -7,7 +12,7 @@ export interface AdoptionForm {
     petSellingPrice: number;
     ownerMobileNumber: string;
     // returned from API
-    images?: string[];
+    images?: ImageObject[];
 
     // used only when uploading
     petImages?: File[];

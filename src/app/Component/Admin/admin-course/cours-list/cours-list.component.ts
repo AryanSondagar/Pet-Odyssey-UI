@@ -16,6 +16,7 @@ export class CoursListComponent implements OnInit {
 
   displayedColumns: string[] = ['city', 'state', 'category', 'price', 'courseDate', 'actions'];
   dataSource!: MatTableDataSource<Course>;
+  isLoading = false;
 
   // Edit dialog
   showEditDialog = false;
@@ -49,10 +50,18 @@ export class CoursListComponent implements OnInit {
   }
 
   getAllCourses(): void {
-    this.courseService.getAllCourses().subscribe((res: any) => {
-      this.dataSource = new MatTableDataSource(res.data);
-      this.dataSource.sort = this.sort;
-      this.dataSource.paginator = this.paginator;
+    this.isLoading = true;
+    this.courseService.getAllCourses().subscribe({
+      next: (res: any) => {
+        this.dataSource = new MatTableDataSource(res.data);
+        this.dataSource.sort = this.sort;
+        this.dataSource.paginator = this.paginator;
+        this.isLoading = false;
+      },
+      error: (err) => {
+        console.error('Load failed:', err);
+        this.isLoading = false;
+      }
     });
   }
 
@@ -100,6 +109,8 @@ export class CoursListComponent implements OnInit {
   onUpdate(): void {
     if (this.editForm.invalid || !this.selectedRow || this.editSlots.length === 0) return;
 
+    this.isLoading = true;
+
     const payload = {
       ...this.editForm.value,
       timeSlots: this.editSlots,
@@ -114,23 +125,30 @@ export class CoursListComponent implements OnInit {
           updatedData[index] = { ...this.selectedRow, ...payload };
           this.dataSource.data = updatedData;
         }
+        this.isLoading = false;
         this.closeDialog();
       },
       error: err => {
         console.error('Update failed:', err);
         this.alert.ShowError('Failed to update course!');
+        this.isLoading = false;
       }
     });
   }
 
   // ── Delete ───────────────────────────────────────────
   onDelete(row: any): void {
+    this.isLoading = true;
     this.courseService.deleteCourse(row._id).subscribe({
       next: () => {
         this.alert.ShowDelete('Pet Course Deleted Successfully!');
         this.dataSource.data = this.dataSource.data.filter(c => c._id !== row._id);
+        this.isLoading = false;
       },
-      error: err => console.error('Delete failed:', err)
+      error: err => {
+        console.error('Delete failed:', err);
+        this.isLoading = false;
+      }
     });
   }
 }

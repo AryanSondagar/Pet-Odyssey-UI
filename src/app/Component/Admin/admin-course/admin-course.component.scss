@@ -437,5 +437,44 @@
             color: rgba(255, 255, 255, 0.7) !important;
             cursor: not-allowed !important;
         }
+
+    }
+
+    .loading-overlay {
+        position: fixed;
+        inset: 0;
+        z-index: 9999;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(9, 12, 11, 0.42);
+        backdrop-filter: blur(4px);
+    }
+
+    .loading-card {
+        display: inline-flex;
+        align-items: center;
+        gap: 14px;
+        padding: 16px 20px;
+        border-radius: 18px;
+        background: rgba(255, 255, 255, 0.96);
+        box-shadow: 0 18px 50px rgba(0, 0, 0, 0.2);
+        font-size: 15px;
+        font-weight: 600;
+        color: $brand-dark;
+    }
+
+    .loading-spinner {
+        width: 22px;
+        height: 22px;
+        border: 3px solid rgba(41, 148, 92, 0.18);
+        border-top-color: $brand;
+        border-radius: 50%;
+        animation: spin 0.8s linear infinite;
+    }
+
+    @keyframes spin {
+        from { transform: rotate(0deg); }
+        to { transform: rotate(360deg); }
     }
 }

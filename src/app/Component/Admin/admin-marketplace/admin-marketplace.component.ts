@@ -13,6 +13,7 @@ export class AdminMarketplaceComponent implements OnInit {
 
   marketplaceForm!: FormGroup;
   selectedFiles: { file: File, preview: string }[] = [];
+  isSubmitting = false;
 
   constructor(
     private fb: FormBuilder,
@@ -45,7 +46,8 @@ export class AdminMarketplaceComponent implements OnInit {
   }
 
   onSubmit() {
-    if (this.marketplaceForm.invalid) return;
+    if (this.marketplaceForm.invalid || this.isSubmitting) return;
+    this.isSubmitting = true;
 
     const newProduct: MarketplaceForm = {
       _id: '',
@@ -62,9 +64,11 @@ export class AdminMarketplaceComponent implements OnInit {
         this.alert.ShowSuccess('Product added successfully!');
         this.marketplaceForm.reset();
         this.selectedFiles = [];
+        this.isSubmitting = false;
       },
       error: err => {
         console.error(err);
+        this.isSubmitting = false;
         alert('Error while adding product!');
       }
     });

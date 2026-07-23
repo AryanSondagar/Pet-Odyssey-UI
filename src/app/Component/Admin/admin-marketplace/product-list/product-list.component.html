@@ -1,4 +1,11 @@
 <div class="page-wrapper">
+  <div class="loading-overlay" *ngIf="isLoading" aria-live="polite" aria-busy="true">
+    <div class="loading-card">
+      <span class="loading-spinner"></span>
+      <span>Loading products...</span>
+    </div>
+  </div>
+
   <div class="list-container">
 
     <!-- Header -->

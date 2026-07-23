@@ -1,4 +1,11 @@
 <div class="page-wrapper">
+  <div class="loading-overlay" *ngIf="isSubmitting" aria-live="polite" aria-busy="true">
+    <div class="loading-card">
+      <span class="loading-spinner"></span>
+      <span>Saving pet details...</span>
+    </div>
+  </div>
+
   <div class="form-container">
 
     <!-- Header -->
@@ -126,9 +133,9 @@
       <div class="form-actions">
         <button mat-raised-button type="submit"
           class="submit-btn"
-          [disabled]="adoptionForm.invalid">
-          <mat-icon>check_circle</mat-icon>
-          Confirm & Submit
+          [disabled]="adoptionForm.invalid || isSubmitting">
+          <mat-icon *ngIf="!isSubmitting">check_circle</mat-icon>
+          <span>{{ isSubmitting ? 'Submitting...' : 'Confirm & Submit' }}</span>
         </button>
       </div>
 
