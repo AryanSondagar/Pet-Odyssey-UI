@@ -104,11 +104,13 @@
           <mat-icon class="upload-icon">cloud_upload</mat-icon>
           <p class="upload-title">Click to upload product images</p>
           <p class="upload-sub">JPG, PNG, WEBP · Max 5 images</p>
+          <p class="upload-sub">Cloudinary tip: keep each image under 1024 KB for faster uploads.</p>
         </div>
         <div class="upload-content" *ngIf="selectedFiles.length > 0">
           <mat-icon class="upload-icon uploaded">check_circle</mat-icon>
           <p class="upload-title">{{ selectedFiles.length }} image(s) selected</p>
           <p class="upload-sub">Click to change selection</p>
+          <p class="upload-sub">Cloudinary tip: keep each image under 1024 KB for faster uploads.</p>
         </div>
       </div>
 
