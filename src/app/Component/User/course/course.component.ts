@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Course } from 'src/app/Model/course.model';
 import { AdminCourseService } from 'src/app/Services/admin-course.service';
+import { UserService } from 'src/app/Services/user.service';
 
 
 @Component({
@@ -13,7 +14,12 @@ import { AdminCourseService } from 'src/app/Services/admin-course.service';
 export class CourseComponent {
   course?: Course;
   showSlotError: boolean = false;
-  constructor(private route: ActivatedRoute, private courseService: AdminCourseService, private routes: Router) { }
+  constructor(
+    private route: ActivatedRoute,
+    private courseService: AdminCourseService,
+    private routes: Router,
+    private userService: UserService
+  ) { }
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');
     if (id) {
@@ -37,6 +43,9 @@ export class CourseComponent {
   buyCourse() {
     if (!this.selectedSlot) {
       this.showSlotError = true;
+      return;
+    }
+    if (!this.userService.requireUserLogin('book course sessions')) {
       return;
     }
     this.routes.navigate(['/payment'], {

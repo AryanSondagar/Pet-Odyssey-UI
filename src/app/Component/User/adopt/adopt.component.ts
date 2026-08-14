@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AdoptionForm } from 'src/app/Model/adoption.model';
 import { AdminAdoptionService } from 'src/app/Services/admin-adoption.service';
 import { AlertService } from 'src/app/Services/alert.service';
+import { UserService } from 'src/app/Services/user.service';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -15,9 +16,19 @@ export class AdoptComponent {
   mainImage: any = '';
   adopt?: AdoptionForm;
   adoptionForm!: FormGroup;
-  constructor(private adoptService: AdminAdoptionService, private alert: AlertService, private route: ActivatedRoute, private routes: Router, private fb: FormBuilder) { }
+  isLoggedIn: boolean = false;
+
+  constructor(
+    private adoptService: AdminAdoptionService,
+    private alert: AlertService,
+    private route: ActivatedRoute,
+    private routes: Router,
+    private fb: FormBuilder,
+    private userService: UserService
+  ) { }
 
   ngOnInit(): void {
+    this.isLoggedIn = this.userService.isUserLoggedIn();
     const id = this.route.snapshot.paramMap.get('id');
     if (id) {
       this.adoptService.getAdoptionById(id).subscribe({
@@ -53,7 +64,16 @@ export class AdoptComponent {
     return `${environment.apiUrl}/${url.replace(/\\/g, '/')}`;
   }
   onSubmit() {
-    if (this.adoptionForm.invalid) return;
+    if (!this.userService.requireUserLogin('submit adoption applications')) {
+      this.isLoggedIn = false;
+      return;
+    }
+
+    this.isLoggedIn = true;
+    if (this.adoptionForm.invalid) {
+      this.adoptionForm.markAllAsTouched();
+      return;
+    }
 
     const adoptionData = {
       petId: this.adopt?._id,

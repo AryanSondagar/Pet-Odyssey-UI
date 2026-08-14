@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MarketplaceForm } from 'src/app/Model/marketplace.model';
 import { AdminMarketplaceService } from 'src/app/Services/admin-marketplace.service';
+import { UserService } from 'src/app/Services/user.service';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -14,7 +15,12 @@ export class ProductComponent {
   mainImage: any = '';
 
 
-  constructor(private productService: AdminMarketplaceService, private route: ActivatedRoute, private routes: Router) { }
+  constructor(
+    private productService: AdminMarketplaceService,
+    private route: ActivatedRoute,
+    private routes: Router,
+    private userService: UserService
+  ) { }
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');
     if (id) {
@@ -58,6 +64,10 @@ export class ProductComponent {
   }
 
   buyNow(): void {
+    if (!this.userService.requireUserLogin('buy products')) {
+      return;
+    }
+
     this.routes.navigate(['/payment'], {
       queryParams: { type: 'product', id: this.product._id, quantity: this.quantity }
     });

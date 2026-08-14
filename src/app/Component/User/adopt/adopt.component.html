@@ -161,12 +161,15 @@
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
             Your information is secure and used only for adoption processing.
           </p>
-          <button type="submit" class="af-submit-btn" [disabled]="adoptionForm.invalid">
-            <ng-container *ngIf="!adoptionForm.invalid">
+          <button type="submit" class="af-submit-btn" [disabled]="adoptionForm.invalid || !isLoggedIn">
+            <ng-container *ngIf="isLoggedIn && !adoptionForm.invalid">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 2L11 13"/><path d="M22 2L15 22 11 13 2 9l20-7z"/></svg>
               Submit Adoption Application
             </ng-container>
-            <ng-container *ngIf="adoptionForm.invalid">
+            <ng-container *ngIf="!isLoggedIn">
+              🔐 Please login to submit application
+            </ng-container>
+            <ng-container *ngIf="isLoggedIn && adoptionForm.invalid">
               ⚠️ Please fill all required fields
             </ng-container>
           </button>

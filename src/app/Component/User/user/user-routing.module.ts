@@ -8,6 +8,7 @@ import { CourseComponent } from '../course/course.component';
 import { ProductComponent } from '../product/product.component';
 import { AdoptComponent } from '../adopt/adopt.component';
 import { PaymentStripeComponent } from '../../payment-stripe/payment-stripe.component';
+import { authGuard } from 'src/app/auth.guard';
 
 
 const routes: Routes = [
@@ -16,7 +17,12 @@ const routes: Routes = [
     { path: 'training/:id', component: CourseComponent },
     { path: 'product/:id', component: ProductComponent },
     { path: 'pet-detail/:id', component: AdoptComponent },
-    { path: 'payment', component: PaymentStripeComponent },
+    {
+        path: 'payment',
+        component: PaymentStripeComponent,
+        canActivate: [authGuard],
+        data: { roles: ['user', 'User'] }
+    },
     //  { path: '**', component: PageNotFoundComponent }
          
 

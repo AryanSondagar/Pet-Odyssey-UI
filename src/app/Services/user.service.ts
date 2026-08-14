@@ -113,6 +113,19 @@ export class UserService {
   clickButton(clicked: boolean) {
     this.buttonClickedSource.next(clicked);
   }
+  isUserLoggedIn(): boolean {
+    return !!localStorage.getItem('user');
+  }
+
+  requireUserLogin(action: string): boolean {
+    if (this.isUserLoggedIn()) {
+      return true;
+    }
+
+    this.alert.ShowError(`Please login to ${action}.`);
+    this.route.navigate(['/UserLogin']);
+    return false;
+  }
   // AdminLogin(data: AdminLogin) {
   //   this.http.get(`http://localhost:3000/Admin?AdminEmail=${data.AdminEmail}&AdminPassword=${data.AdminPassword}`, { observe: 'response' })
   //     .subscribe((result: any) => {
