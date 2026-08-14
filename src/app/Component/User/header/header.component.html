@@ -47,6 +47,11 @@
             <li><a href="#gallery" class="nl">Gallery</a></li>
             <li><a href="#contact" class="nl">Contact</a></li>
             <li>
+              <button class="theme-toggle" (click)="toggleTheme()">
+                {{ isDarkTheme ? '☀️ Light' : '🌙 Dark' }}
+              </button>
+            </li>
+            <li>
               <button class="nl-cta" (click)="login()">
                 Login
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
@@ -62,6 +67,11 @@
             <li><a href="#training" class="nl">Training</a></li>
             <li><a href="#gallery" class="nl">Gallery</a></li>
             <li><a href="#contact" class="nl">Contact</a></li>
+            <li>
+              <button class="theme-toggle" (click)="toggleTheme()">
+                {{ isDarkTheme ? '☀️ Light' : '🌙 Dark' }}
+              </button>
+            </li>
             <li>
               <button class="nl-cta nl-cta--out" (click)="openDialog('0ms','0ms')">
                 Logout

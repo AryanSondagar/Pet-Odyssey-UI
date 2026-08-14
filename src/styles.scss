@@ -47,3 +47,156 @@ body { margin: 0; }
   background: rgba(90, 164, 105, 0.3);
   color: #111827;
 }
+
+body.dark-theme {
+  background: #0b1220;
+  color: #e5e7eb;
+}
+
+body.dark-theme .stats-bar,
+body.dark-theme .products-sec,
+body.dark-theme .about-sec,
+body.dark-theme .services-sec,
+body.dark-theme .adoption-sec,
+body.dark-theme .gallery-sec,
+body.dark-theme .testimonials-sec {
+  background: #0f172a !important;
+}
+
+body.dark-theme .sec-title,
+body.dark-theme .pcard-name,
+body.dark-theme .pcard-price,
+body.dark-theme .svc-title,
+body.dark-theme .pet-name,
+body.dark-theme .testi-name {
+  color: #f8fafc !important;
+}
+
+body.dark-theme .sec-sub,
+body.dark-theme .pcard-desc,
+body.dark-theme .svc-desc,
+body.dark-theme .pet-desc,
+body.dark-theme .testi-text,
+body.dark-theme .testi-role,
+body.dark-theme .stat-lbl {
+  color: #cbd5e1 !important;
+}
+
+body.dark-theme .stat-card,
+body.dark-theme .pcard,
+body.dark-theme .svc-card,
+body.dark-theme .pet-card,
+body.dark-theme .testi-card,
+body.dark-theme .afeat {
+  background: #111827 !important;
+  border-color: rgba(148, 163, 184, 0.22) !important;
+}
+
+body.dark-theme .pd-root,
+body.dark-theme .course-root,
+body.dark-theme .adopt-root {
+  background: #0f172a !important;
+}
+
+body.dark-theme .pd-breadcrumb,
+body.dark-theme .adopt-breadcrumb,
+body.dark-theme .course-section,
+body.dark-theme .booking-card,
+body.dark-theme .instructor-card,
+body.dark-theme .adopt-form-section,
+body.dark-theme .pd-main-img-wrap,
+body.dark-theme .adopt-main-wrap {
+  background: #111827 !important;
+  border-color: rgba(148, 163, 184, 0.2) !important;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.4) !important;
+}
+
+body.dark-theme .pd-name,
+body.dark-theme .pd-price,
+body.dark-theme .feat-title,
+body.dark-theme .qty-label,
+body.dark-theme .pd-meta-row span:last-child,
+body.dark-theme .cs-title,
+body.dark-theme .ic-val,
+body.dark-theme .bc-price,
+body.dark-theme .ic-name,
+body.dark-theme .adopt-name,
+body.dark-theme .ipill-val,
+body.dark-theme .vc-name,
+body.dark-theme .guidelines-card h4,
+body.dark-theme .afs-header h2,
+body.dark-theme .af-group label,
+body.dark-theme .af-check-item.checked {
+  color: #f8fafc !important;
+}
+
+body.dark-theme .bc-link,
+body.dark-theme .pd-desc-block p,
+body.dark-theme .feat-sub,
+body.dark-theme .pd-meta-row span:first-child,
+body.dark-theme .cs-sub,
+body.dark-theme .ch-meta-item,
+body.dark-theme .bc-per,
+body.dark-theme .bc-detail-row,
+body.dark-theme .ic-role,
+body.dark-theme .ipill-lbl,
+body.dark-theme .vc-sub,
+body.dark-theme .gl-item p,
+body.dark-theme .afs-header p,
+body.dark-theme .af-secure {
+  color: #cbd5e1 !important;
+}
+
+body.dark-theme .pd-feat,
+body.dark-theme .pd-meta,
+body.dark-theme .info-card,
+body.dark-theme .ipill,
+body.dark-theme .guidelines-card,
+body.dark-theme .af-check-item {
+  background: #0b1220 !important;
+  border-color: rgba(148, 163, 184, 0.2) !important;
+}
+
+body.dark-theme .qty-ctrl,
+body.dark-theme .slot-btn,
+body.dark-theme .af-group input,
+body.dark-theme .af-group textarea {
+  background: #0b1220 !important;
+  color: #e5e7eb !important;
+  border-color: rgba(148, 163, 184, 0.35) !important;
+}
+
+body.dark-theme .af-group input::placeholder,
+body.dark-theme .af-group textarea::placeholder {
+  color: #94a3b8 !important;
+}
+
+body.dark-theme .payment-container {
+  background: linear-gradient(135deg, #0b1220 0%, #152238 50%, #223556 100%) !important;
+}
+
+body.dark-theme .order-summary {
+  background: #1e293b !important;
+}
+
+body.dark-theme .payment-card {
+  background: #111827 !important;
+}
+
+body.dark-theme .payment-card h2,
+body.dark-theme .payment-card .form-group label,
+body.dark-theme .payment-card .save-card {
+  color: #f8fafc !important;
+}
+
+body.dark-theme .payment-card .subtitle,
+body.dark-theme .payment-card .card-hint {
+  color: #cbd5e1 !important;
+}
+
+body.dark-theme .payment-card input,
+body.dark-theme .payment-card .stripe-wrapper {
+  background: #0b1220 !important;
+  color: #e5e7eb !important;
+  border-color: rgba(148, 163, 184, 0.35) !important;
+}

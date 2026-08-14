@@ -6,6 +6,7 @@ import { OpenDialogComponent } from '../../open-dialog/open-dialog.component';
 import { faLock, faPhone, faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import { faFacebook } from '@fortawesome/free-brands-svg-icons';
 import { CommonModule } from '@angular/common';
+import { ThemeService } from 'src/app/Services/theme.service';
 
 @Component({
   selector: 'app-header',
@@ -26,15 +27,18 @@ export class HeaderComponent {
   userName: string = "";
   menutype: string = 'defult';
   buttonClicked = false;
+  isDarkTheme = false;
 
   constructor(private dialog: MatDialog,
     private route: Router,
-    private userservice: UserService) {
+    private userservice: UserService,
+    private themeService: ThemeService) {
     if (localStorage.getItem('user')) {
       this.menutype = 'user';
     } else {
       this.menutype = 'defult';
     }
+    this.isDarkTheme = this.themeService.isDarkTheme();
   }
   ngOnInit(): void {
     this.userservice.isUserLogined.subscribe(x => {
@@ -45,6 +49,10 @@ export class HeaderComponent {
           this.menutype = 'defult';
         }
       }
+    });
+
+    this.themeService.darkTheme$.subscribe((isDarkTheme) => {
+      this.isDarkTheme = isDarkTheme;
     });
   }
   login() {
@@ -63,6 +71,10 @@ export class HeaderComponent {
       }
     });
 
+  }
+
+  toggleTheme(): void {
+    this.themeService.toggleTheme();
   }
 
 }

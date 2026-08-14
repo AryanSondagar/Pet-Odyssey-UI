@@ -106,6 +106,23 @@
     &:hover { transform:translateY(-2px); box-shadow:0 8px 28px rgba(90,164,105,.5); svg { transform:translateX(3px); } }
     &--out { background:linear-gradient(135deg,#b03a2e,#922b21); box-shadow:0 4px 18px rgba(176,58,46,.3); }
   }
+  .theme-toggle {
+    border: 1px solid rgba(126, 212, 149, 0.45);
+    background: rgba(90, 164, 105, 0.16);
+    color: #d7ffe0;
+    padding: 9px 14px;
+    border-radius: 50px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all .22s ease;
+    font-family: 'Poppins', sans-serif;
+
+    &:hover {
+      background: rgba(90, 164, 105, 0.28);
+      transform: translateY(-1px);
+    }
+  }
   .nav-burger {
     display: none;
     border:none; background:transparent; flex-direction:column; gap:5px; padding:8px; cursor:pointer;
