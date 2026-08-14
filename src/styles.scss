@@ -214,3 +214,8 @@ body.dark-theme .mode-dd-menu {
   background: rgba(7, 18, 12, 0.98) !important;
   border-color: rgba(90, 164, 105, 0.3) !important;
 }
+
+body.dark-theme .tr-wave-top path,
+body.dark-theme .tr-wave-bot path {
+  fill: #0a1510 !important;
+}
