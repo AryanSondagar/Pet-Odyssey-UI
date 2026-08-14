@@ -19,6 +19,10 @@ export class ThemeService {
     this.setTheme(!this.darkThemeSubject.value);
   }
 
+  setThemeMode(mode: 'light' | 'dark'): void {
+    this.setTheme(mode === 'dark');
+  }
+
   isDarkTheme(): boolean {
     return this.darkThemeSubject.value;
   }

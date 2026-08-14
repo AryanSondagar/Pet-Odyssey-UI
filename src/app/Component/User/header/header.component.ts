@@ -28,6 +28,7 @@ export class HeaderComponent {
   menutype: string = 'defult';
   buttonClicked = false;
   isDarkTheme = false;
+  modeDropdownOpen = false;
 
   constructor(private dialog: MatDialog,
     private route: Router,
@@ -73,8 +74,13 @@ export class HeaderComponent {
 
   }
 
-  toggleTheme(): void {
-    this.themeService.toggleTheme();
+  toggleModeDropdown(): void {
+    this.modeDropdownOpen = !this.modeDropdownOpen;
+  }
+
+  setThemeMode(mode: 'light' | 'dark'): void {
+    this.themeService.setThemeMode(mode);
+    this.modeDropdownOpen = false;
   }
 
 }

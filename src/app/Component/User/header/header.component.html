@@ -46,10 +46,19 @@
             <li><a href="#training" class="nl">Training</a></li>
             <li><a href="#gallery" class="nl">Gallery</a></li>
             <li><a href="#contact" class="nl">Contact</a></li>
-            <li>
-              <button class="theme-toggle" (click)="toggleTheme()">
-                {{ isDarkTheme ? '☀️ Light' : '🌙 Dark' }}
+            <li class="mode-dd">
+              <button class="mode-dd-toggle" (click)="toggleModeDropdown()">
+                Mode
+                <span class="mode-dd-chevron">{{ modeDropdownOpen ? '▴' : '▾' }}</span>
               </button>
+              <div class="mode-dd-menu" *ngIf="modeDropdownOpen">
+                <button class="mode-item" [class.selected]="!isDarkTheme" (click)="setThemeMode('light')">
+                  Light
+                </button>
+                <button class="mode-item" [class.selected]="isDarkTheme" (click)="setThemeMode('dark')">
+                  Dark
+                </button>
+              </div>
             </li>
             <li>
               <button class="nl-cta" (click)="login()">
@@ -67,10 +76,19 @@
             <li><a href="#training" class="nl">Training</a></li>
             <li><a href="#gallery" class="nl">Gallery</a></li>
             <li><a href="#contact" class="nl">Contact</a></li>
-            <li>
-              <button class="theme-toggle" (click)="toggleTheme()">
-                {{ isDarkTheme ? '☀️ Light' : '🌙 Dark' }}
+            <li class="mode-dd">
+              <button class="mode-dd-toggle" (click)="toggleModeDropdown()">
+                Mode
+                <span class="mode-dd-chevron">{{ modeDropdownOpen ? '▴' : '▾' }}</span>
               </button>
+              <div class="mode-dd-menu" *ngIf="modeDropdownOpen">
+                <button class="mode-item" [class.selected]="!isDarkTheme" (click)="setThemeMode('light')">
+                  Light
+                </button>
+                <button class="mode-item" [class.selected]="isDarkTheme" (click)="setThemeMode('dark')">
+                  Dark
+                </button>
+              </div>
             </li>
             <li>
               <button class="nl-cta nl-cta--out" (click)="openDialog('0ms','0ms')">
