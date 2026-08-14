@@ -52,5 +52,8 @@ export class CourseComponent {
       queryParams: { type: 'course', id: this.course._id }
     });
   }
+  GotoHome() {
+    this.routes.navigate(['']);
+  }
 
 }
