@@ -41,7 +41,7 @@ import { UserRoutingModule } from './Component/User/user/user-routing.module';
 import { AdminRoutingModule } from './Component/Admin/admin/admin-routing.module';
 
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { CommonModule, JsonPipe } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { TopWidgetsComponent } from './Component/Admin/dashboard/top-widgets/top-widgets.component';
 import { SalesByMonthComponent } from './Component/Admin/dashboard/sales-by-month/sales-by-month.component';
 import { SalesByCategoryComponent } from './Component/Admin/dashboard/sales-by-category/sales-by-category.component';
@@ -90,14 +90,15 @@ import { NgxStripeModule } from 'ngx-stripe';
         ProductListComponent,
         CourseComponent,
         ProductComponent,
-        AdoptComponent
+        AdoptComponent,
+        HeaderComponent,
+        FooterComponent
     ],
     bootstrap: [AppComponent], imports: [BrowserModule,
         CommonModule,
         AppRoutingModule,
         // AdminRoutingModule,
         //  UserRoutingModule,
-        HttpClientModule,
         BrowserAnimationsModule,
         FontAwesomeModule,
         FormsModule,
@@ -124,8 +125,5 @@ import { NgxStripeModule } from 'ngx-stripe';
         MatDialogModule,
         MatFormFieldModule,
         MatTooltipModule,
-        JsonPipe,
-        HeaderComponent,
-        FooterComponent,
         NgxStripeModule.forRoot('pk_test_51T9jBtRCIrGmUZh6hcydPrB29Ye3mBnlIpLE0UUqqgiTw4Vqfl1GYkbr8YOV2p4UAC8cMMkaz9eTQHlqGh6qIHdU00PyoFzlDi')], providers: [{ provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }, provideHttpClient(withInterceptorsFromDi())] })
 export class AppModule { }
