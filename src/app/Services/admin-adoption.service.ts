@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { AdoptionForm } from '../Model/adoption.model';
 import { Course } from '../Model/course.model';
-import { environment } from 'src/environments/environment';
+import { environment } from '../../environments/environment';
 
 interface AdoptionListResponse {
   success: boolean;
