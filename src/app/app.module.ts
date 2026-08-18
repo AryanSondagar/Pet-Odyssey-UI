@@ -1,7 +1,7 @@
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -41,7 +41,7 @@ import { UserRoutingModule } from './Component/User/user/user-routing.module';
 import { AdminRoutingModule } from './Component/Admin/admin/admin-routing.module';
 
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { CommonModule, JsonPipe } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { TopWidgetsComponent } from './Component/Admin/dashboard/top-widgets/top-widgets.component';
 import { SalesByMonthComponent } from './Component/Admin/dashboard/sales-by-month/sales-by-month.component';
 import { SalesByCategoryComponent } from './Component/Admin/dashboard/sales-by-category/sales-by-category.component';
@@ -67,74 +67,63 @@ import { NgxStripeModule } from 'ngx-stripe';
 
 
 
-@NgModule({
-  schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  declarations: [
-    AppComponent,
-
-    DashboardComponent,
-    AdminMarketplaceComponent,
-    AdminCourseComponent,
-    AdminAdoptionComponent,
-    AdminComponent,
-    UserComponent,
-    TopWidgetsComponent,
-    SalesByMonthComponent,
-    SalesByCategoryComponent,
-    LastFewTransactionsComponent,
-    TopThreeProductComponent,
-    UserloginComponent,
-    PageNotFoundComponent,
-    OpenDialogComponent,
-    PaymentStripeComponent,
-    AdoptionListComponent,
-    CoursListComponent,
-    ProductListComponent,
-    CourseComponent,
-    ProductComponent,
-    AdoptComponent
-
-  ],
-  imports: [
-    BrowserModule,
-    CommonModule,
-    AppRoutingModule,
-   // AdminRoutingModule,
-  //  UserRoutingModule,
-    HttpClientModule,
-    BrowserAnimationsModule,
-    FontAwesomeModule,
-    FormsModule,
-    HttpClientModule,
-    ReactiveFormsModule,
-    MatInputModule,
-    MatSelectModule,
-    MatAutocompleteModule,
-    MatToolbarModule,
-    MatMenuModule,
-    MatIconModule,
-    MatButtonModule,
-    MatBadgeModule,
-    MatSidenavModule,
-    MatListModule,
-    MatCardModule,
-    MatSliderModule,
-    MatTableModule,
-    MatPaginatorModule,
-    MatSortModule,
-    MatDatepickerModule,
-    MatNativeDateModule,
-    MatRadioModule,
-    MatCheckboxModule,
-    MatDialogModule,
-    MatFormFieldModule,
-    MatTooltipModule,
-    JsonPipe,
-    HeaderComponent,
-    FooterComponent,
-    NgxStripeModule.forRoot('pk_test_51T9jBtRCIrGmUZh6hcydPrB29Ye3mBnlIpLE0UUqqgiTw4Vqfl1GYkbr8YOV2p4UAC8cMMkaz9eTQHlqGh6qIHdU00PyoFzlDi')
-  ],
-  providers: [{ provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }],
-  bootstrap: [AppComponent],
-})
+@NgModule({ schemas: [CUSTOM_ELEMENTS_SCHEMA],
+    declarations: [
+        AppComponent,
+        DashboardComponent,
+        AdminMarketplaceComponent,
+        AdminCourseComponent,
+        AdminAdoptionComponent,
+        AdminComponent,
+        UserComponent,
+        TopWidgetsComponent,
+        SalesByMonthComponent,
+        SalesByCategoryComponent,
+        LastFewTransactionsComponent,
+        TopThreeProductComponent,
+        UserloginComponent,
+        PageNotFoundComponent,
+        OpenDialogComponent,
+        PaymentStripeComponent,
+        AdoptionListComponent,
+        CoursListComponent,
+        ProductListComponent,
+        CourseComponent,
+        ProductComponent,
+        AdoptComponent
+    ],
+    bootstrap: [AppComponent], imports: [BrowserModule,
+        CommonModule,
+        AppRoutingModule,
+        // AdminRoutingModule,
+        //  UserRoutingModule,
+        BrowserAnimationsModule,
+        FontAwesomeModule,
+        FormsModule,
+        ReactiveFormsModule,
+        MatInputModule,
+        MatSelectModule,
+        MatAutocompleteModule,
+        MatToolbarModule,
+        MatMenuModule,
+        MatIconModule,
+        MatButtonModule,
+        MatBadgeModule,
+        MatSidenavModule,
+        MatListModule,
+        MatCardModule,
+        MatSliderModule,
+        MatTableModule,
+        MatPaginatorModule,
+        MatSortModule,
+        MatDatepickerModule,
+        MatNativeDateModule,
+        MatRadioModule,
+        MatCheckboxModule,
+        MatDialogModule,
+        MatFormFieldModule,
+        MatTooltipModule,
+        HeaderComponent,
+        FooterComponent,
+        NgxStripeModule.forRoot('pk_test_51T9jBtRCIrGmUZh6hcydPrB29Ye3mBnlIpLE0UUqqgiTw4Vqfl1GYkbr8YOV2p4UAC8cMMkaz9eTQHlqGh6qIHdU00PyoFzlDi')], providers: [{ provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }, provideHttpClient(withInterceptorsFromDi())] })
 export class AppModule { }
