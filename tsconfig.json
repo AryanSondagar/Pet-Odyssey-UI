@@ -13,11 +13,11 @@
     "sourceMap": true,
     "declaration": false,
     "experimentalDecorators": true,
-    "moduleResolution": "node16",
+    "moduleResolution": "node",
     "importHelpers": true,
     "useDefineForClassFields": false,
     "target": "ES2022",
-    "module": "Node16",
+    "module": "es2020",
     "lib": [
       "es2020",
       "dom"
