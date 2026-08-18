@@ -90,9 +90,7 @@ import { NgxStripeModule } from 'ngx-stripe';
         ProductListComponent,
         CourseComponent,
         ProductComponent,
-        AdoptComponent,
-        HeaderComponent,
-        FooterComponent
+        AdoptComponent
     ],
     bootstrap: [AppComponent], imports: [BrowserModule,
         CommonModule,
@@ -125,5 +123,7 @@ import { NgxStripeModule } from 'ngx-stripe';
         MatDialogModule,
         MatFormFieldModule,
         MatTooltipModule,
+        HeaderComponent,
+        FooterComponent,
         NgxStripeModule.forRoot('pk_test_51T9jBtRCIrGmUZh6hcydPrB29Ye3mBnlIpLE0UUqqgiTw4Vqfl1GYkbr8YOV2p4UAC8cMMkaz9eTQHlqGh6qIHdU00PyoFzlDi')], providers: [{ provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }, provideHttpClient(withInterceptorsFromDi())] })
 export class AppModule { }
