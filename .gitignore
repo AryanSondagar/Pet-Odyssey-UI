@@ -1,13 +1,14 @@
 # See http://help.github.com/ignore-files/ for more about ignoring files.
 
 # Compiled output
-/dist
+dist/
+uploads/
 /tmp
 /out-tsc
 /bazel-out
 
 # Node
-/node_modules
+node_modules/
 npm-debug.log
 yarn-error.log
 
@@ -40,6 +41,7 @@ testem.log
 # Local environment config
 .env
 .env.*
+!.env.example
 
 # Generated Angular environment
 /src/environments/environment.generated.ts

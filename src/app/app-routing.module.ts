@@ -1,20 +1,40 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { UserComponent } from './Component/User/user/user.component';
-import { AdminComponent } from './Component/Admin/admin/admin.component';
-import { authGuard } from './auth.guard';
-import { CourseComponent } from './Component/User/course/course.component';
-import { PageNotFoundComponent } from './Component/page-not-found/page-not-found.component';
+import { authGuard } from '@core/guards/auth.guard';
+import { PageNotFoundComponent } from '@shared/components/page-not-found/page-not-found.component';
 
 
 const routes: Routes = [
   {
     path: '',
-    loadChildren: () => import('./Component/User/user/user-routing.module').then(m => m.UserRoutingModule)
+    pathMatch: 'full',
+    loadChildren: () => import('@features/home/home.module').then(m => m.HomeModule)
+  },
+  {
+    path: 'UserLogin',
+    loadChildren: () => import('@features/auth/auth.module').then(m => m.AuthModule)
+  },
+  {
+    path: 'training/:id',
+    loadChildren: () => import('@features/courses/courses.module').then(m => m.CoursesModule)
+  },
+  {
+    path: 'product/:id',
+    loadChildren: () => import('@features/marketplace/marketplace.module').then(m => m.MarketplaceModule)
+  },
+  {
+    path: 'pet-detail/:id',
+    loadChildren: () => import('@features/adoption/adoption.module').then(m => m.AdoptionModule)
+  },
+  {
+    path: 'payment',
+    loadChildren: () => import('@features/checkout/checkout.module').then(m => m.CheckoutModule),
+    canActivate: [authGuard],
+    data: { roles: ['user', 'User'] }
   },
   {
     path: 'admin',
-    loadChildren: () => import('./Component/Admin/admin/admin-routing.module').then(m => m.AdminRoutingModule)
+    loadChildren: () => import('@features/admin/admin.module').then(m => m.AdminModule)
   },
   {
     path: '**',

@@ -1,0 +1,108 @@
+import { Component } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { AdoptionService } from '@core/services/adoption.service';
+import { AlertService } from '@core/services/alert.service';
+import { UserService } from '@core/services/auth.service';
+import { AdoptionForm } from '@shared/models/adoption.model';
+import { environment } from 'src/environments/environment';
+
+@Component({
+  selector: 'app-adopt',
+  templateUrl: './adopt.component.html',
+  styleUrl: './adopt.component.scss'
+})
+export class AdoptComponent {
+  mainImage: any = '';
+  adopt?: AdoptionForm;
+  adoptionForm!: FormGroup;
+  isLoggedIn: boolean = false;
+
+  constructor(
+    private adoptService: AdoptionService,
+    private alert: AlertService,
+    private route: ActivatedRoute,
+    private routes: Router,
+    private fb: FormBuilder,
+    private userService: UserService
+  ) { }
+
+  ngOnInit(): void {
+    this.isLoggedIn = this.userService.isUserLoggedIn();
+    const id = this.route.snapshot.paramMap.get('id');
+    if (id) {
+      this.adoptService.getAdoptionById(id).subscribe({
+        next: (res: any) => {
+          this.adopt = res.data;
+          if (this.adopt?.images && this.adopt.images.length > 0) {
+            this.mainImage = this.getImageUrl(this.adopt.images[0]);
+          }
+          console.log(this.adopt);
+
+        },
+        error: (err) => console.error('Error loading adopt:', err)
+      });
+    }
+    this.adoptionForm = this.fb.group({
+      name: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      phone: ['', Validators.required],
+      address: ['', Validators.required],
+      reason: ['', Validators.required],
+      isAdult: [false, Validators.requiredTrue],
+      hasPets: [false]
+    });
+  }
+  getImageUrl(img: any): string {
+    if (!img) return '';
+    const url = typeof img === 'string' ? img : img.url;
+
+    if (/^https?:\/\//i.test(url)) {
+      return url;
+    }
+
+    return `${environment.apiUrl}/${url.replace(/\\/g, '/')}`;
+  }
+  onSubmit() {
+    if (!this.userService.requireUserLogin('submit adoption applications')) {
+      this.isLoggedIn = false;
+      return;
+    }
+
+    this.isLoggedIn = true;
+    if (this.adoptionForm.invalid) {
+      this.adoptionForm.markAllAsTouched();
+      return;
+    }
+
+    const adoptionData = {
+      petId: this.adopt?._id,
+      petName: this.adopt?.petName,
+      name: this.adoptionForm.value.name,
+      email: this.adoptionForm.value.email,
+      phone: this.adoptionForm.value.phone,
+      address: this.adoptionForm.value.address,
+      reason: this.adoptionForm.value.reason,
+      isAdult: this.adoptionForm.value.isAdult,
+      hasPets: this.adoptionForm.value.hasPets,
+    };
+
+    this.adoptService.applyForAdoption(adoptionData).subscribe({
+      next: (res) => {
+        this.alert.ShowSuccess('Adoption application submitted successfully!');
+        this.adoptionForm.reset();
+      },
+      error: (err) => {
+        this.alert.ShowError('Something went wrong. Please try again.');
+        console.error(err);
+      }
+    });
+  }
+  changeImage(img: any) {
+    this.mainImage = this.getImageUrl(img);
+  }
+  GotoHome() {
+    this.routes.navigate(['']);
+  }
+
+}
