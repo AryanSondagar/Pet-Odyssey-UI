@@ -1,4 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
+import 'src/test-setup';
 
 import { AdoptionListComponent } from './adoption-list.component';
 
@@ -8,7 +10,8 @@ describe('AdoptionListComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [AdoptionListComponent]
+      declarations: [AdoptionListComponent],
+      schemas: [NO_ERRORS_SCHEMA],
     })
     .compileComponents();
     

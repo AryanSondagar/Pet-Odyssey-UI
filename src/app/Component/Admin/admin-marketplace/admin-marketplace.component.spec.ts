@@ -1,4 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
+import 'src/test-setup';
 
 import { AdminMarketplaceComponent } from './admin-marketplace.component';
 
@@ -8,7 +10,8 @@ describe('AdminMarketplaceComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AdminMarketplaceComponent ]
+      declarations: [AdminMarketplaceComponent],
+      schemas: [NO_ERRORS_SCHEMA],
     })
     .compileComponents();
 

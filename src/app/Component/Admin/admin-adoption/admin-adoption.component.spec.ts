@@ -1,4 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
+import 'src/test-setup';
 
 import { AdminAdoptionComponent } from './admin-adoption.component';
 
@@ -8,7 +10,8 @@ describe('AdminAdoptionComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AdminAdoptionComponent ]
+      declarations: [AdminAdoptionComponent],
+      schemas: [NO_ERRORS_SCHEMA],
     })
     .compileComponents();
 

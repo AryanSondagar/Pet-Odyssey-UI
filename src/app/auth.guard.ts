@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Observable, catchError, map, of } from 'rxjs';
 import { UserService } from './Services/user.service';
 
 
@@ -13,17 +13,20 @@ export class authGuard {
   }
   canActivate(
     route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    const user = localStorage.getItem('user');
-    const role = localStorage.getItem('role');
-    if (!user) {
-      return this.route.parseUrl('/'); // not logged in
-    }
-    const allowedRoles = route.data['roles'] as Array<string>;
-    if (allowedRoles && allowedRoles.includes(role!)) {
-      return true; // ✅ user has required role
-    }
-    return this.route.parseUrl('/');
+    _state: RouterStateSnapshot): Observable<boolean | UrlTree> {
+    return this.UserService.restoreSession().pipe(
+      map((isAuthenticated) => {
+        const allowedRoles = route.data['roles'] as string[] | undefined;
+        const role = this.UserService.getCurrentRole();
+        return isAuthenticated && (!allowedRoles || allowedRoles.includes(role || ''))
+          ? true
+          : this.route.parseUrl('/');
+      }),
+      catchError((error) => {
+        console.error('Unable to restore authentication session:', error);
+        return of(this.route.parseUrl('/'));
+      })
+    );
   }
 
 }

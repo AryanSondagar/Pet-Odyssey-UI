@@ -1,4 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
+import 'src/test-setup';
 
 import { AdoptComponent } from './adopt.component';
 
@@ -8,7 +11,9 @@ describe('AdoptComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [AdoptComponent]
+      declarations: [AdoptComponent],
+      imports: [ReactiveFormsModule],
+      schemas: [NO_ERRORS_SCHEMA],
     })
     .compileComponents();
     

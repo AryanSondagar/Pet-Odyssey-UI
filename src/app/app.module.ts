@@ -82,7 +82,6 @@ import { NgxStripeModule } from 'ngx-stripe';
         LastFewTransactionsComponent,
         TopThreeProductComponent,
         UserloginComponent,
-        PageNotFoundComponent,
         OpenDialogComponent,
         PaymentStripeComponent,
         AdoptionListComponent,
@@ -125,5 +124,6 @@ import { NgxStripeModule } from 'ngx-stripe';
         MatTooltipModule,
         HeaderComponent,
         FooterComponent,
+        PageNotFoundComponent,
         NgxStripeModule.forRoot('pk_test_51T9jBtRCIrGmUZh6hcydPrB29Ye3mBnlIpLE0UUqqgiTw4Vqfl1GYkbr8YOV2p4UAC8cMMkaz9eTQHlqGh6qIHdU00PyoFzlDi')], providers: [{ provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }, provideHttpClient(withInterceptorsFromDi())] })
 export class AppModule { }

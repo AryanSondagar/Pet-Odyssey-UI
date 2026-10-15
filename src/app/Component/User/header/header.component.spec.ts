@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import 'src/test-setup';
 
 import { HeaderComponent } from './header.component';
 

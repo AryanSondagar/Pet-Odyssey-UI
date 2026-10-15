@@ -38,6 +38,7 @@ export class PaymentStripeComponent implements OnInit {
   selectedSlot: string = '';
   paymentType: string = '';
   quantity: number = 1;
+  private itemId: string = '';
   cardOptions: StripeCardElementOptions = {
     style: {
       base: {
@@ -79,6 +80,7 @@ export class PaymentStripeComponent implements OnInit {
   }
   loadCourse(id: string) {
     this.paymentType = 'course';
+    this.itemId = id;
     this.courseService.getCourseById(id).subscribe({
       next: (res) => {
         this.selectedSlot = this.courseService.getSelectedSlot();
@@ -90,6 +92,7 @@ export class PaymentStripeComponent implements OnInit {
   }
   loadProduct(id: string) {
     this.paymentType = 'product';
+    this.itemId = id;
     this.productService.getProductById(id).subscribe({
       next: (res: any) => {
         this.product = res.product;
@@ -122,15 +125,18 @@ export class PaymentStripeComponent implements OnInit {
   setCustomTip(): void {
     this.selectedTip = 0;
   }
-  get totalAmountInPaise(): number {
-    return Math.round(this.totalAmount * 100);
-  }
-
   pay(): void {
     this.formError = false;
-    if (!this.firstName || !this.lastName || !this.email || !this.cardholderName) {
+    if (
+      !this.firstName ||
+      !this.lastName ||
+      !this.email ||
+      !this.cardholderName ||
+      !this.itemId ||
+      !['course', 'product'].includes(this.paymentType)
+    ) {
       this.formError = true;
-      this.paymentError = 'Please fill all required fields';
+      this.paymentError = 'Please select an item and fill all required fields';
       return;
     }
 
@@ -138,38 +144,55 @@ export class PaymentStripeComponent implements OnInit {
     this.paymentError = '';
     this.paymentSuccess = false;
 
-    this.stripeService
-      .createToken(this.card.element, { name: this.cardholderName })
-      .subscribe({
-        next: (result) => {
-          if (result.token) {
-            this.alert.ShowSuccess('Payment successful!');
-            this.sendTokenToBackend(result.token.id);
-          } else if (result.error) {
-            this.paymentError = result.error.message || 'Card error';
+    this.http.post<{ clientSecret: string; orderId: string }>(
+      `${environment.apiUrl}/api/payment/create-intent`,
+      {
+        items: [{
+          itemId: this.itemId,
+          type: this.paymentType,
+          quantity: this.paymentType === 'course' ? 1 : this.quantity
+        }],
+        tipAmount: this.selectedTip + this.customTip
+      }
+    ).subscribe({
+      next: (response: any) => {
+        this.stripeService.confirmCardPayment(response.clientSecret, {
+          payment_method: {
+            card: this.card.element,
+            billing_details: {
+              name: this.cardholderName,
+              email: this.email,
+              phone: this.phone || undefined,
+              address: {
+                line1: this.address || undefined,
+                city: this.city || undefined,
+                postal_code: this.pincode || undefined
+              }
+            }
+          }
+        }).subscribe({
+          next: (result) => {
+            if (result.error) {
+              this.paymentError = result.error.message || 'Card payment failed';
+              this.isProcessing = false;
+            } else if (result.paymentIntent?.status === 'succeeded') {
+              this.paymentSuccess = true;
+              this.chargeId = result.paymentIntent.id;
+              this.isProcessing = false;
+              this.alert.ShowSuccess('Payment submitted successfully!');
+            } else {
+              this.paymentError = 'Payment has not completed';
+              this.isProcessing = false;
+            }
+          },
+          error: () => {
+            this.paymentError = 'Unable to confirm payment';
             this.isProcessing = false;
           }
-        },
-        error: () => {
-          this.paymentError = 'Something went wrong';
-          this.isProcessing = false;
-        }
-      });
-  }
-
-  sendTokenToBackend(token: string): void {
-    this.http.post(`${environment.apiUrl}/api/payment/charge`, {
-      token: token,
-      amount: this.totalAmountInPaise,
-      currency: 'inr'
-    }).subscribe({
-      next: (response: any) => {
-        this.paymentSuccess = true;
-        this.isProcessing = false;
-        this.chargeId = response.chargeId;
+        });
       },
       error: (err) => {
-        this.paymentError = 'Payment failed on server';
+        this.paymentError = err.error?.message || 'Unable to start payment';
         this.isProcessing = false;
       }
     });

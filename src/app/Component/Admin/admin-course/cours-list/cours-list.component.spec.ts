@@ -1,4 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
+import 'src/test-setup';
 
 import { CoursListComponent } from './cours-list.component';
 
@@ -8,7 +10,8 @@ describe('CoursListComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [CoursListComponent]
+      declarations: [CoursListComponent],
+      schemas: [NO_ERRORS_SCHEMA],
     })
     .compileComponents();
     

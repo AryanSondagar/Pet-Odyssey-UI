@@ -1,4 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
+import 'src/test-setup';
 
 import { PaymentStripeComponent } from './payment-stripe.component';
 
@@ -8,7 +10,8 @@ describe('PaymentStripeComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [PaymentStripeComponent]
+      declarations: [PaymentStripeComponent],
+      schemas: [NO_ERRORS_SCHEMA],
     })
     .compileComponents();
     
